@@ -8,21 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		248FC583270276EA00BE168F /* PittsburghCityBridgesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248FC582270276EA00BE168F /* PittsburghCityBridgesApp.swift */; };
-		248FC585270276EA00BE168F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248FC584270276EA00BE168F /* ContentView.swift */; };
+		248FC585270276EA00BE168F /* CloudKitContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248FC584270276EA00BE168F /* CloudKitContentView.swift */; };
 		248FC587270276EE00BE168F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 248FC586270276EE00BE168F /* Assets.xcassets */; };
 		248FC58A270276EE00BE168F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 248FC589270276EE00BE168F /* Preview Assets.xcassets */; };
 		248FC58C270276EE00BE168F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248FC58B270276EE00BE168F /* Persistence.swift */; };
 		248FC58F270276EE00BE168F /* PittsburghCityBridges.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 248FC58D270276EE00BE168F /* PittsburghCityBridges.xcdatamodeld */; };
+		248FC59A270278F100BE168F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 248FC599270278F100BE168F /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		247214ED27027E0E004FBACD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		248FC57F270276EA00BE168F /* PittsburghCityBridges.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PittsburghCityBridges.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		248FC582270276EA00BE168F /* PittsburghCityBridgesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PittsburghCityBridgesApp.swift; sourceTree = "<group>"; };
-		248FC584270276EA00BE168F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		248FC584270276EA00BE168F /* CloudKitContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitContentView.swift; sourceTree = "<group>"; };
 		248FC586270276EE00BE168F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		248FC589270276EE00BE168F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		248FC58B270276EE00BE168F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		248FC58E270276EE00BE168F /* PittsburghCityBridges.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PittsburghCityBridges.xcdatamodel; sourceTree = "<group>"; };
+		248FC597270278E000BE168F /* PittsburghCityBridges.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PittsburghCityBridges.entitlements; sourceTree = "<group>"; };
+		248FC599270278F100BE168F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				248FC59A270278F100BE168F /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +46,7 @@
 			children = (
 				248FC581270276EA00BE168F /* PittsburghCityBridges */,
 				248FC580270276EA00BE168F /* Products */,
+				248FC598270278F100BE168F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,8 +61,10 @@
 		248FC581270276EA00BE168F /* PittsburghCityBridges */ = {
 			isa = PBXGroup;
 			children = (
+				247214ED27027E0E004FBACD /* Info.plist */,
+				248FC597270278E000BE168F /* PittsburghCityBridges.entitlements */,
 				248FC582270276EA00BE168F /* PittsburghCityBridgesApp.swift */,
-				248FC584270276EA00BE168F /* ContentView.swift */,
+				248FC584270276EA00BE168F /* CloudKitContentView.swift */,
 				248FC586270276EE00BE168F /* Assets.xcassets */,
 				248FC58B270276EE00BE168F /* Persistence.swift */,
 				248FC58D270276EE00BE168F /* PittsburghCityBridges.xcdatamodeld */,
@@ -71,6 +79,14 @@
 				248FC589270276EE00BE168F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		248FC598270278F100BE168F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				248FC599270278F100BE168F /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,7 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				248FC58C270276EE00BE168F /* Persistence.swift in Sources */,
-				248FC585270276EA00BE168F /* ContentView.swift in Sources */,
+				248FC585270276EA00BE168F /* CloudKitContentView.swift in Sources */,
 				248FC583270276EA00BE168F /* PittsburghCityBridgesApp.swift in Sources */,
 				248FC58F270276EE00BE168F /* PittsburghCityBridges.xcdatamodeld in Sources */,
 			);
@@ -274,12 +290,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PittsburghCityBridges/PittsburghCityBridges.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PittsburghCityBridges/Preview Content\"";
 				DEVELOPMENT_TEAM = 35RA2D9F5A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PittsburghCityBridges/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -304,12 +322,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PittsburghCityBridges/PittsburghCityBridges.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"PittsburghCityBridges/Preview Content\"";
 				DEVELOPMENT_TEAM = 35RA2D9F5A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PittsburghCityBridges/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

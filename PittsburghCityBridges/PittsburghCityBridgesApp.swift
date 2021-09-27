@@ -13,7 +13,7 @@ struct PittsburghCityBridgesApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CloudKitContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

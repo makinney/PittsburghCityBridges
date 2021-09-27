@@ -1,14 +1,13 @@
 //
 //  ContentView.swift
 //  PittsburghCityBridges
-//
 //  Created by MAKinney on 9/27/21.
 //
 
 import SwiftUI
 import CoreData
 
-struct ContentView: View {
+struct CloudKitContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -81,8 +80,8 @@ private let itemFormatter: DateFormatter = {
     return formatter
 }()
 
-struct ContentView_Previews: PreviewProvider {
+struct CloudKitContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        CloudKitContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }
