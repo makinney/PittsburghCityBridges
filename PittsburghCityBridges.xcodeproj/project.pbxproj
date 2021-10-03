@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		247214EF270289C5004FBACD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247214EE270289C5004FBACD /* ContentView.swift */; };
+		247214F227028AF4004FBACD /* CityBridges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247214F127028AF4004FBACD /* CityBridges.swift */; };
+		247214FA27052454004FBACD /* TwoBridge.json in Resources */ = {isa = PBXBuildFile; fileRef = 247214F927052317004FBACD /* TwoBridge.json */; };
+		247214FC27054B7B004FBACD /* BridgesOpenData.json in Resources */ = {isa = PBXBuildFile; fileRef = 247214FB27054B5A004FBACD /* BridgesOpenData.json */; };
 		248FC583270276EA00BE168F /* PittsburghCityBridgesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248FC582270276EA00BE168F /* PittsburghCityBridgesApp.swift */; };
 		248FC585270276EA00BE168F /* CloudKitContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248FC584270276EA00BE168F /* CloudKitContentView.swift */; };
 		248FC587270276EE00BE168F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 248FC586270276EE00BE168F /* Assets.xcassets */; };
@@ -18,6 +22,10 @@
 
 /* Begin PBXFileReference section */
 		247214ED27027E0E004FBACD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		247214EE270289C5004FBACD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		247214F127028AF4004FBACD /* CityBridges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityBridges.swift; sourceTree = "<group>"; };
+		247214F927052317004FBACD /* TwoBridge.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TwoBridge.json; sourceTree = "<group>"; };
+		247214FB27054B5A004FBACD /* BridgesOpenData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BridgesOpenData.json; sourceTree = "<group>"; };
 		248FC57F270276EA00BE168F /* PittsburghCityBridges.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PittsburghCityBridges.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		248FC582270276EA00BE168F /* PittsburghCityBridgesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PittsburghCityBridgesApp.swift; sourceTree = "<group>"; };
 		248FC584270276EA00BE168F /* CloudKitContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitContentView.swift; sourceTree = "<group>"; };
@@ -41,6 +49,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		247214F027028A00004FBACD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				247214F127028AF4004FBACD /* CityBridges.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		247214F32703CCC9004FBACD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				247214F927052317004FBACD /* TwoBridge.json */,
+				247214FB27054B5A004FBACD /* BridgesOpenData.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		247214F627051F98004FBACD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				247214EE270289C5004FBACD /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		248FC576270276EA00BE168F = {
 			isa = PBXGroup;
 			children = (
@@ -61,6 +94,8 @@
 		248FC581270276EA00BE168F /* PittsburghCityBridges */ = {
 			isa = PBXGroup;
 			children = (
+				247214F627051F98004FBACD /* Views */,
+				247214F027028A00004FBACD /* Models */,
 				247214ED27027E0E004FBACD /* Info.plist */,
 				248FC597270278E000BE168F /* PittsburghCityBridges.entitlements */,
 				248FC582270276EA00BE168F /* PittsburghCityBridgesApp.swift */,
@@ -69,6 +104,7 @@
 				248FC58B270276EE00BE168F /* Persistence.swift */,
 				248FC58D270276EE00BE168F /* PittsburghCityBridges.xcdatamodeld */,
 				248FC588270276EE00BE168F /* Preview Content */,
+				247214F32703CCC9004FBACD /* Resources */,
 			);
 			path = PittsburghCityBridges;
 			sourceTree = "<group>";
@@ -147,6 +183,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				247214FC27054B7B004FBACD /* BridgesOpenData.json in Resources */,
+				247214FA27052454004FBACD /* TwoBridge.json in Resources */,
 				248FC58A270276EE00BE168F /* Preview Assets.xcassets in Resources */,
 				248FC587270276EE00BE168F /* Assets.xcassets in Resources */,
 			);
@@ -160,6 +198,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				248FC58C270276EE00BE168F /* Persistence.swift in Sources */,
+				247214F227028AF4004FBACD /* CityBridges.swift in Sources */,
+				247214EF270289C5004FBACD /* ContentView.swift in Sources */,
 				248FC585270276EA00BE168F /* CloudKitContentView.swift in Sources */,
 				248FC583270276EA00BE168F /* PittsburghCityBridgesApp.swift in Sources */,
 				248FC58F270276EE00BE168F /* PittsburghCityBridges.xcdatamodeld in Sources */,

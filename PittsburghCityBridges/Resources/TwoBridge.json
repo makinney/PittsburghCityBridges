@@ -1,0 +1,64 @@
+{
+    "crs": {
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        },
+        "type": "name"
+    },
+    "name": "meuse",
+    "features": [
+        {
+            "id": 2002832442,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.99678326482949,
+                        40.446347894504505
+                    ],
+                    [
+                        -79.97441584314404,
+                        40.45641590532492
+                    ],
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1900",
+                "name": "10th St Bypass",
+                "id": 2002832442,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/10th_St_Bypass.jpg",
+                "start_neighborhood": "Central Business District",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 290122944,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.91582616145192,
+                        40.415133358541794
+                    ],
+                    [
+                        -79.91556464607305,
+                        40.41527120323437
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1886",
+                "name": "2nd Avenue Bridge",
+                "id": 290122944,
+                "year_rehab": "1970",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/2nd_Avenue_Bridge.jpg",
+                "start_neighborhood": "Squirrel Hill South",
+                "end_neighborhood": "Swisshelm Park"
+            },
+            "type": "Feature"
+        }
+    ],
+    "type": "FeatureCollection"
+}
