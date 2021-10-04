@@ -4,17 +4,23 @@
 //
 //  Created by MAKinney on 9/27/21.
 //
-
+import Combine
 import SwiftUI
 
 @main
 struct PittsburghCityBridgesApp: App {
-    let persistenceController = PersistenceController.shared
-
+    init() {
+        bridgeDataStore = BridgeDataStore()
+    }
+    
+  //  let persistenceController = PersistenceController.shared
+    @ObservedObject var bridgeDataStore: BridgeDataStore
+    
     var body: some Scene {
         WindowGroup {
-            CloudKitContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            ContentView()
+                .environmentObject(bridgeDataStore)
+//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

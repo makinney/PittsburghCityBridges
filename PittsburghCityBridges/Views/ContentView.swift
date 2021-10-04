@@ -8,25 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var bridgesDataStore: BridgeDataStore
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            .onAppear {
-                self.loadJSON()
+        Text("City Bridges")
+        List {
+            ForEach(bridgesDataStore.bridges) { bridge in
+                Text("\(bridge.properties.name)")
             }
-    }
-    
-    func loadJSON() {
-        guard let url = Bundle.main.url(forResource: "BridgesOpenData", withExtension: "json") else {
-            return
         }
-        
-        do {
-            let decoder = JSONDecoder()
-            let data = try Data(contentsOf: url)
-            let bridges = try decoder.decode(CityBridges.self, from: data)
-             print(bridges)
-        } catch let error {
-            print(error)
+        .onAppear {
+            bridgesDataStore.load()
         }
     }
 }

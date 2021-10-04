@@ -8,17 +8,16 @@
 import Foundation
 
 struct CityBridges: Codable {
-    var crs: CRS
-    var name: String
-    var features: [Bridge]
-    var featuresName: String
-    
+    var crs: CRS?
+    var name: String?
+    var bridges: [Bridge] = []
+    var featuresName: String?
 }
 
 extension CityBridges {
     enum CodingKeys: String, CodingKey {
         case crs
-        case features
+        case bridges = "features"
         case featuresName = "type"
         case name
     }
@@ -36,11 +35,20 @@ extension CRS {
     }
 }
 
-struct Bridge: Codable {
-    var bridgeID: Int
+struct Bridge: Codable, Identifiable {
+    var id: Int
     var geometry: BridgeGPSCoordinates
     var properties: BridgeProperties
     var typeFeature: String
+}
+
+extension Bridge {
+    enum CodingKeys: String, CodingKey {
+        case id
+        case geometry
+        case properties
+        case typeFeature = "type"
+    }
 }
 
 struct BridgeGPSCoordinates: Codable {
@@ -55,18 +63,11 @@ extension BridgeGPSCoordinates {
     }
 }
 
-extension Bridge {
-    enum CodingKeys: String, CodingKey {
-        case bridgeID = "id"
-        case geometry
-        case properties
-        case typeFeature = "type"
-    }
-}
+
 struct BridgeProperties: Codable {
     var openDataID: Int
     var yearBuilt: String?
-    var name: String?
+    var name: String = ""
     var yearRehab: String?
     var imagePath: String?
     var startNeighborhood: String?
