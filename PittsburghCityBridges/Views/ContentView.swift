@@ -17,7 +17,7 @@ struct ContentView: View {
             }
         }
         .onAppear {
-            bridgesDataStore.load()
+            bridgesDataStore.loadFromNetwork()
         }
     }
 }

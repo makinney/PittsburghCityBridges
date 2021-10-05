@@ -1,0 +1,4040 @@
+{
+    "crs": {
+        "properties": {
+            "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+        },
+        "type": "name"
+    },
+    "name": "meuse",
+    "features": [
+        {
+            "id": 2002832442,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.99678326482949,
+                        40.446347894504505
+                    ],
+                    [
+                        -79.99628437395265,
+                        40.44653568445991
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "10th St Bypass",
+                "id": 2002832442,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/10th_St_Bypass.jpg",
+                "start_neighborhood": "Central Business District",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 761156487,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.9746035977751,
+                        40.45630569705427
+                    ],
+                    [
+                        -79.97441584314404,
+                        40.45641590532492
+                    ],
+                    [
+                        -79.97436219896375,
+                        40.45644447781003
+                    ],
+                    [
+                        -79.97429782594736,
+                        40.456460804938914
+                    ],
+                    [
+                        -79.97414762224251,
+                        40.45647713206383
+                    ],
+                    [
+                        -79.97399205411963,
+                        40.45645672315706
+                    ],
+                    [
+                        -79.97388476575901,
+                        40.45641998710925
+                    ],
+                    [
+                        -79.97379893507053,
+                        40.45637100568093
+                    ],
+                    [
+                        -79.9728977128414,
+                        40.45560770714225
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1931",
+                "name": "28th Street Bridge",
+                "id": 761156487,
+                "year_rehab": "1974",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/28th_Street_Bridge.jpg",
+                "start_neighborhood": "Strip District",
+                "end_neighborhood": "Polish Hill"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 290122944,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.91582616145192,
+                        40.415133358541794
+                    ],
+                    [
+                        -79.91556464607305,
+                        40.41527120323437
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1886",
+                "name": "2nd Avenue Bridge",
+                "id": 290122944,
+                "year_rehab": "1970",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/2nd_Avenue_Bridge.jpg",
+                "start_neighborhood": "Squirrel Hill South",
+                "end_neighborhood": "Swisshelm Park"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1811170969,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.03341896064097,
+                        40.440118625976474
+                    ],
+                    [
+                        -80.0333103311759,
+                        40.44002574279534
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1924",
+                "name": "Alexander Street Bridge",
+                "id": 1811170969,
+                "year_rehab": "2000",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Alexander_Street_Bridge.jpg",
+                "start_neighborhood": "West End",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 2047190591,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.97651087403862,
+                        40.46814775073232
+                    ],
+                    [
+                        -79.97687029004665,
+                        40.46769066915317
+                    ],
+                    [
+                        -79.97710632443999,
+                        40.46733969368635
+                    ],
+                    [
+                        -79.97787880063638,
+                        40.46635205520497
+                    ],
+                    [
+                        -79.97852789521808,
+                        40.46557662638511
+                    ],
+                    [
+                        -79.97898350262605,
+                        40.46507009807816
+                    ],
+                    [
+                        -79.97900093698466,
+                        40.46505224256919
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Allegheny Channel Boardwalk",
+                "id": 2047190591,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Allegheny_Channel_Boardwalk.jpg",
+                "start_neighborhood": "Troy Hill",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 265798676,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.94741634453459,
+                        40.43510823079106
+                    ],
+                    [
+                        -79.94729296291995,
+                        40.43500411220502
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1939",
+                "name": "Anderson Playground Walkway",
+                "id": 265798676,
+                "year_rehab": "1939",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Anderson_Playground_Walkway.jpg",
+                "start_neighborhood": "Squirrel Hill South",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 886744744,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.99770752819423,
+                        40.39451510554766
+                    ],
+                    [
+                        -79.99741516741169,
+                        40.3944916136734
+                    ],
+                    [
+                        -79.99742053182972,
+                        40.39449263505941
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1925",
+                "name": "Ansonia Place Bridge",
+                "id": 886744744,
+                "year_rehab": "1925",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Ansonia_Place_Bridge.jpg",
+                "start_neighborhood": "Brookline",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1811658780,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.96371619135947,
+                        40.409665467016
+                    ],
+                    [
+                        -79.9635498944006,
+                        40.40973694788499
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1900",
+                "name": "Bajo Street Bridge",
+                "id": 1811658780,
+                "year_rehab": "1900",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Bajo_Street_Bridge.jpg",
+                "start_neighborhood": "Arlington",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1887633011,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.06204703640593,
+                        40.42717665911061
+                    ],
+                    [
+                        -80.06188744496959,
+                        40.42710723855053
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1929",
+                "name": "Baldwick Road Bridge 1",
+                "id": 1887633011,
+                "year_rehab": "1985",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Baldwick_Road_Bridge_1.jpg",
+                "start_neighborhood": "Oakwood",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 476622411,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.05994820785381,
+                        40.42669785996776
+                    ],
+                    [
+                        -80.05976715874536,
+                        40.426709089837445
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1929",
+                "name": "Baldwick Road Bridge 2",
+                "id": 476622411,
+                "year_rehab": "1929",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Baldwick_Road_Bridge_2.jpg",
+                "start_neighborhood": "Oakwood",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1097386435,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.05711311292733,
+                        40.4265845402693
+                    ],
+                    [
+                        -80.05695754480452,
+                        40.426522265398425
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Baldwick Road Bridge 3",
+                "id": 1097386435,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Baldwick_Road_Bridge_3.jpg",
+                "start_neighborhood": "Oakwood",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 638279888,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.94442055882934,
+                        40.45520982198246
+                    ],
+                    [
+                        -79.94384656610009,
+                        40.45537717794073
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1913",
+                "name": "Baum Boulevard Bridge",
+                "id": 638279888,
+                "year_rehab": "1986",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Baum_Boulevard_Bridge.jpg",
+                "start_neighborhood": "Bloomfield",
+                "end_neighborhood": "Shadyside"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1395820472,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.93837047840412,
+                        40.4276437096785
+                    ],
+                    [
+                        -79.93791986728795,
+                        40.428386908379714
+                    ],
+                    [
+                        -79.93770529030928,
+                        40.42876258801695
+                    ],
+                    [
+                        -79.93753899328557,
+                        40.429154599611415
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "2017",
+                "name": "Beechwood Boulevard Bridge",
+                "id": 1395820472,
+                "year_rehab": "2017",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Beechwood_Boulevard_Bridge.jpg",
+                "start_neighborhood": "Greenfield",
+                "end_neighborhood": "Squirrel Hill South"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 916357398,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.95770212869584,
+                        40.4588767877041
+                    ],
+                    [
+                        -79.95768871765077,
+                        40.458631889160976
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1986",
+                "name": "Bigelow Boulevard Pedestrian Bridge",
+                "id": 916357398,
+                "year_rehab": "1986",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Bigelow_Boulevard_Pedestrian_Bridge.jpg",
+                "start_neighborhood": "Polish Hill",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1653197563,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.95778393587325,
+                        40.45867066504715
+                    ],
+                    [
+                        -79.9570275535057,
+                        40.45891760399765
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1986",
+                "name": "Bigelow Boulevard Underpass",
+                "id": 1653197563,
+                "year_rehab": "1986",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Bigelow_Boulevard_Underpass.jpg",
+                "start_neighborhood": "Polish Hill",
+                "end_neighborhood": "North Oakland"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 100374440,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.95715671180699,
+                        40.45906735368556
+                    ],
+                    [
+                        -79.95302074550546,
+                        40.46350801313947
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1986",
+                "name": "Bloomfield Bridge",
+                "id": 100374440,
+                "year_rehab": "1986",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Bloomfield_Bridge.jpg",
+                "start_neighborhood": "Bloomfield",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 837715899,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.94764769710004,
+                        40.43303091828868
+                    ],
+                    [
+                        -79.94758332408367,
+                        40.43308399992997
+                    ],
+                    [
+                        -79.94752163327637,
+                        40.43313912312845
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1939",
+                "name": "Bridle Trail Bridge 1",
+                "id": 837715899,
+                "year_rehab": "1939",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Bridle_Trail_Bridge_1.jpg",
+                "start_neighborhood": "Squirrel Hill South",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 2096249888,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.94850063957094,
+                        40.43141599140584
+                    ],
+                    [
+                        -79.94840408004637,
+                        40.431591573199114
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1939",
+                "name": "Bridle Trail Bridge 2",
+                "id": 2096249888,
+                "year_rehab": "1939",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Bridle_Trail_Bridge_2.jpg",
+                "start_neighborhood": "Squirrel Hill South",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1474894314,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.04274868681564,
+                        40.481163921500055
+                    ],
+                    [
+                        -80.04192793085734,
+                        40.481778000920315
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1930",
+                "name": "Brighton Heights Boulevard Bridge",
+                "id": 1474894314,
+                "year_rehab": "1980",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Brighton_Heights_Boulevard_Bridge.jpg",
+                "start_neighborhood": "Brighton Heights",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1422005607,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.93293720913515,
+                        40.38301608017447
+                    ],
+                    [
+                        -79.93295330238925,
+                        40.3828505872409
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1930",
+                "name": "Calera Street Bridge 1",
+                "id": 1422005607,
+                "year_rehab": "1984",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Calera_Street_Bridge_1.jpg",
+                "start_neighborhood": "Hays",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1163914043,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.9328578604641,
+                        40.38361505223844
+                    ],
+                    [
+                        -79.93287395371819,
+                        40.383493487562134
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1930",
+                "name": "Calera Street Bridge 2",
+                "id": 1163914043,
+                "year_rehab": "1984",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Calera_Street_Bridge_2.jpg",
+                "start_neighborhood": "Hays",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 204581168,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.02105188455636,
+                        40.41105316751469
+                    ],
+                    [
+                        -80.02131339993524,
+                        40.41111545670606
+                    ],
+                    [
+                        -80.02158430304566,
+                        40.41114200617993
+                    ],
+                    [
+                        -80.02199065771129,
+                        40.41114711184678
+                    ],
+                    [
+                        -80.0229455241203,
+                        40.41112158350864
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Cape May Avenue Pedestrian Bridge",
+                "id": 204581168,
+                "year_rehab": null,
+                "image": "",
+                "start_neighborhood": "Beechview",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 98560992,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.03438333264393,
+                        40.40719219002525
+                    ],
+                    [
+                        -80.0343001841645,
+                        40.40708904941882
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1909",
+                "name": "Carnahan Road Bridge",
+                "id": 98560992,
+                "year_rehab": "2021",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Carnahan_Road_Bridge.jpg",
+                "start_neighborhood": "Banksville",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 471129992,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.94354375653013,
+                        40.45442459687355
+                    ],
+                    [
+                        -79.94242259316225,
+                        40.45476339416965
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1978",
+                "name": "Centre Avenue Bridge",
+                "id": 471129992,
+                "year_rehab": "1978",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Centre_Avenue_Bridge.jpg",
+                "start_neighborhood": "Shadyside",
+                "end_neighborhood": "Bloomfield"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1368360254,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.95168694309808,
+                        40.43423858438876
+                    ],
+                    [
+                        -79.94857558064106,
+                        40.43458973277687
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1938",
+                "name": "Charles Anderson Bridge",
+                "id": 1368360254,
+                "year_rehab": "1987",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Charles_Anderson_Bridge.jpg",
+                "start_neighborhood": "Squirrel Hill South",
+                "end_neighborhood": "South Oakland"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 2094754790,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.99149645905577,
+                        40.456573754907296
+                    ],
+                    [
+                        -79.99114777188393,
+                        40.456024753945314
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1998",
+                "name": "Charles J. Lieberth Pedestrian Bridge",
+                "id": 2094754790,
+                "year_rehab": "1998",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Charles_J._Lieberth_Pedestrian_Bridge.jpg",
+                "start_neighborhood": "Troy Hill",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1920929766,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.05457596346321,
+                        40.453196284856006
+                    ],
+                    [
+                        -80.05452768370093,
+                        40.45261255917429
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1908",
+                "name": "Chartiers Avenue Bridge",
+                "id": 1920929766,
+                "year_rehab": "1908",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Chartiers_Avenue_Bridge.jpg",
+                "start_neighborhood": "Sheraden",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 67438686,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.07517373549078,
+                        40.45697432848801
+                    ],
+                    [
+                        -80.075213968626,
+                        40.456972287612714
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Chartiers Park 1",
+                "id": 67438686,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Chartiers_Park_1.jpg",
+                "start_neighborhood": "Windgap",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 912954902,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.07500609742333,
+                        40.45745087116992
+                    ],
+                    [
+                        -80.07506778823065,
+                        40.457459034612576
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Chartiers Park 2",
+                "id": 912954902,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Chartiers_Park_2.jpg",
+                "start_neighborhood": "Windgap",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1690227401,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.99414117582789,
+                        40.454449146204375
+                    ],
+                    [
+                        -79.99441476114733,
+                        40.45477977960951
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1988",
+                "name": "Chestnut Street Bridge",
+                "id": 1690227401,
+                "year_rehab": "1988",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Chestnut_Street_Bridge.jpg",
+                "start_neighborhood": "East Allegheny",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 707361176,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.02540363027074,
+                        40.45821619496801
+                    ],
+                    [
+                        -80.02368433429271,
+                        40.458538646525504
+                    ],
+                    [
+                        -80.0234751219896,
+                        40.45875293309695
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1905",
+                "name": "Columbus Avenue Bridge",
+                "id": 707361176,
+                "year_rehab": "1990",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Columbus_Avenue_Bridge.jpg",
+                "start_neighborhood": "Manchester",
+                "end_neighborhood": "California-Kirkbride"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1633957439,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.90617202086493,
+                        40.426165376017344
+                    ],
+                    [
+                        -79.90608887238551,
+                        40.42600815640009
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1940",
+                "name": "Commercial Street Bridge",
+                "id": 1633957439,
+                "year_rehab": "1940",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Commercial_Street_Bridge.jpg",
+                "start_neighborhood": "Squirrel Hill South",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 562030231,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.04083656910069,
+                        40.452121197429015
+                    ],
+                    [
+                        -80.03953167441534,
+                        40.45280391604578
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1913",
+                "name": "Corliss Street Tunnel",
+                "id": 562030231,
+                "year_rehab": "1942",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Corliss_Street_Tunnel.jpg",
+                "start_neighborhood": "Elliott",
+                "end_neighborhood": "Esplen"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1319915134,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.01534619572294,
+                        40.416971722595896
+                    ],
+                    [
+                        -80.01469307782759,
+                        40.41701766960276
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1983",
+                "name": "Crane Avenue Bridge",
+                "id": 1319915134,
+                "year_rehab": "1983",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Crane_Avenue_Bridge.jpg",
+                "start_neighborhood": "Mount Washington",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 262339398,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.91899358391784,
+                        40.46480935116455
+                    ],
+                    [
+                        -79.91865562558208,
+                        40.464650181270684
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1968",
+                "name": "East Liberty Boulevard Bridge Northbound",
+                "id": 262339398,
+                "year_rehab": "1968",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/East_Liberty_Boulevard_Bridge_Northbound.jpg",
+                "start_neighborhood": "Larimer",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 205186808,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.91914646983297,
+                        40.464695075382174
+                    ],
+                    [
+                        -79.91878437161607,
+                        40.46453590521752
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1968",
+                "name": "East Liberty Boulevard Bridge Southbound",
+                "id": 205186808,
+                "year_rehab": "1968",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/East_Liberty_Boulevard_Bridge_Southbound.jpg",
+                "start_neighborhood": "East Liberty",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1019718164,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.00854249996424,
+                        40.48327439661463
+                    ],
+                    [
+                        -80.00682052177643,
+                        40.48292758277228
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1986",
+                "name": "East Street Service Bridge",
+                "id": 1019718164,
+                "year_rehab": "1986",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/East_Street_Service_Bridge.jpg",
+                "start_neighborhood": "Summer Hill",
+                "end_neighborhood": "Perry North"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1795072982,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.92741508680574,
+                        40.45862350105354
+                    ],
+                    [
+                        -79.92733998495335,
+                        40.458427581551774
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Eastside Pedestrian Bridge",
+                "id": 1795072982,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Eastside_Pedestrian_Bridge.jpg",
+                "start_neighborhood": "Shadyside",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1913893398,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.00121254870086,
+                        40.401993910660266
+                    ],
+                    [
+                        -80.00093091675438,
+                        40.40204088916542
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1914",
+                "name": "Edgebrook Avenue Bridge",
+                "id": 1913893398,
+                "year_rehab": "1975",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Edgebrook_Avenue_Bridge.jpg",
+                "start_neighborhood": "Bon Air",
+                "end_neighborhood": "Brookline"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1563359794,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.96844282700279,
+                        40.41242540709657
+                    ],
+                    [
+                        -79.96842271043519,
+                        40.412283472109934
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1952",
+                "name": "Eisel Street Bridge",
+                "id": 1563359794,
+                "year_rehab": "1952",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Eisel_Street_Bridge.jpg",
+                "start_neighborhood": "Arlington",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1070906249,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.98317957844989,
+                        40.435026569247796
+                    ],
+                    [
+                        -79.98270482780539,
+                        40.43499594633342
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Eliza Furnace Trail 2nd Avenue",
+                "id": 1070906249,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Eliza_Furnace_Trail_2nd_Avenue.jpg",
+                "start_neighborhood": "Bluff",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 986903308,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.95930121268124,
+                        40.43149665074256
+                    ],
+                    [
+                        -79.95872185553395,
+                        40.4311414028825
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Eliza Furnace Trail Bates Street",
+                "id": 986903308,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Eliza_Furnace_Trail_Bates_Street.jpg",
+                "start_neighborhood": "South Oakland",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 2030557349,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.97272298659178,
+                        40.4361718643662
+                    ],
+                    [
+                        -79.9732004197965,
+                        40.436188196420446
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Eliza Furnace Trail Brady Street",
+                "id": 2030557349,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Eliza_Furnace_Trail_Brady_Street.jpg",
+                "start_neighborhood": "Bluff",
+                "end_neighborhood": "South Oakland"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 831241962,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.95284245336899,
+                        40.425034521278334
+                    ],
+                    [
+                        -79.95259837234872,
+                        40.424726201953504
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Eliza Furnace Trail Greenfield Avenue",
+                "id": 831241962,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Eliza_Furnace_Trail_Greenfield_Avenue.jpg",
+                "start_neighborhood": "Hazelwood",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 12281037,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.96687373081075,
+                        40.4349375514629
+                    ],
+                    [
+                        -79.96676107803214,
+                        40.434891616695865
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Eliza Furnace Trail Maurice Street Bridge",
+                "id": 12281037,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Eliza_Furnace_Trail_Maurice_Street_Bridge.jpg",
+                "start_neighborhood": "South Oakland",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 451697024,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.95357201422641,
+                        40.426161610362975
+                    ],
+                    [
+                        -79.95332525099711,
+                        40.4260636033665
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Eliza Furnace Trail Swinburne Street 1",
+                "id": 451697024,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Eliza_Furnace_Trail_Swinburne_Street_1.jpg",
+                "start_neighborhood": "Hazelwood",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 497696193,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.95370612467445,
+                        40.42611873231815
+                    ],
+                    [
+                        -79.95351568783445,
+                        40.42590638350992
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Eliza Furnace Trail Swinburne Street 2",
+                "id": 497696193,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Eliza_Furnace_Trail_Swinburne_Street_2.jpg",
+                "start_neighborhood": "Hazelwood",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 862801435,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.94333649038839,
+                        40.40708001254462
+                    ],
+                    [
+                        -79.94526231646134,
+                        40.406753229337575
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1940",
+                "name": "Elizabeth Street Bridge",
+                "id": 862801435,
+                "year_rehab": "1940",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Elizabeth_Street_Bridge.jpg",
+                "start_neighborhood": "Hazelwood",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 252038884,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.99705951554837,
+                        40.38769838726843
+                    ],
+                    [
+                        -79.99656062467174,
+                        40.38791698557096
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1938",
+                "name": "Englert Street Pedestrian Bridge",
+                "id": 252038884,
+                "year_rehab": "1986",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Englert_Street_Pedestrian_Bridge.jpg",
+                "start_neighborhood": "Overbrook",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1988317050,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.00401671411807,
+                        40.406060790238215
+                    ],
+                    [
+                        -80.00370423676792,
+                        40.40626707444443
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1981",
+                "name": "Ensign Avenue Bridge",
+                "id": 1988317050,
+                "year_rehab": "1981",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Ensign_Avenue_Bridge.jpg",
+                "start_neighborhood": "Bon Air",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1178818331,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.99378286011748,
+                        40.378978689195016
+                    ],
+                    [
+                        -79.99371714599665,
+                        40.378840770179934
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1979",
+                "name": "Fairhaven Road Bridge",
+                "id": 1178818331,
+                "year_rehab": "1979",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Fairhaven_Road_Bridge.jpg",
+                "start_neighborhood": "Overbrook",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1806102340,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.89968104538612,
+                        40.432549227124056
+                    ],
+                    [
+                        -79.89956034598049,
+                        40.43250226991625
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Falls Ravine Trail Bridge",
+                "id": 1806102340,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Falls_Ravine_Trail_Bridge.png",
+                "start_neighborhood": "Squirrel Hill South",
+                "end_neighborhood": "Regent Square"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1962872980,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.00633374752312,
+                        40.44345075243024
+                    ],
+                    [
+                        -80.00555456580453,
+                        40.44347422721514
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1930",
+                "name": "Fancourt Street Bridge",
+                "id": 1962872980,
+                "year_rehab": "1930",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Fancourt_Street_Bridge.jpg",
+                "start_neighborhood": "Central Business District",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 2061579920,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.96056773714754,
+                        40.45811861973615
+                    ],
+                    [
+                        -79.96037998251656,
+                        40.457863514188816
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1986",
+                "name": "Finland Street Pedestrian Bridge",
+                "id": 2061579920,
+                "year_rehab": "1986",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Finland_Street_Pedestrian_Bridge.jpg",
+                "start_neighborhood": "Polish Hill",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 339222553,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.8994741696932,
+                        40.43956846812711
+                    ],
+                    [
+                        -79.90120151229904,
+                        40.43947048066885
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1970",
+                "name": "Forbes Avenue Frick Park Bridge",
+                "id": 339222553,
+                "year_rehab": "1970",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Forbes_Avenue_Frick_Park_Bridge.jpg",
+                "start_neighborhood": "Regent Square",
+                "end_neighborhood": "Point Breeze"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 259287705,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.94717993923182,
+                        40.4445084413551
+                    ],
+                    [
+                        -79.9462250728224,
+                        40.44454110140926
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1898",
+                "name": "Forbes Avenue Oakland Bridge",
+                "id": 259287705,
+                "year_rehab": "1983",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Forbes_Avenue_Oakland_Bridge.jpg",
+                "start_neighborhood": "Squirrel Hill North",
+                "end_neighborhood": "North Oakland"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 378927944,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.00928386821151,
+                        40.4424829031629
+                    ],
+                    [
+                        -80.00918730868695,
+                        40.44269519962845
+                    ],
+                    [
+                        -80.00913902892468,
+                        40.44282176066393
+                    ],
+                    [
+                        -80.00910684241649,
+                        40.44295648666566
+                    ],
+                    [
+                        -80.00910147799847,
+                        40.44320144234065
+                    ],
+                    [
+                        -80.00918194426892,
+                        40.44367502078114
+                    ],
+                    [
+                        -80.00956818236712,
+                        40.44482220989683
+                    ],
+                    [
+                        -80.01001879348169,
+                        40.445728516279175
+                    ],
+                    [
+                        -80.00997051371942,
+                        40.44581832975965
+                    ],
+                    [
+                        -80.00999733580957,
+                        40.44604286293578
+                    ],
+                    [
+                        -80.01000270022759,
+                        40.4460387805211
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Fort Duquesne Pedestrian Bridge",
+                "id": 378927944,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Fort_Duquesne_Pedestrian_Bridge.jpg",
+                "start_neighborhood": "Central Business District",
+                "end_neighborhood": "North Shore"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 253242687,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.0086159367138,
+                        40.439335704998314
+                    ],
+                    [
+                        -80.00708707757508,
+                        40.43875185892843
+                    ],
+                    [
+                        -80.00095018334817,
+                        40.436436838938654
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1940",
+                "name": "Fort Pitt Boulevard Eastbound",
+                "id": 253242687,
+                "year_rehab": "1940",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Fort_Pitt_Boulevard_Eastbound.jpg",
+                "start_neighborhood": "Central Business District",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1317416454,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.90019662306862,
+                        40.43087873955921
+                    ],
+                    [
+                        -79.9001295678433,
+                        40.43093590623147
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Frick Park Access Road Bridge",
+                "id": 1317416454,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Frick_Park_Access_Road_Bridge.jpg",
+                "start_neighborhood": "Squirrel Hill South",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 150410192,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.98859584017683,
+                        40.42310919985044
+                    ],
+                    [
+                        -79.98856365366868,
+                        40.42326846814254
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Fritz Street Bridge",
+                "id": 150410192,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Fritz_Street_Bridge.jpg",
+                "start_neighborhood": "Allentown",
+                "end_neighborhood": "South Side Slopes"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1316908913,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.93476371503493,
+                        40.38001269350529
+                    ],
+                    [
+                        -79.9346456978383,
+                        40.37990031679461
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1951",
+                "name": "Ganges Way Bridge",
+                "id": 1316908913,
+                "year_rehab": "1951",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Ganges_Way_Bridge.jpg",
+                "start_neighborhood": "Hays",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 2137855309,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.96252593642052,
+                        40.42715045233617
+                    ],
+                    [
+                        -79.96284780150236,
+                        40.42687276955763
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "2000",
+                "name": "Gateway Boulevard Railroad Tunnel",
+                "id": 2137855309,
+                "year_rehab": "2000",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Gateway_Boulevard_Railroad_Tunnel.jpg",
+                "start_neighborhood": "South Side Flats",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 441837715,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.98796025875004,
+                        40.45828593686379
+                    ],
+                    [
+                        -79.98787174585257,
+                        40.45831450855361
+                    ],
+                    [
+                        -79.9877456820289,
+                        40.45838185606013
+                    ],
+                    [
+                        -79.98740504148414,
+                        40.45862267386443
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1949",
+                "name": "Goettman Street Bridge",
+                "id": 441837715,
+                "year_rehab": "1987",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Goettman_Street_Bridge.jpg",
+                "start_neighborhood": "Troy Hill",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 820475036,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.9795820866146,
+                        40.464165427200726
+                    ],
+                    [
+                        -79.97819002013628,
+                        40.46356547141932
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1986",
+                "name": "Herr's Island Bridge",
+                "id": 820475036,
+                "year_rehab": "1986",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Herr's_Island_Bridge.jpg",
+                "start_neighborhood": "Troy Hill",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1088820206,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.96700768603172,
+                        40.46146038136395
+                    ],
+                    [
+                        -79.96647124422866,
+                        40.46039918870779
+                    ],
+                    [
+                        -79.96599917544198,
+                        40.45934614250152
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1980",
+                "name": "Herron Avenue Bridge",
+                "id": 1088820206,
+                "year_rehab": "1980",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Herron_Avenue_Bridge.jpg",
+                "start_neighborhood": "Lower Lawrenceville",
+                "end_neighborhood": "Polish Hill"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 826965681,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.93145153543269,
+                        40.38334787870333
+                    ],
+                    [
+                        -79.93144617101466,
+                        40.38322835665859
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Hillburn Street Pedestrian Bridge",
+                "id": 826965681,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Hillburn_Street_Pedestrian_Bridge.jpg",
+                "start_neighborhood": "Hays",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 204423365,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.958370402872,
+                        40.42971776025156
+                    ],
+                    [
+                        -79.95942182880714,
+                        40.42910830915073
+                    ],
+                    [
+                        -79.96162928682571,
+                        40.42784242991762
+                    ],
+                    [
+                        -79.96236689430457,
+                        40.42740345010362
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Hot Metal Pedestrian Bridge",
+                "id": 204423365,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Hot_Metal_Pedestrian_Bridge.jpg",
+                "start_neighborhood": "South Oakland",
+                "end_neighborhood": "South Side Flats"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1667705177,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.96230651172769,
+                        40.42732519327493
+                    ],
+                    [
+                        -79.9585299614342,
+                        40.42950985770213
+                    ],
+                    [
+                        -79.95854069027025,
+                        40.42950985770213
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1904",
+                "name": "Hot Metal Street Bridge",
+                "id": 1667705177,
+                "year_rehab": "2000",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Hot_Metal_Street_Bridge.jpg",
+                "start_neighborhood": "South Side Flats",
+                "end_neighborhood": "South Oakland"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1432148758,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.95819069486662,
+                        40.42981576192262
+                    ],
+                    [
+                        -79.95774544817009,
+                        40.43008526578352
+                    ],
+                    [
+                        -79.95805658441586,
+                        40.430424185772424
+                    ],
+                    [
+                        -79.95737530332596,
+                        40.4297667611046
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Hot Metal Street Pedestrian Bridge 2nd Avenue",
+                "id": 1432148758,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Hot_Metal_Street_Pedestrian_Bridge_2nd_Avenue.jpg",
+                "start_neighborhood": "South Oakland",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1663635743,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.99997096589532,
+                        40.46250107747056
+                    ],
+                    [
+                        -79.99902682832195,
+                        40.46252964736772
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1989",
+                "name": "Howard Street Pedestrian Bridge",
+                "id": 1663635743,
+                "year_rehab": "1989",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Howard_Street_Pedestrian_Bridge.jpg",
+                "start_neighborhood": "Fineview",
+                "end_neighborhood": "Spring Hill-City View"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1044698336,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.01244598083589,
+                        40.45329661134359
+                    ],
+                    [
+                        -80.01226359062294,
+                        40.4533721278192
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Lake Elizabeth Bridge 1",
+                "id": 1044698336,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Lake_Elizabeth_Bridge_1.jpg",
+                "start_neighborhood": "Allegheny Center",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1463062856,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.0120624249441,
+                        40.45353234492428
+                    ],
+                    [
+                        -80.0118880813582,
+                        40.4536037791798
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Lake Elizabeth Bridge 2",
+                "id": 1463062856,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Lake_Elizabeth_Bridge_2.jpg",
+                "start_neighborhood": "Allegheny Center",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 447767422,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.91006390179689,
+                        40.46701399956602
+                    ],
+                    [
+                        -79.90793154562844,
+                        40.46761188399228
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1912",
+                "name": "Larimer Avenue Bridge 1",
+                "id": 447767422,
+                "year_rehab": "1980",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Larimer_Avenue_Bridge_1.jpg",
+                "start_neighborhood": "Larimer",
+                "end_neighborhood": "Lincoln-Lemington-Belmar"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1714459099,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.90791545237289,
+                        40.46761800564762
+                    ],
+                    [
+                        -79.90730927313548,
+                        40.467793492883075
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1904",
+                "name": "Larimer Avenue Bridge 2",
+                "id": 1714459099,
+                "year_rehab": "1989",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Larimer_Avenue_Bridge_2.jpg",
+                "start_neighborhood": "Lincoln-Lemington-Belmar",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 937476183,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.90634397293657,
+                        40.462225807335
+                    ],
+                    [
+                        -79.90458444382296,
+                        40.46315636726495
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1905",
+                "name": "Lincoln Avenue Bridge",
+                "id": 937476183,
+                "year_rehab": "1979",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Lincoln_Avenue_Bridge.jpg",
+                "start_neighborhood": "Lincoln-Lemington-Belmar",
+                "end_neighborhood": "Larimer"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 30672143,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.03107391170312,
+                        40.43369377535898
+                    ],
+                    [
+                        -80.03093443683437,
+                        40.433861184896536
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1906",
+                "name": "Lowe Street Pedestrian Bridge",
+                "id": 30672143,
+                "year_rehab": "1982",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Lowe_Street_Pedestrian_Bridge.jpg",
+                "start_neighborhood": "West End",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1622965510,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.94567090905532,
+                        40.438102067398404
+                    ],
+                    [
+                        -79.94556093848573,
+                        40.437975497477304
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1939",
+                "name": "Lower Panther Hollow Trail Bridge 1",
+                "id": 1622965510,
+                "year_rehab": "1939",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Lower_Panther_Hollow_Trail_Bridge_1.jpg",
+                "start_neighborhood": "Squirrel Hill South",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 2078542034,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.9428572717982,
+                        40.43584418753424
+                    ],
+                    [
+                        -79.94262391961264,
+                        40.43580335718162
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1939",
+                "name": "Lower Panther Hollow Trail Bridge 2",
+                "id": 2078542034,
+                "year_rehab": "1939",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Lower_Panther_Hollow_Trail_Bridge_2.jpg",
+                "start_neighborhood": "Squirrel Hill South",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 767193435,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.94132036603044,
+                        40.43547875500105
+                    ],
+                    [
+                        -79.94113797581748,
+                        40.435403218419964
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1939",
+                "name": "Lower Panther Hollow Trail Bridge 3",
+                "id": 767193435,
+                "year_rehab": "1939",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Lower_Panther_Hollow_Trail_Bridge_3.jpg",
+                "start_neighborhood": "Squirrel Hill South",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1231449765,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.93559653199307,
+                        40.434092543150456
+                    ],
+                    [
+                        -79.93560189641045,
+                        40.434028233624524
+                    ],
+                    [
+                        -79.93561798966654,
+                        40.43395575781125
+                    ],
+                    [
+                        -79.9356367651283,
+                        40.43389859370549
+                    ],
+                    [
+                        -79.93567163384415,
+                        40.43385572058712
+                    ],
+                    [
+                        -79.93573868907082,
+                        40.43380468114164
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1939",
+                "name": "Lower Panther Hollow Trail Bridge 4",
+                "id": 1231449765,
+                "year_rehab": "1939",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Lower_Panther_Hollow_Trail_Bridge_4.jpg",
+                "start_neighborhood": "Squirrel Hill South",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 72322424,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.9812599262478,
+                        40.465627060613805
+                    ],
+                    [
+                        -79.9811258157971,
+                        40.46581275608585
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1900",
+                "name": "Lowrie Street Bridge",
+                "id": 72322424,
+                "year_rehab": "2021",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Lowrie_Street_Bridge.jpg",
+                "start_neighborhood": "Troy Hill",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1178900529,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.9165969380458,
+                        40.41543407578935
+                    ],
+                    [
+                        -79.91606875241747,
+                        40.41560138719142
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "2020",
+                "name": "MacFarren St Bridge",
+                "id": 1178900529,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/MacFarren_St_Bridge.jpg",
+                "start_neighborhood": "Swisshelm Park",
+                "end_neighborhood": "Squirrel Hill South"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 398064299,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.00793149234495,
+                        40.471211324391184
+                    ],
+                    [
+                        -80.0078832125827,
+                        40.47106441235351
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1924",
+                "name": "Maple Avenue Bridge",
+                "id": 398064299,
+                "year_rehab": "1924",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Maple_Avenue_Bridge.jpg",
+                "start_neighborhood": "Perry South",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1736774459,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.00438253060011,
+                        40.43800869635036
+                    ],
+                    [
+                        -80.00451972247042,
+                        40.43778796992806
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1940",
+                "name": "Market Street Bridge",
+                "id": 1736774459,
+                "year_rehab": "1940",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Market_Street_Bridge.jpg",
+                "start_neighborhood": "Central Business District",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 353385657,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.91630455017562,
+                        40.46741320191137
+                    ],
+                    [
+                        -79.91549452305301,
+                        40.46615212514293
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1914",
+                "name": "Meadow Street Bridge",
+                "id": 353385657,
+                "year_rehab": "1997",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Meadow_Street_Bridge.jpg",
+                "start_neighborhood": "Larimer",
+                "end_neighborhood": "Highland Park"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1738076409,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.94319046129651,
+                        40.40370132025688
+                    ],
+                    [
+                        -79.94457179893875,
+                        40.40355834562247
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Melanchton Street Pedestrian Bridge",
+                "id": 1738076409,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Melanchton_Street_Pedestrian_Bridge.jpg",
+                "start_neighborhood": "Hazelwood",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1651528236,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.99768690512835,
+                        40.392826481811575
+                    ],
+                    [
+                        -79.99741600201793,
+                        40.39285916696438
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Midwood Avenue Pedestrian Bridge",
+                "id": 1651528236,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Midwood_Avenue_Pedestrian_Bridge.jpg",
+                "start_neighborhood": "Brookline",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1982940391,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.00855680041289,
+                        40.47660856656526
+                    ],
+                    [
+                        -80.00680800013495,
+                        40.47682891630679
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1986",
+                "name": "Milroy Street Bridge",
+                "id": 1982940391,
+                "year_rehab": "1986",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Milroy_Street_Bridge.jpg",
+                "start_neighborhood": "Northview Heights",
+                "end_neighborhood": "Perry North"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 454627966,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.97472878031263,
+                        40.423246332493925
+                    ],
+                    [
+                        -79.97388924889123,
+                        40.423201410691355
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1939",
+                "name": "Mission Street Bridge East",
+                "id": 454627966,
+                "year_rehab": "1982",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Mission_Street_Bridge_East.jpg",
+                "start_neighborhood": "South Side Slopes",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 14311106,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.9775343709441,
+                        40.423752721648746
+                    ],
+                    [
+                        -79.97601087622343,
+                        40.423397432883206
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1939",
+                "name": "Mission Street Bridge West",
+                "id": 14311106,
+                "year_rehab": "1982",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Mission_Street_Bridge_West.jpg",
+                "start_neighborhood": "South Side Slopes",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 2024131946,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.92729123167207,
+                        40.4266031314035
+                    ],
+                    [
+                        -79.92632563642658,
+                        40.42742801254997
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1978",
+                "name": "Murray Avenue Bridge",
+                "id": 2024131946,
+                "year_rehab": "1978",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Murray_Avenue_Bridge.jpg",
+                "start_neighborhood": "Greenfield",
+                "end_neighborhood": "Squirrel Hill South"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1291404694,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.90591241047605,
+                        40.42631749916394
+                    ],
+                    [
+                        -79.90558786318535,
+                        40.42642979841156
+                    ],
+                    [
+                        -79.90550471470591,
+                        40.426458383644665
+                    ],
+                    [
+                        -79.90538401530029,
+                        40.42648696886561
+                    ],
+                    [
+                        -79.9047215096738,
+                        40.42640938038048
+                    ],
+                    [
+                        -79.9047215096738,
+                        40.42641142218388
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Nine Mile Run Boardwalk",
+                "id": 1291404694,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Nine_Mile_Run_Boardwalk.jpg",
+                "start_neighborhood": "Squirrel Hill South",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 523191305,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.91286318039468,
+                        40.41971948231859
+                    ],
+                    [
+                        -79.91249839996877,
+                        40.419603087848
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Nine Mile Run Bridge",
+                "id": 523191305,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Nine_Mile_Run_Bridge.jpg",
+                "start_neighborhood": "Squirrel Hill South",
+                "end_neighborhood": "Swisshelm Park"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 149884025,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.01544831750361,
+                        40.453841599396085
+                    ],
+                    [
+                        -80.01453100195292,
+                        40.453995692132814
+                    ],
+                    [
+                        -80.01436470447884,
+                        40.45351708425297
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1929",
+                "name": "North Avenue and Brighton Road Bridge",
+                "id": 149884025,
+                "year_rehab": "1929",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/North_Avenue_and_Brighton_Road_Bridge.jpg",
+                "start_neighborhood": "Allegheny Center",
+                "end_neighborhood": "Central Northside"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1701028337,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.99876497715611,
+                        40.4569417616174
+                    ],
+                    [
+                        -79.99793885677977,
+                        40.457225442817624
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1987",
+                "name": "North Avenue Bridge",
+                "id": 1701028337,
+                "year_rehab": "1987",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/North_Avenue_Bridge.jpg",
+                "start_neighborhood": "East Allegheny",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1951085879,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.90103044915166,
+                        40.45340062552106
+                    ],
+                    [
+                        -79.9007702748773,
+                        40.45371697726766
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1980",
+                "name": "North Lang Avenue Pedestrian Bridge",
+                "id": 1951085879,
+                "year_rehab": "1980",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/North_Lang_Avenue_Pedestrian_Bridge.jpg",
+                "start_neighborhood": "Point Breeze North",
+                "end_neighborhood": "Homewood South"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 500245006,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.9201243798233,
+                        40.48328116800385
+                    ],
+                    [
+                        -79.91966035766386,
+                        40.48294659471445
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1940",
+                "name": "One Wild Place Bridge",
+                "id": 500245006,
+                "year_rehab": "1940",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/One_Wild_Place_Bridge.jpg",
+                "start_neighborhood": "Highland Park",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 920365328,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.99578191638393,
+                        40.38516876185319
+                    ],
+                    [
+                        -79.99553515315462,
+                        40.385140159079434
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1924",
+                "name": "Overbrook Way Pedestrian Bridge",
+                "id": 920365328,
+                "year_rehab": "1924",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Overbrook_Way_Pedestrian_Bridge.jpg",
+                "start_neighborhood": "Overbrook",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1498814681,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.946482935802,
+                        40.43635764125038
+                    ],
+                    [
+                        -79.94711593712947,
+                        40.43794182766292
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1895",
+                "name": "Panther Hollow Bridge",
+                "id": 1498814681,
+                "year_rehab": "1981",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Panther_Hollow_Bridge.jpg",
+                "start_neighborhood": "Squirrel Hill South",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 2100602905,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.92123193810357,
+                        40.460079544741056
+                    ],
+                    [
+                        -79.92070354292782,
+                        40.45972648871141
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1983",
+                "name": "Penn Avenue Bridge",
+                "id": 2100602905,
+                "year_rehab": "1983",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Penn_Avenue_Bridge.jpg",
+                "start_neighborhood": "Shadyside",
+                "end_neighborhood": "East Liberty"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1407799522,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.01835268437497,
+                        40.45553965182095
+                    ],
+                    [
+                        -80.0175748437609,
+                        40.455680475073535
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1986",
+                "name": "Pennsylvania Avenue Bridge",
+                "id": 1407799522,
+                "year_rehab": "1986",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Pennsylvania_Avenue_Bridge.jpg",
+                "start_neighborhood": "Central Northside",
+                "end_neighborhood": "California-Kirkbride"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 988708906,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.06372939367387,
+                        40.427376135528505
+                    ],
+                    [
+                        -80.06382327098935,
+                        40.42743330517815
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1937",
+                "name": "Pensdale Street Bridge 1",
+                "id": 988708906,
+                "year_rehab": "1937",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Pensdale_Street_Bridge_1.jpg",
+                "start_neighborhood": "Oakwood",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 781196343,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.06434496064001,
+                        40.42798866495877
+                    ],
+                    [
+                        -80.06440396923831,
+                        40.42806829337513
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1937",
+                "name": "Pensdale Street Bridge 2",
+                "id": 781196343,
+                "year_rehab": "1937",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Pensdale_Street_Bridge_2.jpg",
+                "start_neighborhood": "Oakwood",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 404921280,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.00173270108068,
+                        40.43008328967185
+                    ],
+                    [
+                        -80.0031489074394,
+                        40.43071110699525
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1983",
+                "name": "PJ McArdle Roadway Bridge Lower",
+                "id": 404921280,
+                "year_rehab": "1983",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/PJ_McArdle_Roadway_Bridge_Lower.jpg",
+                "start_neighborhood": "South Shore",
+                "end_neighborhood": "Mount Washington"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1444537238,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.01276865006754,
+                        40.43545680801099
+                    ],
+                    [
+                        -80.01272238196137,
+                        40.43550478391094
+                    ],
+                    [
+                        -80.01268717796772,
+                        40.43552775109217
+                    ],
+                    [
+                        -80.01265884713484,
+                        40.43553821391722
+                    ],
+                    [
+                        -80.01262456515079,
+                        40.43554344532871
+                    ],
+                    [
+                        -80.0125889420636,
+                        40.43554561445245
+                    ],
+                    [
+                        -80.01253663898581,
+                        40.435542552160925
+                    ],
+                    [
+                        -80.01247897149268,
+                        40.43553132376598
+                    ],
+                    [
+                        -80.01242398620924,
+                        40.435509887737226
+                    ],
+                    [
+                        -80.0122711002968,
+                        40.43543230966234
+                    ],
+                    [
+                        -80.0121249199042,
+                        40.43535371073065
+                    ],
+                    [
+                        -80.01202836037835,
+                        40.435292975054516
+                    ],
+                    [
+                        -80.01194655300341,
+                        40.43523530166389
+                    ],
+                    [
+                        -80.01176684499943,
+                        40.43508729029332
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1929",
+                "name": "PJ McArdle Roadway Bridge Upper",
+                "id": 1444537238,
+                "year_rehab": "1984",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/PJ_McArdle_Roadway_Bridge_Upper.jpg",
+                "start_neighborhood": "Mount Washington",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1260503903,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.99342744708635,
+                        40.427712620098696
+                    ],
+                    [
+                        -79.99249364020771,
+                        40.42779473722019
+                    ],
+                    [
+                        -79.9923980236473,
+                        40.42779518385613
+                    ],
+                    [
+                        -79.99229798563294,
+                        40.42778995184113
+                    ],
+                    [
+                        -79.99221324459187,
+                        40.42777540427991
+                    ],
+                    [
+                        -79.99214032203422,
+                        40.42775855971863
+                    ],
+                    [
+                        -79.99201861680007,
+                        40.42771874528862
+                    ],
+                    [
+                        -79.99134873509854,
+                        40.4274921092403
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1933",
+                "name": "PJ McArdle Viaduct 1",
+                "id": 1260503903,
+                "year_rehab": "1933",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/PJ_McArdle_Viaduct_1.jpg",
+                "start_neighborhood": "South Side Flats",
+                "end_neighborhood": "South Side Slopes"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 209059012,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.9982192134921,
+                        40.42912958928741
+                    ],
+                    [
+                        -79.99810119629542,
+                        40.42920717463452
+                    ],
+                    [
+                        -79.99799927235284,
+                        40.42921534150795
+                    ],
+                    [
+                        -79.99790807724634,
+                        40.42920717463452
+                    ],
+                    [
+                        -79.997849068648,
+                        40.42918267400827
+                    ],
+                    [
+                        -79.99672254086158,
+                        40.4287008265446
+                    ],
+                    [
+                        -79.99670443594937,
+                        40.428692149174466
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1934",
+                "name": "PJ McArdle Viaduct 2",
+                "id": 209059012,
+                "year_rehab": "1934",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/PJ_McArdle_Viaduct_2.jpg",
+                "start_neighborhood": "South Side Slopes",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 2002152068,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.05453309809175,
+                        40.46122341591285
+                    ],
+                    [
+                        -80.05432925020658,
+                        40.46089689572923
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1983",
+                "name": "Radcliffe Street Bridge",
+                "id": 2002152068,
+                "year_rehab": "1983",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Radcliffe_Street_Bridge.jpg",
+                "start_neighborhood": "Sheraden",
+                "end_neighborhood": "Esplen"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 683085715,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.99921978046743,
+                        40.45845289730576
+                    ],
+                    [
+                        -79.99833733370178,
+                        40.45865493920656
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1987",
+                "name": "Ramp Q Bridge",
+                "id": 683085715,
+                "year_rehab": "2001",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Ramp_Q_Bridge.jpg",
+                "start_neighborhood": "East Allegheny",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 187158805,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.91744724262908,
+                        40.48105991222017
+                    ],
+                    [
+                        -79.91722730148982,
+                        40.4812068023884
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Reservoir Drive Bridge",
+                "id": 187158805,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Reservoir_Drive_Bridge.jpg",
+                "start_neighborhood": "Highland Park",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 123727814,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.01044322333765,
+                        40.451153234283
+                    ],
+                    [
+                        -80.01008380732976,
+                        40.45122263001773
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1903",
+                "name": "Ridge Avenue Bridge",
+                "id": 123727814,
+                "year_rehab": "1957",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Ridge_Avenue_Bridge.jpg",
+                "start_neighborhood": "Allegheny West",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 650860947,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.98045576027327,
+                        40.46284851352534
+                    ],
+                    [
+                        -79.97932923248712,
+                        40.4645708395589
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "River Avenue Viaduct",
+                "id": 650860947,
+                "year_rehab": "1986",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/River_Avenue_Viaduct.jpg",
+                "start_neighborhood": "Troy Hill",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 421625701,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.03748609517487,
+                        40.47237141352317
+                    ],
+                    [
+                        -80.03627373669997,
+                        40.47082884774567
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1928",
+                "name": "Robert McAfee Bridge",
+                "id": 421625701,
+                "year_rehab": "1981",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Robert_McAfee_Bridge.jpg",
+                "start_neighborhood": "Marshall-Shadeland",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 2123274085,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.94825436566647,
+                        40.44081522221784
+                    ],
+                    [
+                        -79.95013727639518,
+                        40.44182773214568
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1896",
+                "name": "Schenley Drive Bridge",
+                "id": 2123274085,
+                "year_rehab": "1981",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Schenley_Drive_Bridge.jpg",
+                "start_neighborhood": "North Oakland",
+                "end_neighborhood": "Squirrel Hill South"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 381719968,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.94683296407254,
+                        40.4352735952722
+                    ],
+                    [
+                        -79.94641185725735,
+                        40.43534709046687
+                    ],
+                    [
+                        -79.94640917504833,
+                        40.43534709046687
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1939",
+                "name": "Schenley Park Underpass",
+                "id": 381719968,
+                "year_rehab": "1988",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Schenley_Park_Underpass.jpg",
+                "start_neighborhood": "Squirrel Hill South",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 2122763222,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.03200566899503,
+                        40.47507293499641
+                    ],
+                    [
+                        -80.03337359559282,
+                        40.47707242411304
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1993",
+                "name": "Shadeland Avenue Bridge",
+                "id": 2122763222,
+                "year_rehab": "1993",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Shadeland_Avenue_Bridge.jpg",
+                "start_neighborhood": "Marshall-Shadeland",
+                "end_neighborhood": "Brighton Heights"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 524537943,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.0299974599021,
+                        40.43259373363999
+                    ],
+                    [
+                        -80.02969705249231,
+                        40.4327519586681
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1900",
+                "name": "Shaler Street Bridge",
+                "id": 524537943,
+                "year_rehab": "1979",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Shaler_Street_Bridge.jpg",
+                "start_neighborhood": "West End",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 881766913,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.98878397727766,
+                        40.42607249702573
+                    ],
+                    [
+                        -79.98871692205229,
+                        40.42618888030276
+                    ],
+                    [
+                        -79.98875715518751,
+                        40.42620317297202
+                    ],
+                    [
+                        -79.98859354043766,
+                        40.426505360125425
+                    ],
+                    [
+                        -79.98844601894187,
+                        40.42645635689547
+                    ],
+                    [
+                        -79.98840846801568,
+                        40.42655436331966
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "2001",
+                "name": "South 10th Street Pedestrian Bridge",
+                "id": 881766913,
+                "year_rehab": "2001",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/South_10th_Street_Pedestrian_Bridge.jpg",
+                "start_neighborhood": "South Side Flats",
+                "end_neighborhood": "South Side Slopes"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 864685367,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.98623856092003,
+                        40.425905068096974
+                    ],
+                    [
+                        -79.98559214854762,
+                        40.42587239898941
+                    ],
+                    [
+                        -79.98563238168283,
+                        40.425461991973904
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1901",
+                "name": "South 12th Street Bridge",
+                "id": 864685367,
+                "year_rehab": "1972",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/South_12th_Street_Bridge.jpg",
+                "start_neighborhood": "South Side Flats",
+                "end_neighborhood": "South Side Slopes"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1337504193,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.98361970109978,
+                        40.425121122661366
+                    ],
+                    [
+                        -79.98351777715725,
+                        40.42563362318258
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "2001",
+                "name": "South 15th Street Pedestrian Bridge",
+                "id": 1337504193,
+                "year_rehab": "2001",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/South_15th_Street_Pedestrian_Bridge.jpg",
+                "start_neighborhood": "South Side Flats",
+                "end_neighborhood": "South Side Slopes"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1886402445,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.96535298472128,
+                        40.428600101166666
+                    ],
+                    [
+                        -79.96517059450824,
+                        40.42876752338513
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "South 27th Street Railroad Tunnel",
+                "id": 1886402445,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/South_27th_Street_Railroad_Tunnel.jpg",
+                "start_neighborhood": "South Side Flats",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1458760894,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.96406820660556,
+                        40.42773848267017
+                    ],
+                    [
+                        -79.96386033540698,
+                        40.42790896967037
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "South 28th Street Railroad Tunnel",
+                "id": 1458760894,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/South_28th_Street_Railroad_Tunnel.jpg",
+                "start_neighborhood": "South Side Flats",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 739242121,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.93750014091833,
+                        40.45409055094183
+                    ],
+                    [
+                        -79.93713804270142,
+                        40.45345376751257
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1979",
+                "name": "South Aiken Avenue Bridge",
+                "id": 739242121,
+                "year_rehab": "1979",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/South_Aiken_Avenue_Bridge.jpg",
+                "start_neighborhood": "Shadyside",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 826418840,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.93542679334591,
+                        40.454770188134795
+                    ],
+                    [
+                        -79.93522160435496,
+                        40.454588544031424
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1979",
+                "name": "South Graham Street Pedestrian Bridge",
+                "id": 826418840,
+                "year_rehab": "1979",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/South_Graham_Street_Pedestrian_Bridge.jpg",
+                "start_neighborhood": "Shadyside",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1348188774,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.92510967636679,
+                        40.45882745875378
+                    ],
+                    [
+                        -79.92508553648567,
+                        40.45925807017674
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1925",
+                "name": "South Highland Avenue Bridge",
+                "id": 1348188774,
+                "year_rehab": "2013",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/South_Highland_Avenue_Bridge.jpg",
+                "start_neighborhood": "Shadyside",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 2115516239,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.94756647134764,
+                        40.45634985884103
+                    ],
+                    [
+                        -79.94737067009095,
+                        40.45810500495653
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1927",
+                "name": "South Millvale Avenue Bridge",
+                "id": 2115516239,
+                "year_rehab": "1972",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/South_Millvale_Avenue_Bridge.jpg",
+                "start_neighborhood": "Bloomfield",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1124586979,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.93354120040726,
+                        40.4563814926928
+                    ],
+                    [
+                        -79.9333400347312,
+                        40.45604882626601
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1924",
+                "name": "South Negley Avenue Bridge",
+                "id": 1124586979,
+                "year_rehab": "1973",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/South_Negley_Avenue_Bridge.jpg",
+                "start_neighborhood": "Shadyside",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1770746602,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.00574090266903,
+                        40.43854477995325
+                    ],
+                    [
+                        -80.0058857419558,
+                        40.43832430461432
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1940",
+                "name": "Stanwix Street Bridge",
+                "id": 1770746602,
+                "year_rehab": "1979",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Stanwix_Street_Bridge.jpg",
+                "start_neighborhood": "Central Business District",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 183525377,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.94985321388873,
+                        40.42570037605323
+                    ],
+                    [
+                        -79.95092073307683,
+                        40.42739915295146
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1915",
+                "name": "Swinburne Street Bridge",
+                "id": 183525377,
+                "year_rehab": "1989",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Swinburne_Street_Bridge.jpg",
+                "start_neighborhood": "Greenfield",
+                "end_neighborhood": "South Oakland"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 760187504,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.00716411712136,
+                        40.47130815254679
+                    ],
+                    [
+                        -80.00333392264622,
+                        40.47299149427759
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1930",
+                "name": "Swindell Bridge",
+                "id": 760187504,
+                "year_rehab": "1989",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Swindell_Bridge.jpg",
+                "start_neighborhood": "Spring Hill-City View",
+                "end_neighborhood": "Perry South"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1839741682,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.00246305928417,
+                        40.43064698548927
+                    ],
+                    [
+                        -80.00167985425205,
+                        40.43043260929668
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1984",
+                "name": "Sycamore Street Bridge",
+                "id": 1839741682,
+                "year_rehab": "1984",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Sycamore_Street_Bridge.jpg",
+                "start_neighborhood": "South Shore",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1354744519,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.00634571867882,
+                        40.41031108657732
+                    ],
+                    [
+                        -80.00623038369122,
+                        40.41045404686789
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1909",
+                "name": "Timberland Avenue Bridge",
+                "id": 1354744519,
+                "year_rehab": "1986",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Timberland_Avenue_Bridge.jpg",
+                "start_neighborhood": "Bon Air",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 570392529,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.9985792206276,
+                        40.45641793025867
+                    ],
+                    [
+                        -79.99769140944348,
+                        40.45656487433388
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1987",
+                "name": "Tripoli Street Bridge",
+                "id": 570392529,
+                "year_rehab": "1987",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Tripoli_Street_Bridge.jpg",
+                "start_neighborhood": "East Allegheny",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 886405226,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.98802060845031,
+                        40.45798287211873
+                    ],
+                    [
+                        -79.98777384522091,
+                        40.458158384527515
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Troy Hill Road Bridge",
+                "id": 886405226,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Troy_Hill_Road_Bridge.jpg",
+                "start_neighborhood": "Troy Hill",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1794040291,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.93343705526041,
+                        40.38337017303785
+                    ],
+                    [
+                        -79.93328014603308,
+                        40.38334156950036
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1985",
+                "name": "Unnamed Way Pedestrian Bridge",
+                "id": 1794040291,
+                "year_rehab": "1985",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Unnamed_Way_Pedestrian_Bridge.jpg",
+                "start_neighborhood": "Hays",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1530553272,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -79.98258401187954,
+                        40.45981016112023
+                    ],
+                    [
+                        -79.98210121425679,
+                        40.460246888572414
+                    ],
+                    [
+                        -79.98106588157691,
+                        40.46025097012399
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "Washington's Landing Pedestrian Bridge",
+                "id": 1530553272,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Washington's_Landing_Pedestrian_Bridge.jpg",
+                "start_neighborhood": "Troy Hill",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 680694681,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.05374033482875,
+                        40.46516701896504
+                    ],
+                    [
+                        -80.05324680837016,
+                        40.46451605599526
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1925",
+                "name": "West Carson Street Bridge",
+                "id": 680694681,
+                "year_rehab": "1978",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/West_Carson_Street_Bridge.jpg",
+                "start_neighborhood": "Esplen",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1958627636,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.03700985800323,
+                        40.45103073112357
+                    ],
+                    [
+                        -80.0361113179835,
+                        40.450363302563964
+                    ],
+                    [
+                        -80.03513767611139,
+                        40.44960401797767
+                    ],
+                    [
+                        -80.0339548219362,
+                        40.448658982436925
+                    ],
+                    [
+                        -80.03320112120323,
+                        40.448085423069294
+                    ],
+                    [
+                        -80.03300531994519,
+                        40.44792621355127
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "West Carson Street Sidewalk",
+                "id": 1958627636,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/West_Carson_Street_Sidewalk.jpg",
+                "start_neighborhood": "Elliott",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1110273438,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.03076138471386,
+                        40.443391714501914
+                    ],
+                    [
+                        -80.03075602029583,
+                        40.44262418590945
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": null,
+                "name": "West End Circle Bridge",
+                "id": 1110273438,
+                "year_rehab": null,
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/West_End_Circle_Bridge.jpg",
+                "start_neighborhood": "West End",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 2065861344,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.01089651665839,
+                        40.45157573073313
+                    ],
+                    [
+                        -80.01044858775305,
+                        40.451661454326654
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1903",
+                "name": "West Ohio Street Bridge",
+                "id": 2065861344,
+                "year_rehab": "1958",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/West_Ohio_Street_Bridge.jpg",
+                "start_neighborhood": "Allegheny Center",
+                "end_neighborhood": "Allegheny West"
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 1455053898,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.04489852387697,
+                        40.48633831009528
+                    ],
+                    [
+                        -80.04539205033558,
+                        40.48589359232102
+                    ],
+                    [
+                        -80.04564149577386,
+                        40.48564471228067
+                    ],
+                    [
+                        -80.04573269088036,
+                        40.4854325515176
+                    ],
+                    [
+                        -80.04573537308936,
+                        40.4854325515176
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1900",
+                "name": "Wilksboro Avenue Pedestrian Bridge",
+                "id": 1455053898,
+                "year_rehab": "1933",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Wilksboro_Avenue_Pedestrian_Bridge.jpg",
+                "start_neighborhood": "Brighton Heights",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        },
+        {
+            "id": 796441646,
+            "geometry": {
+                "coordinates": [
+                    [
+                        -80.00280664290833,
+                        40.43719669308675
+                    ],
+                    [
+                        -80.0026755346754,
+                        40.43737148837733
+                    ]
+                ],
+                "type": "LineString"
+            },
+            "properties": {
+                "year_built": "1940",
+                "name": "Wood Street Bridge",
+                "id": 796441646,
+                "year_rehab": "1981",
+                "image": "https://tools.wprdc.org/images/pittsburgh/bridges/Wood_Street_Bridge.jpg",
+                "start_neighborhood": "Central Business District",
+                "end_neighborhood": ""
+            },
+            "type": "Feature"
+        }
+    ],
+    "type": "FeatureCollection"
+}
