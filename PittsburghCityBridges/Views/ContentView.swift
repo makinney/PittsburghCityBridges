@@ -17,7 +17,19 @@ struct ContentView: View {
             }
         }
         .onAppear {
-            bridgesDataStore.loadFromNetwork()
+            loadData()
+        }
+    }
+    
+    func loadData() {
+        let cityBridgesCloudkitAccess = CityBridgesCloudKitAccess()
+        cityBridgesCloudkitAccess.refreshOpenDataURLs { error in
+            if let error = error {
+                print(error)
+            }
+            if let cityBridgesURL = cityBridgesCloudkitAccess.wpOpenData?.cityBridgesURL {
+                bridgesDataStore.loadFromNetwork(openDataURL: cityBridgesURL)
+            }
         }
     }
 }

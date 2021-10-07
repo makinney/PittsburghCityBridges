@@ -13,14 +13,15 @@ struct PittsburghCityBridgesApp: App {
         bridgeDataStore = BridgeDataStore()
     }
     
-  //  let persistenceController = PersistenceController.shared
+//    let persistenceController = PersistenceController.shared
     @ObservedObject var bridgeDataStore: BridgeDataStore
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(bridgeDataStore)
-//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+  //          CloudKitContentView()
+ //              .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
