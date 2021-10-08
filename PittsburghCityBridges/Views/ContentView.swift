@@ -8,28 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var bridgesDataStore: BridgeDataStore
+    @EnvironmentObject var bridges: Bridges
     var body: some View {
         Text("City Bridges")
         List {
-            ForEach(bridgesDataStore.bridges) { bridge in
-                Text("\(bridge.properties.name)")
+            ForEach(bridges.cityBridges) { cityBridge in
+                Text("\(cityBridge.properties.name)")
             }
         }
         .onAppear {
-            loadData()
-        }
-    }
-    
-    func loadData() {
-        let cityBridgesCloudkitAccess = CityBridgesCloudKitAccess()
-        cityBridgesCloudkitAccess.refreshOpenDataURLs { error in
-            if let error = error {
-                print(error)
-            }
-            if let cityBridgesURL = cityBridgesCloudkitAccess.wpOpenData?.cityBridgesURL {
-                bridgesDataStore.loadFromNetwork(openDataURL: cityBridgesURL)
-            }
+            bridges.loadCityBridgeData()
         }
     }
 }

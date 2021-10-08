@@ -10,16 +10,16 @@ import SwiftUI
 @main
 struct PittsburghCityBridgesApp: App {
     init() {
-        bridgeDataStore = BridgeDataStore()
+        bridges = Bridges()
     }
     
 //    let persistenceController = PersistenceController.shared
-    @ObservedObject var bridgeDataStore: BridgeDataStore
+    @ObservedObject var bridges: Bridges
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(bridgeDataStore)
+                .environmentObject(bridges)
   //          CloudKitContentView()
  //              .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
