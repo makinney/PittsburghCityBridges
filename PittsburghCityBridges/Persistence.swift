@@ -32,9 +32,17 @@ struct PersistenceController {
 
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "PittsburghCityBridges")
+        
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
+        
+//        if let description = container.persistentStoreDescriptions.first {
+//      //      description.cloudKitContainerOptions.database
+//        }
+//        
+    //    var persistantStoreDescription = NSPersistentStoreDescription()
+        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.

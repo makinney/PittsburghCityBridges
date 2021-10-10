@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		24101262270F323E00FE7DEC /* OpenDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24101261270F323E00FE7DEC /* OpenDataService.swift */; };
+		241012662713757900FE7DEC /* PittsburghCityBridges.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 241012642713757900FE7DEC /* PittsburghCityBridges.xcdatamodeld */; };
 		247214EF270289C5004FBACD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247214EE270289C5004FBACD /* ContentView.swift */; };
 		247214F227028AF4004FBACD /* BridgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247214F127028AF4004FBACD /* BridgeViewModel.swift */; };
 		247214FA27052454004FBACD /* TwoBridge.json in Resources */ = {isa = PBXBuildFile; fileRef = 247214F927052317004FBACD /* TwoBridge.json */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		24101261270F323E00FE7DEC /* OpenDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenDataService.swift; sourceTree = "<group>"; };
+		241012652713757900FE7DEC /* PittsburghCityBridges.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PittsburghCityBridges.xcdatamodel; sourceTree = "<group>"; };
 		247214ED27027E0E004FBACD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		247214EE270289C5004FBACD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		247214F127028AF4004FBACD /* BridgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeViewModel.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 		24CC1B53270CF0C8009BE390 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				241012642713757900FE7DEC /* PittsburghCityBridges.xcdatamodeld */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				248FC58C270276EE00BE168F /* Persistence.swift in Sources */,
 				247214F227028AF4004FBACD /* BridgeViewModel.swift in Sources */,
 				247214EF270289C5004FBACD /* ContentView.swift in Sources */,
+				241012662713757900FE7DEC /* PittsburghCityBridges.xcdatamodeld in Sources */,
 				248FC585270276EA00BE168F /* CloudKitContentView.swift in Sources */,
 				248FC583270276EA00BE168F /* PittsburghCityBridgesApp.swift in Sources */,
 				24101262270F323E00FE7DEC /* OpenDataService.swift in Sources */,
@@ -431,6 +435,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		241012642713757900FE7DEC /* PittsburghCityBridges.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				241012652713757900FE7DEC /* PittsburghCityBridges.xcdatamodel */,
+			);
+			currentVersion = 241012652713757900FE7DEC /* PittsburghCityBridges.xcdatamodel */;
+			path = PittsburghCityBridges.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 248FC577270276EA00BE168F /* Project object */;
 }
