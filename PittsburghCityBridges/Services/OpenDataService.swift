@@ -12,7 +12,7 @@ enum CityBridgesMetaDataError: Error {
     case noRecords
 }
 
-class CityBridgesMetaDataService {
+class OpenDataService {
     let container: CKContainer
     let publicDB: CKDatabase
     
@@ -27,11 +27,11 @@ class CityBridgesMetaDataService {
         publicDB = container.publicCloudDatabase
     }
     
-    func cityBridgesMetaData() async throws -> CityBridgesMetaData {
+    func cityBridgesMetaData() async throws -> OpenDataMetaData {
         let predicate = NSPredicate(value: true)
-        let query = CKQuery(recordType: CityBridgesMetaData.recordType, predicate: predicate)
+        let query = CKQuery(recordType: OpenDataMetaData.recordType, predicate: predicate)
         
-        typealias CityBridgeContinuation = CheckedContinuation<CityBridgesMetaData, Error>
+        typealias CityBridgeContinuation = CheckedContinuation<OpenDataMetaData, Error>
         return try await withCheckedThrowingContinuation{ (continuation: CityBridgeContinuation) in
             publicDB.perform(query, inZoneWith: CKRecordZone.default().zoneID) { records, error in
                 if let error = error {
@@ -42,14 +42,14 @@ class CityBridgesMetaDataService {
                     return
                 }
                 
-                let metaData = CityBridgesMetaData(record: record)
+                let metaData = OpenDataMetaData(record: record)
                 continuation.resume(returning: metaData)
             }
         }
     }
 }
 
-class CityBridgesMetaData {
+class OpenDataMetaData {
     let title = "City of Pittsburgh Bridges"
     private(set) var geoJSONURL: String = ""
     private let recordID: CKRecord.ID

@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var bridges: Bridges
+    @EnvironmentObject var bridgeService: BridgeService
     var body: some View {
         Text("City Bridges")
         List {
-            ForEach(bridges.cityBridges) { cityBridge in
-                Text("\(cityBridge.properties.name)")
+            ForEach(bridgeService.bridgeViewModels) { bridgeViewModel in
+                Text("\(bridgeViewModel.name)")
             }
         }
         .onAppear {
-            bridges.loadCityBridgeData()
+            bridgeService.refreshBridgeViewModels()
         }
     }
 }
