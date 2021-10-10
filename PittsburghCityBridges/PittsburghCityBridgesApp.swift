@@ -13,13 +13,14 @@ struct PittsburghCityBridgesApp: App {
 
     init() {
         bridges = BridgeService()
+        bridges.refreshBridgeViewModels()
     }
     
     @ObservedObject var bridges: BridgeService
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
                 .environmentObject(bridges)
   //          CloudKitContentView()
  //              .environment(\.managedObjectContext, persistenceController.container.viewContext)

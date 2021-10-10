@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    @EnvironmentObject var bridgeService: BridgeService
     var body: some View {
         TabView {
             BridgeListView()
@@ -29,5 +30,6 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+            .environmentObject(BridgeService())
     }
 }
