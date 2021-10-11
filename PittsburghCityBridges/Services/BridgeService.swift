@@ -7,19 +7,26 @@
 
 import Foundation
 import MapKit
+import os
 
 class BridgeService: ObservableObject {
     @Published var bridgeViewModels = [BridgeViewModel]()
+    let logger: Logger
+    init() {
+        logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.bridgeService)
+    }
+    
     @MainActor
     func refreshBridgeViewModels()  {
         Task {
             var freshViewModels = [BridgeViewModel]()
             let urlPath = try await OpenDataService().openDataURL
             guard let url = URL(string: urlPath) else {
-                return // TODO: is this ok to do form this task? or better to throw
+                logger.error("Could not create URL from path \(urlPath, privacy: .public)")
+                return
             }
             do {
-                let (data, _) = try await URLSession.shared.data(from: url) // TODO: do not ignore the URLresponse
+                let (data, _) = try await URLSession.shared.data(from: url)
                 let geoJSONObjects = try MKGeoJSONDecoder().decode(data)
                 for object in geoJSONObjects {
                     if let feature = object as? MKGeoJSONFeature,
@@ -32,8 +39,9 @@ class BridgeService: ObservableObject {
                     }
                 }
                 self.bridgeViewModels = freshViewModels // Publish
+                logger.info("refreshed \(self.bridgeViewModels)")
             } catch let error {
-                print(error)
+                logger.error("\(error.localizedDescription, privacy: .public)")
             }
         }
     }
