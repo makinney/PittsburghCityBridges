@@ -17,25 +17,35 @@ struct BridgeViewModel: Identifiable {
         geoJSON.openDataID
     }
     var name: String {
-        geoJSON.name ?? "default"
+        geoJSON.name ?? ""
     }
     var imagePath: String? {
         geoJSON.imagePath
     }
     var yearBuilt: String {
-        geoJSON.yearBuilt ?? "default"
+        geoJSON.yearBuilt ?? ""
     }
     var yearRehab: String {
-        geoJSON.yearRehab ?? "default"
+        geoJSON.yearRehab ?? ""
     }
     var startNeighborhood: String {
-        geoJSON.startNeighborhood ?? "default"
+        geoJSON.startNeighborhood ?? ""
     }
     
     var endNeighborhood: String {
-        geoJSON.endNeighborhood ?? "default"
+        geoJSON.endNeighborhood ?? ""
     }
     
+    var neighborhoodRoute: String {
+        var route = ""
+        if endNeighborhood.count > 0 {
+            route += "Locations: " + startNeighborhood
+            route += " and " + endNeighborhood
+        } else {
+            route += "Location: " + startNeighborhood
+        }
+        return route
+    }
 }
 
 struct GeoJSONProperty: Codable {

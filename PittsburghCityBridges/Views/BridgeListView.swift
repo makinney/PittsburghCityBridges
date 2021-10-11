@@ -13,7 +13,11 @@ struct BridgeListView: View {
     var body: some View {
         List {
             ForEach(bridgeService.bridgeViewModels) { bridgeViewModel in
-                Text("\(bridgeViewModel.name)")
+                VStack(alignment: .leading) {
+                    Text("\(bridgeViewModel.name)")
+                    Text("\(bridgeViewModel.neighborhoodRoute)")
+                        .multilineTextAlignment(.leading)
+                }
             }
         }
     }
