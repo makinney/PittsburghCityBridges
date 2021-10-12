@@ -26,10 +26,12 @@ struct BridgeListView_Previews: PreviewProvider {
     static var previews: some View {
         BridgeListView()
             .environmentObject(bridgeService) // TODO: canned data
-           
+            .onAppear {
+                bridgeService.preview()
+            }
     }
     
     static func update() {
-        bridgeService.refreshBridgeViewModels()
+        bridgeService.preview()
     }
 }

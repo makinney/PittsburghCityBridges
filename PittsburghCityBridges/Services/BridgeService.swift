@@ -19,12 +19,22 @@ class BridgeService: ObservableObject {
     @MainActor
     func refreshBridgeViewModels()  {
         Task {
-            var freshViewModels = [BridgeViewModel]()
-            let urlPath = try await OpenDataService().openDataURL
-            guard let url = URL(string: urlPath) else {
-                logger.error("Could not create URL from path \(urlPath, privacy: .public)")
-                return
+            do {
+                let urlPath = try await OpenDataService().openDataURL
+                guard let url = URL(string: urlPath) else {
+                    logger.error("Could not create URL from path \(urlPath, privacy: .public)")
+                    return
+                }
+                loadViewModelsFrom(url: url)
+            } catch let error {
+                logger.error("\(error.localizedDescription, privacy: .public)")
             }
+        }
+    }
+    
+    func loadViewModelsFrom(url: URL) {
+        Task {
+            var freshViewModels = [BridgeViewModel]()
             do {
                 let (data, _) = try await URLSession.shared.data(from: url)
                 let geoJSONObjects = try MKGeoJSONDecoder().decode(data)
@@ -44,4 +54,14 @@ class BridgeService: ObservableObject {
             }
         }
     }
+
+#if DEBUG
+    func preview() {
+        guard let url = Bundle.main.url(forResource: "BridgesOpenData", withExtension: "json") else {
+            return
+        }
+        loadViewModelsFrom(url: url)
+    }
+#endif
+    
 }
