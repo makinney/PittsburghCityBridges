@@ -9,7 +9,9 @@ import Foundation
 import MapKit
 
 struct BridgeViewModel: Identifiable {
-    var id: String?
+    var id: Int {
+        geoJSON.openDataID
+    }
     var geometry: [MKShape & MKGeoJSONObject]
     var geoJSON: GeoJSONProperty
 
@@ -68,4 +70,15 @@ extension GeoJSONProperty {
         case startNeighborhood = "start_neighborhood"
         case endNeighborhood = "end_neighborhood"
     }
+}
+
+extension BridgeViewModel {
+    #if DEBUG
+    static let preview: BridgeViewModel = {
+        let geometry =  [MKShape & MKGeoJSONObject]()
+        let openDataID: Int = 123456
+        let property = GeoJSONProperty(openDataID: openDataID, yearBuilt: "1900", name: "Big Steel Bridge", yearRehab: "2010", imagePath: nil, startNeighborhood: "Downtown", endNeighborhood: "Northside")
+        return BridgeViewModel(geometry: geometry, geoJSON: property)
+    }()
+    #endif
 }

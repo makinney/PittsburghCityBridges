@@ -30,11 +30,10 @@ class BridgeService: ObservableObject {
                 let geoJSONObjects = try MKGeoJSONDecoder().decode(data)
                 for object in geoJSONObjects {
                     if let feature = object as? MKGeoJSONFeature,
-                       let id = feature.identifier,
                        let propertyData = feature.properties {
                         let geometry = feature.geometry
                         let geoJSONProp: GeoJSONProperty = try JSONDecoder().decode(GeoJSONProperty.self, from: propertyData)
-                        let bridgeViewModel = BridgeViewModel(id: id, geometry: geometry, geoJSON: geoJSONProp)
+                        let bridgeViewModel = BridgeViewModel(geometry: geometry, geoJSON: geoJSONProp)
                         freshViewModels.append(bridgeViewModel)
                     }
                 }
