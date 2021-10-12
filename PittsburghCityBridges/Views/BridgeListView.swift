@@ -11,12 +11,10 @@ struct BridgeListView: View {
     @EnvironmentObject var bridgeService: BridgeService
 
     var body: some View {
-        List {
-            ForEach(bridgeService.bridgeViewModels) { bridgeViewModel in
-                VStack(alignment: .leading) {
-                    Text("\(bridgeViewModel.name)")
-                    Text("\(bridgeViewModel.neighborhoodRoute)")
-                        .multilineTextAlignment(.leading)
+        NavigationView {
+            List {
+                ForEach(bridgeService.bridgeViewModels) { bridgeViewModel in
+                    NavigationLink(bridgeViewModel.name, destination: BridgeDetailsView(bridgeViewModel: bridgeViewModel))
                 }
             }
         }
