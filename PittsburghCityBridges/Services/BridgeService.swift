@@ -9,11 +9,12 @@ import Foundation
 import MapKit
 import os
 
+@MainActor
 class BridgeService: ObservableObject {
     @Published var bridgeViewModels = [BridgeViewModel]()
     let logger: Logger
     init() {
-        logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.bridgeService)
+        logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     }
     
     @MainActor
@@ -32,6 +33,7 @@ class BridgeService: ObservableObject {
         }
     }
     
+    @MainActor
     func loadViewModelsFrom(url: URL) {
         Task {
             var freshViewModels = [BridgeViewModel]()
@@ -56,6 +58,7 @@ class BridgeService: ObservableObject {
     }
 
 #if DEBUG
+    @MainActor
     func preview() {
         guard let url = Bundle.main.url(forResource: "BridgesOpenData", withExtension: "json") else {
             return

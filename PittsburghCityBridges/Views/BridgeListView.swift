@@ -17,6 +17,7 @@ struct BridgeListView: View {
                     NavigationLink(bridgeViewModel.name, destination: BridgeDetailsView(bridgeViewModel: bridgeViewModel))
                 }
             }
+            .navigationTitle("City Bridges")
         }
     }
 }

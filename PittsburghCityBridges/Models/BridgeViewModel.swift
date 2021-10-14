@@ -7,6 +7,7 @@
 
 import Foundation
 import MapKit
+import SwiftUI
 
 struct BridgeViewModel: Identifiable {
     var id: Int {
@@ -21,9 +22,14 @@ struct BridgeViewModel: Identifiable {
     var name: String {
         geoJSON.name ?? ""
     }
-    var imagePath: String? {
-        geoJSON.imagePath
+       
+    var imageURL: URL? {
+        if let imagePath = geoJSON.imagePath {
+            return URL(string: imagePath)
+        }
+        return nil
     }
+    
     var yearBuilt: String {
         geoJSON.yearBuilt ?? ""
     }
@@ -77,7 +83,8 @@ extension BridgeViewModel {
     static let preview: BridgeViewModel = {
         let geometry =  [MKShape & MKGeoJSONObject]()
         let openDataID: Int = 123456
-        let property = GeoJSONProperty(openDataID: openDataID, yearBuilt: "1900", name: "Big Steel Bridge", yearRehab: "2010", imagePath: nil, startNeighborhood: "Downtown", endNeighborhood: "Northside")
+        let imagePath = "https://tools.wprdc.org/images/pittsburgh/bridges/Hot_Metal_Pedestrian_Bridge.jpg"
+        let property = GeoJSONProperty(openDataID: openDataID, yearBuilt: "1900", name: "Big Steel Bridge", yearRehab: "2010", imagePath: imagePath, startNeighborhood: "Downtown", endNeighborhood: "Northside")
         return BridgeViewModel(geometry: geometry, geoJSON: property)
     }()
     #endif
