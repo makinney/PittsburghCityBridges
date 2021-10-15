@@ -11,14 +11,14 @@ import os
 
 @MainActor
 class BridgeService: ObservableObject {
-    @Published var bridgeViewModels = [BridgeViewModel]()
+    @Published var bridgeModels = [BridgeModel]()
     let logger: Logger
     init() {
         logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     }
     
     @MainActor
-    func refreshBridgeViewModels()  {
+    func refreshBridgeModels()  {
         Task {
             do {
                 let urlPath = try await OpenDataService().openDataURL
@@ -36,7 +36,7 @@ class BridgeService: ObservableObject {
     @MainActor
     func loadViewModelsFrom(url: URL) {
         Task {
-            var freshViewModels = [BridgeViewModel]()
+            var freshModels = [BridgeModel]()
             do {
                 let (data, _) = try await URLSession.shared.data(from: url)
                 let geoJSONObjects = try MKGeoJSONDecoder().decode(data)
@@ -45,12 +45,12 @@ class BridgeService: ObservableObject {
                        let propertyData = feature.properties {
                         let geometry = feature.geometry
                         let geoJSONProp: GeoJSONProperty = try JSONDecoder().decode(GeoJSONProperty.self, from: propertyData)
-                        let bridgeViewModel = BridgeViewModel(geometry: geometry, geoJSON: geoJSONProp)
-                        freshViewModels.append(bridgeViewModel)
+                        let bridgeModel = BridgeModel(geometry: geometry, geoJSON: geoJSONProp)
+                        freshModels.append(bridgeModel)
                     }
                 }
-                self.bridgeViewModels = freshViewModels // Publish
-                logger.info("refreshed \(self.bridgeViewModels)")
+                self.bridgeModels = freshModels // Publish
+                logger.info("refreshed \(self.bridgeModels)")
             } catch let error {
                 logger.error("\(error.localizedDescription, privacy: .public)")
             }

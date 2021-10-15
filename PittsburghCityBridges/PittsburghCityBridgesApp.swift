@@ -13,7 +13,7 @@ struct PittsburghCityBridgesApp: App {
 
     init() {
         bridges = BridgeService()
-        bridges.refreshBridgeViewModels()
+        bridges.refreshBridgeModels()
     }
     
     @ObservedObject var bridges: BridgeService

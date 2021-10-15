@@ -9,7 +9,7 @@ import SwiftUI
 import os
 
 struct BridgeDetailsView: View {
-    var bridgeViewModel: BridgeViewModel
+    var bridgeModel: BridgeModel
     @State private var bridgeImage = UIImage(systemName: "photo") ?? UIImage()
     
     let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.bridgeService)
@@ -17,25 +17,25 @@ struct BridgeDetailsView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(alignment: .leading) {
-                    Text("Name: \(bridgeViewModel.name)")
+                    Text("\(bridgeModel.name)")
+                        .font(.title)
                         .padding()
                     Image(uiImage: bridgeImage)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .padding()
                         .frame(width: geometry.size.width)
-                    VStack(alignment: .leading) {
-                        Text("Built: \(bridgeViewModel.yearBuilt)")
-                        Text("Rehab: \(bridgeViewModel.yearRehab)")
-                        Text("Start: \(bridgeViewModel.startNeighborhood)")
-                        Text("End: \(bridgeViewModel.endNeighborhood)")
-                    }
-                    .padding()
+                    Text(neighborhoods())
+                        .padding([.leading,.trailing, .top])
+                    Text("Built: \(bridgeModel.yearBuilt)")
+                        .padding([.leading,.trailing])
+                    Text(refurbished())
+                        .padding([.leading,.trailing])
                 }
             }
+            //           .padding()
         }
         .task {
-            if let url = bridgeViewModel.imageURL {
+            if let url = bridgeModel.imageURL {
                 do {
                     let (data, _) = try await URLSession.shared.data(from: url)
                     bridgeImage = UIImage(data: data) ?? UIImage()
@@ -45,10 +45,26 @@ struct BridgeDetailsView: View {
             }
         }
     }
+    
+    private func neighborhoods() -> String {
+        var description = "Location: \(bridgeModel.startNeighborhood)"
+        if let endNeighborhood = bridgeModel.endNeighborhood {
+            description += " and \(endNeighborhood)"
+        }
+        return description
+    }
+    
+    private func refurbished() -> String {
+        var description = ""
+        if let yearRehab = bridgeModel.yearRehab {
+          description = "efurbished: \(yearRehab)"
+        }
+        return description
+    }
 }
 
 struct BridgeDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        BridgeDetailsView(bridgeViewModel: BridgeViewModel.preview)
+        BridgeDetailsView(bridgeModel: BridgeModel.preview)
     }
 }
