@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct BridgeListView: View {
-    @EnvironmentObject var bridgeService: BridgeService
+    @EnvironmentObject var bridgeStore: BridgeStore
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(bridgeService.bridgeModels) { bridgeModel in
+                ForEach(bridgeStore.bridgeModels) { bridgeModel in
                     NavigationLink(bridgeModel.name, destination: BridgeDetailsView(bridgeModel: bridgeModel))
                 }
             }
@@ -23,16 +23,16 @@ struct BridgeListView: View {
 }
 
 struct BridgeListView_Previews: PreviewProvider {
-    static let bridgeService = BridgeService()
+    static let bridgeStore = BridgeStore()
     static var previews: some View {
         BridgeListView()
-            .environmentObject(bridgeService) // TODO: canned data
+            .environmentObject(bridgeStore) // TODO: canned data
             .onAppear {
-                bridgeService.preview()
+                bridgeStore.preview()
             }
     }
     
     static func update() {
-        bridgeService.preview()
+        bridgeStore.preview()
     }
 }

@@ -12,7 +12,7 @@ struct BridgeDetailsView: View {
     var bridgeModel: BridgeModel
     @State private var bridgeImage = UIImage(systemName: "photo") ?? UIImage()
     
-    let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.bridgeService)
+    let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.bridgeStore)
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
@@ -57,7 +57,7 @@ struct BridgeDetailsView: View {
     private func refurbished() -> String {
         var description = ""
         if let yearRehab = bridgeModel.yearRehab {
-          description = "efurbished: \(yearRehab)"
+          description = "refurbished: \(yearRehab)"
         }
         return description
     }

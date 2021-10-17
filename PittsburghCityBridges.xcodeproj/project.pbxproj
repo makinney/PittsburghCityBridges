@@ -27,7 +27,7 @@
 		248FC58A270276EE00BE168F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 248FC589270276EE00BE168F /* Preview Assets.xcassets */; };
 		248FC58C270276EE00BE168F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248FC58B270276EE00BE168F /* Persistence.swift */; };
 		248FC59A270278F100BE168F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 248FC599270278F100BE168F /* CloudKit.framework */; };
-		24CC1B4E270A8ABE009BE390 /* BridgeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CC1B4D270A8ABE009BE390 /* BridgeService.swift */; };
+		24CC1B4E270A8ABE009BE390 /* BridgeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CC1B4D270A8ABE009BE390 /* BridgeStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,7 +54,7 @@
 		248FC58B270276EE00BE168F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		248FC597270278E000BE168F /* PittsburghCityBridges.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PittsburghCityBridges.entitlements; sourceTree = "<group>"; };
 		248FC599270278F100BE168F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		24CC1B4D270A8ABE009BE390 /* BridgeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeService.swift; sourceTree = "<group>"; };
+		24CC1B4D270A8ABE009BE390 /* BridgeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +72,7 @@
 		2410126327106A6700FE7DEC /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				24CC1B4D270A8ABE009BE390 /* BridgeService.swift */,
+				24CC1B4D270A8ABE009BE390 /* BridgeStore.swift */,
 				240075CC271493CB00CB864F /* AppLogging.swift */,
 				24101261270F323E00FE7DEC /* OpenDataService.swift */,
 				240075D2271666CC00CB864F /* ImageDownloader.swift */,
@@ -132,16 +132,16 @@
 		248FC581270276EA00BE168F /* PittsburghCityBridges */ = {
 			isa = PBXGroup;
 			children = (
-				2410126327106A6700FE7DEC /* Services */,
-				24CC1B53270CF0C8009BE390 /* CoreData */,
-				247214F627051F98004FBACD /* Views */,
-				247214F027028A00004FBACD /* Models */,
-				247214ED27027E0E004FBACD /* Info.plist */,
 				248FC597270278E000BE168F /* PittsburghCityBridges.entitlements */,
 				248FC582270276EA00BE168F /* PittsburghCityBridgesApp.swift */,
+				24CC1B53270CF0C8009BE390 /* CoreData */,
+				247214F027028A00004FBACD /* Models */,
+				247214F32703CCC9004FBACD /* Resources */,
+				2410126327106A6700FE7DEC /* Services */,
+				247214F627051F98004FBACD /* Views */,
+				247214ED27027E0E004FBACD /* Info.plist */,
 				248FC586270276EE00BE168F /* Assets.xcassets */,
 				248FC588270276EE00BE168F /* Preview Content */,
-				247214F32703CCC9004FBACD /* Resources */,
 			);
 			path = PittsburghCityBridges;
 			sourceTree = "<group>";
@@ -258,7 +258,7 @@
 				241012872713784D00FE7DEC /* BridgeListView.swift in Sources */,
 				240075D12716607B00CB864F /* BridgeListRow.swift in Sources */,
 				24101262270F323E00FE7DEC /* OpenDataService.swift in Sources */,
-				24CC1B4E270A8ABE009BE390 /* BridgeService.swift in Sources */,
+				24CC1B4E270A8ABE009BE390 /* BridgeStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

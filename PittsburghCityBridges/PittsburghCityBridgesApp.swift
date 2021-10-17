@@ -12,16 +12,16 @@ struct PittsburghCityBridgesApp: App {
     //    let persistenceController = PersistenceController.shared
 
     init() {
-        bridges = BridgeService()
-        bridges.refreshBridgeModels()
+        bridgeStore = BridgeStore()
+        bridgeStore.refreshBridgeModels()
     }
     
-    @ObservedObject var bridges: BridgeService
+    @ObservedObject var bridgeStore: BridgeStore
     
     var body: some Scene {
         WindowGroup {
             MainView()
-                .environmentObject(bridges)
+                .environmentObject(bridgeStore)
   //          CloudKitContentView()
  //              .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }

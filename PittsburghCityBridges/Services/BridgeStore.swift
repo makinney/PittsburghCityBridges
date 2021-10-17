@@ -1,5 +1,5 @@
 //
-//  BridgeService.swift
+//  BridgeStore.swift
 //  PittsburghCityBridges
 //
 //  Created by MAKinney on 10/3/21.
@@ -10,7 +10,7 @@ import MapKit
 import os
 
 @MainActor
-class BridgeService: ObservableObject {
+class BridgeStore: ObservableObject {
     @Published var bridgeModels = [BridgeModel]()
     let logger: Logger
     init() {

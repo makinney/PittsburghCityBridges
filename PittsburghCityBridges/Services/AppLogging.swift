@@ -9,6 +9,6 @@ import Foundation
 
 struct AppLogging {
     static let subsystem = Bundle.main.bundleIdentifier ?? "com.mak.nobundleID"
-    static let bridgeService = "bridgeService"
+    static let bridgeStore = "bridgeStore"
     static let debugging = "debugging"
 }
