@@ -10,7 +10,7 @@ import os
 
 struct BridgeDetailsView: View {
     var bridgeModel: BridgeModel
-    @State private var bridgeImage = UIImage(systemName: "photo") ?? UIImage()
+    @State private var bridgeImage = UIImage()
     
     let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.bridgeStore)
     var body: some View {
@@ -19,20 +19,21 @@ struct BridgeDetailsView: View {
                 VStack(alignment: .leading) {
                     Text("\(bridgeModel.name)")
                         .font(.title)
-                        .padding()
+                        .padding([.leading, .trailing, .bottom])
+                    Text(neighborhoods())
+                        .padding([.leading])
+                    Text(yearBuilt())
+                        .padding([.leading])
+                    Text(refurbished())
+                        .padding([.leading])
                     Image(uiImage: bridgeImage)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
+                        .border(.foreground, width: 2)
+                        .padding()
                         .frame(width: geometry.size.width)
-                    Text(neighborhoods())
-                        .padding([.leading,.trailing, .top])
-                    Text("Built: \(bridgeModel.yearBuilt)")
-                        .padding([.leading,.trailing])
-                    Text(refurbished())
-                        .padding([.leading,.trailing])
                 }
             }
-            //           .padding()
         }
         .task {
             if let url = bridgeModel.imageURL {
@@ -54,10 +55,18 @@ struct BridgeDetailsView: View {
         return description
     }
     
+    private  func yearBuilt() -> String {
+        var built = ""
+        if !bridgeModel.yearBuilt.isEmpty {
+            built = "Built: \(bridgeModel.yearBuilt)"
+        }
+        return built
+    }
+    
     private func refurbished() -> String {
         var description = ""
-        if let yearRehab = bridgeModel.yearRehab {
-          description = "refurbished: \(yearRehab)"
+        if !bridgeModel.yearRehab.isEmpty {
+            description = "Refurbished: \(bridgeModel.yearRehab)"
         }
         return description
     }

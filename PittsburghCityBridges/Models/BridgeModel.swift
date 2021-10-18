@@ -37,16 +37,16 @@ struct BridgeModel: Identifiable {
     var yearBuilt: String {
         guard let yearBuilt = geoJSON.yearBuilt,
               !yearBuilt.isEmpty else {
-                  return "no year provided"
+                  return ""
               }
         return yearBuilt
         
     }
     
-    var yearRehab: String? {
+    var yearRehab: String {
         guard let yearRehab = geoJSON.yearRehab,
               !yearRehab.isEmpty else {
-                  return nil
+                  return ""
               }
         return yearRehab
     }
@@ -75,8 +75,8 @@ struct BridgeModel: Identifiable {
         }
         desc += "."
         desc += " It was built in \(yearBuilt)."
-        if let rehabbed = yearRehab {
-            desc += " It was reburbished in \(rehabbed)."
+        if !yearRehab.isEmpty {
+            desc += " It was reburbished in \(yearRehab)."
         }
         
         return desc
