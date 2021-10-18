@@ -22,7 +22,7 @@ struct BridgeModel: Identifiable {
     var name: String {
         guard let name = geoJSON.name,
               !name.isEmpty else {
-                  return "Not named"
+                  return "no name provided"
               }
         return name
     }
@@ -37,7 +37,7 @@ struct BridgeModel: Identifiable {
     var yearBuilt: String {
         guard let yearBuilt = geoJSON.yearBuilt,
               !yearBuilt.isEmpty else {
-                  return "no data"
+                  return "no year provided"
               }
         return yearBuilt
         
@@ -54,7 +54,7 @@ struct BridgeModel: Identifiable {
     var startNeighborhood: String {
         guard let startNeighborhood = geoJSON.startNeighborhood,
               !startNeighborhood.isEmpty else {
-                  return "no data"
+                  return "Pittsburgh"
               }
         return startNeighborhood
     }
@@ -90,7 +90,7 @@ extension BridgeModel {
         let geometry =  [MKShape & MKGeoJSONObject]()
         let openDataID: Int = 123456
         let imagePath = "https://tools.wprdc.org/images/pittsburgh/bridges/Hot_Metal_Pedestrian_Bridge.jpg"
-        let property = GeoJSONProperty(openDataID: openDataID, yearBuilt: "1900", name: "Big Steel Bridge", yearRehab: "2010", imagePath: imagePath, startNeighborhood: "Downtown", endNeighborhood: "Northside")
+        let property = GeoJSONProperty(openDataID: openDataID, yearBuilt: "1900", name: "Hot Metal Bridge", yearRehab: "2010", imagePath: imagePath, startNeighborhood: "Downtown", endNeighborhood: "Northside")
         return BridgeModel(geometry: geometry, geoJSON: property)
     }()
     #endif

@@ -26,7 +26,7 @@ class BridgeStore: ObservableObject {
                     logger.error("Could not create URL from path \(urlPath, privacy: .public)")
                     return
                 }
-                loadViewModelsFrom(url: url)
+                loadModelsFrom(url: url)
             } catch let error {
                 logger.error("\(error.localizedDescription, privacy: .public)")
             }
@@ -34,7 +34,7 @@ class BridgeStore: ObservableObject {
     }
     
     @MainActor
-    func loadViewModelsFrom(url: URL) {
+    func loadModelsFrom(url: URL) {
         Task {
             var freshModels = [BridgeModel]()
             do {
@@ -63,7 +63,7 @@ class BridgeStore: ObservableObject {
         guard let url = Bundle.main.url(forResource: "BridgesOpenData", withExtension: "json") else {
             return
         }
-        loadViewModelsFrom(url: url)
+        loadModelsFrom(url: url)
     }
 #endif
     
