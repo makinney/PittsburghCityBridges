@@ -19,17 +19,18 @@ struct BridgeDetailsView: View {
                 VStack(alignment: .leading) {
                     Text("\(bridgeModel.name)")
                         .font(.title)
-                        .padding([.leading, .trailing, .bottom])
+                        .padding([.leading, .bottom])
+                    let built = builtHistory()
+                    if !built.isEmpty {
+                        Text(built)
+                            .padding([.leading, .bottom])
+                    }
                     Text(neighborhoods())
-                        .padding([.leading])
-                    Text(yearBuilt())
-                        .padding([.leading])
-                    Text(refurbished())
                         .padding([.leading])
                     Image(uiImage: bridgeImage)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .border(.foreground, width: 2)
+                        .border(.foreground, width: 1)
                         .padding()
                         .frame(width: geometry.size.width)
                 }
@@ -48,17 +49,31 @@ struct BridgeDetailsView: View {
     }
     
     private func neighborhoods() -> String {
-        var description = "Location: \(bridgeModel.startNeighborhood)"
+        var neighborhood = "neighborhood"
+        var description = "\(bridgeModel.startNeighborhood)"
         if let endNeighborhood = bridgeModel.endNeighborhood {
             description += " and \(endNeighborhood)"
+            neighborhood += "s"
         }
+        description += " " + neighborhood
         return description
+    }
+    
+    private func builtHistory() -> String {
+        var history = ""
+        if !bridgeModel.yearBuilt.isEmpty {
+            history = "Built in \(bridgeModel.yearBuilt)"
+        }
+        if !bridgeModel.yearRehab.isEmpty {
+            history += " and rehabbed in \(bridgeModel.yearRehab)"
+        }
+        return history
     }
     
     private  func yearBuilt() -> String {
         var built = ""
         if !bridgeModel.yearBuilt.isEmpty {
-            built = "Built: \(bridgeModel.yearBuilt)"
+            built = "\(bridgeModel.yearBuilt)"
         }
         return built
     }
@@ -66,7 +81,7 @@ struct BridgeDetailsView: View {
     private func refurbished() -> String {
         var description = ""
         if !bridgeModel.yearRehab.isEmpty {
-            description = "Refurbished: \(bridgeModel.yearRehab)"
+            description = "\(bridgeModel.yearRehab)"
         }
         return description
     }

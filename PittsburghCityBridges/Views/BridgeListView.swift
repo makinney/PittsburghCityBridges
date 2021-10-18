@@ -21,6 +21,7 @@ struct BridgeListView: View {
             }
             .navigationTitle("City Bridges")
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
@@ -28,13 +29,15 @@ struct BridgeListView_Previews: PreviewProvider {
     static let bridgeStore = BridgeStore()
     static var previews: some View {
         BridgeListView()
-            .environmentObject(bridgeStore) // TODO: canned data
+            .environmentObject(bridgeStore)
             .onAppear {
                 bridgeStore.preview()
             }
-    }
-    
-    static func update() {
-        bridgeStore.preview()
+        BridgeListView()
+            .preferredColorScheme(.dark)
+            .environmentObject(bridgeStore)
+            .onAppear {
+                bridgeStore.preview()
+            }
     }
 }
