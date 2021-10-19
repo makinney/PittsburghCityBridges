@@ -4,17 +4,27 @@
 //
 //  Created by MAKinney on 10/10/21.
 //
-
+import MapKit
 import SwiftUI
 
 struct BridgeMapView: View {
+    @EnvironmentObject var bridgeStore: BridgeStore
     var body: some View {
-        Text("Map")
+        let bridgeModels = bridgeStore.bridgeModels
+        MapView(region: CityModel.region, bridgeModels: bridgeModels)
+            .onAppear {
+                bridgeStore.refreshBridgeModels()
+            }
     }
 }
 
 struct BridgeMapView_Previews: PreviewProvider {
+    static let bridgeStore = BridgeStore()
     static var previews: some View {
         BridgeMapView()
+            .environmentObject(bridgeStore)
+        .onAppear {
+            bridgeStore.preview()
+        }
     }
 }

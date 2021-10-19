@@ -15,7 +15,6 @@ struct BridgeModel: Identifiable {
     }
     var geometry: [MKShape & MKGeoJSONObject]
     var geoJSON: GeoJSONProperty
-
     var openDataID: Int {
         geoJSON.openDataID
     }
@@ -65,6 +64,16 @@ struct BridgeModel: Identifiable {
                   return nil
               }
         return endNeighborhood
+    }
+    
+    func overlays() -> [MKOverlay] {
+        var overlays =  [MKOverlay]()
+        for geo in geometry {
+            if let polyline = geo as? MKPolyline {
+                overlays.append(polyline)
+            }
+        }
+        return overlays
     }
     
     func description() -> String {
