@@ -10,12 +10,13 @@ import SwiftUI
 import os
 
 struct MapView: UIViewRepresentable {
+    @ObservedObject var bridgeStore: BridgeStore
     let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     typealias UIViewType = MKMapView
     let region: MKCoordinateRegion
-    let mapView: MKMapView
-
+    
     func makeUIView(context: Context) -> MKMapView {
+        let mapView = MKMapView()
         mapView.delegate = context.coordinator
         mapView.setRegion(region, animated: false)
         mapView.isRotateEnabled = false
@@ -24,28 +25,28 @@ struct MapView: UIViewRepresentable {
     
     func updateUIView(_ uiView: MKMapView, context: Context) {
         logger.info("updateUIView called")
+        for bridgeModel in bridgeStore.bridgeModels {
+            let overlays = bridgeModel.overlays()
+            if overlays.isEmpty { continue }
+            uiView.addOverlays(overlays)
+        }
     }
     
     func makeCoordinator() -> MapCoordinator {
-        .init()
+        return MapCoordinator()
     }
     
-    init(region: MKCoordinateRegion, bridgeModels: [BridgeModel]) {
-        mapView = MKMapView()
+    init(region: MKCoordinateRegion, bridgeStore: BridgeStore) {
         self.region = region
-        for bridgeModel in bridgeModels {
-            let overlays = bridgeModel.overlays()
-            if overlays.isEmpty { continue }
-            mapView.addOverlays(overlays)
-        }
+        self.bridgeStore = bridgeStore
     }
-   
+    
     final class MapCoordinator: NSObject, MKMapViewDelegate {
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
             if overlay is MKPolyline {
                 let lineView = MKPolylineRenderer(overlay: overlay)
-                lineView.strokeColor = .systemRed
-                lineView.lineWidth = 4.0
+                lineView.strokeColor = .systemYellow
+                lineView.lineWidth = 6.0
                 return lineView
             }
             return MKOverlayRenderer(overlay: overlay)

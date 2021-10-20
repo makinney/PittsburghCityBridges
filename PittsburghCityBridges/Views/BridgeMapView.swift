@@ -10,11 +10,12 @@ import SwiftUI
 struct BridgeMapView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     var body: some View {
-        let bridgeModels = bridgeStore.bridgeModels
-        MapView(region: CityModel.region, bridgeModels: bridgeModels)
-            .onAppear {
-                bridgeStore.refreshBridgeModels()
-            }
+        VStack {
+        MapView(region: CityModel.region, bridgeStore: bridgeStore)
+        }
+        .onAppear {
+            bridgeStore.refreshBridgeModels()
+        }
     }
 }
 

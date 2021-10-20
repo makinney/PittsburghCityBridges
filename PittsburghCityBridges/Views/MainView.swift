@@ -11,13 +11,13 @@ struct MainView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     var body: some View {
         TabView {
-            BridgeListView()
-                .tabItem {
-                    Label("Bridges", systemImage: "list.dash")
-                }
             BridgeMapView()
                 .tabItem {
                     Label("Map", systemImage: "map")
+                }
+            BridgeListView()
+                .tabItem {
+                    Label("Bridges", systemImage: "list.dash")
                 }
             BridgePhotosView()
                 .tabItem {
