@@ -24,6 +24,9 @@ struct MainView: View {
                     Label("Photos", systemImage: "photo")
                 }
         }
+        .onAppear {
+            bridgeStore.refreshBridgeModels()
+        }
     }
 }
 

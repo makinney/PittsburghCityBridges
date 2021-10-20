@@ -13,7 +13,6 @@ struct PittsburghCityBridgesApp: App {
 
     init() {
         bridgeStore = BridgeStore()
-        bridgeStore.refreshBridgeModels()
     }
     
     @ObservedObject var bridgeStore: BridgeStore

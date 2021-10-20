@@ -11,10 +11,7 @@ struct BridgeMapView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     var body: some View {
         VStack {
-        MapView(region: CityModel.region, bridgeStore: bridgeStore)
-        }
-        .onAppear {
-            bridgeStore.refreshBridgeModels()
+            MapView(region: CityModel.region, bridgeStore: bridgeStore)
         }
     }
 }

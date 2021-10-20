@@ -8,15 +8,34 @@
 import Foundation
 import MapKit
 
+extension MKMultiPoint {
+    var coordinates: [CLLocationCoordinate2D] {
+        var coords = [CLLocationCoordinate2D](repeating: kCLLocationCoordinate2DInvalid, count: pointCount)
+        getCoordinates(&coords, range: NSRange(location: 0, length: pointCount))
+        return coords
+    }
+}
+
 struct BridgeModel: Identifiable {
-    
     var id: Int {
         geoJSON.openDataID
     }
     var geometry: [MKShape & MKGeoJSONObject]
     var geoJSON: GeoJSONProperty
+    var locationCoordinate: CLLocationCoordinate2D? {
+        return polylines.first?.coordinates.first
+    }
     var openDataID: Int {
         geoJSON.openDataID
+    }
+    var polylines: [MKPolyline] {
+        var lines = [MKPolyline]()
+        for geo in geometry {
+            if let polyline = geo as? MKPolyline {
+                lines.append(polyline)
+            }
+        }
+        return lines
     }
     var name: String {
         guard let name = geoJSON.name,
@@ -25,14 +44,12 @@ struct BridgeModel: Identifiable {
               }
         return name
     }
-    
     var imageURL: URL? {
         if let imagePath = geoJSON.imagePath {
             return URL(string: imagePath)
         }
         return nil
     }
-    
     var yearBuilt: String {
         guard let yearBuilt = geoJSON.yearBuilt,
               !yearBuilt.isEmpty else {
@@ -41,7 +58,6 @@ struct BridgeModel: Identifiable {
         return yearBuilt
         
     }
-    
     var yearRehab: String {
         guard let yearRehab = geoJSON.yearRehab,
               !yearRehab.isEmpty else {
@@ -49,7 +65,6 @@ struct BridgeModel: Identifiable {
               }
         return yearRehab
     }
-    
     var startNeighborhood: String {
         guard let startNeighborhood = geoJSON.startNeighborhood,
               !startNeighborhood.isEmpty else {
@@ -57,23 +72,12 @@ struct BridgeModel: Identifiable {
               }
         return startNeighborhood
     }
-    
     var endNeighborhood: String? {
         guard let endNeighborhood = geoJSON.endNeighborhood,
               !endNeighborhood.isEmpty else {
                   return nil
               }
         return endNeighborhood
-    }
-    
-    func overlays() -> [MKOverlay] {
-        var overlays =  [MKOverlay]()
-        for geo in geometry {
-            if let polyline = geo as? MKPolyline {
-                overlays.append(polyline)
-            }
-        }
-        return overlays
     }
     
     func description() -> String {
@@ -87,10 +91,8 @@ struct BridgeModel: Identifiable {
         if !yearRehab.isEmpty {
             desc += " It was reburbished in \(yearRehab)."
         }
-        
         return desc
     }
-    
 }
 
 extension BridgeModel {
