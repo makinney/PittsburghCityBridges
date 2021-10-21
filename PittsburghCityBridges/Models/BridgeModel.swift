@@ -7,6 +7,7 @@
 
 import MapKit
 
+
 struct BridgeModel: Identifiable {
     var id: Int {
         geoJSON.openDataID

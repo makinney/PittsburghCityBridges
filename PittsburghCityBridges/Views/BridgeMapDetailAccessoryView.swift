@@ -4,7 +4,6 @@
 //
 //  Created by MAKinney on 10/21/21.
 //
-
 import SwiftUI
 
 struct BridgeMapDetailAccessoryView: View {

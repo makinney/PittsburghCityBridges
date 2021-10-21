@@ -10,11 +10,11 @@ import SwiftUI
 import os
 
 struct BridgeMapUIView: UIViewRepresentable {
-    @ObservedObject var bridgeStore: BridgeStore
-    let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     typealias UIViewType = MKMapView
-    let region: MKCoordinateRegion
-    
+    let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
+    @ObservedObject var bridgeStore: BridgeStore
+    @ObservedObject var locationManager = LocationManager()
+    let region: MKCoordinateRegion        
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
@@ -82,9 +82,22 @@ class BridgeMapAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var title: String?
     var bridgeModel: BridgeModel
-    init(coordinate: CLLocationCoordinate2D, bridgeModel: BridgeModel) {
+    init(coordinate: CLLocationCoordinate2D, bridgeModel: BridgeModel) {//, locationManager: LocationManager) {
         self.coordinate = coordinate
         self.title = bridgeModel.name
         self.bridgeModel = bridgeModel
+        super.init()
+    }
+}
+
+class DirectionsRequested: NSObject, ObservableObject {
+    @Published var requested = false
+    
+    func requestDirections() {
+        requested = true
+    }
+    
+    override init() {
+        super.init()
     }
 }
