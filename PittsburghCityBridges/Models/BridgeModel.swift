@@ -5,16 +5,7 @@
 //  Created by MAKinney on 10/14/21.
 //
 
-import Foundation
 import MapKit
-
-extension MKMultiPoint {
-    var coordinates: [CLLocationCoordinate2D] {
-        var coords = [CLLocationCoordinate2D](repeating: kCLLocationCoordinate2DInvalid, count: pointCount)
-        getCoordinates(&coords, range: NSRange(location: 0, length: pointCount))
-        return coords
-    }
-}
 
 struct BridgeModel: Identifiable {
     var id: Int {
@@ -79,21 +70,40 @@ struct BridgeModel: Identifiable {
               }
         return endNeighborhood
     }
-    
-    func description() -> String {
-        var desc = "The \(name)"
-        desc += " is located in the \(startNeighborhood) neighborhood"
-        if let endLocation = endNeighborhood {
-            desc += " and in the \(endLocation) neighborhood"
+}
+
+// MARK: View Model Like
+
+extension BridgeModel {
+    func builtHistory() -> String {
+        var history = ""
+        if !yearBuilt.isEmpty {
+            history = "Built in \(yearBuilt)"
         }
-        desc += "."
-        desc += " It was built in \(yearBuilt)."
         if !yearRehab.isEmpty {
-            desc += " It was reburbished in \(yearRehab)."
+            history += " and rehabbed in \(yearRehab)"
         }
-        return desc
+        return history
+    }
+    
+    func neighborhoods() -> String {
+        var description = "\(startNeighborhood)"
+        if let endNeighborhood = endNeighborhood {
+            description += " and \(endNeighborhood)"
+        }
+        return description
+    }
+
+    func refurbished() -> String {
+        var description = ""
+        if !yearRehab.isEmpty {
+            description = "\(yearRehab)"
+        }
+        return description
     }
 }
+
+// MARK: SwiftUI Preview Support
 
 extension BridgeModel {
     #if DEBUG

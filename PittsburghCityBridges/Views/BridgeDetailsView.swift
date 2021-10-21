@@ -20,12 +20,12 @@ struct BridgeDetailsView: View {
                     Text("\(bridgeModel.name)")
                         .font(.title)
                         .padding([.leading, .bottom])
-                    let built = builtHistory()
+                    let built = bridgeModel.builtHistory()
                     if !built.isEmpty {
                         Text(built)
                             .padding([.leading, .bottom])
                     }
-                    Text(neighborhoods())
+                    Text(bridgeModel.neighborhoods())
                         .padding([.leading])
                     Image(uiImage: bridgeImage)
                         .resizable()
@@ -48,43 +48,7 @@ struct BridgeDetailsView: View {
         }
     }
     
-    private func neighborhoods() -> String {
-        var neighborhood = "neighborhood"
-        var description = "\(bridgeModel.startNeighborhood)"
-        if let endNeighborhood = bridgeModel.endNeighborhood {
-            description += " and \(endNeighborhood)"
-            neighborhood += "s"
-        }
-        description += " " + neighborhood
-        return description
-    }
-    
-    private func builtHistory() -> String {
-        var history = ""
-        if !bridgeModel.yearBuilt.isEmpty {
-            history = "Built in \(bridgeModel.yearBuilt)"
-        }
-        if !bridgeModel.yearRehab.isEmpty {
-            history += " and rehabbed in \(bridgeModel.yearRehab)"
-        }
-        return history
-    }
-    
-    private  func yearBuilt() -> String {
-        var built = ""
-        if !bridgeModel.yearBuilt.isEmpty {
-            built = "\(bridgeModel.yearBuilt)"
-        }
-        return built
-    }
-    
-    private func refurbished() -> String {
-        var description = ""
-        if !bridgeModel.yearRehab.isEmpty {
-            description = "\(bridgeModel.yearRehab)"
-        }
-        return description
-    }
+  
 }
 
 struct BridgeDetailsView_Previews: PreviewProvider {

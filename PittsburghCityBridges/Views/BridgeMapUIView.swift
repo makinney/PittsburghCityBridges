@@ -9,7 +9,7 @@ import MapKit
 import SwiftUI
 import os
 
-struct MapView: UIViewRepresentable {
+struct BridgeMapUIView: UIViewRepresentable {
     @ObservedObject var bridgeStore: BridgeStore
     let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     typealias UIViewType = MKMapView
@@ -23,21 +23,21 @@ struct MapView: UIViewRepresentable {
         return mapView
     }
     
-    func updateUIView(_ uiView: MKMapView, context: Context) {
+    func updateUIView(_ mapView: MKMapView, context: Context) {
         logger.info("updateUIView called")
         for bridgeModel in bridgeStore.bridgeModels {
             let overlays = bridgeModel.polylines
             if overlays.isEmpty { continue }
-            uiView.addOverlays(overlays)
+            mapView.addOverlays(overlays)
         }
-        uiView.removeAnnotations(uiView.annotations)
+        mapView.removeAnnotations(mapView.annotations)
         for bridgeModel in bridgeStore.bridgeModels {
             var annotations = [BridgeMapAnnotation]()
             if let coordinate = bridgeModel.locationCoordinate {
                 let annotation = BridgeMapAnnotation(coordinate: coordinate, bridgeModel: bridgeModel)
                 annotations.append(annotation)
             }
-            uiView.addAnnotations(annotations)
+            mapView.addAnnotations(annotations)
         }
     }
     
@@ -54,7 +54,7 @@ struct MapView: UIViewRepresentable {
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
             if overlay is MKPolyline {
                 let lineView = MKPolylineRenderer(overlay: overlay)
-                lineView.strokeColor = .systemYellow
+                lineView.strokeColor = .systemRed
                 lineView.lineWidth = 6.0
                 return lineView
             }
@@ -65,12 +65,13 @@ struct MapView: UIViewRepresentable {
             guard let bridgeMapAnnotation = annotation as? BridgeMapAnnotation else {
               return nil
             }
-
-            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "BridgeLocation") as? MKMarkerAnnotationView ?? MKMarkerAnnotationView(annotation: bridgeMapAnnotation, reuseIdentifier: "BridgeLocation")
- //           annotationView.canShowCallout = true
-            annotationView.markerTintColor = UIColor(displayP3Red: 0.082, green: 0.518, blue: 0.263, alpha: 1.0)
+            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "MarkerAnnotationView") as? MKMarkerAnnotationView ?? MKMarkerAnnotationView(annotation: bridgeMapAnnotation, reuseIdentifier: "MarkerAnnotationView")
+            annotationView.canShowCallout = true
             annotationView.titleVisibility = .visible
-//            annotationView.detailCalloutAccessoryView = UIImage(named: placeAnnotation.image).map(UIImageView.init)
+            let detailView = BridgeMapDetailAccessoryView(bridgeModel: bridgeMapAnnotation.bridgeModel)
+            let vc = UIHostingController(rootView: detailView)
+            vc.view.translatesAutoresizingMaskIntoConstraints = false
+            annotationView.detailCalloutAccessoryView = vc.view
             return annotationView
         }
     }
@@ -80,10 +81,10 @@ struct MapView: UIViewRepresentable {
 class BridgeMapAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var title: String?
-    var subtitle: String?
+    var bridgeModel: BridgeModel
     init(coordinate: CLLocationCoordinate2D, bridgeModel: BridgeModel) {
         self.coordinate = coordinate
         self.title = bridgeModel.name
-        self.subtitle = bridgeModel.startNeighborhood
+        self.bridgeModel = bridgeModel
     }
 }
