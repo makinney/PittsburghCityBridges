@@ -11,7 +11,7 @@ struct BridgeMapView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     var body: some View {
         VStack {
-            BridgeMapUIView(region: CityModel.region, bridgeStore: bridgeStore)
+            BridgeMapUIView(region: CityModel.region, bridgeModels: bridgeStore.bridgeModels)
         }
     }
 }

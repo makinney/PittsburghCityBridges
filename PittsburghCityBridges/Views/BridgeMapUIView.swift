@@ -12,13 +12,15 @@ import os
 struct BridgeMapUIView: UIViewRepresentable {
     typealias UIViewType = MKMapView
     let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
-    @ObservedObject var bridgeStore: BridgeStore
+    let bridgeModels: [BridgeModel]
     let directionsService = DirectionsService()
     let region: MKCoordinateRegion
+    let hasDirectionsButton: Bool
 
-    init(region: MKCoordinateRegion, bridgeStore: BridgeStore) {
+    init(region: MKCoordinateRegion, bridgeModels: [BridgeModel], hasDirectionsButton: Bool = true) {
         self.region = region
-        self.bridgeStore = bridgeStore
+        self.bridgeModels = bridgeModels
+        self.hasDirectionsButton = hasDirectionsButton
     }
     
     func makeUIView(context: Context) -> MKMapView {
@@ -31,13 +33,13 @@ struct BridgeMapUIView: UIViewRepresentable {
     
     func updateUIView(_ mapView: MKMapView, context: Context) {
         logger.info("updateUIView called")
-        for bridgeModel in bridgeStore.bridgeModels {
+        for bridgeModel in bridgeModels {
             let overlays = bridgeModel.polylines
             if overlays.isEmpty { continue }
             mapView.addOverlays(overlays)
         }
         mapView.removeAnnotations(mapView.annotations)
-        for bridgeModel in bridgeStore.bridgeModels {
+        for bridgeModel in bridgeModels {
             var annotations = [BridgeMapAnnotation]()
             if let coordinate = bridgeModel.locationCoordinate {
                 let annotation = BridgeMapAnnotation(coordinate: coordinate, bridgeModel: bridgeModel)
@@ -48,14 +50,16 @@ struct BridgeMapUIView: UIViewRepresentable {
     }
     
     func makeCoordinator() -> MapCoordinator {
-        let mapCoordinator = MapCoordinator(directionsService: directionsService)
+        let mapCoordinator = MapCoordinator(directionsService, hasDirectionsButton)
         return mapCoordinator
     }
     
     final class MapCoordinator: NSObject, MKMapViewDelegate {
+        let hasDirectionsButton: Bool
         let directionsService: DirectionsService
-        init(directionsService: DirectionsService) {
+        init(_ directionsService: DirectionsService, _ hasDirectionsButton: Bool) {
             self.directionsService = directionsService
+            self.hasDirectionsButton = hasDirectionsButton
         }
         
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -82,9 +86,11 @@ struct BridgeMapUIView: UIViewRepresentable {
             annotationView.canShowCallout = true
             annotationView.titleVisibility = .visible
             annotationView.markerTintColor = .systemGreen
-            let buttonImage = UIImage(systemName: "arrow.triangle.turn.up.right.circle.fill") ?? UIImage()
-            let directionsRequestButton = UIButton.systemButton(with: buttonImage, target: nil, action: nil) // so we can tap and get the delegate callback
-            annotationView.rightCalloutAccessoryView = directionsRequestButton
+            if hasDirectionsButton {
+                let buttonImage = UIImage(systemName: "arrow.triangle.turn.up.right.circle.fill") ?? UIImage()
+                let directionsRequestButton = UIButton.systemButton(with: buttonImage, target: nil, action: nil) // so we can tap and get the delegate callback
+                annotationView.rightCalloutAccessoryView = directionsRequestButton
+            }
             let bridgeMapDetailAccessoryView = BridgeMapDetailAccessoryView(bridgeModel: bridgeMapAnnotation.bridgeModel)
             let hostingController = UIHostingController(rootView: bridgeMapDetailAccessoryView)
             hostingController.view.translatesAutoresizingMaskIntoConstraints = false
