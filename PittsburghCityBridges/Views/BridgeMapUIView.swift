@@ -15,12 +15,12 @@ struct BridgeMapUIView: UIViewRepresentable {
     let bridgeModels: [BridgeModel]
     let directionsService = DirectionsService()
     let region: MKCoordinateRegion
-    let hasDirectionsButton: Bool
-
-    init(region: MKCoordinateRegion, bridgeModels: [BridgeModel], hasDirectionsButton: Bool = true) {
+    let hasDetailAccessoryView: Bool
+    
+    init(region: MKCoordinateRegion, bridgeModels: [BridgeModel], hasDetailAccessoryView: Bool = true) {
         self.region = region
         self.bridgeModels = bridgeModels
-        self.hasDirectionsButton = hasDirectionsButton
+        self.hasDetailAccessoryView = hasDetailAccessoryView
     }
     
     func makeUIView(context: Context) -> MKMapView {
@@ -47,19 +47,24 @@ struct BridgeMapUIView: UIViewRepresentable {
             }
             mapView.addAnnotations(annotations)
         }
+        if bridgeModels.count == 1 {
+            if let locationCoordinate = bridgeModels[0].locationCoordinate {
+                mapView.centerCoordinate = locationCoordinate
+            }
+        }
     }
     
     func makeCoordinator() -> MapCoordinator {
-        let mapCoordinator = MapCoordinator(directionsService, hasDirectionsButton)
+        let mapCoordinator = MapCoordinator(directionsService, hasDetailAccessoryView)
         return mapCoordinator
     }
     
     final class MapCoordinator: NSObject, MKMapViewDelegate {
-        let hasDirectionsButton: Bool
+        let hasDetailAccessoryView: Bool
         let directionsService: DirectionsService
-        init(_ directionsService: DirectionsService, _ hasDirectionsButton: Bool) {
+        init(_ directionsService: DirectionsService, _ hasDetailAccessoryView: Bool) {
             self.directionsService = directionsService
-            self.hasDirectionsButton = hasDirectionsButton
+            self.hasDetailAccessoryView = hasDetailAccessoryView
         }
         
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -74,7 +79,7 @@ struct BridgeMapUIView: UIViewRepresentable {
         
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
             guard let bridgeMapAnnotation = annotation as? BridgeMapAnnotation else {
-              return nil
+                return nil
             }
             let reuseIdentifier = "MarkerAnnotationView"
             let annotationView: MKMarkerAnnotationView
@@ -83,18 +88,18 @@ struct BridgeMapUIView: UIViewRepresentable {
             } else {
                 annotationView = MKMarkerAnnotationView(annotation: bridgeMapAnnotation, reuseIdentifier: reuseIdentifier)
             }
-            annotationView.canShowCallout = true
             annotationView.titleVisibility = .visible
             annotationView.markerTintColor = .systemGreen
-            if hasDirectionsButton {
-                let buttonImage = UIImage(systemName: "arrow.triangle.turn.up.right.circle.fill") ?? UIImage()
-                let directionsRequestButton = UIButton.systemButton(with: buttonImage, target: nil, action: nil) // so we can tap and get the delegate callback
-                annotationView.rightCalloutAccessoryView = directionsRequestButton
+            annotationView.canShowCallout = true
+            let buttonImage = UIImage(systemName: "arrow.triangle.turn.up.right.circle.fill") ?? UIImage()
+            let directionsRequestButton = UIButton.systemButton(with: buttonImage, target: nil, action: nil) // so we can tap and get the delegate callback
+            annotationView.rightCalloutAccessoryView = directionsRequestButton
+            if hasDetailAccessoryView {
+                let bridgeMapDetailAccessoryView = BridgeMapDetailAccessoryView(bridgeModel: bridgeMapAnnotation.bridgeModel)
+                let hostingController = UIHostingController(rootView: bridgeMapDetailAccessoryView)
+                hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+                annotationView.detailCalloutAccessoryView = hostingController.view
             }
-            let bridgeMapDetailAccessoryView = BridgeMapDetailAccessoryView(bridgeModel: bridgeMapAnnotation.bridgeModel)
-            let hostingController = UIHostingController(rootView: bridgeMapDetailAccessoryView)
-            hostingController.view.translatesAutoresizingMaskIntoConstraints = false
-            annotationView.detailCalloutAccessoryView = hostingController.view
             return annotationView
         }
         

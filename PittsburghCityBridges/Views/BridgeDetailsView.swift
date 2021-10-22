@@ -27,10 +27,12 @@ struct BridgeDetailsView: View {
                     }
                     Text(bridgeModel.neighborhoods())
                         .padding([.leading])
+                    BridgeMapUIView(region: CityModel.singleBridgeRegion, bridgeModels: [bridgeModel], hasDetailAccessoryView: false)
+                        .padding()
+                        .frame(width: geometry.size.width, height: 200)
                     Image(uiImage: bridgeImage)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .border(.foreground, width: 1)
                         .padding()
                         .frame(width: geometry.size.width)
                 }
