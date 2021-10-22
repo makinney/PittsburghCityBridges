@@ -13,8 +13,14 @@ struct BridgeMapUIView: UIViewRepresentable {
     typealias UIViewType = MKMapView
     let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     @ObservedObject var bridgeStore: BridgeStore
-    @ObservedObject var locationManager = LocationManager()
-    let region: MKCoordinateRegion        
+    let directionsService = DirectionsService()
+    let region: MKCoordinateRegion
+
+    init(region: MKCoordinateRegion, bridgeStore: BridgeStore) {
+        self.region = region
+        self.bridgeStore = bridgeStore
+    }
+    
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
@@ -42,19 +48,20 @@ struct BridgeMapUIView: UIViewRepresentable {
     }
     
     func makeCoordinator() -> MapCoordinator {
-        return MapCoordinator()
-    }
-    
-    init(region: MKCoordinateRegion, bridgeStore: BridgeStore) {
-        self.region = region
-        self.bridgeStore = bridgeStore
+        let mapCoordinator = MapCoordinator(directionsService: directionsService)
+        return mapCoordinator
     }
     
     final class MapCoordinator: NSObject, MKMapViewDelegate {
+        let directionsService: DirectionsService
+        init(directionsService: DirectionsService) {
+            self.directionsService = directionsService
+        }
+        
         func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
             if overlay is MKPolyline {
                 let lineView = MKPolylineRenderer(overlay: overlay)
-                lineView.strokeColor = .systemRed
+                lineView.strokeColor = .systemYellow
                 lineView.lineWidth = 6.0
                 return lineView
             }
@@ -65,39 +72,43 @@ struct BridgeMapUIView: UIViewRepresentable {
             guard let bridgeMapAnnotation = annotation as? BridgeMapAnnotation else {
               return nil
             }
-            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "MarkerAnnotationView") as? MKMarkerAnnotationView ?? MKMarkerAnnotationView(annotation: bridgeMapAnnotation, reuseIdentifier: "MarkerAnnotationView")
+            let reuseIdentifier = "MarkerAnnotationView"
+            let annotationView: MKMarkerAnnotationView
+            if let markerAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) as? MKMarkerAnnotationView {
+                annotationView = markerAnnotationView
+            } else {
+                annotationView = MKMarkerAnnotationView(annotation: bridgeMapAnnotation, reuseIdentifier: reuseIdentifier)
+            }
             annotationView.canShowCallout = true
             annotationView.titleVisibility = .visible
-            let detailView = BridgeMapDetailAccessoryView(bridgeModel: bridgeMapAnnotation.bridgeModel)
-            let vc = UIHostingController(rootView: detailView)
-            vc.view.translatesAutoresizingMaskIntoConstraints = false
-            annotationView.detailCalloutAccessoryView = vc.view
+            annotationView.markerTintColor = .systemGreen
+            let buttonImage = UIImage(systemName: "arrow.triangle.turn.up.right.circle.fill") ?? UIImage()
+            let directionsRequestButton = UIButton.systemButton(with: buttonImage, target: nil, action: nil) // so we can tap and get the delegate callback
+            annotationView.rightCalloutAccessoryView = directionsRequestButton
+            let bridgeMapDetailAccessoryView = BridgeMapDetailAccessoryView(bridgeModel: bridgeMapAnnotation.bridgeModel)
+            let hostingController = UIHostingController(rootView: bridgeMapDetailAccessoryView)
+            hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+            annotationView.detailCalloutAccessoryView = hostingController.view
             return annotationView
         }
+        
+        func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+            if let bridgeMapAnnotation = view.annotation as? BridgeMapAnnotation {
+                directionsService.requestDirectionsTo(bridgeMapAnnotation.coordinate)
+                mapView.deselectAnnotation(view.annotation, animated: true)
+            }
+        }
     }
-    
 }
 
 class BridgeMapAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var title: String?
     var bridgeModel: BridgeModel
-    init(coordinate: CLLocationCoordinate2D, bridgeModel: BridgeModel) {//, locationManager: LocationManager) {
+    init(coordinate: CLLocationCoordinate2D, bridgeModel: BridgeModel) {
         self.coordinate = coordinate
         self.title = bridgeModel.name
         self.bridgeModel = bridgeModel
-        super.init()
-    }
-}
-
-class DirectionsRequested: NSObject, ObservableObject {
-    @Published var requested = false
-    
-    func requestDirections() {
-        requested = true
-    }
-    
-    override init() {
         super.init()
     }
 }

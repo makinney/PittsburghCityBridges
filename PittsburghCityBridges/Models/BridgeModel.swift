@@ -7,7 +7,6 @@
 
 import MapKit
 
-
 struct BridgeModel: Identifiable {
     var id: Int {
         geoJSON.openDataID
@@ -74,7 +73,7 @@ struct BridgeModel: Identifiable {
 }
 
 // MARK: View Model Like
-
+//
 extension BridgeModel {
     func builtHistory() -> String {
         var history = ""
@@ -105,7 +104,7 @@ extension BridgeModel {
 }
 
 // MARK: SwiftUI Preview Support
-
+//
 extension BridgeModel {
     #if DEBUG
     static let preview: BridgeModel = {
