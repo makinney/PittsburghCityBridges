@@ -1,5 +1,5 @@
 //
-//  DirectionsManager.swift
+//  DirectionsService.swift
 //  PittsburghCityBridges
 //
 //  Created by MAKinney on 10/21/21.
@@ -7,10 +7,11 @@
 
 import CoreLocation
 import Combine
+import SwiftUI
 import os
-import UIKit
 
 class DirectionsService {
+    @Environment(\.openURL) private var openURL
     enum DirectionsRequest {
         case no
         case yes
@@ -27,7 +28,7 @@ class DirectionsService {
     private var userCoordinate = CLLocationCoordinate2D()
     private var userLocationRequest: UserLocationRequest = .none
     private var locationManager: LocationManager
-    let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
+    private let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     
     init() {
         locationManager = LocationManager()
@@ -61,8 +62,12 @@ class DirectionsService {
         let dstLat = to.latitude
         let dstLon = to.longitude
         if let url = URL(string: "maps://?saddr=\(srcLat),\(srcLon)&daddr=\(dstLat),\(dstLon)") {
-            if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            openURL.callAsFunction(url) { accepted in
+                if accepted {
+                    self.logger.info("opened URL \(url)")
+                } else {
+                    self.logger.debug("failed to open URL \(url)")
+                }
             }
         }
     }
