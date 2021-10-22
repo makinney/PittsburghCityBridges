@@ -18,7 +18,7 @@ struct BridgeDetailsView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     Text("\(bridgeModel.name)")
-                        .font(.title)
+                        .font(.headline)
                         .padding([.leading, .bottom])
                     let built = bridgeModel.builtHistory()
                     if !built.isEmpty {

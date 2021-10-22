@@ -14,3 +14,13 @@ extension MKMultiPoint {
         return coords
     }
 }
+
+extension MKPolyline {
+    convenience init(coordinates: [CLLocationCoordinate2D]) {
+        var polyCoordinates = [CLLocationCoordinate2D]()
+        for coordinate in coordinates {
+            polyCoordinates.append(CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude))
+        }
+        self.init(coordinates: &polyCoordinates, count: polyCoordinates.count)
+    }
+}

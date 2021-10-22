@@ -108,10 +108,17 @@ extension BridgeModel {
 extension BridgeModel {
     #if DEBUG
     static let preview: BridgeModel = {
-        let geometry =  [MKShape & MKGeoJSONObject]()
         let openDataID: Int = 123456
-        let imagePath = "https://tools.wprdc.org/images/pittsburgh/bridges/Hot_Metal_Pedestrian_Bridge.jpg"
-        let property = GeoJSONProperty(openDataID: openDataID, yearBuilt: "1900", name: "Hot Metal Bridge", yearRehab: "2010", imagePath: imagePath, startNeighborhood: "Downtown", endNeighborhood: "Northside")
+        let imagePath = "https://tools.wprdc.org/images/pittsburgh/bridges/Charles_Anderson_Bridge.jpg"
+        let property = GeoJSONProperty(openDataID: openDataID, yearBuilt: "1989", name: "Charles Anderson Bridge", yearRehab: "1987", imagePath: imagePath, startNeighborhood: "Squirrel Hill South", endNeighborhood: "South Oakland")
+        var geometry =  [MKShape & MKGeoJSONObject]()
+        let startPoint = CLLocationCoordinate2D(latitude: 40.43423858438876, longitude: -79.95168694309808)
+        let endPoint = CLLocationCoordinate2D(latitude: 40.43458973277687, longitude: -79.94857558064106)
+        var polyCoordinates = [CLLocationCoordinate2D]()
+        polyCoordinates.append(startPoint)
+        polyCoordinates.append(endPoint)
+        let polyline: MKPolyline = MKPolyline(coordinates: polyCoordinates)
+        geometry.append(polyline)
         return BridgeModel(geometry: geometry, geoJSON: property)
     }()
     #endif
