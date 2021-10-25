@@ -10,16 +10,15 @@ import os
 
 struct BridgeDetailsView: View {
     var bridgeModel: BridgeModel
-    @State private var bridgeImage = UIImage()
+    var imageLoader: UIImageLoader = UIImageLoader()
+    let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     
-    let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.bridgeStore)
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(alignment: .leading) {
                     Text("\(bridgeModel.name)")
-                        .font(.headline)
-                        .padding([.leading, .bottom])
+                        .font(.headline) .padding([.leading, .bottom])
                     let built = bridgeModel.builtHistory()
                     if !built.isEmpty {
                         Text(built)
@@ -30,31 +29,45 @@ struct BridgeDetailsView: View {
                     BridgeMapUIView(region: CityModel.singleBridgeRegion, bridgeModels: [bridgeModel], hasDetailAccessoryView: false)
                         .padding()
                         .frame(width: geometry.size.width, height: 200)
-                    Image(uiImage: bridgeImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
+                    BridgeImageView(imageLoader: imageLoader, imageURL: bridgeModel.imageURL)
                         .padding()
-                        .frame(width: geometry.size.width)
-                }
-            }
-        }
-        .task {
-            if let url = bridgeModel.imageURL {
-                do {
-                    let (data, _) = try await URLSession.shared.data(from: url)
-                    bridgeImage = UIImage(data: data) ?? UIImage()
-                } catch let error {
-                    logger.error("\(error.localizedDescription)")
                 }
             }
         }
     }
     
-  
+    struct BridgeImageView: View {
+        @ObservedObject var imageLoader: UIImageLoader
+        var imageURL: URL?
+        var body: some View {
+            switch imageLoader.state {
+            case .idle:
+                Color.clear
+                    .onAppear {
+                        imageLoader.load(imageURL)
+                    }
+            case .loading:
+                HStack {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                }
+            case .failed(let error):
+                Text(error)
+            case .loaded(let image):
+                Image(uiImage: image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+            }
+        }
+    }
+    
+    
 }
 
 struct BridgeDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         BridgeDetailsView(bridgeModel: BridgeModel.preview)
+            .preferredColorScheme(.dark)
     }
 }

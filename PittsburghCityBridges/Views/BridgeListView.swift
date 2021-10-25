@@ -13,7 +13,7 @@ struct BridgeListView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(bridgeStore.bridgeModels) { bridgeModel in                    
+                ForEach(bridgeStore.bridgeModels) { bridgeModel in
                     NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
                         BridgeListRow(bridgeModel: bridgeModel)
                     }

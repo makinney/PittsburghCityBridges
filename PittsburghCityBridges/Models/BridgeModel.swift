@@ -9,24 +9,10 @@ import MapKit
 
 struct BridgeModel: Identifiable {
     var id: Int {
-        geoJSON.openDataID
-    }
-    var geometry: [MKShape & MKGeoJSONObject]
-    var geoJSON: GeoJSONProperty
-    var locationCoordinate: CLLocationCoordinate2D? {
-        return polylines.first?.coordinates.first
+        openDataID
     }
     var openDataID: Int {
         geoJSON.openDataID
-    }
-    var polylines: [MKPolyline] {
-        var lines = [MKPolyline]()
-        for geo in geometry {
-            if let polyline = geo as? MKPolyline {
-                lines.append(polyline)
-            }
-        }
-        return lines
     }
     var name: String {
         guard let name = geoJSON.name,
@@ -69,6 +55,21 @@ struct BridgeModel: Identifiable {
                   return nil
               }
         return endNeighborhood
+    }
+    
+    var geometry: [MKShape & MKGeoJSONObject]
+    var geoJSON: GeoJSONProperty
+    var locationCoordinate: CLLocationCoordinate2D? {
+        return polylines.first?.coordinates.first
+    }
+    var polylines: [MKPolyline] {
+        var lines = [MKPolyline]()
+        for geo in geometry {
+            if let polyline = geo as? MKPolyline {
+                lines.append(polyline)
+            }
+        }
+        return lines
     }
 }
 
