@@ -19,30 +19,13 @@ struct BridgePhotosView: View {
         NavigationView {
             GeometryReader { geometry in
                 ScrollView {
-                    LazyVStack {
+                    LazyVGrid(columns: columns) {
                         ForEach(bridgeStore.bridgeModels) { bridgeModel in
-                            if let imageURL = bridgeModel.imageURL {
-                                let content = Content(tag: bridgeModel.id, url: imageURL)
-                                LazyReleaseableWebImage {
-                                    WebImage(url: content.url)
-                                        .resizable()
-                                        .placeholder {
-                                            ProgressView()
-                                        }
-                                } placeholder: {
-                                    ProgressView()
-                                }
-                                .scaledToFill()
-                                .frame(width: geometry.size.width)
+                            NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
+                                BridgeImageView(bridgeModel.imageURL, options: [.scaleDownLargeImages])
+                                    .scaledToFill()
+                                    .frame(maxWidth: geometry.size.width)
                             }
-                            
-                            //     WebImage(url: content.url)
-                            
-                            //                        NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
-                            //                            BridgeImageView(bridgeModel.imageURL)
-                            //                                .scaledToFill()
-                            //           //                     .frame(maxWidth: geometry.size.width)
-                            //                        }
                         }
                     }
                     .navigationTitle("City Bridges")

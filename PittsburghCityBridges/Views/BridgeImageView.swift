@@ -12,15 +12,17 @@ import os
 struct BridgeImageView: View {
     let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgeImageView")
     var url: URL?
+    var options: SDWebImageOptions?
     var body: some View {
-        return WebImage(url: url)
+        return WebImage(url: url, options: [.scaleDownLargeImages])
             .resizable()
             .indicator(.activity)
     }
     
-    init(_ url: URL?) {
+    init(_ url: URL?, options: SDWebImageOptions = []) {
         self.url = url
-        logger.info("opening image for url \(url?.path ?? "no url")")
+        self.options = options
+ //       logger.info("opening image for url \(url?.path ?? "no url")")
     }
 }
 
@@ -29,44 +31,7 @@ struct BridgeImageView_Previews: PreviewProvider {
     static var previews: some View {
         BridgeImageView(bridgeStore.bridgeModels.first?.imageURL)
             .onAppear {
-    //            bridgeStore.preview
+                bridgeStore.preview()
             }
     }
-}
-
-public struct LazyReleaseableWebImage<T: View>: View {
-
-    @State
-    private var shouldShowImage: Bool = false
-
-    private let content: () -> WebImage
-    private let placeholder: () -> T
-
-    public init(@ViewBuilder content: @escaping () -> WebImage,
-                             @ViewBuilder placeholder: @escaping () -> T) {
-        self.content = content
-        self.placeholder = placeholder
-    }
-
-    public var body: some View {
-        ZStack {
-            if shouldShowImage {
-                content()
-            } else {
-                placeholder()
-            }
-        }
-        .onAppear {
-            shouldShowImage = true
-        }
-        .onDisappear {
-            shouldShowImage = false
-        }
-    }
-}
-
-struct Content: Identifiable {
-    var id: Int { tag }
-    let tag: Int
-    let url: URL
 }
