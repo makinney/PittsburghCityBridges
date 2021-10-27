@@ -16,7 +16,6 @@ struct BridgeMapDetailAccessoryView: View {
                 Text(built)
             }
         }
-        .background(Color.clear)
     }
 }
 

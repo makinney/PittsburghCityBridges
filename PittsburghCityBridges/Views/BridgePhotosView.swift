@@ -6,59 +6,52 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
+import os
 
 struct BridgePhotosView: View {
+    let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgePhotosView")
+    
     @EnvironmentObject var bridgeStore: BridgeStore
     var imageLoader: UIImageLoader = UIImageLoader()
     var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
-            ScrollView {
-                LazyVGrid(columns: columns) {
-                    ForEach(bridgeStore.bridgeModels) { bridgeModel in
-                        NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
-                            let imageLoader = UIImageLoader()
-                            BridgeImageView(imageLoader: imageLoader, imageURL: bridgeModel.imageURL)
-                                .padding()
-                                .frame(minHeight: 100)
-                                .clipped()
+                ScrollView {
+                    LazyVStack {
+                        ForEach(bridgeStore.bridgeModels) { bridgeModel in
+                            if let imageURL = bridgeModel.imageURL {
+                                let content = Content(tag: bridgeModel.id, url: imageURL)
+                                LazyReleaseableWebImage {
+                                    WebImage(url: content.url)
+                                        .resizable()
+                                        .placeholder {
+                                            ProgressView()
+                                        }
+                                } placeholder: {
+                                    ProgressView()
+                                }
+                                .scaledToFill()
+                                .frame(width: geometry.size.width)
+                            }
+                            
+                            //     WebImage(url: content.url)
+                            
+                            //                        NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
+                            //                            BridgeImageView(bridgeModel.imageURL)
+                            //                                .scaledToFill()
+                            //           //                     .frame(maxWidth: geometry.size.width)
+                            //                        }
                         }
                     }
+                    .navigationTitle("City Bridges")
                 }
-                .navigationTitle("City Bridges")
-            }
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
-    struct BridgeImageView: View {
-        @ObservedObject var imageLoader: UIImageLoader
-        var imageURL: URL?
-        var body: some View {
-            switch imageLoader.state {
-            case .idle:
-                Color.clear
-                    .onAppear {
-                        imageLoader.load(imageURL)
-                    }
-            case .loading:
-                HStack {
-                    Spacer()
-                    ProgressView()
-                    Spacer()
-                }
-            case .failed(let error):
-                Text(error)
-            case .loaded(let image):
-                Image(uiImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                //               .frame(height: 100)
-            }
-        }
-    }
 }
 
 struct BridgePhotosView_Previews: PreviewProvider {
