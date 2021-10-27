@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 import os
 
 struct BridgeDetailsView: View {
@@ -29,40 +30,13 @@ struct BridgeDetailsView: View {
                     BridgeMapUIView(region: CityModel.singleBridgeRegion, bridgeModels: [bridgeModel], hasDetailAccessoryView: false)
                         .padding()
                         .frame(width: geometry.size.width, height: 200)
-                    BridgeImageView(imageLoader: imageLoader, imageURL: bridgeModel.imageURL)
-                        .padding()
+                    BridgeImageView(bridgeModel.imageURL)
+                        .scaledToFill()
+                        .frame(maxWidth: geometry.size.width)
                 }
             }
         }
     }
-    
-    struct BridgeImageView: View {
-        @ObservedObject var imageLoader: UIImageLoader
-        var imageURL: URL?
-        var body: some View {
-            switch imageLoader.state {
-            case .idle:
-                Color.clear
-                    .onAppear {
-                        imageLoader.load(imageURL)
-                    }
-            case .loading:
-                HStack {
-                    Spacer()
-                    ProgressView()
-                    Spacer()
-                }
-            case .failed(let error):
-                Text(error)
-            case .loaded(let image):
-                Image(uiImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-            }
-        }
-    }
-    
-    
 }
 
 struct BridgeDetailsView_Previews: PreviewProvider {
