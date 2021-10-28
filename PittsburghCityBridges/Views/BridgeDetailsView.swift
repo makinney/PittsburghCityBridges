@@ -19,17 +19,16 @@ struct BridgeDetailsView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     Text("\(bridgeModel.name)")
-                        .font(.headline) .padding([.leading, .bottom])
+                        .font(.headline) .padding([.bottom])
                     let built = bridgeModel.builtHistory()
                     if !built.isEmpty {
                         Text(built)
-                            .padding([.leading, .bottom])
                     }
                     Text(bridgeModel.neighborhoods())
-                        .padding([.leading])
-                    BridgeMapUIView(region: CityModel.singleBridgeRegion, bridgeModels: [bridgeModel], hasDetailAccessoryView: false)
-                        .padding()
+                        .padding([.bottom])
+                    makeMapView(bridgeModel)
                         .frame(width: geometry.size.width, height: 200)
+                        .padding([.bottom])
                     BridgeImageView(bridgeModel.imageURL)
                         .scaledToFill()
                         .frame(maxWidth: geometry.size.width)
@@ -37,6 +36,30 @@ struct BridgeDetailsView: View {
             }
         }
     }
+    
+    func makeMapView(_ bridgeModel: BridgeModel) -> some View {
+        ZStack {
+            BridgeMapUIView(region: CityModel.singleBridgeRegion, bridgeModels: [bridgeModel], hasDetailAccessoryView: false)
+            Spacer()
+            VStack {
+                HStack {
+                    if let locationCoordinate = bridgeModel.locationCoordinate {
+                        Button {
+                            DirectionsService().requestDirectionsTo(locationCoordinate)
+                        } label: {
+                            Image(systemName: "arrow.triangle.turn.up.right.circle.fill")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                        }
+                        .padding()
+                        Spacer()
+                    }
+                }
+                Spacer()
+            }
+        }
+    }
+    
 }
 
 struct BridgeDetailsView_Previews: PreviewProvider {
