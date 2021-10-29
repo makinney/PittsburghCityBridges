@@ -13,25 +13,40 @@ struct BridgeDetailsView: View {
     var bridgeModel: BridgeModel
     var imageLoader: UIImageLoader = UIImageLoader()
     let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
-    
+    @State var imageScale = 1.0
+    @State var zoomToggled = false
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(alignment: .leading) {
                     Text("\(bridgeModel.name)")
-                        .font(.headline) .padding([.bottom])
+                        .font(.headline)
+                        .padding()
                     let built = bridgeModel.builtHistory()
                     if !built.isEmpty {
                         Text(built)
+                            .padding([.leading,.trailing])
                     }
                     Text(bridgeModel.neighborhoods())
-                        .padding([.bottom])
+                        .padding([.leading, .trailing, .bottom])
                     makeMapView(bridgeModel)
-                        .frame(width: geometry.size.width, height: 200)
-                        .padding([.bottom])
+                        .frame(height: 200)
+                        .padding([.leading,.trailing,.bottom])
                     BridgeImageView(bridgeModel.imageURL)
                         .scaledToFill()
-                        .frame(maxWidth: geometry.size.width)
+                        .scaleEffect(imageScale)
+                        .padding([.leading, .trailing])
+                        .gesture(MagnificationGesture()
+                                    .onChanged({ value in
+                            self.imageScale = value
+                        })
+                        )
+                        .gesture(TapGesture(count: 2)
+                                    .onEnded({ _ in
+                            self.zoomToggled.toggle()
+                            self.imageScale = zoomToggled ? 2.0 : 1.0
+                        }))
+                    
                 }
             }
         }
@@ -66,5 +81,6 @@ struct BridgeDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         BridgeDetailsView(bridgeModel: BridgeModel.preview)
             .preferredColorScheme(.dark)
+        BridgeDetailsView(bridgeModel: BridgeModel.preview)
     }
 }
