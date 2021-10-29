@@ -50,7 +50,7 @@ class BridgeStore: ObservableObject {
                     }
                 }
                 self.bridgeModels = freshModels // Publish
-                logger.info("refreshed \(self.bridgeModels)")
+  //              logger.info("refreshed \(self.bridgeModels)")
             } catch let error {
                 logger.error("\(error.localizedDescription, privacy: .public)")
             }

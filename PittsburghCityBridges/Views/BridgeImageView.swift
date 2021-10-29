@@ -14,6 +14,7 @@ struct BridgeImageView: View {
     var url: URL?
     var options: SDWebImageOptions?
     var body: some View {
+        logger.info("\(#file) \(#function) opening image for url \(url?.path ?? "no url")")
         return WebImage(url: url, options: [.scaleDownLargeImages])
             .resizable()
             .indicator(.activity)
@@ -22,7 +23,7 @@ struct BridgeImageView: View {
     init(_ url: URL?, options: SDWebImageOptions = []) {
         self.url = url
         self.options = options
- //       logger.info("opening image for url \(url?.path ?? "no url")")
+        logger.info("\(#file) \(#function)")
     }
 }
 

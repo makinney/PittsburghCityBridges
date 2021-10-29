@@ -35,6 +35,7 @@ struct BridgeDetailsView: View {
                     BridgeImageView(bridgeModel.imageURL)
                         .scaledToFill()
                         .scaleEffect(imageScale)
+                        .clipped()
                         .padding([.leading, .trailing])
                         .gesture(MagnificationGesture()
                                     .onChanged({ value in

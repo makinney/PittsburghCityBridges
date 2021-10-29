@@ -18,12 +18,14 @@ struct BridgeMapUIView: UIViewRepresentable {
     let hasDetailAccessoryView: Bool
     
     init(region: MKCoordinateRegion, bridgeModels: [BridgeModel], hasDetailAccessoryView: Bool = true) {
+        logger.info("\(#file) \(#function)")
         self.region = region
         self.bridgeModels = bridgeModels
         self.hasDetailAccessoryView = hasDetailAccessoryView
     }
     
     func makeUIView(context: Context) -> MKMapView {
+        logger.info("\(#file) \(#function)")
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
         mapView.setRegion(region, animated: false)
@@ -32,7 +34,7 @@ struct BridgeMapUIView: UIViewRepresentable {
     }
     
     func updateUIView(_ mapView: MKMapView, context: Context) {
-        logger.info("updateUIView called")
+        logger.info("\(#file) \(#function)")
         for bridgeModel in bridgeModels {
             let overlays = bridgeModel.polylines
             if overlays.isEmpty { continue }
