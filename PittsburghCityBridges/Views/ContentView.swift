@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct ContentView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     var body: some View {
         TabView {
@@ -32,7 +32,7 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        ContentView()
             .environmentObject(BridgeStore())
     }
 }

@@ -15,7 +15,7 @@
 		241012872713784D00FE7DEC /* BridgeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241012862713784D00FE7DEC /* BridgeListView.swift */; };
 		241012892713785C00FE7DEC /* BridgeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241012882713785C00FE7DEC /* BridgeMapView.swift */; };
 		2410128B2713787200FE7DEC /* BridgePhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410128A2713787200FE7DEC /* BridgePhotosView.swift */; };
-		2410128D2713855400FE7DEC /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410128C2713855400FE7DEC /* MainView.swift */; };
+		2410128D2713855400FE7DEC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410128C2713855400FE7DEC /* ContentView.swift */; };
 		2419B8B9271F382600BFE3D8 /* BridgeMapUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2419B8B8271F382600BFE3D8 /* BridgeMapUIView.swift */; };
 		2419B8BB271F3CD900BFE3D8 /* CityAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2419B8BA271F3CD900BFE3D8 /* CityAppModel.swift */; };
 		2419B8BD2721843800BFE3D8 /* BridgeMapDetailAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2419B8BC2721843700BFE3D8 /* BridgeMapDetailAccessoryView.swift */; };
@@ -47,7 +47,7 @@
 		241012862713784D00FE7DEC /* BridgeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeListView.swift; sourceTree = "<group>"; };
 		241012882713785C00FE7DEC /* BridgeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeMapView.swift; sourceTree = "<group>"; };
 		2410128A2713787200FE7DEC /* BridgePhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgePhotosView.swift; sourceTree = "<group>"; };
-		2410128C2713855400FE7DEC /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		2410128C2713855400FE7DEC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2419B8B8271F382600BFE3D8 /* BridgeMapUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeMapUIView.swift; sourceTree = "<group>"; };
 		2419B8BA271F3CD900BFE3D8 /* CityAppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityAppModel.swift; sourceTree = "<group>"; };
 		2419B8BC2721843700BFE3D8 /* BridgeMapDetailAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeMapDetailAccessoryView.swift; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 				2419B8BC2721843700BFE3D8 /* BridgeMapDetailAccessoryView.swift */,
 				2410128A2713787200FE7DEC /* BridgePhotosView.swift */,
 				248FC584270276EA00BE168F /* CloudKitContentView.swift */,
-				2410128C2713855400FE7DEC /* MainView.swift */,
+				2410128C2713855400FE7DEC /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -290,7 +290,7 @@
 			files = (
 				241012892713785C00FE7DEC /* BridgeMapView.swift in Sources */,
 				24B3FE912722356A004B93A6 /* DirectionsService.swift in Sources */,
-				2410128D2713855400FE7DEC /* MainView.swift in Sources */,
+				2410128D2713855400FE7DEC /* ContentView.swift in Sources */,
 				248FC58C270276EE00BE168F /* Persistence.swift in Sources */,
 				24B3FE9427236968004B93A6 /* ImageViewLoader.swift in Sources */,
 				2419B8BB271F3CD900BFE3D8 /* CityAppModel.swift in Sources */,

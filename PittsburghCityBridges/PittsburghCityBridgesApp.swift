@@ -19,7 +19,7 @@ struct PittsburghCityBridgesApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+            ContentView()
                 .environmentObject(bridgeStore)
   //          CloudKitContentView()
  //              .environment(\.managedObjectContext, persistenceController.container.viewContext)
