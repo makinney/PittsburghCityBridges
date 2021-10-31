@@ -18,6 +18,77 @@ class BridgeStore: ObservableObject {
     }
     
     @MainActor
+    func sortedByYearAndName() -> [BridgeModel] {
+        let sortedModels = bridgeModels.sorted { model1, model2 in
+            guard model1.yearBuilt == model2.yearBuilt else {
+                return model1.yearBuilt < model2.yearBuilt
+            }
+            return model1.name < model2.name
+        }
+        return sortedModels
+    }
+    
+    @MainActor
+    func sortedByNeighborhoodAndName() -> [BridgeModel] {
+        let sortedModels = bridgeModels.sorted { model1, model2 in
+            guard model1.startNeighborhood == model2.startNeighborhood else {
+                return model1.startNeighborhood < model2.startNeighborhood
+            }
+            return model1.name < model2.name
+        }
+        return sortedModels
+    }
+    
+    struct BridgeGroup: Identifiable {
+        var id = UUID()
+        var groupName = ""
+        var bridgeModels: [BridgeModel]
+    }
+    
+    func groupByYear() -> [BridgeGroup] {
+        var bridgesGroup = [BridgeGroup]()
+        var sortedByYear = sortedByYearAndName()
+        var run = true
+        while run {
+            let yearBuilt = sortedByYear.first?.yearBuilt
+            if let yearBuilt = yearBuilt {
+                let bridgeModelSlice = sortedByYear.prefix { bridgeModel in
+                    bridgeModel.yearBuilt == yearBuilt
+                }
+                if !bridgeModelSlice.isEmpty {
+                    bridgesGroup.append(BridgeGroup(groupName: yearBuilt, bridgeModels: Array(bridgeModelSlice)))
+                    sortedByYear.removeFirst(bridgeModelSlice.count)
+                }
+            } else { // collection is empty
+                run = false
+            }
+        }
+        return bridgesGroup
+    }
+    
+    func groupByNeighborhood() -> [BridgeGroup] {
+        var bridgesGroup = [BridgeGroup]()
+        var sortedByNeighboorhood = sortedByNeighborhoodAndName()
+        var run = true
+        while run {
+            let neighborhood = sortedByNeighboorhood.first?.startNeighborhood
+            if let neighborhood = neighborhood {
+                let bridgeModelSlice = sortedByNeighboorhood.prefix { bridgeModel in
+                    bridgeModel.startNeighborhood == neighborhood
+                }
+                if !bridgeModelSlice.isEmpty {
+                    bridgesGroup.append(BridgeGroup(groupName: neighborhood, bridgeModels: Array(bridgeModelSlice)))
+                    sortedByNeighboorhood.removeFirst(bridgeModelSlice.count)
+                }
+            } else { // collection is empty
+                run = false
+            }
+        }
+        return bridgesGroup
+    }
+    
+    
+    @MainActor
     func refreshBridgeModels()  {
         Task {
             do {

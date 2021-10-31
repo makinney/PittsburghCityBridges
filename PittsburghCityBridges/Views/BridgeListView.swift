@@ -13,10 +13,17 @@ struct BridgeListView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(bridgeStore.bridgeModels) { bridgeModel in
-                    NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
-                        BridgeListRow(bridgeModel: bridgeModel)
+                ForEach(bridgeStore.groupByNeighborhood()) { bridgeGroup in
+                    Section("\(bridgeGroup.groupName)") {
+                        ForEach(bridgeGroup.bridgeModels) { bridgeModel in
+                            NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
+                                BridgeListRow(bridgeModel: bridgeModel)
+                            }
+                        }
+                        .font(.body)
                     }
+                    .font(.headline)
+                    
                 }
             }
             .navigationTitle("City Bridges")
