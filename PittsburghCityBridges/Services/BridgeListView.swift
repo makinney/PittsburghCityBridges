@@ -9,11 +9,12 @@ import SwiftUI
 
 struct BridgeListView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
-
+    @State private var showSheet = false
+    @State private var groupBy: BridgeStore.GroupBy = .name
     var body: some View {
         NavigationView {
             List {
-                ForEach(bridgeStore.sort(groupBy: .name)) { bridgeGroup in
+                ForEach(bridgeStore.sort(groupBy: groupBy)) { bridgeGroup in
                     Section("\(bridgeGroup.groupName)") {
                         ForEach(bridgeGroup.bridgeModels) { bridgeModel in
                             NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
@@ -23,10 +24,28 @@ struct BridgeListView: View {
                         .font(.body)
                     }
                     .font(.headline)
-                    
                 }
             }
             .navigationTitle("City Bridges")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Menu(content: {
+                        Text("Bridge Sort By")
+                        Button("Name") {
+                            self.groupBy = .name
+                        }
+                        Button("Neighborhood") {
+                            self.groupBy = .neighborhood
+                        }
+                        Button("Year") {
+                            self.groupBy = .year
+                        }
+                    },
+                         label: {
+                        Image(systemName: "ellipsis.circle")
+                    })
+                }
+            }
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
