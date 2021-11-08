@@ -92,6 +92,7 @@
 			children = (
 				240075CC271493CB00CB864F /* AppLogging.swift */,
 				24CC1B4D270A8ABE009BE390 /* BridgeStore.swift */,
+				241012862713784D00FE7DEC /* BridgeListView.swift */,
 				24B3FE902722356A004B93A6 /* DirectionsService.swift */,
 				24B3FE9327236968004B93A6 /* ImageViewLoader.swift */,
 				24101261270F323E00FE7DEC /* OpenDataService.swift */,
@@ -132,7 +133,6 @@
 			children = (
 				240075CE27150F5800CB864F /* BridgeDetailsView.swift */,
 				24B3FEB227277378004B93A6 /* BridgeImageView.swift */,
-				241012862713784D00FE7DEC /* BridgeListView.swift */,
 				240075D02716607B00CB864F /* BridgeListRow.swift */,
 				241012882713785C00FE7DEC /* BridgeMapView.swift */,
 				2419B8B8271F382600BFE3D8 /* BridgeMapUIView.swift */,

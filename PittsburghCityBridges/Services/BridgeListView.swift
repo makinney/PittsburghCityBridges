@@ -13,7 +13,7 @@ struct BridgeListView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(bridgeStore.groupByNeighborhood()) { bridgeGroup in
+                ForEach(bridgeStore.sort(groupBy: .name)) { bridgeGroup in
                     Section("\(bridgeGroup.groupName)") {
                         ForEach(bridgeGroup.bridgeModels) { bridgeModel in
                             NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {

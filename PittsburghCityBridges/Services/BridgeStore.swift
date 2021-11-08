@@ -12,13 +12,50 @@ import os
 @MainActor
 class BridgeStore: ObservableObject {
     @Published var bridgeModels = [BridgeModel]()
+    struct BridgeGroup: Identifiable {
+        var id = UUID()
+        var groupName = ""
+        var bridgeModels: [BridgeModel]
+    }
+    enum GroupBy {
+        case name
+        case neighborhood
+        case year
+    }
+    private var nameGroupCache = [BridgeGroup]()
+    private var neighborhoodGroupCache = [BridgeGroup]()
+    private var yearGroupCache = [BridgeGroup]()
+    
     let logger: Logger
     init() {
         logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     }
     
+    @MainActor // TODO: need all these actors?
+    func sort(groupBy: GroupBy) -> [BridgeGroup] {
+        switch groupBy {
+        case .name:
+            nameGroupCache = nameGroupCache.isEmpty ? groupByName() : nameGroupCache
+            return nameGroupCache
+        case .neighborhood:
+            neighborhoodGroupCache = neighborhoodGroupCache.isEmpty ? groupByNeighborhood() : neighborhoodGroupCache
+            return neighborhoodGroupCache
+        case .year:
+            yearGroupCache = yearGroupCache.isEmpty ? groupByYear() : yearGroupCache
+            return yearGroupCache
+        }
+    }
+    
     @MainActor
-    func sortedByYearAndName() -> [BridgeModel] {
+    private func sortedByName() -> [BridgeModel] {
+        let sortedModels = bridgeModels.sorted { model1, model2 in
+            return model1.name < model2.name
+        }
+        return sortedModels
+    }
+    
+    @MainActor
+    private func sortedByYearAndName() -> [BridgeModel] {
         let sortedModels = bridgeModels.sorted { model1, model2 in
             guard model1.yearBuilt == model2.yearBuilt else {
                 return model1.yearBuilt < model2.yearBuilt
@@ -29,7 +66,7 @@ class BridgeStore: ObservableObject {
     }
     
     @MainActor
-    func sortedByNeighborhoodAndName() -> [BridgeModel] {
+    private func sortedByNeighborhoodAndName() -> [BridgeModel] {
         let sortedModels = bridgeModels.sorted { model1, model2 in
             guard model1.startNeighborhood == model2.startNeighborhood else {
                 return model1.startNeighborhood < model2.startNeighborhood
@@ -39,30 +76,11 @@ class BridgeStore: ObservableObject {
         return sortedModels
     }
     
-    struct BridgeGroup: Identifiable {
-        var id = UUID()
-        var groupName = ""
-        var bridgeModels: [BridgeModel]
-    }
-    
-    func groupByYear() -> [BridgeGroup] {
+    func groupByName() -> [BridgeGroup] {
         var bridgesGroup = [BridgeGroup]()
-        var sortedByYear = sortedByYearAndName()
-        var run = true
-        while run {
-            let yearBuilt = sortedByYear.first?.yearBuilt
-            if let yearBuilt = yearBuilt {
-                let bridgeModelSlice = sortedByYear.prefix { bridgeModel in
-                    bridgeModel.yearBuilt == yearBuilt
-                }
-                if !bridgeModelSlice.isEmpty {
-                    bridgesGroup.append(BridgeGroup(groupName: yearBuilt, bridgeModels: Array(bridgeModelSlice)))
-                    sortedByYear.removeFirst(bridgeModelSlice.count)
-                }
-            } else { // collection is empty
-                run = false
-            }
-        }
+        let sortedByName = sortedByName()
+        let bridgeGroup = BridgeGroup(groupName: "A-Z", bridgeModels: sortedByName)
+        bridgesGroup.append(bridgeGroup)
         return bridgesGroup
     }
     
@@ -87,8 +105,28 @@ class BridgeStore: ObservableObject {
         return bridgesGroup
     }
     
-    
     @MainActor
+    func groupByYear() -> [BridgeGroup] {
+        var bridgesGroup = [BridgeGroup]()
+        var sortedByYear = sortedByYearAndName()
+        var run = true
+        while run {
+            let yearBuilt = sortedByYear.first?.yearBuilt
+            if let yearBuilt = yearBuilt {
+                let bridgeModelSlice = sortedByYear.prefix { bridgeModel in
+                    bridgeModel.yearBuilt == yearBuilt
+                }
+                if !bridgeModelSlice.isEmpty {
+                    bridgesGroup.append(BridgeGroup(groupName: yearBuilt, bridgeModels: Array(bridgeModelSlice)))
+                    sortedByYear.removeFirst(bridgeModelSlice.count)
+                }
+            } else { // collection is empty
+                run = false
+            }
+        }
+        return bridgesGroup
+    }
+    
     func refreshBridgeModels()  {
         Task {
             do {
@@ -120,14 +158,18 @@ class BridgeStore: ObservableObject {
                         freshModels.append(bridgeModel)
                     }
                 }
+                // update cache
+                neighborhoodGroupCache.removeAll()
+                nameGroupCache.removeAll()
+                yearGroupCache.removeAll()
                 self.bridgeModels = freshModels // Publish
-  //              logger.info("refreshed \(self.bridgeModels)")
+                //              logger.info("refreshed \(self.bridgeModels)")
             } catch let error {
                 logger.error("\(error.localizedDescription, privacy: .public)")
             }
         }
     }
-
+    
 #if DEBUG
     @MainActor
     func preview() {
