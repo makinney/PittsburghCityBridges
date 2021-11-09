@@ -6,10 +6,14 @@
 //
 
 import Foundation
+import Combine
 import os
+import SwiftUI
 
 class BridgeListViewModel {
-    private var bridgeStore: BridgeStore
+    @ObservedObject private var bridgeStore: BridgeStore
+    private var cancellable: AnyCancellable?
+    let logger: Logger
     struct Section: Identifiable {
         var id = UUID()
         var sectionName = ""
@@ -20,15 +24,14 @@ class BridgeListViewModel {
         case neighborhood
         case year
     }
-    
     private var nameSectionCache = [Section]()
     private var neighborhoodSectionCache = [Section]()
     private var yearSectionCache = [Section]()
-    let logger: Logger
 
     init(_ bridgeStore: BridgeStore) {
         logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
         self.bridgeStore = bridgeStore
+        clearCacheOnModelChanges()
     }
     
     @MainActor
@@ -97,5 +100,14 @@ class BridgeListViewModel {
             }
         }
         return sections
+    }
+    
+    private func clearCacheOnModelChanges() {
+        cancellable = bridgeStore.$bridgeModels
+            .sink() { _ in
+                self.nameSectionCache.removeAll()
+                self.neighborhoodSectionCache.removeAll()
+                self.yearSectionCache.removeAll()
+            }
     }
 }
