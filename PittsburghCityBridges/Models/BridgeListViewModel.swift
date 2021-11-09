@@ -19,7 +19,7 @@ class BridgeListViewModel {
         var sectionName = ""
         var bridgeModels: [BridgeModel]
     }
-    enum SectionSort {
+    enum SectionListBy {
         case name
         case neighborhood
         case year
@@ -35,8 +35,8 @@ class BridgeListViewModel {
     }
     
     @MainActor
-    func sortBy(_ section: SectionSort) -> [Section] {
-        switch section {
+    func sectionList(_ sectionListBy: SectionListBy) -> [Section] {
+        switch sectionListBy {
         case .name:
             nameSectionCache = nameSectionCache.isEmpty ? sectionByName() : nameSectionCache
             return nameSectionCache

@@ -10,7 +10,7 @@ import SwiftUI
 struct BridgeListView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @State private var showSheet = false
-    @State private var sectionBy: BridgeListViewModel.SectionSort = .name
+    @State private var sectionListBy: BridgeListViewModel.SectionListBy = .name
     private var bridgeListViewModel: BridgeListViewModel
   
     init(_ bridgeListViewModel: BridgeListViewModel) {
@@ -20,7 +20,7 @@ struct BridgeListView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(bridgeListViewModel.sortBy(sectionBy)) { bridgesSection in
+                ForEach(bridgeListViewModel.sectionList(sectionListBy)) { bridgesSection in
                     Section("\(bridgesSection.sectionName)") {
                         ForEach(bridgesSection.bridgeModels) { bridgeModel in
                             NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
@@ -36,15 +36,15 @@ struct BridgeListView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu(content: {
-                        Text("Sort By")
+                        Text("View By")
                         Button("Name") {
-                            self.sectionBy = .name
+                            self.sectionListBy = .name
                         }
                         Button("Neighborhood") {
-                            self.sectionBy = .neighborhood
+                            self.sectionListBy = .neighborhood
                         }
                         Button("Year") {
-                            self.sectionBy = .year
+                            self.sectionListBy = .year
                         }
                     },
                          label: {
