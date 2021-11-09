@@ -9,9 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
+
     var body: some View {
         TabView {
-            BridgeListView()
+            BridgeListView(BridgeListViewModel(bridgeStore))
                 .tabItem {
                     Label("Bridges", systemImage: "list.dash")
                 }

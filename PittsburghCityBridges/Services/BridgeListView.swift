@@ -10,13 +10,19 @@ import SwiftUI
 struct BridgeListView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @State private var showSheet = false
-    @State private var groupBy: BridgeStore.GroupBy = .name
+    @State private var sectionBy: BridgeListViewModel.SectionSort = .name
+    private var bridgeListViewModel: BridgeListViewModel
+  
+    init(_ bridgeListViewModel: BridgeListViewModel) {
+        self.bridgeListViewModel = bridgeListViewModel
+    }
+
     var body: some View {
         NavigationView {
             List {
-                ForEach(bridgeStore.sort(groupBy: groupBy)) { bridgeGroup in
-                    Section("\(bridgeGroup.groupName)") {
-                        ForEach(bridgeGroup.bridgeModels) { bridgeModel in
+                ForEach(bridgeListViewModel.sortBy(sectionBy)) { bridgesSection in
+                    Section("\(bridgesSection.sectionName)") {
+                        ForEach(bridgesSection.bridgeModels) { bridgeModel in
                             NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
                                 BridgeListRow(bridgeModel: bridgeModel)
                             }
@@ -30,15 +36,15 @@ struct BridgeListView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu(content: {
-                        Text("Bridge Sort By")
+                        Text("Sort By")
                         Button("Name") {
-                            self.groupBy = .name
+                            self.sectionBy = .name
                         }
                         Button("Neighborhood") {
-                            self.groupBy = .neighborhood
+                            self.sectionBy = .neighborhood
                         }
                         Button("Year") {
-                            self.groupBy = .year
+                            self.sectionBy = .year
                         }
                     },
                          label: {
@@ -54,12 +60,12 @@ struct BridgeListView: View {
 struct BridgeListView_Previews: PreviewProvider {
     static let bridgeStore = BridgeStore()
     static var previews: some View {
-        BridgeListView()
+        BridgeListView(BridgeListViewModel(bridgeStore))
             .environmentObject(bridgeStore)
             .onAppear {
                 bridgeStore.preview()
             }
-        BridgeListView()
+        BridgeListView(BridgeListViewModel(bridgeStore))
             .preferredColorScheme(.dark)
             .environmentObject(bridgeStore)
             .onAppear {
