@@ -10,7 +10,7 @@ import SwiftUI
 struct BridgeListView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @State private var showSheet = false
-    @State private var sectionListBy: BridgeListViewModel.SectionListBy = .name
+    @State private var sectionListBy: BridgeListViewModel.SectionListBy = .neighborhood
     private var bridgeListViewModel: BridgeListViewModel
   
     init(_ bridgeListViewModel: BridgeListViewModel) {
@@ -36,7 +36,6 @@ struct BridgeListView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu(content: {
-                        Text("View By")
                         Button("Name") {
                             self.sectionListBy = .name
                         }
@@ -48,7 +47,7 @@ struct BridgeListView: View {
                         }
                     },
                          label: {
-                        Image(systemName: "ellipsis.circle")
+                        Text("Sort")
                     })
                 }
             }

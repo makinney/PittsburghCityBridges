@@ -13,9 +13,6 @@ struct BridgeListRow: View {
         HStack {
             Text(bridgeModel.name)
             Spacer()
-  //          Text(bridgeModel.startNeighborhood)
- //           Spacer()
-  //          Text(bridgeModel.yearBuilt)
         }
     }
 }
