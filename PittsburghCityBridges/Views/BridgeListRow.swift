@@ -11,9 +11,8 @@ struct BridgeListRow: View {
     var bridgeModel: BridgeModel
     var body: some View {
         HStack {
-        Text(bridgeModel.name)
+            Text(bridgeModel.name)
             Spacer()
-        Text(bridgeModel.yearBuilt)
         }
     }
 }

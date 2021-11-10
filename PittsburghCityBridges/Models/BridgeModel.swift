@@ -17,7 +17,7 @@ struct BridgeModel: Identifiable {
     var name: String {
         guard let name = geoJSON.name,
               !name.isEmpty else {
-                  return "no name provided"
+                  return ""
               }
         return name
     }
@@ -30,7 +30,7 @@ struct BridgeModel: Identifiable {
     var yearBuilt: String {
         guard let yearBuilt = geoJSON.yearBuilt,
               !yearBuilt.isEmpty else {
-                  return ""
+                  return "no year provided"
               }
         return yearBuilt
         
