@@ -52,10 +52,34 @@ class BridgeListViewModel {
     @MainActor
     func sectionByName() -> [Section] {
         var sections = [Section]()
-        let sortedByName = bridgeStore.sortedByName()
-        let bridgeGroup = Section(sectionName: "A-Z", bridgeModels: sortedByName)
-        sections.append(bridgeGroup)
+        var bridgeModelsSortedByName = bridgeStore.sortedByName()
+        var run = true
+        while run {
+            if let bridgeModel = bridgeModelsSortedByName.first,
+               let firstLetterInFirstModel = firstLetterIn(bridgeModel.name) {
+                let bridgeModelsSlice = bridgeModelsSortedByName.prefix { bridgeModel in
+                    if let firstLetterInNextModel = firstLetterIn(bridgeModel.name) {
+                        return firstLetterInFirstModel == firstLetterInNextModel
+                    } else {
+                        return false
+                    }
+                }
+                if !bridgeModelsSlice.isEmpty {
+                    sections.append(Section(sectionName: firstLetterInFirstModel, bridgeModels: Array(bridgeModelsSlice)))
+                    bridgeModelsSortedByName.removeFirst(bridgeModelsSlice.count)
+                }
+            } else {
+                run = false
+            }
+        }
         return sections
+    }
+    
+    private func firstLetterIn(_ name: String) -> String? {
+        if let letter = name.first {
+            return String(letter)
+        }
+        return nil
     }
     
     @MainActor

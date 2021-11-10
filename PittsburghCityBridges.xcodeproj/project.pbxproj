@@ -115,9 +115,9 @@
 			isa = PBXGroup;
 			children = (
 				244A747327187D1200284608 /* BridgeModel.swift */,
+				244E9C90273ABF2A00605134 /* BridgeListViewModel.swift */,
 				2419B8BA271F3CD900BFE3D8 /* CityAppModel.swift */,
 				244A74792719A1A600284608 /* GEOJSONModels.swift */,
-				244E9C90273ABF2A00605134 /* BridgeListViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

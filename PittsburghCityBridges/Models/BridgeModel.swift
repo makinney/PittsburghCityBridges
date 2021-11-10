@@ -17,7 +17,7 @@ struct BridgeModel: Identifiable {
     var name: String {
         guard let name = geoJSON.name,
               !name.isEmpty else {
-                  return "no name provided"
+                  return ""
               }
         return name
     }
