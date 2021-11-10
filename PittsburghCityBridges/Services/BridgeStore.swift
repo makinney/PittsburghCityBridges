@@ -12,19 +12,6 @@ import os
 @MainActor
 class BridgeStore: ObservableObject {
     @Published var bridgeModels = [BridgeModel]()
-    struct BridgeGroup: Identifiable {
-        var id = UUID()
-        var groupName = ""
-        var bridgeModels: [BridgeModel]
-    }
-    enum GroupBy {
-        case name
-        case neighborhood
-        case year
-    }
-    private var nameGroupCache = [BridgeGroup]()
-    private var neighborhoodGroupCache = [BridgeGroup]()
-    private var yearGroupCache = [BridgeGroup]()
     
     let logger: Logger
     init() {
