@@ -17,10 +17,12 @@ struct BridgeListView: View {
     init(_ bridgeListViewModel: BridgeListViewModel) {
         self.bridgeListViewModel = bridgeListViewModel
     }
-
+    
     var body: some View {
         NavigationView {
-            List {
+      //      ScrollViewReader { proxy in
+            // proxy.scrollTo( ) // how to get selected bridge Id in here or something
+                List {
                 ForEach(bridgeListViewModel.sectionList(sectionListBy)) { bridgesSection in
                     Section("\(bridgesSection.sectionName)") {
                         ForEach(bridgesSection.bridgeModels) { bridgeModel in
@@ -34,7 +36,8 @@ struct BridgeListView: View {
                     }
                     .font(.headline)
                 }
-            }
+                }
+        //    }
             .navigationTitle("City Bridges")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
