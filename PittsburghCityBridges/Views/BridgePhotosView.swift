@@ -22,11 +22,12 @@ struct BridgePhotosView: View {
                 ScrollView {
                     LazyVGrid(columns: columns) {
                         ForEach(bridgeStore.bridgeModels) { bridgeModel in
-                            NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
-                                BridgeImageView(bridgeModel.imageURL, options: [.scaleDownLargeImages])
-                                    .scaledToFill()
-                                    .frame(maxWidth: geometry.size.width)
-                            }
+                            // TODO: 
+//                            NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
+//                                BridgeImageView(bridgeModel.imageURL, options: [.scaleDownLargeImages])
+//                                    .scaledToFill()
+//                                    .frame(maxWidth: geometry.size.width)
+//                            }
                         }
                     }
                     .navigationTitle("City Bridges")

@@ -9,10 +9,11 @@ import SwiftUI
 
 struct BridgeListView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
-    @State private var showSheet = false
+    @SceneStorage("BridgeListView.selectedBridge") private var selectedBridgeID: Int?
     @State private var sectionListBy: BridgeListViewModel.SectionListBy = .neighborhood
+    
     private var bridgeListViewModel: BridgeListViewModel
-  
+    
     init(_ bridgeListViewModel: BridgeListViewModel) {
         self.bridgeListViewModel = bridgeListViewModel
     }
@@ -23,7 +24,9 @@ struct BridgeListView: View {
                 ForEach(bridgeListViewModel.sectionList(sectionListBy)) { bridgesSection in
                     Section("\(bridgesSection.sectionName)") {
                         ForEach(bridgesSection.bridgeModels) { bridgeModel in
-                            NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
+                            NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, selectedBridgeID: $selectedBridgeID),
+                                           tag: bridgeModel.id,
+                                           selection: $selectedBridgeID) {
                                 BridgeListRow(bridgeModel: bridgeModel)
                             }
                         }
@@ -53,6 +56,12 @@ struct BridgeListView: View {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .onContinueUserActivity(BridgeDetailsView.bridgeDetailsUserActivityType) { userActivity in
+            if let bridgeDetailViewID = try? userActivity.typedPayload(BridgeDetailsViewID.self) {
+                selectedBridgeID = bridgeDetailViewID.id
+            }
+        }
+       
     }
 }
 

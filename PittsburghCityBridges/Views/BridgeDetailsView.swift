@@ -9,12 +9,29 @@ import SwiftUI
 import SDWebImageSwiftUI
 import os
 
+struct BridgeDetailsViewID: Hashable, Identifiable, Codable {
+    let id: Int
+    
+    static func == (lhs: BridgeDetailsViewID, rhs: BridgeDetailsViewID) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
 struct BridgeDetailsView: View {
+    static let bridgeDetailsUserActivityType = "com.mak.pittsburghcitybridges.bridgedetails"
+    
     var bridgeModel: BridgeModel
-    var imageLoader: UIImageLoader = UIImageLoader()
-    let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
+    @Binding var selectedBridgeID: Int?
     @State var imageScale = 1.0
     @State var zoomToggled = false
+    
+    var imageLoader: UIImageLoader = UIImageLoader()
+    let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
+ 
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
@@ -47,10 +64,31 @@ struct BridgeDetailsView: View {
                             self.zoomToggled.toggle()
                             self.imageScale = zoomToggled ? 2.0 : 1.0
                         }))
-                    
                 }
             }
         }
+        .userActivity(BridgeDetailsView.bridgeDetailsUserActivityType,
+                      isActive: bridgeModel.id == selectedBridgeID) { userActivity in
+            describeUserActivity(userActivity)
+        }
+    }
+    
+    
+    func describeUserActivity(_ userActivity: NSUserActivity) {
+        let returnBridgeDetailsViewID: BridgeDetailsViewID!
+  //      if let activityProduct = try? userActivity.typedPayload(BridgeDetailsViewID.self) {
+  //          returnBridgeDetailsViewID = BridgeDetailsViewID(id: bridgeModel.id)
+   //     } else {
+            returnBridgeDetailsViewID = BridgeDetailsViewID(id: bridgeModel.id)
+   //     }
+        let localizedString =
+            NSLocalizedString("ShowBridgeDetails", comment: "Bridge Details with bridge name")
+        userActivity.title = String(format: localizedString, bridgeModel.name)
+        
+        userActivity.isEligibleForHandoff = false
+        userActivity.isEligibleForSearch = false
+        userActivity.targetContentIdentifier = String(returnBridgeDetailsViewID.id)
+        try? userActivity.setTypedPayload(returnBridgeDetailsViewID)
     }
     
     func makeMapView(_ bridgeModel: BridgeModel) -> some View {
@@ -80,8 +118,8 @@ struct BridgeDetailsView: View {
 
 struct BridgeDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        BridgeDetailsView(bridgeModel: BridgeModel.preview)
+        BridgeDetailsView(bridgeModel: BridgeModel.preview, selectedBridgeID: .constant(nil))
             .preferredColorScheme(.dark)
-        BridgeDetailsView(bridgeModel: BridgeModel.preview)
+        BridgeDetailsView(bridgeModel: BridgeModel.preview, selectedBridgeID: .constant(nil))
     }
 }
