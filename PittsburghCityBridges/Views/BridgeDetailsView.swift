@@ -67,10 +67,10 @@ struct BridgeDetailsView: View {
                 }
             }
         }
-        .userActivity(BridgeDetailsView.bridgeDetailsUserActivityType,
-                      isActive: bridgeModel.id == selectedBridgeID) { userActivity in
-            describeUserActivity(userActivity)
-        }
+//        .userActivity(BridgeDetailsView.bridgeDetailsUserActivityType,
+//                      isActive: bridgeModel.id == selectedBridgeID) { userActivity in
+//            describeUserActivity(userActivity)
+//        }
     }
     
     

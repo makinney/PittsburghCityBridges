@@ -10,6 +10,7 @@ import SwiftUI
 struct BridgeListView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @SceneStorage("BridgeListView.selectedBridge") private var selectedBridgeID: Int?
+    @State private var bridgeID: Int?
     @State private var sectionListBy: BridgeListViewModel.SectionListBy = .neighborhood
     
     private var bridgeListViewModel: BridgeListViewModel
@@ -21,7 +22,6 @@ struct BridgeListView: View {
     var body: some View {
         NavigationView {
             ScrollViewReader { proxy in
-            // proxy.scrollTo( ) // how to get selected bridge Id in here or something
                 List {
                 ForEach(bridgeListViewModel.sectionList(sectionListBy)) { bridgesSection in
                     Section("\(bridgesSection.sectionName)") {
@@ -31,10 +31,15 @@ struct BridgeListView: View {
                                            selection: $selectedBridgeID) {
                                 BridgeListRow(bridgeModel: bridgeModel)
                             }
+       //                                    .id(bridgeModel.id)
                         }
-                        .onChange(of: selectedBridgeID) { bridgeModel in
-        //                    proxy.scrollTo(bridgeModel, anchor: .top) // what to use for
-                        }
+//                        .onChange(of: bridgeID) { [bridgeID] newState in
+//                      //      selectedBridgeID = nil
+//                            print("brige id old state \(String(describing: bridgeID)) newState \(String(describing: newState))")
+//                            if let bridgeID = bridgeID {
+//                                proxy.scrollTo(bridgeID, anchor: .top) // what to use for
+//                            }
+//                        }
                         .font(.body)
                     }
                     .font(.headline)
@@ -64,7 +69,8 @@ struct BridgeListView: View {
         .navigationViewStyle(StackNavigationViewStyle())
         .onContinueUserActivity(BridgeDetailsView.bridgeDetailsUserActivityType) { userActivity in
             if let bridgeDetailViewID = try? userActivity.typedPayload(BridgeDetailsViewID.self) {
-                selectedBridgeID = bridgeDetailViewID.id
+           //     selectedBridgeID = bridgeDetailViewID.id
+                bridgeID = bridgeDetailViewID.id
             }
         }
        
