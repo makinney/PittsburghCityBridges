@@ -21,19 +21,9 @@ struct BridgeDetailsView: View {
                 VStack(alignment: .leading) {
                     Text("\(bridgeModel.name)")
                         .font(.headline)
-                        .padding()
-                    let built = bridgeModel.builtHistory()
-                    if !built.isEmpty {
-                        Text(built)
-                            .padding([.leading,.trailing])
-                    }
-                    Text(bridgeModel.neighborhoods())
-                        .padding([.leading, .trailing, .bottom])
-                    makeMapView(bridgeModel)
-                        .frame(height: 200)
-                        .padding([.leading,.trailing,.bottom])
+                      //  .padding()
                     BridgeImageView(bridgeModel.imageURL)
-                        .scaledToFill()
+                        .scaledToFit()
                         .scaleEffect(imageScale)
                         .clipped()
                         .padding([.leading, .trailing])
@@ -47,9 +37,19 @@ struct BridgeDetailsView: View {
                             self.zoomToggled.toggle()
                             self.imageScale = zoomToggled ? 2.0 : 1.0
                         }))
-                    
+                    let built = bridgeModel.builtHistory()
+                    if !built.isEmpty {
+                        Text(built)
+                            .padding([.leading,.trailing])
+                    }
+                    Text(bridgeModel.neighborhoods())
+                        .padding([.leading, .trailing, .bottom])
+                    makeMapView(bridgeModel)
+                        .frame(height: 200)
+                        .padding([.leading,.trailing,.bottom])
                 }
             }
+            
         }
     }
     
