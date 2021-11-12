@@ -20,7 +20,7 @@ struct BridgeListView: View {
     
     var body: some View {
         NavigationView {
-      //      ScrollViewReader { proxy in
+            ScrollViewReader { proxy in
             // proxy.scrollTo( ) // how to get selected bridge Id in here or something
                 List {
                 ForEach(bridgeListViewModel.sectionList(sectionListBy)) { bridgesSection in
@@ -32,12 +32,15 @@ struct BridgeListView: View {
                                 BridgeListRow(bridgeModel: bridgeModel)
                             }
                         }
+                        .onChange(of: selectedBridgeID) { bridgeModel in
+        //                    proxy.scrollTo(bridgeModel, anchor: .top) // what to use for
+                        }
                         .font(.body)
                     }
                     .font(.headline)
                 }
                 }
-        //    }
+            }
             .navigationTitle("City Bridges")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
