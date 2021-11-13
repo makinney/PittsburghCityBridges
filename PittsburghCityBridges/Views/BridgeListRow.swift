@@ -11,8 +11,15 @@ struct BridgeListRow: View {
     var bridgeModel: BridgeModel
     var body: some View {
         HStack {
-            Text(bridgeModel.name)
-            Spacer()
+            VStack(alignment: .leading) {
+                if let endNeighborhood = bridgeModel.endNeighborhood {
+                    Text("including \(endNeighborhood)")
+                        .font(.footnote)
+                }
+                Text(bridgeModel.name)
+                    .font(.headline)
+                Spacer()
+            }
         }
     }
 }

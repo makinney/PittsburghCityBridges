@@ -32,7 +32,7 @@ struct BridgeListView: View {
                     .font(.headline)
                 }
             }
-            .navigationTitle("City Bridges")
+            .navigationTitle("By Neighborhoods")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu(content: {

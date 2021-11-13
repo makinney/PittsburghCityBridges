@@ -20,11 +20,14 @@ struct BridgeDetailsView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     Text("\(bridgeModel.name)")
-                        .font(.headline)
-                      //  .padding()
+                        .padding(.leading)
+                        .font(.title)
                     BridgeImageView(bridgeModel.imageURL)
-                        .scaledToFit()
+                        .aspectRatio(1.0, contentMode: .fit)
                         .scaleEffect(imageScale)
+                        .clipShape(
+                          RoundedRectangle(cornerRadius: 40)
+                        )
                         .clipped()
                         .padding([.leading, .trailing])
                         .gesture(MagnificationGesture()
@@ -32,7 +35,7 @@ struct BridgeDetailsView: View {
                             self.imageScale = value
                         })
                         )
-                        .gesture(TapGesture(count: 2)
+                        .gesture(TapGesture(count: 1)
                                     .onEnded({ _ in
                             self.zoomToggled.toggle()
                             self.imageScale = zoomToggled ? 2.0 : 1.0
