@@ -90,7 +90,7 @@ extension BridgeModel {
     func neighborhoods() -> String {
         var description = "Neighborhood: \(startNeighborhood)"
         if let endNeighborhood = endNeighborhood {
-            description += "\nand runs to \(endNeighborhood)"
+            description += " and runs to \(endNeighborhood)"
         }
         return description
     }

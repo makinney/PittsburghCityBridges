@@ -43,14 +43,19 @@ struct BridgeDetailsView: View {
                     let built = bridgeModel.builtHistory()
                     if !built.isEmpty {
                         Text(built)
-                            .padding([.leading,.trailing])
+                            .padding()
                     }
                     Text(bridgeModel.neighborhoods())
                         .padding([.leading, .trailing, .bottom])
                     makeMapView(bridgeModel)
                         .frame(height: 200)
+                        .clipShape(
+                          RoundedRectangle(cornerRadius: 40)
+                        )
                         .padding([.leading,.trailing,.bottom])
                 }
+                .background(Color("SteelersBlack"))
+                .foregroundColor(Color("SteelersGold"))
             }
             
         }

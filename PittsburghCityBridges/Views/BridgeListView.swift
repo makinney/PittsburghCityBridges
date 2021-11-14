@@ -27,11 +27,15 @@ struct BridgeListView: View {
                                 BridgeListRow(bridgeModel: bridgeModel)
                             }
                         }
+                        .background(Color("SteelersBlack"))
                         .font(.body)
                     }
+        //            .background(Color("SteelersBlack"))
+
                     .font(.headline)
                 }
             }
+            .background(Color.red)
             .navigationTitle("By Neighborhoods")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -59,11 +63,11 @@ struct BridgeListView: View {
 struct BridgeListView_Previews: PreviewProvider {
     static let bridgeStore = BridgeStore()
     static var previews: some View {
-        BridgeListView(BridgeListViewModel(bridgeStore))
-            .environmentObject(bridgeStore)
-            .onAppear {
-                bridgeStore.preview()
-            }
+//        BridgeListView(BridgeListViewModel(bridgeStore))
+//            .environmentObject(bridgeStore)
+//            .onAppear {
+//                bridgeStore.preview()
+//            }
         BridgeListView(BridgeListViewModel(bridgeStore))
             .preferredColorScheme(.dark)
             .environmentObject(bridgeStore)

@@ -21,6 +21,7 @@ struct BridgeListRow: View {
                 Spacer()
             }
         }
+        .foregroundColor(Color("PiratesGold"))
     }
 }
 
