@@ -4,7 +4,7 @@
 //
 //  Created by MAKinney on 10/10/21.
 //
-
+import UIKit
 import SwiftUI
 
 struct BridgeListView: View {
@@ -15,6 +15,7 @@ struct BridgeListView: View {
   
     init(_ bridgeListViewModel: BridgeListViewModel) {
         self.bridgeListViewModel = bridgeListViewModel
+  //      UITableView.appearance().backgroundColor = .green
     }
 
     var body: some View {
@@ -27,16 +28,16 @@ struct BridgeListView: View {
                                 BridgeListRow(bridgeModel: bridgeModel)
                             }
                         }
-                        .background(Color("SteelersBlack"))
+         //               .background(Color("SteelersBlack"))
                         .font(.body)
                     }
-        //            .background(Color("SteelersBlack"))
-
+        //            .listRowBackground(Color.orange)
+         //           .background(Color.purple)
                     .font(.headline)
                 }
             }
-            .background(Color.red)
             .navigationTitle("By Neighborhoods")
+        
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu(content: {
@@ -56,18 +57,20 @@ struct BridgeListView: View {
                 }
             }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+   //     .foregroundColor(Color.blue)
+   //     .navigationViewStyle(StackNavigationViewStyle())
+
     }
 }
 
 struct BridgeListView_Previews: PreviewProvider {
     static let bridgeStore = BridgeStore()
     static var previews: some View {
-//        BridgeListView(BridgeListViewModel(bridgeStore))
-//            .environmentObject(bridgeStore)
-//            .onAppear {
-//                bridgeStore.preview()
-//            }
+        BridgeListView(BridgeListViewModel(bridgeStore))
+            .environmentObject(bridgeStore)
+            .onAppear {
+                bridgeStore.preview()
+            }
         BridgeListView(BridgeListViewModel(bridgeStore))
             .preferredColorScheme(.dark)
             .environmentObject(bridgeStore)

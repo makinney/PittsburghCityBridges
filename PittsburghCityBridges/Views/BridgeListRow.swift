@@ -12,16 +12,16 @@ struct BridgeListRow: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                if let endNeighborhood = bridgeModel.endNeighborhood {
-                    Text("including \(endNeighborhood)")
-                        .font(.footnote)
-                }
                 Text(bridgeModel.name)
                     .font(.headline)
+                if let endNeighborhood = bridgeModel.endNeighborhood {
+                    Text("runs to \(endNeighborhood)")
+                        .font(.footnote)
+                }
                 Spacer()
             }
         }
-        .foregroundColor(Color("PiratesGold"))
+ //       .foregroundColor(Color("PiratesGold"))
     }
 }
 
