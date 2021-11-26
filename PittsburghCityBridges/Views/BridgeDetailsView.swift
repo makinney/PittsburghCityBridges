@@ -64,7 +64,6 @@ struct BridgeDetailsView: View {
                     Text("\(bridgeModel.name)")
                         .font(.headline)
                         .opacity(fadeOtherViews ? 0.0 : 1.0)
-                    
                     BridgeImageView(bridgeModel.imageURL)
                         .aspectRatio(contentMode: .fit)
                         .cornerRadius(imageCornerRadius)
@@ -82,6 +81,8 @@ struct BridgeDetailsView: View {
                     
                     VStack(alignment: .leading) {
                         Text(bridgeModel.builtHistory())
+                            .padding(.top, 2)
+                            .padding(.bottom)
                         Text(bridgeModel.neighborhoods())
                         makeMapView(bridgeModel)
                             .frame(height: 200)
@@ -90,9 +91,7 @@ struct BridgeDetailsView: View {
                                 RoundedRectangle(cornerRadius: imageCornerRadius)
                                     .stroke(Color.secondary, lineWidth: 2)
                             )
-                            .padding(.top)
                     }
-                    .padding(.vertical)
                     .opacity(fadeOtherViews ? 0 : 1)
                 }
                 .padding(.horizontal)
@@ -123,15 +122,19 @@ struct BridgeDetailsView: View {
             VStack {
                 HStack {
                     if let locationCoordinate = bridgeModel.locationCoordinate {
+                        Spacer()
                         Button {
                             DirectionsService().requestDirectionsTo(locationCoordinate)
                         } label: {
-                            Image(systemName: "arrow.triangle.turn.up.right.circle.fill")
-                                .resizable()
-                                .frame(width: 30, height: 30)
+                            Label("Directions", systemImage: "arrow.triangle.turn.up.right.circle.fill")
+                                .padding(4)
+                                .background(Color(white: 0.9))
                         }
+                        .overlay(
+                            RoundedRectangle(cornerRadius: buttonCornerRadius)
+                                .stroke(Color.secondary, lineWidth: 2)
+                        )
                         .padding()
-                        Spacer()
                     }
                 }
                 Spacer()
