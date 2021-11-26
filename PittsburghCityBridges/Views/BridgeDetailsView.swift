@@ -117,7 +117,7 @@ struct BridgeDetailsView: View {
     
     func makeMapView(_ bridgeModel: BridgeModel) -> some View {
         ZStack {
-            BridgeMapUIView(region: CityModel.singleBridgeRegion, bridgeModels: [bridgeModel], hasDetailAccessoryView: false)
+            BridgeMapUIView(region: MapViewModel.singleBridgeRegion, bridgeModels: [bridgeModel], hasDetailAccessoryView: false)
             Spacer()
             VStack {
                 HStack {
