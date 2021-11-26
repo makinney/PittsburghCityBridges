@@ -36,7 +36,7 @@ struct BridgeListView: View {
                     .font(.headline)
                 }
             }
-            .navigationTitle("By Neighborhoods")
+            .navigationTitle("Bridges")
         
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -58,7 +58,7 @@ struct BridgeListView: View {
             }
         }
    //     .foregroundColor(Color.blue)
-   //     .navigationViewStyle(StackNavigationViewStyle())
+        .navigationViewStyle(StackNavigationViewStyle())
 
     }
 }
