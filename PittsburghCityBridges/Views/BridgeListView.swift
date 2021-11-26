@@ -4,7 +4,7 @@
 //
 //  Created by MAKinney on 10/10/21.
 //
-
+import UIKit
 import SwiftUI
 
 struct BridgeListView: View {
@@ -15,6 +15,7 @@ struct BridgeListView: View {
   
     init(_ bridgeListViewModel: BridgeListViewModel) {
         self.bridgeListViewModel = bridgeListViewModel
+  //      UITableView.appearance().backgroundColor = .green
     }
 
     var body: some View {
@@ -27,12 +28,16 @@ struct BridgeListView: View {
                                 BridgeListRow(bridgeModel: bridgeModel)
                             }
                         }
+         //               .background(Color("SteelersBlack"))
                         .font(.body)
                     }
+        //            .listRowBackground(Color.orange)
+         //           .background(Color.purple)
                     .font(.headline)
                 }
             }
-            .navigationTitle("City Bridges")
+            .navigationTitle("Bridges")
+        
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu(content: {
@@ -52,7 +57,9 @@ struct BridgeListView: View {
                 }
             }
         }
+   //     .foregroundColor(Color.blue)
         .navigationViewStyle(StackNavigationViewStyle())
+
     }
 }
 

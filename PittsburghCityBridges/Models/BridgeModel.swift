@@ -30,7 +30,7 @@ struct BridgeModel: Identifiable {
     var yearBuilt: String {
         guard let yearBuilt = geoJSON.yearBuilt,
               !yearBuilt.isEmpty else {
-                  return "no year provided"
+                  return "unknown"
               }
         return yearBuilt
         
@@ -79,18 +79,18 @@ extension BridgeModel {
     func builtHistory() -> String {
         var history = ""
         if !yearBuilt.isEmpty {
-            history = "Built in \(yearBuilt)"
+            history = "Built: \(yearBuilt) "
         }
         if !yearRehab.isEmpty {
-            history += " and rehabbed in \(yearRehab)"
+            history += "\nRehabbed: \(yearRehab)"
         }
         return history
     }
     
     func neighborhoods() -> String {
-        var description = "\(startNeighborhood)"
+        var description = "Neighborhood: \(startNeighborhood)"
         if let endNeighborhood = endNeighborhood {
-            description += " and \(endNeighborhood)"
+            description += " and runs to \(endNeighborhood)"
         }
         return description
     }
