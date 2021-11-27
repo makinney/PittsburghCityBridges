@@ -1,5 +1,5 @@
 //
-//  CityAppModel.swift
+//  MapViewModel.swift
 //  PittsburghCityBridges
 //
 //  Created by MAKinney on 10/19/21.
