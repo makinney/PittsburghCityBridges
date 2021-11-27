@@ -32,6 +32,7 @@ struct BridgeDetailsView: View {
         let dragGesture =  DragGesture()
             .onChanged {
                 self.dragOffset = $0.translation
+                self.fadeOtherViews = true // so background view fades without having to first tap image
             }
         
         let magGesture = MagnificationGesture()
@@ -112,6 +113,12 @@ struct BridgeDetailsView: View {
                     .opacity(stickyDragAndMagMode ? 1 : 0)
                 }
             }
+        }
+        .onAppear() {
+            UIScrollView.appearance().bounces = false
+        }
+        .onDisappear {
+            UIScrollView.appearance().bounces = true
         }
     }
     
