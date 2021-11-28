@@ -9,13 +9,9 @@ import SwiftUI
 struct BridgeMapDetailAccessoryView: View {
     var bridgeModel: BridgeModel
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(bridgeModel.neighborhoods())
-            let built = bridgeModel.builtHistory()
-            if !built.isEmpty {
-                Text(built)
-            }
-        }
+        Image("HultonBridge")
+            .resizable()
+            .scaledToFit()
     }
 }
 

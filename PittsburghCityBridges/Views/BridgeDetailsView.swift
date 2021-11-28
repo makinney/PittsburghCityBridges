@@ -32,6 +32,7 @@ struct BridgeDetailsView: View {
         let dragGesture =  DragGesture()
             .onChanged {
                 self.dragOffset = $0.translation
+                self.fadeOtherViews = true // so background view fades without having to first tap image
             }
         
         let magGesture = MagnificationGesture()
@@ -113,11 +114,17 @@ struct BridgeDetailsView: View {
                 }
             }
         }
+        .onAppear() {
+            UIScrollView.appearance().bounces = false
+        }
+        .onDisappear {
+            UIScrollView.appearance().bounces = true
+        }
     }
     
     func makeMapView(_ bridgeModel: BridgeModel) -> some View {
         ZStack {
-            BridgeMapUIView(region: CityModel.singleBridgeRegion, bridgeModels: [bridgeModel], hasDetailAccessoryView: false)
+            BridgeMapUIView(region: MapViewModel.singleBridgeRegion, bridgeModels: [bridgeModel], showsBridgeImage: false)
             Spacer()
             VStack {
                 HStack {

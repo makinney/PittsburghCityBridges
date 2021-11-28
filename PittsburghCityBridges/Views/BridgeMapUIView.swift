@@ -17,11 +17,11 @@ struct BridgeMapUIView: UIViewRepresentable {
     let region: MKCoordinateRegion
     let hasDetailAccessoryView: Bool
     
-    init(region: MKCoordinateRegion, bridgeModels: [BridgeModel], hasDetailAccessoryView: Bool = true) {
+    init(region: MKCoordinateRegion, bridgeModels: [BridgeModel], showsBridgeImage: Bool = true) {
         logger.info("\(#file) \(#function)")
         self.region = region
         self.bridgeModels = bridgeModels
-        self.hasDetailAccessoryView = hasDetailAccessoryView
+        self.hasDetailAccessoryView = showsBridgeImage
     }
     
     func makeUIView(context: Context) -> MKMapView {
@@ -90,16 +90,22 @@ struct BridgeMapUIView: UIViewRepresentable {
             } else {
                 annotationView = MKMarkerAnnotationView(annotation: bridgeMapAnnotation, reuseIdentifier: reuseIdentifier)
             }
-            annotationView.markerTintColor = .systemGreen
+            annotationView.glyphText = "Bridge"
+            annotationView.markerTintColor = .systemBlue
             annotationView.canShowCallout = true
             let buttonImage = UIImage(systemName: "arrow.triangle.turn.up.right.circle.fill") ?? UIImage()
             let directionsRequestButton = UIButton.systemButton(with: buttonImage, target: nil, action: nil) // so we can tap and get the delegate callback
             annotationView.rightCalloutAccessoryView = directionsRequestButton
             if hasDetailAccessoryView {
+//                let bridgeImage = UIImage(named: "HultonBridge") ?? UIImage()
+//                var imageView = UIImageView(image: bridgeImage)
+//                imageView.contentMode = ContentMode.fill
+//                annotationView.detailCalloutAccessoryView = imageView
                 let bridgeMapDetailAccessoryView = BridgeMapDetailAccessoryView(bridgeModel: bridgeMapAnnotation.bridgeModel)
                 let hostingController = UIHostingController(rootView: bridgeMapDetailAccessoryView)
                 hostingController.view.translatesAutoresizingMaskIntoConstraints = false
                 annotationView.detailCalloutAccessoryView = hostingController.view
+                annotationView.detailCalloutAccessoryView?.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
             }
             return annotationView
         }

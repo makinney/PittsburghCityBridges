@@ -36,7 +36,7 @@ struct BridgeListView: View {
                     .font(.headline)
                 }
             }
-            .navigationTitle("Bridges")
+            .navigationTitle("List of Bridges")
         
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
