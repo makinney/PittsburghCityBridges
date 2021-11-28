@@ -29,7 +29,7 @@ struct BridgePhotosView: View {
                             }
                         }
                     }
-                    .navigationTitle("City Bridges")
+                    .navigationTitle("Photos of Bridges")
                 }
             }
         }

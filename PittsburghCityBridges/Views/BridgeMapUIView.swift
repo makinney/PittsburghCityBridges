@@ -17,11 +17,11 @@ struct BridgeMapUIView: UIViewRepresentable {
     let region: MKCoordinateRegion
     let hasDetailAccessoryView: Bool
     
-    init(region: MKCoordinateRegion, bridgeModels: [BridgeModel], hasDetailAccessoryView: Bool = true) {
+    init(region: MKCoordinateRegion, bridgeModels: [BridgeModel], showsBridgeImage: Bool = true) {
         logger.info("\(#file) \(#function)")
         self.region = region
         self.bridgeModels = bridgeModels
-        self.hasDetailAccessoryView = hasDetailAccessoryView
+        self.hasDetailAccessoryView = showsBridgeImage
     }
     
     func makeUIView(context: Context) -> MKMapView {
