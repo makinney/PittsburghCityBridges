@@ -10,27 +10,20 @@ import SDWebImageSwiftUI
 import os
 
 struct BridgeDetailsView: View {
+    @Namespace var animation
     @State var dragOffset: CGSize = .zero
     @State var imageOffset: CGSize = .zero
-
-    @State var fadeOtherViews = false
     @State var imageScale: CGFloat = 1.0
-    @State var stickyDragAndMagMode = false
-
+    @State var bridgeImageOnly = false
+    
     var bridgeModel: BridgeModel
     let buttonCornerRadius: CGFloat = 5
     let imageCornerRadius: CGFloat = 10
     var imageLoader: UIImageLoader = UIImageLoader()
     let imageSmallestMagnification = 1.0
-
-    private func resetImageLocation() {
-        dragOffset = .zero
-        imageOffset = .zero
-        imageScale = 1.0
-    }
-
+    
     let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
-
+    
     private func totalOffset(by: CGSize) -> CGSize {
         let total = CGSize(width: imageOffset.width + by.width, height: imageOffset.height + by.height)
         Print("totalOffset total \(total) for offset \(imageOffset) by \(by)")
@@ -46,8 +39,9 @@ struct BridgeDetailsView: View {
     var dragGesture: some Gesture {
         DragGesture()
             .onChanged {
-                self.dragOffset = $0.translation
-                self.fadeOtherViews = true // so background view fades without having to first tap image
+                if self.bridgeImageOnly {
+                    self.dragOffset = $0.translation
+                }
             }
     }
     
@@ -55,97 +49,94 @@ struct BridgeDetailsView: View {
         MagnificationGesture()
             .onChanged { newValue in
                 self.imageScale = max(newValue, imageSmallestMagnification)
-//                self.fadeOtherViews = true // so background view fades without having to first tap image
             }
-    }
-    
-    var dragAndMagGesture: some Gesture {
-        SimultaneousGesture(dragGesture, magGesture)
-        .onEnded { value in
-            if !self.stickyDragAndMagMode {
-                self.resetImageLocation()
-                self.fadeOtherViews = false
-            }
-        }
     }
     
     var tapGesture: some Gesture {
         TapGesture(count: 1)
-        .onEnded{
-            withAnimation(.easeIn){
-                self.stickyDragAndMagMode = true
-                self.imageOffset = CGSize(width: 0, height: 100)
-                self.imageScale = 1.2
-                self.fadeOtherViews = true
+            .onEnded{
+                self.bridgeImageOnly = true
             }
-        }
     }
-
+    
     var body: some View {
-        GeometryReader { geometry in
-            ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading) {
-                    Text("\(bridgeModel.name)")
-                        .font(.headline)
-                        .opacity(fadeOtherViews ? 0.0 : 1.0)
+        VStack {
+            if bridgeImageOnly {
+                VStack {
                     BridgeImageView(bridgeModel.imageURL)
                         .aspectRatio(contentMode: .fit)
-           
                         .cornerRadius(imageCornerRadius)
                         .overlay(
                             RoundedRectangle(cornerRadius: imageCornerRadius)
                                 .stroke(Color.secondary, lineWidth: 2.5)
                         )
                         .scaleEffect(imageScale)
-                        .if (!stickyDragAndMagMode) { view in
-                            view.clipped()
-                        }
                         .animation(.easeInOut, value: imageScale)
                         .offset(totalOffset(offset: imageOffset, by: dragOffset))
                         .animation(.easeInOut, value: dragOffset)
-                        .gesture(dragAndMagGesture)
-                        .gesture(tapGesture)
-                    
-                    VStack(alignment: .leading) {
-                        Text(bridgeModel.builtHistory())
-                            .padding(.top, 2)
-                            .padding(.bottom)
-                        Text(bridgeModel.neighborhoods())
-                        makeMapView(bridgeModel)
-                            .frame(height: 200)
-                            .cornerRadius(imageCornerRadius)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: imageCornerRadius)
-                                    .stroke(Color.secondary, lineWidth: 2)
-                            )
-                    }
-                    .opacity(fadeOtherViews ? 0 : 1)
+                        .gesture(magGesture.simultaneously(with: dragGesture))
+                        .matchedGeometryEffect(id: "BridgeView", in: animation)
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarTrailing) {
+                                Button("Done") {
+                                    self.bridgeImageOnly = false
+                                    self.imageScale = 1.0
+                                    self.dragOffset = .zero
+                                }
+                                .padding(.trailing, 10)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: buttonCornerRadius)
+                                        .stroke(Color.secondary, lineWidth: 2)
+                                )
+                            }
+                        }
                 }
-                .padding(.horizontal)
-                .animation(.easeInOut, value: fadeOtherViews)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Done") {
-                        self.stickyDragAndMagMode = false
-                        self.fadeOtherViews = false
-                        self.resetImageLocation()
+                .onAppear {
+                    UIScrollView.appearance().bounces = false
+                }
+            } else {
+                GeometryReader { geometry in
+                    ScrollView(showsIndicators: false) {
+                        VStack(alignment: .leading) {
+                            Text("\(bridgeModel.name)")
+                                .font(.headline)
+                            BridgeImageView(bridgeModel.imageURL)
+                                .aspectRatio(contentMode: .fit)
+                                .cornerRadius(imageCornerRadius)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: imageCornerRadius)
+                                        .stroke(Color.secondary, lineWidth: 2.5)
+                                )
+                                .scaleEffect(imageScale)
+                                .clipped()
+                                .animation(.easeInOut, value: imageScale)
+                                .gesture(magGesture)
+                                .gesture(tapGesture)
+                                .matchedGeometryEffect(id: "BridgeView", in: animation)
+                            Text(bridgeModel.builtHistory())
+                                .padding(.top, 2)
+                                .padding(.bottom)
+                            Text(bridgeModel.neighborhoods())
+                            makeMapView(bridgeModel)
+                                .frame(height: 200)
+                                .cornerRadius(imageCornerRadius)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: imageCornerRadius)
+                                        .stroke(Color.secondary, lineWidth: 2)
+                                )
+                        }
+                        .padding(.horizontal)
                     }
-                    .padding(.trailing, 10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: buttonCornerRadius)
-                            .stroke(Color.secondary, lineWidth: 2)
-                    )
-                    .opacity(stickyDragAndMagMode ? 1 : 0)
+                }
+                .onAppear {
+                    UIScrollView.appearance().bounces = true
+                }
+                .onDisappear {
+                    UIScrollView.appearance().bounces = true
                 }
             }
         }
-        .onAppear() {
-            UIScrollView.appearance().bounces = false
-        }
-        .onDisappear {
-            UIScrollView.appearance().bounces = true
-        }
+        .animation(.default, value: bridgeImageOnly)
     }
     
     func makeMapView(_ bridgeModel: BridgeModel) -> some View {
