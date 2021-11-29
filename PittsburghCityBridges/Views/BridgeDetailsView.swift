@@ -11,10 +11,12 @@ import os
 
 struct BridgeDetailsView: View {
     @State var dragOffset: CGSize = .zero
+    @State var imageOffset: CGSize = .zero
+
     @State var fadeOtherViews = false
     @State var imageScale: CGFloat = 1.0
     @State var stickyDragAndMagMode = false
-    
+
     var bridgeModel: BridgeModel
     let buttonCornerRadius: CGFloat = 5
     let imageCornerRadius: CGFloat = 10
@@ -23,42 +25,63 @@ struct BridgeDetailsView: View {
 
     private func resetImageLocation() {
         dragOffset = .zero
+        imageOffset = .zero
         imageScale = 1.0
     }
 
     let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
 
-    var body: some View {
-        let dragGesture =  DragGesture()
+    private func totalOffset(by: CGSize) -> CGSize {
+        let total = CGSize(width: imageOffset.width + by.width, height: imageOffset.height + by.height)
+        Print("totalOffset total \(total) for offset \(imageOffset) by \(by)")
+        return total
+    }
+    
+    private func totalOffset(offset: CGSize, by: CGSize) -> CGSize {
+        let total = CGSize(width: offset.width + by.width, height: offset.height + by.height)
+        Print("totalOffset total \(total) for offset \(offset) by \(by)")
+        return total
+    }
+    
+    var dragGesture: some Gesture {
+        DragGesture()
             .onChanged {
                 self.dragOffset = $0.translation
                 self.fadeOtherViews = true // so background view fades without having to first tap image
             }
-        
-        let magGesture = MagnificationGesture()
+    }
+    
+    var magGesture: some Gesture {
+        MagnificationGesture()
             .onChanged { newValue in
                 self.imageScale = max(newValue, imageSmallestMagnification)
-                self.fadeOtherViews = true // so background view fades without having to first tap image
+//                self.fadeOtherViews = true // so background view fades without having to first tap image
             }
-        
-        let dragAndMagGesture = SimultaneousGesture(dragGesture, magGesture)
-            .onEnded { value in
-                if !self.stickyDragAndMagMode {
-                    self.resetImageLocation()
-                    self.fadeOtherViews = false
-                }
+    }
+    
+    var dragAndMagGesture: some Gesture {
+        SimultaneousGesture(dragGesture, magGesture)
+        .onEnded { value in
+            if !self.stickyDragAndMagMode {
+                self.resetImageLocation()
+                self.fadeOtherViews = false
             }
-        
-        let tapGesture = TapGesture(count: 1)
-            .onEnded{
-                withAnimation(.easeIn){
-                    self.stickyDragAndMagMode = true
-                    self.dragOffset = CGSize(width: 0, height: 100)
-                    self.imageScale = 1.2
-                    self.fadeOtherViews = true
-                }
+        }
+    }
+    
+    var tapGesture: some Gesture {
+        TapGesture(count: 1)
+        .onEnded{
+            withAnimation(.easeIn){
+                self.stickyDragAndMagMode = true
+                self.imageOffset = CGSize(width: 0, height: 100)
+                self.imageScale = 1.2
+                self.fadeOtherViews = true
             }
-        
+        }
+    }
+
+    var body: some View {
         GeometryReader { geometry in
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
@@ -67,15 +90,18 @@ struct BridgeDetailsView: View {
                         .opacity(fadeOtherViews ? 0.0 : 1.0)
                     BridgeImageView(bridgeModel.imageURL)
                         .aspectRatio(contentMode: .fit)
+           
                         .cornerRadius(imageCornerRadius)
                         .overlay(
                             RoundedRectangle(cornerRadius: imageCornerRadius)
                                 .stroke(Color.secondary, lineWidth: 2.5)
-                                .opacity(fadeOtherViews ? 0.0 : 1.0)
                         )
                         .scaleEffect(imageScale)
+                        .if (!stickyDragAndMagMode) { view in
+                            view.clipped()
+                        }
                         .animation(.easeInOut, value: imageScale)
-                        .offset(dragOffset)
+                        .offset(totalOffset(offset: imageOffset, by: dragOffset))
                         .animation(.easeInOut, value: dragOffset)
                         .gesture(dragAndMagGesture)
                         .gesture(tapGesture)
