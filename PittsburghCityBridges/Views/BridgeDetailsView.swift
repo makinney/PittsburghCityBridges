@@ -23,9 +23,7 @@ struct BridgeDetailsView: View {
     private let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     
     private func totalOffset(offset: CGSize, by: CGSize) -> CGSize {
-        let total = CGSize(width: offset.width + by.width, height: offset.height + by.height)
-        Print("totalOffset total \(total) for offset \(offset) by \(by)")
-        return total
+        CGSize(width: offset.width + by.width, height: offset.height + by.height)
     }
     
     var dragGesture: some Gesture {
@@ -48,14 +46,20 @@ struct BridgeDetailsView: View {
             }
     }
     
+    var dblTapToZoomInGesture: some Gesture {
+        TapGesture(count: 2)
+            .onEnded {
+                self.imageScale *= 2.0
+            }
+    }
+    
     var body: some View {
         VStack {
             if bridgeImageOnly {
                 GeometryReader { geometry in
                     VStack(alignment: .center) {
-                        Spacer()
                         BridgeImageView(bridgeModel.imageURL)
-                            .aspectRatio(contentMode: .fit)
+                            .aspectRatio(1.0, contentMode: .fit)
                             .cornerRadius(imageCornerRadius)
                             .overlay(
                                 RoundedRectangle(cornerRadius: imageCornerRadius)
@@ -68,13 +72,15 @@ struct BridgeDetailsView: View {
                             .animation(.easeInOut, value: dragOffset)
                             .clipped()
                             .gesture(magGesture.simultaneously(with: dragGesture))
-                            .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
+                            .gesture(dblTapToZoomInGesture)
+                     //       .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
                             .toolbar {
                                 ToolbarItem(placement: .navigationBarTrailing) {
                                     Button("Done") {
-                                        self.bridgeImageOnly = false
-                                        self.imageScale = 1.0
                                         self.dragOffset = .zero
+                                        self.imageScale = 1.0
+                                        self.startingOffset = .zero
+                                        self.bridgeImageOnly = false
                                     }
                                     .padding(.trailing, 10)
                                     .overlay(
@@ -83,8 +89,6 @@ struct BridgeDetailsView: View {
                                     )
                                 }
                             }
-                        Spacer()
-                        Print("Geometry frame \(geometry.frame(in: .global))")
                     }
                 }
                 .onAppear {
@@ -100,7 +104,7 @@ struct BridgeDetailsView: View {
                             Text("\(bridgeModel.name)")
                                 .font(.headline)
                             BridgeImageView(bridgeModel.imageURL)
-                                .aspectRatio(contentMode: .fit)
+                                .aspectRatio(1.0, contentMode: .fit)
                                 .cornerRadius(imageCornerRadius)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: imageCornerRadius)
@@ -114,10 +118,9 @@ struct BridgeDetailsView: View {
                                     TapGesture(count: 1)
                                         .onEnded{
                                             self.bridgeImageOnly = true
-                                            self.startingOffset = .zero
                                         }
                                 )
-                                .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
+                      //          .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
                             Text(bridgeModel.builtHistory())
                                 .padding(.top, 2)
                                 .padding(.bottom)
