@@ -11,9 +11,16 @@ struct BridgeListView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @State private var showSheet = false
     @State private var sectionListBy: BridgeListViewModel.SectionListBy = .neighborhood
+    
     private var bridgeListViewModel: BridgeListViewModel
+    private var fileServices: FileServices
   
     init(_ bridgeListViewModel: BridgeListViewModel) {
+        do {
+            try fileServices = FileServices()
+        } catch {
+            fatalError("failed to create file services \(error.localizedDescription)")
+        }
         self.bridgeListViewModel = bridgeListViewModel
   //      UITableView.appearance().backgroundColor = .green
     }
@@ -24,7 +31,8 @@ struct BridgeListView: View {
                 ForEach(bridgeListViewModel.sectionList(sectionListBy)) { bridgesSection in
                     Section("\(bridgesSection.sectionName)") {
                         ForEach(bridgesSection.bridgeModels) { bridgeModel in
-                            NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
+                            NavigationLink(destination: BridgeDetailsView(fileServices: fileServices,
+                                                                          bridgeModel: bridgeModel)) {
                                 BridgeListRow(bridgeModel: bridgeModel)
                             }
                         }

@@ -9,7 +9,7 @@ import Foundation
 import Files
 import os
 
-class FileServices {
+class FileServices: ObservableObject {
     private let bridgeImagesFolderName = "BridgeImages"
     private let bridgeImagesFolder: Folder
     private let cachesFolder: Folder
