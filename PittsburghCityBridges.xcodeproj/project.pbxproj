@@ -27,6 +27,11 @@
 		247214FA27052454004FBACD /* TwoBridge.json in Resources */ = {isa = PBXBuildFile; fileRef = 247214F927052317004FBACD /* TwoBridge.json */; };
 		247214FC27054B7B004FBACD /* BridgesOpenData.json in Resources */ = {isa = PBXBuildFile; fileRef = 247214FB27054B5A004FBACD /* BridgesOpenData.json */; };
 		24808FD3274D443D00FF131C /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24808FD2274D443D00FF131C /* ViewExtensions.swift */; };
+		24808FD827571E3A00FF131C /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 24808FD727571E3A00FF131C /* URLImage */; };
+		24808FDA27571E3A00FF131C /* URLImageStore in Frameworks */ = {isa = PBXBuildFile; productRef = 24808FD927571E3A00FF131C /* URLImageStore */; };
+		24808FDC275A6D9B00FF131C /* FileServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24808FDB275A6D9900FF131C /* FileServices.swift */; };
+		24808FDF275AF61F00FF131C /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 24808FDE275AF61F00FF131C /* Files */; };
+		24808FE1275BDA9200FF131C /* FileManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24808FE0275BDA9100FF131C /* FileManagerExtensions.swift */; };
 		248FC583270276EA00BE168F /* PittsburghCityBridgesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248FC582270276EA00BE168F /* PittsburghCityBridgesApp.swift */; };
 		248FC585270276EA00BE168F /* CloudKitContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248FC584270276EA00BE168F /* CloudKitContentView.swift */; };
 		248FC587270276EE00BE168F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 248FC586270276EE00BE168F /* Assets.xcassets */; };
@@ -63,6 +68,8 @@
 		247214F927052317004FBACD /* TwoBridge.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TwoBridge.json; sourceTree = "<group>"; };
 		247214FB27054B5A004FBACD /* BridgesOpenData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = BridgesOpenData.json; sourceTree = "<group>"; };
 		24808FD2274D443D00FF131C /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
+		24808FDB275A6D9900FF131C /* FileServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileServices.swift; sourceTree = "<group>"; };
+		24808FE0275BDA9100FF131C /* FileManagerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExtensions.swift; sourceTree = "<group>"; };
 		248FC57F270276EA00BE168F /* PittsburghCityBridges.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PittsburghCityBridges.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		248FC582270276EA00BE168F /* PittsburghCityBridgesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PittsburghCityBridgesApp.swift; sourceTree = "<group>"; };
 		248FC584270276EA00BE168F /* CloudKitContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitContentView.swift; sourceTree = "<group>"; };
@@ -83,7 +90,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24808FDA27571E3A00FF131C /* URLImageStore in Frameworks */,
 				24B3FEB12727597E004B93A6 /* SDWebImageSwiftUI in Frameworks */,
+				24808FDF275AF61F00FF131C /* Files in Frameworks */,
+				24808FD827571E3A00FF131C /* URLImage in Frameworks */,
 				248FC59A270278F100BE168F /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,6 +109,7 @@
 				24B3FE902722356A004B93A6 /* DirectionsService.swift */,
 				24B3FE9327236968004B93A6 /* ImageViewLoader.swift */,
 				24101261270F323E00FE7DEC /* OpenDataService.swift */,
+				24808FDB275A6D9900FF131C /* FileServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -106,6 +117,7 @@
 		2419B8C02721B08A00BFE3D8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				24808FE0275BDA9100FF131C /* FileManagerExtensions.swift */,
 				24B3FE8E272225B8004B93A6 /* MapExtensions.swift */,
 				245BDCC0272C917D000FE644 /* Sequence+Extensions.swift */,
 				24808FD2274D443D00FF131C /* ViewExtensions.swift */,
@@ -237,6 +249,9 @@
 			name = PittsburghCityBridges;
 			packageProductDependencies = (
 				24B3FEB02727597E004B93A6 /* SDWebImageSwiftUI */,
+				24808FD727571E3A00FF131C /* URLImage */,
+				24808FD927571E3A00FF131C /* URLImageStore */,
+				24808FDE275AF61F00FF131C /* Files */,
 			);
 			productName = PittsburghCityBridges;
 			productReference = 248FC57F270276EA00BE168F /* PittsburghCityBridges.app */;
@@ -268,6 +283,8 @@
 			mainGroup = 248FC576270276EA00BE168F;
 			packageReferences = (
 				24B3FEAF2727597D004B93A6 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				24808FD627571E3A00FF131C /* XCRemoteSwiftPackageReference "url-image" */,
+				24808FDD275AF61F00FF131C /* XCRemoteSwiftPackageReference "Files" */,
 			);
 			productRefGroup = 248FC580270276EA00BE168F /* Products */;
 			projectDirPath = "";
@@ -298,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				245BDCC1272C917D000FE644 /* Sequence+Extensions.swift in Sources */,
+				24808FE1275BDA9200FF131C /* FileManagerExtensions.swift in Sources */,
 				241012892713785C00FE7DEC /* BridgeMapView.swift in Sources */,
 				24B3FE912722356A004B93A6 /* DirectionsService.swift in Sources */,
 				2410128D2713855400FE7DEC /* ContentView.swift in Sources */,
@@ -320,6 +338,7 @@
 				24808FD3274D443D00FF131C /* ViewExtensions.swift in Sources */,
 				241012872713784D00FE7DEC /* BridgeListView.swift in Sources */,
 				2419B8C42721D64E00BFE3D8 /* LocationManager.swift in Sources */,
+				24808FDC275A6D9B00FF131C /* FileServices.swift in Sources */,
 				240075D12716607B00CB864F /* BridgeListRow.swift in Sources */,
 				24101262270F323E00FE7DEC /* OpenDataService.swift in Sources */,
 				24CC1B4E270A8ABE009BE390 /* BridgeStore.swift in Sources */,
@@ -533,6 +552,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		24808FD627571E3A00FF131C /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+		24808FDD275AF61F00FF131C /* XCRemoteSwiftPackageReference "Files" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JohnSundell/Files";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		24B3FEAF2727597D004B93A6 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -544,6 +579,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		24808FD727571E3A00FF131C /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24808FD627571E3A00FF131C /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
+		24808FD927571E3A00FF131C /* URLImageStore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24808FD627571E3A00FF131C /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImageStore;
+		};
+		24808FDE275AF61F00FF131C /* Files */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24808FDD275AF61F00FF131C /* XCRemoteSwiftPackageReference "Files" */;
+			productName = Files;
+		};
 		24B3FEB02727597E004B93A6 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 24B3FEAF2727597D004B93A6 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;

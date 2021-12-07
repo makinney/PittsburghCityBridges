@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
+//    @EnvironmentObject var fileServices: FileServices
 
     var body: some View {
         TabView {
@@ -20,10 +21,10 @@ struct ContentView: View {
                 .tabItem {
                     Label("Bridges", systemImage: "list.dash")
                 }
-            BridgePhotosView()
-                .tabItem {
-                    Label("Photos", systemImage: "photo")
-                }
+//            BridgePhotosView()
+//                .tabItem {
+//                    Label("Photos", systemImage: "photo")
+//                }
         }
         .onAppear {
             bridgeStore.refreshBridgeModels()

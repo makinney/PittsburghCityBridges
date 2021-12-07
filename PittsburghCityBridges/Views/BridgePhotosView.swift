@@ -7,6 +7,8 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import URLImage
+
 import os
 
 struct BridgePhotosView: View {
@@ -23,9 +25,15 @@ struct BridgePhotosView: View {
                     LazyVGrid(columns: columns) {
                         ForEach(bridgeStore.bridgeModels) { bridgeModel in
                             NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
-                                BridgeImageView(bridgeModel.imageURL, options: [.scaleDownLargeImages])
-                                    .scaledToFill()
+                               // BridgeImageView(bridgeModel.imageURL, options: [.scaleDownLargeImages])
+                                if let url = bridgeModel.imageURL {
+                                URLImage(url) { image in
+                                    image
+                                        .resizable()
+                                        .scaledToFill()
                                     .frame(maxWidth: geometry.size.width)
+                                }
+                                }
                             }
                         }
                     }

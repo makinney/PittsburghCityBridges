@@ -7,7 +7,12 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import URLImage
 import os
+
+// add an observed image source, use that for the bridge views
+// it's published view updates on events from this view, such as request to get bridge image, which updates bridgeview
+// 
 
 struct BridgeDetailsView: View {
     @Namespace private var bridgeAnimations
@@ -15,6 +20,7 @@ struct BridgeDetailsView: View {
     @State private var dragOffset: CGSize = .zero
     @State private var imageScale: CGFloat = 1.0
     @State private var startingOffset: CGSize = .zero
+    @ObservedObject private var imageLoader = UIImageLoader()
     
     var bridgeModel: BridgeModel
     private let buttonCornerRadius: CGFloat = 5
@@ -58,7 +64,7 @@ struct BridgeDetailsView: View {
             if bridgeImageOnly {
                 GeometryReader { geometry in
                     VStack(alignment: .center) {
-                        BridgeImageView(bridgeModel.imageURL)
+                        BridgeView(imageLoader: imageLoader,imageURL: bridgeModel.imageURL)
                             .aspectRatio(1.0, contentMode: .fit)
                             .cornerRadius(imageCornerRadius)
                             .overlay(
@@ -73,9 +79,12 @@ struct BridgeDetailsView: View {
                             .clipped()
                             .gesture(magGesture.simultaneously(with: dragGesture))
                             .gesture(dblTapToZoomInGesture)
-                     //       .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
+                        //       .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
                             .toolbar {
                                 ToolbarItem(placement: .navigationBarTrailing) {
+                                    HStack {
+                                        Button("\(bridgeModel.name)") {}
+                                        .padding()
                                     Button("Done") {
                                         self.dragOffset = .zero
                                         self.imageScale = 1.0
@@ -87,8 +96,12 @@ struct BridgeDetailsView: View {
                                         RoundedRectangle(cornerRadius: buttonCornerRadius)
                                             .stroke(Color.secondary, lineWidth: 2)
                                     )
+                                    }
                                 }
                             }
+                        //      }
+                        
+                        //    BridgeImageView(bridgeModel.imageURL)
                     }
                 }
                 .onAppear {
@@ -103,28 +116,36 @@ struct BridgeDetailsView: View {
                         VStack(alignment: .leading) {
                             Text("\(bridgeModel.name)")
                                 .font(.headline)
-                            BridgeImageView(bridgeModel.imageURL)
-                                .aspectRatio(1.0, contentMode: .fit)
-                                .cornerRadius(imageCornerRadius)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: imageCornerRadius)
-                                        .stroke(Color.secondary, lineWidth: 2)
-                                )
-                                .scaleEffect(imageScale)
-                                .animation(.easeInOut, value: imageScale)
-                                .clipped()
-                                .gesture(magGesture)
-                                .gesture(
-                                    TapGesture(count: 1)
-                                        .onEnded{
-                                            self.bridgeImageOnly = true
-                                        }
-                                )
-                      //          .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
+                            HStack {
+                                Spacer()
+                                BridgeView(imageLoader: imageLoader, imageURL: bridgeModel.imageURL)
+                                    .aspectRatio(contentMode: .fit)
+                                    .cornerRadius(imageCornerRadius)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: imageCornerRadius)
+                                            .stroke(Color.secondary, lineWidth: 2)
+                                    )
+                             //       .frame(maxWidth: geometry.frame(in: .global).width, minHeight: 100)
+                                    .scaleEffect(imageScale)
+                                    .animation(.easeInOut, value: imageScale)
+                                    .clipped()
+                                    .gesture(magGesture)
+                                    .gesture(
+                                        TapGesture(count: 1)
+                                            .onEnded{
+                                                self.bridgeImageOnly = true
+                                            }
+                                    )
+                                Spacer()
+                            }
+                            //          .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
                             Text(bridgeModel.builtHistory())
                                 .padding(.top, 2)
                                 .padding(.bottom)
                             Text(bridgeModel.neighborhoods())
+                            HStack {
+                                Spacer()
+                            
                             makeMapView(bridgeModel)
                                 .frame(height: 200)
                                 .cornerRadius(imageCornerRadius)
@@ -132,6 +153,8 @@ struct BridgeDetailsView: View {
                                     RoundedRectangle(cornerRadius: imageCornerRadius)
                                         .stroke(Color.secondary, lineWidth: 2)
                                 )
+                                Spacer()
+                            }
                         }
                         .padding(.horizontal)
                     }
