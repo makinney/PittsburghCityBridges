@@ -11,38 +11,38 @@ import SwiftUI
 import os
 import UIKit
 
-struct BridgeView: View {
-    @ObservedObject private var imageLoader: UIImageLoader
-    
-    var imageURL: URL?
-    
-    init(imageLoader: UIImageLoader, imageURL: URL?) {
-        self.imageURL = imageURL
-        self.imageLoader = imageLoader
-    }
-    
-    var body: some View {
-        switch imageLoader.state {
-        case .idle:
-            Color.clear
-                .onAppear {
-                    imageLoader.load(imageURL)
-                }
-        case .loading:
-            HStack {
-                Spacer()
-                ProgressView()
-                Spacer()
-            }
-        case .failed(let error):
-            Text(error)
-        case .loaded(let image):
-            Image(uiImage: image)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-        }
-    }
-}
+//struct BridgeView: View {
+//    @ObservedObject private var imageLoader: UIImageLoader
+//    
+//    var imageURL: URL?
+//    
+//    init(imageLoader: UIImageLoader, imageURL: URL?) {
+//        self.imageURL = imageURL
+//        self.imageLoader = imageLoader
+//    }
+//    
+//    var body: some View {
+//        switch imageLoader.state {
+//        case .idle:
+//            Color.clear
+//                .onAppear {
+//                    imageLoader.loadBridgeImage(for: imageURL)
+//                }
+//        case .loading:
+//            HStack {
+//                Spacer()
+//                ProgressView()
+//                Spacer()
+//            }
+//        case .failed(let error):
+//            Text(error)
+//        case .loaded(let image):
+//            Image(uiImage: image)
+//                .resizable()
+//                .aspectRatio(contentMode: .fill)
+//        }
+//    }
+//}
 
 class UIImageLoader: ObservableObject {
     let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
@@ -64,8 +64,9 @@ class UIImageLoader: ObservableObject {
     }
     
     @Published private(set) var state = State.idle
+    @Published private(set) var uiBridgeImage = UIImage()
     @MainActor
-    func load(_ imageURL: URL?) {
+    func loadBridgeImage(for imageURL: URL?) {
         Task {
             do {
                 guard let imageURL = imageURL else {
@@ -82,11 +83,12 @@ class UIImageLoader: ObservableObject {
                 if let existingImageFile = existingImageFile {
                     do {
                         let data = try existingImageFile.read()
-                        if let image = UIImage(data: data) {
+                        if let uiImage = UIImage(data: data) {
                             // persist, e.g. cache this data for future use
                             // use file service
                             // then update state with new image
-                            state = .loaded(image)
+                            state = .loaded(uiImage)
+                            self.uiBridgeImage = uiImage
                         } else {
                             state = .failed("no Image for \(imageURL)")
                         }
@@ -101,14 +103,14 @@ class UIImageLoader: ObservableObject {
                 let (data, response) = try await URLSession.shared.data(from: imageURL)
                 logger.info("\(response.debugDescription)")
                 // create a file if need be for this data
+                // persist, e.g. cache this data for future use
                 if existingImageFile == nil {
                     fileServices.createFile(imageFileName, data: data)
                 }
-                if let image = UIImage(data: data) {
-                    // persist, e.g. cache this data for future use
-                    // use file service
+                if let uiImage = UIImage(data: data) {
                     // then update state with new image
-                    state = .loaded(image)
+                    state = .loaded(uiImage)
+                    self.uiBridgeImage = uiImage
                 } else {
                     state = .failed("no Image for \(imageURL)")
                 }

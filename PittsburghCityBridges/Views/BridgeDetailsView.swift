@@ -10,17 +10,14 @@ import SDWebImageSwiftUI
 import URLImage
 import os
 
-// add an observed image source, use that for the bridge views
-// it's published view updates on events from this view, such as request to get bridge image, which updates bridgeview
-// 
-
 struct BridgeDetailsView: View {
-    @Namespace private var bridgeAnimations
+    @ObservedObject private var imageLoader = UIImageLoader()
     @State private var bridgeImageOnly = false
     @State private var dragOffset: CGSize = .zero
     @State private var imageScale: CGFloat = 1.0
     @State private var startingOffset: CGSize = .zero
-    @ObservedObject private var imageLoader = UIImageLoader()
+    @State private var imageLoading = false
+    @Namespace private var bridgeAnimations
     
     var bridgeModel: BridgeModel
     private let buttonCornerRadius: CGFloat = 5
@@ -64,7 +61,8 @@ struct BridgeDetailsView: View {
             if bridgeImageOnly {
                 GeometryReader { geometry in
                     VStack(alignment: .center) {
-                        BridgeView(imageLoader: imageLoader,imageURL: bridgeModel.imageURL)
+                        Image(uiImage: imageLoader.uiBridgeImage)
+                            .resizable()
                             .aspectRatio(1.0, contentMode: .fit)
                             .cornerRadius(imageCornerRadius)
                             .overlay(
@@ -99,9 +97,6 @@ struct BridgeDetailsView: View {
                                     }
                                 }
                             }
-                        //      }
-                        
-                        //    BridgeImageView(bridgeModel.imageURL)
                     }
                 }
                 .onAppear {
@@ -118,14 +113,15 @@ struct BridgeDetailsView: View {
                                 .font(.headline)
                             HStack {
                                 Spacer()
-                                BridgeView(imageLoader: imageLoader, imageURL: bridgeModel.imageURL)
+                                Image(uiImage: imageLoader.uiBridgeImage)
+                                    .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .cornerRadius(imageCornerRadius)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: imageCornerRadius)
                                             .stroke(Color.secondary, lineWidth: 2)
                                     )
-                             //       .frame(maxWidth: geometry.frame(in: .global).width, minHeight: 100)
+                                    .frame(maxWidth: geometry.frame(in: .global).width, minHeight: 100)
                                     .scaleEffect(imageScale)
                                     .animation(.easeInOut, value: imageScale)
                                     .clipped()
@@ -160,6 +156,10 @@ struct BridgeDetailsView: View {
                     }
                 }
             }
+        }
+        .onAppear {
+            imageLoader.loadBridgeImage(for: bridgeModel.imageURL)
+            // display somekind of progress view over the bridge image area during load
         }
         .animation(.default, value: bridgeImageOnly)
     }
