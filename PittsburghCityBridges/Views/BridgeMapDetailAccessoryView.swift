@@ -17,11 +17,12 @@ struct BridgeMapDetailAccessoryView: View {
     private func makeImage(_ bridgeModel: BridgeModel, imageLoader: UIImageLoader) -> UIImage {
         var image: UIImage?
         if let data  = imageLoader.uiBridgeImages[imageLoader.imageFileName(bridgeModel.imageURL)] {
-            image = UIImage(data: data)
+            // TODO: a better way to determine size than simple hardcoding, 
+            image = UIImage(data: data)?.preparingThumbnail(of: CGSize(width: 500, height: 500))
         }
         return image ?? UIImage()
     }
-    
+     
     var body: some View {
         Image(uiImage: makeImage(bridgeModel, imageLoader: imageLoader))
             .resizable()
