@@ -82,23 +82,16 @@ class UIImageLoader: ObservableObject {
                 state = .loading
                 // already stored locally?
                 let imageFileName = imageFileName(imageURL)
-                let existingImageFile: File?  = fileServices.getFile(imageFileName)
-                if let existingImageFile = existingImageFile {
-                    do {
-                        let data = try existingImageFile.read()
-                        state = .loaded(data)
-                        self.uiBridgeImages[imageFileName] = data
-                    } catch {
-                        logger.error("\(#file) \(#function) \(error.localizedDescription)")
-                    }
+                let existingData = fileServices.getData(for: imageFileName)
+                if let existingData =  existingData {
+                    state = .loaded(existingData)
+                    self.uiBridgeImages[imageFileName] = existingData
                 } else {
-                    // not stored, fetch it
                     let (data, response) = try await URLSession.shared.data(from: imageURL)
-                    logger.info("\(response.debugDescription)")
-                    // create a file if need be for this data
-                    // persist, e.g. cache this data for future use
-                    if existingImageFile == nil {
-                        fileServices.createFile(imageFileName, data: data)
+                    logger.debug("\(response.debugDescription)")
+                    if existingData == nil {
+                        // persist, e.g. cache this data for future use
+                        fileServices.save(data: data, to: imageFileName)
                     }
                     state = .loaded(data)
                     self.uiBridgeImages[imageFileName] = data

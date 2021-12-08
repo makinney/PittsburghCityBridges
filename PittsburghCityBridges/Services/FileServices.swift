@@ -39,7 +39,6 @@ class FileServices: ObservableObject {
     }
     
     func getFile(_ named: String) -> File? {
-        // check for existance
         var file: File?
         do {
             file = try bridgeImagesFolder?.file(named: named)
@@ -47,6 +46,37 @@ class FileServices: ObservableObject {
             logger.info("\(#file) \(#function) error \(error.localizedDescription)")
         }
         return file
+    }
+    
+    func getData(for fileName: String) -> Data? {
+        var data: Data?
+        if let file = getFile(fileName) {
+            do {
+                data = try file.read()
+            } catch {
+                logger.info("\(#file) \(#function) error \(error.localizedDescription)")
+            }
+        }
+        return data
+    }
+    
+    
+    func save(data: Data, to fileName: String) {
+        var existingFile = getFile(fileName)
+        if existingFile == nil {
+            do {
+                existingFile = try bridgeImagesFolder?.createFile(named: fileName)
+            } catch {
+                logger.info("\(#file) \(#function) error \(error.localizedDescription)")
+                fatalError("\(#file) \(#function) could not create image file name \(fileName)")
+            }
+        }
+        do {
+            try existingFile?.write(data)
+        } catch {
+            logger.info("\(#file) \(#function) error \(error.localizedDescription)")
+            fatalError("\(#file) \(#function) could not create image file name \(fileName)")
+        }
     }
     
     func createFile(_ named: String, data: Data) {
