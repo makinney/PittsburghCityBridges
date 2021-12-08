@@ -9,9 +9,9 @@ import SwiftUI
 struct BridgeMapDetailAccessoryView: View {
    @ObservedObject private var imageLoader: UIImageLoader
     var bridgeModel: BridgeModel
-    init(fileServices: FileServices, bridgeModel: BridgeModel) {
+    init(bridgeModel: BridgeModel) {
         self.bridgeModel = bridgeModel
-        imageLoader = UIImageLoader(fileServices: fileServices)
+        imageLoader = UIImageLoader()
     }
  
     private func makeImage(_ bridgeModel: BridgeModel, imageLoader: UIImageLoader) -> UIImage {

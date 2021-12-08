@@ -16,18 +16,12 @@ struct BridgeMapUIView: UIViewRepresentable {
     let directionsService = DirectionsService()
     let region: MKCoordinateRegion
     let hasDetailAccessoryView: Bool
-    private let fileServices: FileServices
     
     init(region: MKCoordinateRegion, bridgeModels: [BridgeModel], showsBridgeImage: Bool = true) {
         logger.info("\(#file) \(#function)")
         self.region = region
         self.bridgeModels = bridgeModels
         self.hasDetailAccessoryView = showsBridgeImage
-        do {
-            try fileServices = FileServices()
-        } catch {
-            fatalError("failed to create file services \(error.localizedDescription)")
-        }
     }
     
     func makeUIView(context: Context) -> MKMapView {
@@ -63,17 +57,15 @@ struct BridgeMapUIView: UIViewRepresentable {
     }
     
     func makeCoordinator() -> MapCoordinator {
-        let mapCoordinator = MapCoordinator(directionsService, fileServices, hasDetailAccessoryView)
+        let mapCoordinator = MapCoordinator(directionsService, hasDetailAccessoryView)
         return mapCoordinator
     }
     
     final class MapCoordinator: NSObject, MKMapViewDelegate {
         let hasDetailAccessoryView: Bool
         let directionsService: DirectionsService
-        let fileServices: FileServices
-        init(_ directionsService: DirectionsService,_ fileServices: FileServices, _ hasDetailAccessoryView: Bool) {
+        init(_ directionsService: DirectionsService,_ hasDetailAccessoryView: Bool) {
             self.directionsService = directionsService
-            self.fileServices = fileServices
             self.hasDetailAccessoryView = hasDetailAccessoryView
         }
         
@@ -106,8 +98,7 @@ struct BridgeMapUIView: UIViewRepresentable {
             let directionsRequestButton = UIButton.systemButton(with: buttonImage, target: nil, action: nil) // so we can tap and get the delegate callback
             annotationView.rightCalloutAccessoryView = directionsRequestButton
             if hasDetailAccessoryView {
-                let bridgeMapDetailAccessoryView = BridgeMapDetailAccessoryView(fileServices: fileServices,
-                                                                                bridgeModel: bridgeMapAnnotation.bridgeModel)
+                let bridgeMapDetailAccessoryView = BridgeMapDetailAccessoryView(bridgeModel: bridgeMapAnnotation.bridgeModel)
                 let hostingController = UIHostingController(rootView: bridgeMapDetailAccessoryView)
                 hostingController.view.translatesAutoresizingMaskIntoConstraints = false
                 annotationView.detailCalloutAccessoryView = hostingController.view

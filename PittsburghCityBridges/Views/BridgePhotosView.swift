@@ -10,11 +10,9 @@ import os
 
 struct BridgePhotosView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
-    private let fileServices: FileServices
     
     let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgePhotosView")
     init() {
-        fileServices = FileServices()
     }
     
     var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
@@ -25,8 +23,8 @@ struct BridgePhotosView: View {
                     LazyVGrid(columns: columns) {
                         ForEach(bridgeStore.bridgeModels) { bridgeModel in
                             if let imageURL = bridgeModel.imageURL {
-                                NavigationLink(destination: BridgeDetailsView(fileServices: fileServices, bridgeModel: bridgeModel)) {
-                                    SinglePhotoView(imageURL: imageURL, fileServices: fileServices)
+                                NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
+                                    SinglePhotoView(imageURL: imageURL)
                                 }
                             }
                         }
@@ -43,9 +41,9 @@ struct SinglePhotoView: View {
     @ObservedObject private var imageLoader: UIImageLoader
     private let imageURL: URL
     
-    init(imageURL: URL, fileServices: FileServices) {
+    init(imageURL: URL) {
         self.imageURL = imageURL
-        imageLoader = UIImageLoader(fileServices: fileServices)
+        imageLoader = UIImageLoader()
     }
     private func makeImage(_ imageURL: URL, imageLoader: UIImageLoader) -> UIImage {
         var image: UIImage?

@@ -54,8 +54,8 @@ class UIImageLoader: ObservableObject {
         case loaded(Data)
     }
     
-    init(fileServices: FileServices) {
-        self.fileServices = fileServices
+    init() {
+        self.fileServices = FileServices()
     }
     
     @Published private(set) var state = State.idle

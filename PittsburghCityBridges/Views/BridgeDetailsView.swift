@@ -27,9 +27,9 @@ struct BridgeDetailsView: View {
         CGSize(width: offset.width + by.width, height: offset.height + by.height)
     }
     
-    init(fileServices: FileServices, bridgeModel: BridgeModel) {
+    init(bridgeModel: BridgeModel) {
         self.bridgeModel = bridgeModel
-        imageLoader = UIImageLoader(fileServices: fileServices)
+        imageLoader = UIImageLoader()
     }
     
     var dragGesture: some Gesture {
