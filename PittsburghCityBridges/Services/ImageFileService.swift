@@ -1,5 +1,5 @@
 //
-//  FileServices.swift
+//  ImageFileService.swift
 //  PittsburghCityBridges
 //
 //  Created by MAKinney on 12/3/21.
@@ -9,7 +9,7 @@ import Foundation
 import Files
 import os
 
-class FileServices: ObservableObject {
+class ImageFileService: ObservableObject {
     private let bridgeImagesFolderName = "BridgeImages"
     private var bridgeImagesFolder: Folder?
     private var cachesFolder: Folder?
@@ -38,15 +38,6 @@ class FileServices: ObservableObject {
         }
     }
     
-    func getFile(_ named: String) -> File? {
-        var file: File?
-        do {
-            file = try bridgeImagesFolder?.file(named: named)
-        } catch {
-            logger.info("\(#file) \(#function) error \(error.localizedDescription)")
-        }
-        return file
-    }
     
     func getData(for fileName: String) -> Data? {
         var data: Data?
@@ -60,6 +51,15 @@ class FileServices: ObservableObject {
         return data
     }
     
+    func getFile(_ named: String) -> File? {
+        var file: File?
+        do {
+            file = try bridgeImagesFolder?.file(named: named)
+        } catch {
+            logger.info("\(#file) \(#function) error \(error.localizedDescription)")
+        }
+        return file
+    }
     
     func save(data: Data, to fileName: String) {
         var existingFile = getFile(fileName)
@@ -76,14 +76,6 @@ class FileServices: ObservableObject {
         } catch {
             logger.info("\(#file) \(#function) error \(error.localizedDescription)")
             fatalError("\(#file) \(#function) could not create image file name \(fileName)")
-        }
-    }
-    
-    func createFile(_ named: String, data: Data) {
-        do {
-            try bridgeImagesFolder?.createFile(named: named, contents: data)
-        } catch {
-            logger.info("\(#file) \(#function) error \(error.localizedDescription)")
         }
     }
 }

@@ -46,7 +46,7 @@ import UIKit
 
 class UIImageLoader: ObservableObject {
     let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
-    private var fileServices: FileServices
+    private var imageFileService: ImageFileService
     enum State {
         case idle
         case loading
@@ -55,7 +55,7 @@ class UIImageLoader: ObservableObject {
     }
     
     init() {
-        self.fileServices = FileServices()
+        self.imageFileService = ImageFileService()
     }
     
     @Published private(set) var state = State.idle
@@ -82,7 +82,7 @@ class UIImageLoader: ObservableObject {
                 state = .loading
                 // already stored locally?
                 let imageFileName = imageFileName(imageURL)
-                let existingData = fileServices.getData(for: imageFileName)
+                let existingData = imageFileService.getData(for: imageFileName)
                 if let existingData =  existingData {
                     state = .loaded(existingData)
                     self.uiBridgeImages[imageFileName] = existingData
@@ -91,7 +91,7 @@ class UIImageLoader: ObservableObject {
                     logger.debug("\(response.debugDescription)")
                     if existingData == nil {
                         // persist, e.g. cache this data for future use
-                        fileServices.save(data: data, to: imageFileName)
+                        imageFileService.save(data: data, to: imageFileName)
                     }
                     state = .loaded(data)
                     self.uiBridgeImages[imageFileName] = data

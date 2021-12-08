@@ -67,11 +67,11 @@ struct BridgePhotosView_Previews: PreviewProvider {
     static let bridgeStore = BridgeStore()
     static var previews: some View {
         Text("BridgePhotosView_Previews needs code")
-        //        BridgePhotosView(imageLoader: UIImageLoader(FileServices()))
-        //            .environmentObject(bridgeStore)
-        //            .onAppear {
-        //                bridgeStore.preview()
-        //            }
+                BridgePhotosView()
+                    .environmentObject(bridgeStore)
+                    .onAppear {
+                        bridgeStore.preview()
+                    }
     }
 }
 
