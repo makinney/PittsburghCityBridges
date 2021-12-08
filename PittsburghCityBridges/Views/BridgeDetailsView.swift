@@ -72,9 +72,10 @@ struct BridgeDetailsView: View {
             if bridgeImageOnly {
                 GeometryReader { geometry in
                     VStack(alignment: .center) {
+                        Spacer()
                         Image(uiImage: makeImage(bridgeModel, imageLoader: imageLoader))
                             .resizable()
-                            .aspectRatio(1.0, contentMode: .fit)
+                            .aspectRatio(contentMode: .fit)
                             .cornerRadius(imageCornerRadius)
                             .overlay(
                                 RoundedRectangle(cornerRadius: imageCornerRadius)
@@ -85,7 +86,6 @@ struct BridgeDetailsView: View {
                             .animation(.easeInOut, value: imageScale)
                             .offset(dragOffset)
                             .animation(.easeInOut, value: dragOffset)
-                            .clipped()
                             .gesture(magGesture.simultaneously(with: dragGesture))
                             .gesture(dblTapToZoomInGesture)
                         //       .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
@@ -104,6 +104,7 @@ struct BridgeDetailsView: View {
                                     )
                                 }
                             }
+                        Spacer()
                     }
                 }
                 .onAppear {
