@@ -14,11 +14,7 @@ struct BridgePhotosView: View {
     
     let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgePhotosView")
     init() {
-        do {
-            try fileServices = FileServices()
-        } catch {
-            fatalError("failed to create file services \(error.localizedDescription)")
-        }
+        fileServices = FileServices()
     }
     
     var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)

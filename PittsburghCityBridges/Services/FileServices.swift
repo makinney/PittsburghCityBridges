@@ -11,19 +11,30 @@ import os
 
 class FileServices: ObservableObject {
     private let bridgeImagesFolderName = "BridgeImages"
-    private let bridgeImagesFolder: Folder
-    private let cachesFolder: Folder
+    private var bridgeImagesFolder: Folder?
+    private var cachesFolder: Folder?
     
     let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     
-    
-    init() throws {
+    init() {
         let cachesPath = FileManager.cachesDirectoryURL.path
-        cachesFolder = try Folder(path: cachesPath)
-        if !cachesFolder.containsSubfolder(named: bridgeImagesFolderName) {
-            bridgeImagesFolder = try cachesFolder.createSubfolder(named: bridgeImagesFolderName)
-        } else {
-            bridgeImagesFolder = try cachesFolder.subfolder(named: bridgeImagesFolderName)
+        do {
+            cachesFolder = try Folder(path: cachesPath)
+        } catch {
+            logger.info("\(#file) \(#function) error \(error.localizedDescription)")
+            fatalError("\(#file) \(#function) could not create cachesFolder")
+        }
+        if let cachesFolder = cachesFolder {
+            do {
+                if !cachesFolder.containsSubfolder(named: bridgeImagesFolderName) {
+                    bridgeImagesFolder = try cachesFolder.createSubfolder(named: bridgeImagesFolderName)
+                } else {
+                    bridgeImagesFolder = try cachesFolder.subfolder(named: bridgeImagesFolderName)
+                }
+            } catch {
+                logger.info("\(#file) \(#function) error \(error.localizedDescription)")
+                fatalError("\(#file) \(#function) could not create bridgeImagesFolder")
+            }
         }
     }
     
@@ -31,7 +42,7 @@ class FileServices: ObservableObject {
         // check for existance
         var file: File?
         do {
-            file = try bridgeImagesFolder.file(named: named)
+            file = try bridgeImagesFolder?.file(named: named)
         } catch {
             logger.info("\(#file) \(#function) error \(error.localizedDescription)")
         }
@@ -40,7 +51,7 @@ class FileServices: ObservableObject {
     
     func createFile(_ named: String, data: Data) {
         do {
-            try bridgeImagesFolder.createFile(named: named, contents: data)
+            try bridgeImagesFolder?.createFile(named: named, contents: data)
         } catch {
             logger.info("\(#file) \(#function) error \(error.localizedDescription)")
         }

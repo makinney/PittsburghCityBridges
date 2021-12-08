@@ -11,6 +11,39 @@ import SwiftUI
 import os
 import UIKit
 
+//struct BridgeView: View {
+//    @ObservedObject private var imageLoader: UIImageLoader
+//
+//    var imageURL: URL?
+//
+//    init(imageLoader: UIImageLoader, imageURL: URL?) {
+//        self.imageURL = imageURL
+//        self.imageLoader = imageLoader
+//    }
+//
+//    var body: some View {
+//        switch imageLoader.state {
+//        case .idle:
+//            Color.clear
+//                .onAppear {
+//                    imageLoader.loadBridgeImage(for: imageURL)
+//                }
+//        case .loading:
+//            HStack {
+//                Spacer()
+//                ProgressView()
+//                Spacer()
+//            }
+//        case .failed(let error):
+//            Text(error)
+//        case .loaded(let image):
+//            Image(uiImage: image)
+//                .resizable()
+//                .aspectRatio(contentMode: .fill)
+//        }
+//    }
+//}
+
 class UIImageLoader: ObservableObject {
     let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     private var fileServices: FileServices
