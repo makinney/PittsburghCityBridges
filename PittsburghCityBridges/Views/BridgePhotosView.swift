@@ -10,7 +10,6 @@ import os
 
 struct BridgePhotosView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
-    @ObservedObject private var imageLoader: UIImageLoader
     private let fileServices: FileServices
     
     let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgePhotosView")
@@ -20,15 +19,6 @@ struct BridgePhotosView: View {
         } catch {
             fatalError("failed to create file services \(error.localizedDescription)")
         }
-        imageLoader = UIImageLoader(fileServices: fileServices)
-    }
-    
-    private func makeImage(_ bridgeModel: BridgeModel, imageLoader: UIImageLoader) -> UIImage {
-        var image: UIImage?
-        if let data  = imageLoader.uiBridgeImages[imageLoader.imageFileName(bridgeModel.imageURL)] {
-            image = UIImage(data: data)
-        }
-        return image ?? UIImage()
     }
     
     var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
@@ -38,15 +28,10 @@ struct BridgePhotosView: View {
                 ScrollView {
                     LazyVGrid(columns: columns) {
                         ForEach(bridgeStore.bridgeModels) { bridgeModel in
-                            NavigationLink(destination: BridgeDetailsView(fileServices: fileServices, bridgeModel: bridgeModel)) {
-                                Image(uiImage: makeImage(bridgeModel, imageLoader: imageLoader))
-                                        .resizable()
-                                        .scaledToFill()
-                                    .frame(maxWidth: geometry.size.width)
-                                    .onAppear {
-                                        imageLoader.loadBridgeImage(for: bridgeModel.imageURL)
-                                    }
-                                
+                            if let imageURL = bridgeModel.imageURL {
+                                NavigationLink(destination: BridgeDetailsView(fileServices: fileServices, bridgeModel: bridgeModel)) {
+                                    SinglePhotoView(imageURL: imageURL, fileServices: fileServices)
+                                }
                             }
                         }
                     }
@@ -56,18 +41,43 @@ struct BridgePhotosView: View {
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
+}
+
+struct SinglePhotoView: View {
+    @ObservedObject private var imageLoader: UIImageLoader
+    private let imageURL: URL
     
+    init(imageURL: URL, fileServices: FileServices) {
+        self.imageURL = imageURL
+        imageLoader = UIImageLoader(fileServices: fileServices)
+    }
+    private func makeImage(_ imageURL: URL, imageLoader: UIImageLoader) -> UIImage {
+        var image: UIImage?
+        if let data  = imageLoader.uiBridgeImages[imageLoader.imageFileName(imageURL)] {
+            image = UIImage(data: data)?.preparingThumbnail(of: CGSize(width: 500, height: 500)) // TODO: calculate ideal size based on device?
+        }
+        return image ?? UIImage()
+    }
+    
+    var body: some View {
+        Image(uiImage: makeImage(imageURL, imageLoader: imageLoader))
+            .resizable()
+            .aspectRatio(1.0, contentMode: .fill)
+            .onAppear {
+                imageLoader.loadBridgeImage(for: imageURL)
+            }
+    }
 }
 
 struct BridgePhotosView_Previews: PreviewProvider {
     static let bridgeStore = BridgeStore()
     static var previews: some View {
         Text("BridgePhotosView_Previews needs code")
-//        BridgePhotosView(imageLoader: UIImageLoader(FileServices()))
-//            .environmentObject(bridgeStore)
-//            .onAppear {
-//                bridgeStore.preview()
-//            }
+        //        BridgePhotosView(imageLoader: UIImageLoader(FileServices()))
+        //            .environmentObject(bridgeStore)
+        //            .onAppear {
+        //                bridgeStore.preview()
+        //            }
     }
 }
 
