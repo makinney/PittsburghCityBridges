@@ -12,10 +12,6 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
-            BridgeMapView()
-                .tabItem {
-                    Label("Map", systemImage: "map")
-                }
             BridgeListView(BridgeListViewModel(bridgeStore))
                 .tabItem {
                     Label("Bridges", systemImage: "list.dash")
@@ -23,6 +19,10 @@ struct ContentView: View {
             BridgePhotosView()
                 .tabItem {
                     Label("Photos", systemImage: "photo")
+                }
+            BridgeMapView()
+                .tabItem {
+                    Label("Map", systemImage: "map")
                 }
         }
         .onAppear {

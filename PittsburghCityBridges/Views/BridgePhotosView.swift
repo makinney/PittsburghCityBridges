@@ -6,15 +6,12 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 import os
 
 struct BridgePhotosView: View {
+    @EnvironmentObject var bridgeStore: BridgeStore
     let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgePhotosView")
     
-    @EnvironmentObject var bridgeStore: BridgeStore
-    
-    var imageLoader: UIImageLoader = UIImageLoader()
     var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
     var body: some View {
         NavigationView {
@@ -22,20 +19,67 @@ struct BridgePhotosView: View {
                 ScrollView {
                     LazyVGrid(columns: columns) {
                         ForEach(bridgeStore.bridgeModels) { bridgeModel in
-                            NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
-                                BridgeImageView(bridgeModel.imageURL, options: [.scaleDownLargeImages])
-                                    .scaledToFill()
-                                    .frame(maxWidth: geometry.size.width)
+                            if let imageURL = bridgeModel.imageURL {
+                                NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
+                                    SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel)
+                                }
                             }
                         }
                     }
-                    .navigationTitle("Photos of Bridges")
                 }
+                .navigationTitle("Bridge Photos")
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
+}
+
+struct SinglePhotoView: View {
+    @State var bridgeImage = UIImage()
+    @State var imageLoaded = false
+    private var bridgeModel: BridgeModel
+    private var bridgeImageSystem: BridgeImageSystem
+    private let imageURL: URL
     
+    init(imageURL: URL, bridgeModel: BridgeModel) {
+        self.bridgeModel = bridgeModel
+        self.imageURL = imageURL
+        bridgeImageSystem = BridgeImageSystem()
+    }
+    
+    var body: some View {
+        ZStack {
+            Image(uiImage: bridgeImage )
+                .resizable()
+                .aspectRatio(1.0, contentMode: .fill)
+            VStack {
+                Spacer()
+                HStack {
+                    Text("\(bridgeModel.name)")
+                        .font(.caption)
+                        .foregroundColor(.primary)
+                        .background(.ultraThinMaterial)
+                    Spacer()
+                }
+                .padding(4)
+            }
+            ProgressView()
+                .opacity(imageLoaded ? 0.0 : 1.0)
+        }
+        .onAppear {
+            Task {
+                do {
+                    if let image = await bridgeImageSystem.getThumbnailImage(url:imageURL, size: CGSize(width: 1000, height: 1000)) {
+                        bridgeImage = image
+                        imageLoaded = true
+                    }
+                }
+            }
+        }
+        .onDisappear {
+            bridgeImage = UIImage()
+        }
+    }
 }
 
 struct BridgePhotosView_Previews: PreviewProvider {
@@ -48,40 +92,3 @@ struct BridgePhotosView_Previews: PreviewProvider {
             }
     }
 }
-
-
-
-//// this hangs up loading photos
-// struct BridgePhotosViewByGroup: View {
-//     let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgePhotosView")
-//
-//     @EnvironmentObject var bridgeStore: BridgeStore
-//     var imageLoader: UIImageLoader = UIImageLoader()
-//     var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
-//     var body: some View {
-//         NavigationView {
-//             GeometryReader { geometry in
-//                 ScrollView {
-//                     ForEach(bridgeStore.groupByNeighborhood()) { bridgeGroup in
-//                         Section("\(bridgeGroup.groupName)") {
-//                             LazyVGrid(columns: columns) {
-//                                 ForEach(bridgeGroup.bridgeModels) { bridgeModel in
-//                                     NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
-//                                         BridgeImageView(bridgeModel.imageURL, options: [.scaleDownLargeImages])
-//                                             .scaledToFill()
-//                                             .frame(maxWidth: geometry.size.width)
-//                                     }
-//                                 }
-//                             }
-//                         }
-//
-//                     }
-//        //             .navigationTitle("City Bridges")
-//                 }
-//             }
-//         }
-//         .navigationViewStyle(StackNavigationViewStyle())
-//     }
-// }
-//
-//

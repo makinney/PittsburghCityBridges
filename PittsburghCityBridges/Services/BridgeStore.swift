@@ -50,12 +50,12 @@ class BridgeStore: ObservableObject {
             do {
                 let urlPath = try await OpenDataService().openDataURL
                 guard let url = URL(string: urlPath) else {
-                    logger.error("Could not create URL from path \(urlPath, privacy: .public)")
+                    logger.error("\(#file) \(#function) Could not create URL from path \(urlPath, privacy: .public)")
                     return
                 }
                 loadModelsFrom(url: url)
             } catch let error {
-                logger.error("\(error.localizedDescription, privacy: .public)")
+                logger.error("\(#file) \(#function) \(error.localizedDescription, privacy: .public)")
             }
         }
     }
@@ -77,9 +77,8 @@ class BridgeStore: ObservableObject {
                     }
                 }
                 self.bridgeModels = freshModels // Publish
-                //              logger.info("refreshed \(self.bridgeModels)")
             } catch let error {
-                logger.error("\(error.localizedDescription, privacy: .public)")
+                logger.error("\(#file) \(#function) \(error.localizedDescription, privacy: .public)")
             }
         }
     }

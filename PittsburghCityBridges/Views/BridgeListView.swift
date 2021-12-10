@@ -11,6 +11,7 @@ struct BridgeListView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @State private var showSheet = false
     @State private var sectionListBy: BridgeListViewModel.SectionListBy = .neighborhood
+    
     private var bridgeListViewModel: BridgeListViewModel
   
     init(_ bridgeListViewModel: BridgeListViewModel) {
@@ -36,7 +37,7 @@ struct BridgeListView: View {
                     .font(.headline)
                 }
             }
-            .navigationTitle("List of Bridges")
+            .navigationTitle("Bridge Lists")
         
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -52,7 +53,7 @@ struct BridgeListView: View {
                         }
                     },
                          label: {
-                        Text("Sort")
+                        Text("Sort By")
                     })
                 }
             }

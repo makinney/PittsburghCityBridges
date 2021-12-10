@@ -6,17 +6,18 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 import os
 
 struct BridgeDetailsView: View {
-    @Namespace private var bridgeAnimations
     @State private var bridgeImageOnly = false
+    @State var bridgeImage = UIImage()
     @State private var dragOffset: CGSize = .zero
     @State private var imageScale: CGFloat = 1.0
     @State private var startingOffset: CGSize = .zero
+    @Namespace private var bridgeAnimations
     
     var bridgeModel: BridgeModel
+    private var bridgeImageSystem: BridgeImageSystem
     private let buttonCornerRadius: CGFloat = 5
     private let imageCornerRadius: CGFloat = 10
     private let imageSmallestMagnification = 1.0
@@ -24,6 +25,11 @@ struct BridgeDetailsView: View {
     
     private func totalOffset(offset: CGSize, by: CGSize) -> CGSize {
         CGSize(width: offset.width + by.width, height: offset.height + by.height)
+    }
+    
+    init(bridgeModel: BridgeModel) {
+        self.bridgeModel = bridgeModel
+        bridgeImageSystem = BridgeImageSystem()
     }
     
     var dragGesture: some Gesture {
@@ -58,8 +64,10 @@ struct BridgeDetailsView: View {
             if bridgeImageOnly {
                 GeometryReader { geometry in
                     VStack(alignment: .center) {
-                        BridgeImageView(bridgeModel.imageURL)
-                            .aspectRatio(1.0, contentMode: .fit)
+                        Spacer()
+                        Image(uiImage: bridgeImage)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
                             .cornerRadius(imageCornerRadius)
                             .overlay(
                                 RoundedRectangle(cornerRadius: imageCornerRadius)
@@ -70,10 +78,9 @@ struct BridgeDetailsView: View {
                             .animation(.easeInOut, value: imageScale)
                             .offset(dragOffset)
                             .animation(.easeInOut, value: dragOffset)
-                            .clipped()
                             .gesture(magGesture.simultaneously(with: dragGesture))
                             .gesture(dblTapToZoomInGesture)
-                     //       .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
+                        //       .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
                             .toolbar {
                                 ToolbarItem(placement: .navigationBarTrailing) {
                                     Button("Done") {
@@ -89,6 +96,7 @@ struct BridgeDetailsView: View {
                                     )
                                 }
                             }
+                        Spacer()
                     }
                 }
                 .onAppear {
@@ -101,40 +109,62 @@ struct BridgeDetailsView: View {
                 GeometryReader { geometry in
                     ScrollView(showsIndicators: false) {
                         VStack(alignment: .leading) {
+                            HStack {
+                                Spacer()
+                                Image(uiImage: bridgeImage)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .cornerRadius(imageCornerRadius)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: imageCornerRadius)
+                                            .stroke(Color.secondary, lineWidth: 2)
+                                    )
+                                    .frame(maxWidth: geometry.frame(in: .global).width, minHeight: 100)
+                                    .scaleEffect(imageScale)
+                                    .animation(.easeInOut, value: imageScale)
+                                    .clipped()
+                                    .gesture(magGesture)
+                                    .gesture(
+                                        TapGesture(count: 1)
+                                            .onEnded{
+                                                self.bridgeImageOnly = true
+                                            }
+                                    )
+                                Spacer()
+                            }
+                            //          .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
                             Text("\(bridgeModel.name)")
                                 .font(.headline)
-                            BridgeImageView(bridgeModel.imageURL)
-                                .aspectRatio(1.0, contentMode: .fit)
-                                .cornerRadius(imageCornerRadius)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: imageCornerRadius)
-                                        .stroke(Color.secondary, lineWidth: 2)
-                                )
-                                .scaleEffect(imageScale)
-                                .animation(.easeInOut, value: imageScale)
-                                .clipped()
-                                .gesture(magGesture)
-                                .gesture(
-                                    TapGesture(count: 1)
-                                        .onEnded{
-                                            self.bridgeImageOnly = true
-                                        }
-                                )
-                      //          .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
+                                .padding(.vertical)
                             Text(bridgeModel.builtHistory())
-                                .padding(.top, 2)
                                 .padding(.bottom)
                             Text(bridgeModel.neighborhoods())
-                            makeMapView(bridgeModel)
-                                .frame(height: 200)
-                                .cornerRadius(imageCornerRadius)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: imageCornerRadius)
-                                        .stroke(Color.secondary, lineWidth: 2)
-                                )
+                            HStack {
+                                Spacer()
+                                
+                                makeMapView(bridgeModel)
+                                    .frame(height: 200)
+                                    .cornerRadius(imageCornerRadius)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: imageCornerRadius)
+                                            .stroke(Color.secondary, lineWidth: 2)
+                                    )
+                                Spacer()
+                            }
                         }
                         .padding(.horizontal)
                     }
+                }
+                .onAppear {
+                    UIScrollView.appearance().bounces = true
+                    Task {
+                        do {
+                            if let image = await bridgeImageSystem.getImage(url: bridgeModel.imageURL)  {
+                                bridgeImage = image
+                            }
+                        }
+                    }
+                    
                 }
             }
         }
@@ -173,6 +203,6 @@ struct BridgeDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         BridgeDetailsView(bridgeModel: BridgeModel.preview)
             .preferredColorScheme(.dark)
-        //       BridgeDetailsView(bridgeModel: BridgeModel.preview)
+        BridgeDetailsView(bridgeModel: BridgeModel.preview)
     }
 }
