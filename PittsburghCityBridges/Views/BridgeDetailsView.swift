@@ -201,7 +201,6 @@ struct BridgeDetailsView: View {
 
 struct BridgeDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        Text("BridgeDetailsView_Previews needs code")
         BridgeDetailsView(bridgeModel: BridgeModel.preview)
             .preferredColorScheme(.dark)
         BridgeDetailsView(bridgeModel: BridgeModel.preview)
