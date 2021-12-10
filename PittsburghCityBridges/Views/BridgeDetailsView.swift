@@ -9,7 +9,7 @@ import SwiftUI
 import os
 
 struct BridgeDetailsView: View {
-    @ObservedObject var imageFileService: ImageFileService 
+    @ObservedObject var bridgeImageSystem: BridgeImageSystem
     @State private var bridgeImageOnly = false
     @State var bridgeImage = UIImage()
     @State private var dragOffset: CGSize = .zero
@@ -29,7 +29,7 @@ struct BridgeDetailsView: View {
     
     init(bridgeModel: BridgeModel) {
         self.bridgeModel = bridgeModel
-        imageFileService = ImageFileService()
+        bridgeImageSystem = BridgeImageSystem()
     }
     
     var dragGesture: some Gesture {
@@ -159,7 +159,7 @@ struct BridgeDetailsView: View {
                     UIScrollView.appearance().bounces = true
                     Task {
                         do {
-                            if let data = await imageFileService.getImageData(for: bridgeModel.imageURL),
+                            if let data = await bridgeImageSystem.getImageData(for: bridgeModel.imageURL),
                                let image =  UIImage(data: data) {
                                 bridgeImage = image
                             }

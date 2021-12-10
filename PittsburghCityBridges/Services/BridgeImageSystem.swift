@@ -1,5 +1,5 @@
 //
-//  ImageFileService.swift
+//  BridgeImageSystem.swift
 //  PittsburghCityBridges
 //
 //  Created by MAKinney on 12/3/21.
@@ -9,7 +9,7 @@ import Foundation
 import Files
 import os
 
-class ImageFileService: ObservableObject {
+class BridgeImageSystem: ObservableObject {
     private let bridgeImagesFolderName = "BridgeImages"
     private var bridgeImagesFolder: Folder?
     private (set)var cachedImageData: Data?

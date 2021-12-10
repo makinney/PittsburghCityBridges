@@ -16,15 +16,12 @@ struct PittsburghCityBridgesApp: App {
         bridgeStore = BridgeStore()
     }
     
-    
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(bridgeStore)
-      //          .environmentObject(imageFileService)
-            
-  //          CloudKitContentView()
- //              .environment(\.managedObjectContext, persistenceController.container.viewContext)
+  // CloudKitContentView()
+ //        .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
