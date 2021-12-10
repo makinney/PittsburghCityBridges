@@ -9,7 +9,6 @@ import SwiftUI
 import os
 
 struct BridgeDetailsView: View {
-    @ObservedObject var bridgeImageSystem: BridgeImageSystem
     @State private var bridgeImageOnly = false
     @State var bridgeImage = UIImage()
     @State private var dragOffset: CGSize = .zero
@@ -18,6 +17,7 @@ struct BridgeDetailsView: View {
     @Namespace private var bridgeAnimations
     
     var bridgeModel: BridgeModel
+    private var bridgeImageSystem: BridgeImageSystem
     private let buttonCornerRadius: CGFloat = 5
     private let imageCornerRadius: CGFloat = 10
     private let imageSmallestMagnification = 1.0
@@ -109,8 +109,6 @@ struct BridgeDetailsView: View {
                 GeometryReader { geometry in
                     ScrollView(showsIndicators: false) {
                         VStack(alignment: .leading) {
-                            Text("\(bridgeModel.name)")
-                                .font(.headline)
                             HStack {
                                 Spacer()
                                 Image(uiImage: bridgeImage)
@@ -135,8 +133,10 @@ struct BridgeDetailsView: View {
                                 Spacer()
                             }
                             //          .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
+                            Text("\(bridgeModel.name)")
+                                .font(.headline)
+                                .padding(.vertical)
                             Text(bridgeModel.builtHistory())
-                                .padding(.top, 2)
                                 .padding(.bottom)
                             Text(bridgeModel.neighborhoods())
                             HStack {
