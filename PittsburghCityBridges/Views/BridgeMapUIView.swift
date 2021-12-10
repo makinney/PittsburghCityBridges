@@ -13,7 +13,7 @@ struct BridgeMapUIView: UIViewRepresentable {
     typealias UIViewType = MKMapView
     let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     let bridgeModels: [BridgeModel]
-    let directionsService = DirectionsService()
+    let directionsProvider = DirectionsProvider()
     let region: MKCoordinateRegion
     let hasDetailAccessoryView: Bool
     
@@ -57,15 +57,15 @@ struct BridgeMapUIView: UIViewRepresentable {
     }
     
     func makeCoordinator() -> MapCoordinator {
-        let mapCoordinator = MapCoordinator(directionsService, hasDetailAccessoryView)
+        let mapCoordinator = MapCoordinator(directionsProvider, hasDetailAccessoryView)
         return mapCoordinator
     }
     
     final class MapCoordinator: NSObject, MKMapViewDelegate {
         let hasDetailAccessoryView: Bool
-        let directionsService: DirectionsService
-        init(_ directionsService: DirectionsService,_ hasDetailAccessoryView: Bool) {
-            self.directionsService = directionsService
+        let directionsProvider: DirectionsProvider
+        init(_ directionsProvider: DirectionsProvider,_ hasDetailAccessoryView: Bool) {
+            self.directionsProvider = directionsProvider
             self.hasDetailAccessoryView = hasDetailAccessoryView
         }
         
@@ -109,7 +109,7 @@ struct BridgeMapUIView: UIViewRepresentable {
         
         func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
             if let bridgeMapAnnotation = view.annotation as? BridgeMapAnnotation {
-                directionsService.requestDirectionsTo(bridgeMapAnnotation.coordinate)
+                directionsProvider.requestDirectionsTo(bridgeMapAnnotation.coordinate)
                 mapView.deselectAnnotation(view.annotation, animated: true)
             }
         }

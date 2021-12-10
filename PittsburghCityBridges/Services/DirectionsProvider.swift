@@ -1,5 +1,5 @@
 //
-//  DirectionsService.swift
+//  DirectionsProvider.swift
 //  PittsburghCityBridges
 //
 //  Created by MAKinney on 10/21/21.
@@ -10,7 +10,7 @@ import Combine
 import SwiftUI
 import os
 
-class DirectionsService {
+class DirectionsProvider {
     @Environment(\.openURL) private var openURL
     enum DirectionsRequest {
         case no
