@@ -95,9 +95,9 @@
 			isa = PBXGroup;
 			children = (
 				240075CC271493CB00CB864F /* AppLogging.swift */,
+				24808FDB275A6D9900FF131C /* BridgeImageSystem.swift */,
 				24CC1B4D270A8ABE009BE390 /* BridgeStore.swift */,
 				24B3FE902722356A004B93A6 /* DirectionsService.swift */,
-				24808FDB275A6D9900FF131C /* BridgeImageSystem.swift */,
 				24101261270F323E00FE7DEC /* OpenDataService.swift */,
 			);
 			path = Services;

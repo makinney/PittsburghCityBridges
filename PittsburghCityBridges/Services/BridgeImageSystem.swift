@@ -13,12 +13,10 @@ import UIKit
 class BridgeImageSystem: ObservableObject {
     private let bridgeImagesFolderName = "BridgeImages"
     private var bridgeImagesFolder: Folder?
+    private (set)var cachesFolder: Folder?
     private (set)var cachedImage: UIImage?
     private (set)var cachedThumbnailImage: UIImage?
-
-    private var cachesFolder: Folder?
-    
-    let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
+    private let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     
     init() {
         let cachesPath = FileManager.cachesDirectoryURL.path
@@ -77,7 +75,7 @@ class BridgeImageSystem: ObservableObject {
                 saveToDisk(fileName: imageFileName, data: data)
                 return data
             } catch {
-                logger.error("\(error.localizedDescription)")
+                logger.error("\(#file) \(#function) \(error.localizedDescription)")
             }
         }
         return nil

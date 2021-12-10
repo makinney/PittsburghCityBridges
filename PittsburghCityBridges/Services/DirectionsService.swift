@@ -48,7 +48,7 @@ class DirectionsService {
                 self.logger.info("\(#file) \(#function) received coordinates \(coordinate.latitude)")
                 if self.userLocationRequest == .requested {
                     self.userCoordinate =  coordinate
-                    self.logger.info("updated user coordinates lat \(coordinate.latitude) and long \(coordinate.longitude)")
+                    self.logger.info("\(#file) \(#function) updated user coordinates lat \(coordinate.latitude) and long \(coordinate.longitude)")
                     if self.directionsRequested == .yes {
                         self.requestMapDirections(from: self.userCoordinate, to: self.destinationCoordinate)
                     }
@@ -64,9 +64,9 @@ class DirectionsService {
         if let url = URL(string: "maps://?saddr=\(srcLat),\(srcLon)&daddr=\(dstLat),\(dstLon)") {
             openURL.callAsFunction(url) { accepted in
                 if accepted {
-                    self.logger.info("opened URL \(url)")
+                    self.logger.info("\(#file) \(#function) opened URL \(url)")
                 } else {
-                    self.logger.debug("failed to open URL \(url)")
+                    self.logger.debug("\(#file) \(#function) failed to open URL \(url)")
                 }
             }
         }
