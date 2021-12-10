@@ -21,7 +21,7 @@ struct PittsburghCityBridgesApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(bridgeStore)
-      //          .environmentObject(imageLoader)
+      //          .environmentObject(imageFileService)
             
   //          CloudKitContentView()
  //              .environment(\.managedObjectContext, persistenceController.container.viewContext)

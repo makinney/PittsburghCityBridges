@@ -35,14 +35,14 @@ struct BridgePhotosView: View {
 }
 
 struct SinglePhotoView: View {
-    @ObservedObject private var imageLoader: UIImageLoader
+    @ObservedObject private var imageFileService: ImageFileService
     private let imageURL: URL
     @State var bridgeImage = UIImage()
     @State var imageLoaded = false
     
     init(imageURL: URL) {
         self.imageURL = imageURL
-        imageLoader = UIImageLoader()
+        imageFileService = ImageFileService()
     }
     
     private func makeImage(_ data: Data) async -> UIImage? {
@@ -61,7 +61,7 @@ struct SinglePhotoView: View {
         .onAppear {
             Task {
                 do {
-                    if let data = await imageLoader.getImageData(for: imageURL),
+                    if let data = await imageFileService.getImageData(for: imageURL),
                        let image = await makeImage(data) {
                         bridgeImage = image
                         imageLoaded = true

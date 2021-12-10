@@ -7,12 +7,12 @@
 import SwiftUI
 
 struct BridgeMapDetailAccessoryView: View {
-   @ObservedObject private var imageLoader: UIImageLoader
+   @ObservedObject private var imageFileService: ImageFileService
     @State var bridgeImage = UIImage()
     var bridgeModel: BridgeModel
     init(bridgeModel: BridgeModel) {
         self.bridgeModel = bridgeModel
-        imageLoader = UIImageLoader()
+        imageFileService = ImageFileService()
     }
  
     var body: some View {
@@ -22,7 +22,7 @@ struct BridgeMapDetailAccessoryView: View {
             .aspectRatio(1.0, contentMode: .fit)
             .task {
                 do {
-                    let data = await imageLoader.getImageData(for: bridgeModel.imageURL)
+                    let data = await imageFileService.getImageData(for: bridgeModel.imageURL)
                     if let data = data,
                        let image = await UIImage(data: data)?.byPreparingThumbnail(ofSize: CGSize(width: 500, height: 500)) {
                         bridgeImage = image
