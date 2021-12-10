@@ -85,7 +85,6 @@ struct SinglePhotoView: View {
 struct BridgePhotosView_Previews: PreviewProvider {
     static let bridgeStore = BridgeStore()
     static var previews: some View {
-        Text("BridgePhotosView_Previews needs code")
         BridgePhotosView()
             .environmentObject(bridgeStore)
             .onAppear {
