@@ -21,7 +21,7 @@ struct BridgePhotosView: View {
                         ForEach(bridgeStore.bridgeModels) { bridgeModel in
                             if let imageURL = bridgeModel.imageURL {
                                 NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
-                                    SinglePhotoView(imageURL: imageURL)
+                                    SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel)
                                 }
                             }
                         }
@@ -37,10 +37,12 @@ struct BridgePhotosView: View {
 struct SinglePhotoView: View {
     @State var bridgeImage = UIImage()
     @State var imageLoaded = false
+    private var bridgeModel: BridgeModel
     private var bridgeImageSystem: BridgeImageSystem
     private let imageURL: URL
     
-    init(imageURL: URL) {
+    init(imageURL: URL, bridgeModel: BridgeModel) {
+        self.bridgeModel = bridgeModel
         self.imageURL = imageURL
         bridgeImageSystem = BridgeImageSystem()
     }
@@ -50,6 +52,17 @@ struct SinglePhotoView: View {
             Image(uiImage: bridgeImage )
                 .resizable()
                 .aspectRatio(1.0, contentMode: .fill)
+            VStack {
+                Spacer()
+                HStack {
+                    Text("\(bridgeModel.name)")
+                        .font(.caption)
+                        .foregroundColor(.primary)
+                        .background(.ultraThinMaterial)
+                    Spacer()
+                }
+                .padding(4)
+            }
             ProgressView()
                 .opacity(imageLoaded ? 0.0 : 1.0)
         }
