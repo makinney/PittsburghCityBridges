@@ -7,14 +7,14 @@
 import SwiftUI
 
 struct BridgeMapDetailAccessoryView: View {
-   @ObservedObject private var bridgeImageSystem: BridgeImageSystem
     @State var bridgeImage = UIImage()
+    private var bridgeImageSystem: BridgeImageSystem
     var bridgeModel: BridgeModel
     init(bridgeModel: BridgeModel) {
         self.bridgeModel = bridgeModel
         bridgeImageSystem = BridgeImageSystem()
     }
- 
+    
     var body: some View {
         Image(uiImage: bridgeImage)
             .resizable()
@@ -22,9 +22,7 @@ struct BridgeMapDetailAccessoryView: View {
             .aspectRatio(1.0, contentMode: .fit)
             .task {
                 do {
-                    let data = await bridgeImageSystem.getImageData(for: bridgeModel.imageURL)
-                    if let data = data,
-                       let image = await UIImage(data: data)?.byPreparingThumbnail(ofSize: CGSize(width: 500, height: 500)) {
+                    if let image = await bridgeImageSystem.getThumbnailImage(url: bridgeModel.imageURL, size: CGSize(width: 500, height: 500)) {
                         bridgeImage = image
                     }
                 }
@@ -35,6 +33,6 @@ struct BridgeMapDetailAccessoryView: View {
 struct DetailAccessoryView_Previews: PreviewProvider {
     static var previews: some View {
         Text("DetailAccessoryView_Previews needs code")
-       //  BridgeMapDetailAccessoryView(bridgeModel: BridgeModel.preview)
+        //  BridgeMapDetailAccessoryView(bridgeModel: BridgeModel.preview)
     }
 }

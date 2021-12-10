@@ -13,7 +13,9 @@ import UIKit
 class BridgeImageSystem: ObservableObject {
     private let bridgeImagesFolderName = "BridgeImages"
     private var bridgeImagesFolder: Folder?
-    private (set)var cachedImageData: Data?
+    private (set)var cachedImage: UIImage?
+    private (set)var cachedThumbnailImage: UIImage?
+
     private var cachesFolder: Folder?
     
     let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
@@ -41,36 +43,42 @@ class BridgeImageSystem: ObservableObject {
     }
     
     @MainActor
-    func getImageData(for imageURL: URL?) async -> Data? {
-        guard let imageURL = imageURL else { return nil }
-        var imageData: Data?
-        if let cachedImageData = cachedImageData {
-            return cachedImageData
+    func getImage(url: URL?) async -> UIImage? {
+        if let cachedImage = cachedImage {
+            return cachedImage
         }
-        let imageFileName = imageFileName(imageURL)
-        let imageFileData = getData(for: imageFileName)
-        if let imageFileData = imageFileData {
-            imageData = imageFileData
-            cachedImageData = imageData
-        } else {
-            do {
-                let (data, response) = try await URLSession.shared.data(from: imageURL)
-                logger.debug("\(#file) \(#function) \(response.debugDescription)")
-                // persist, e.g. cache this data for future use
-                imageData = data
-                cachedImageData = data
-                save(data: data, to: imageFileName)
-            } catch {
-                logger.error("\(error.localizedDescription)")
-            }
+        if let imageData = await getImageData(for: url) {
+            cachedImage = UIImage(data: imageData)
+            return cachedImage
         }
-        return imageData
+        return nil
     }
     
     @MainActor
-    func getImage(url: URL?) async -> UIImage? {
+    func getThumbnailImage(url: URL?, size: CGSize = CGSize(width: 100, height: 100)) async -> UIImage? {
+        if let cachedThumbnailImage = cachedThumbnailImage {
+            return cachedThumbnailImage
+        }
         if let imageData = await getImageData(for: url) {
-            return UIImage(data: imageData)
+            cachedThumbnailImage = await UIImage(data: imageData)?.byPreparingThumbnail(ofSize: size)
+           return cachedThumbnailImage
+        }
+        return nil
+    }
+    
+    func getImageData(for imageURL: URL?) async -> Data? {
+        guard let imageURL = imageURL else { return nil }
+        let imageFileName = imageFileName(imageURL)
+        if let persistedImageData = getData(for: imageFileName) {
+            return persistedImageData
+        } else {
+            do {
+                let (data, _) = try await URLSession.shared.data(from: imageURL)
+                saveToDisk(fileName: imageFileName, data: data)
+                return data
+            } catch {
+                logger.error("\(error.localizedDescription)")
+            }
         }
         return nil
     }
@@ -97,7 +105,16 @@ class BridgeImageSystem: ObservableObject {
         return file
     }
     
-    func save(data: Data, to fileName: String) {
+    func imageFileName(_ imageURL: URL?) -> String {
+        if let name = imageURL?.pathComponents.last {
+            return name
+        } else {
+            logger.info("\(#file) \(#function) error no file name for imageURL \(imageURL.debugDescription) ")
+            return ""
+        }
+    }
+    
+    private func saveToDisk(fileName: String, data: Data) {
         var existingFile = getFile(fileName)
         if existingFile == nil {
             do {
@@ -112,15 +129,6 @@ class BridgeImageSystem: ObservableObject {
         } catch {
             logger.info("\(#file) \(#function) error \(error.localizedDescription)")
             fatalError("\(#file) \(#function) could not create image file name \(fileName)")
-        }
-    }
-    
-    func imageFileName(_ imageURL: URL?) -> String {
-        if let name = imageURL?.pathComponents.last {
-            return name
-        } else {
-            logger.info("\(#file) \(#function) error no file name for imageURL \(imageURL.debugDescription) ")
-            return ""
         }
     }
 }
