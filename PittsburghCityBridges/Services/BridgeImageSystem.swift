@@ -8,6 +8,7 @@
 import Foundation
 import Files
 import os
+import UIKit
 
 class BridgeImageSystem: ObservableObject {
     private let bridgeImagesFolderName = "BridgeImages"
@@ -66,6 +67,13 @@ class BridgeImageSystem: ObservableObject {
         return imageData
     }
     
+    @MainActor
+    func getImage(url: URL?) async -> UIImage? {
+        if let imageData = await getImageData(for: url) {
+            return UIImage(data: imageData)
+        }
+        return nil
+    }
     
     func getData(for fileName: String) -> Data? {
         var data: Data?

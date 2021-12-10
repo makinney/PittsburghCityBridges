@@ -159,8 +159,7 @@ struct BridgeDetailsView: View {
                     UIScrollView.appearance().bounces = true
                     Task {
                         do {
-                            if let data = await bridgeImageSystem.getImageData(for: bridgeModel.imageURL),
-                               let image =  UIImage(data: data) {
+                            if let image = await bridgeImageSystem.getImage(url: bridgeModel.imageURL)  {
                                 bridgeImage = image
                             }
                         }
