@@ -11,10 +11,10 @@ import os
 struct BridgeDetailsView: View {
     @ObservedObject var imageLoader: UIImageLoader
     @State private var bridgeImageOnly = false
+    @State var bridgeImage = UIImage()
     @State private var dragOffset: CGSize = .zero
     @State private var imageScale: CGFloat = 1.0
     @State private var startingOffset: CGSize = .zero
-    @State private var imageLoading = false
     @Namespace private var bridgeAnimations
     
     var bridgeModel: BridgeModel
@@ -44,27 +44,19 @@ struct BridgeDetailsView: View {
                                              height: self.startingOffset.height + value.translation.height)
             }
     }
-
+    
     var magGesture: some Gesture {
         MagnificationGesture()
             .onChanged { newValue in
                 self.imageScale = max(newValue, imageSmallestMagnification)
             }
     }
-
+    
     var dblTapToZoomInGesture: some Gesture {
         TapGesture(count: 2)
             .onEnded {
                 self.imageScale *= 2.0
             }
-    }
-    
-    private func makeImage(_ bridgeModel: BridgeModel, imageLoader: UIImageLoader) -> UIImage {
-        var image: UIImage?
-        if let data  = imageLoader.uiBridgeImages[imageLoader.imageFileName(bridgeModel.imageURL)] {
-            image = UIImage(data: data)
-        }
-        return image ?? UIImage()
     }
     
     var body: some View {
@@ -73,7 +65,7 @@ struct BridgeDetailsView: View {
                 GeometryReader { geometry in
                     VStack(alignment: .center) {
                         Spacer()
-                        Image(uiImage: makeImage(bridgeModel, imageLoader: imageLoader))
+                        Image(uiImage: bridgeImage)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .cornerRadius(imageCornerRadius)
@@ -121,7 +113,7 @@ struct BridgeDetailsView: View {
                                 .font(.headline)
                             HStack {
                                 Spacer()
-                                Image(uiImage: makeImage(bridgeModel, imageLoader: imageLoader))
+                                Image(uiImage: bridgeImage)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .cornerRadius(imageCornerRadius)
@@ -149,25 +141,33 @@ struct BridgeDetailsView: View {
                             Text(bridgeModel.neighborhoods())
                             HStack {
                                 Spacer()
-
-                            makeMapView(bridgeModel)
-                                .frame(height: 200)
-                                .cornerRadius(imageCornerRadius)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: imageCornerRadius)
-                                        .stroke(Color.secondary, lineWidth: 2)
-                                )
+                                
+                                makeMapView(bridgeModel)
+                                    .frame(height: 200)
+                                    .cornerRadius(imageCornerRadius)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: imageCornerRadius)
+                                            .stroke(Color.secondary, lineWidth: 2)
+                                    )
                                 Spacer()
                             }
                         }
                         .padding(.horizontal)
                     }
                 }
+                .onAppear {
+                    UIScrollView.appearance().bounces = true
+                    Task {
+                        do {
+                            if let data = await imageLoader.getImageData(for: bridgeModel.imageURL),
+                               let image =  UIImage(data: data) {
+                                bridgeImage = image
+                            }
+                        }
+                    }
+                    
+                }
             }
-        }
-        .onAppear {
-            imageLoader.loadBridgeImage(for: bridgeModel.imageURL)
-            // display somekind of progress view over the bridge image area during load
         }
         .animation(.default, value: bridgeImageOnly)
     }
@@ -203,8 +203,8 @@ struct BridgeDetailsView: View {
 struct BridgeDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         Text("BridgeDetailsView_Previews needs code")
- //       BridgeDetailsView(bridgeModel: BridgeModel.preview)
-    //        .preferredColorScheme(.dark)
-        //       BridgeDetailsView(bridgeModel: BridgeModel.preview)
+        BridgeDetailsView(bridgeModel: BridgeModel.preview)
+            .preferredColorScheme(.dark)
+        BridgeDetailsView(bridgeModel: BridgeModel.preview)
     }
 }

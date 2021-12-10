@@ -8,31 +8,26 @@ import SwiftUI
 
 struct BridgeMapDetailAccessoryView: View {
    @ObservedObject private var imageLoader: UIImageLoader
+    @State var bridgeImage = UIImage()
     var bridgeModel: BridgeModel
     init(bridgeModel: BridgeModel) {
         self.bridgeModel = bridgeModel
         imageLoader = UIImageLoader()
     }
  
-    private func makeImage(_ bridgeModel: BridgeModel, imageLoader: UIImageLoader) -> UIImage {
-        var image: UIImage?
-        if let data  = imageLoader.uiBridgeImages[imageLoader.imageFileName(bridgeModel.imageURL)] {
-            // TODO: a better way to determine size than simple hardcoding, 
-            image = UIImage(data: data)?.preparingThumbnail(of: CGSize(width: 500, height: 500))
-        }
-        return image ?? UIImage()
-    }
-     
     var body: some View {
-        Image(uiImage: makeImage(bridgeModel, imageLoader: imageLoader))
+        Image(uiImage: bridgeImage)
             .resizable()
             .frame(width: 200)
             .aspectRatio(1.0, contentMode: .fit)
-            .onAppear {
-                imageLoader.loadBridgeImage(for: bridgeModel.imageURL)
-            }
-            .onDisappear {
-                imageLoader.clearImageCache(for: bridgeModel.imageURL)
+            .task {
+                do {
+                    let data = await imageLoader.getImageData(for: bridgeModel.imageURL)
+                    if let data = data,
+                       let image = await UIImage(data: data)?.byPreparingThumbnail(ofSize: CGSize(width: 500, height: 500)) {
+                        bridgeImage = image
+                    }
+                }
             }
     }
 }

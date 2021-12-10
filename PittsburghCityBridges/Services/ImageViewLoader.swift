@@ -11,96 +11,39 @@ import SwiftUI
 import os
 import UIKit
 
-//struct BridgeView: View {
-//    @ObservedObject private var imageLoader: UIImageLoader
-//
-//    var imageURL: URL?
-//
-//    init(imageLoader: UIImageLoader, imageURL: URL?) {
-//        self.imageURL = imageURL
-//        self.imageLoader = imageLoader
-//    }
-//
-//    var body: some View {
-//        switch imageLoader.state {
-//        case .idle:
-//            Color.clear
-//                .onAppear {
-//                    imageLoader.loadBridgeImage(for: imageURL)
-//                }
-//        case .loading:
-//            HStack {
-//                Spacer()
-//                ProgressView()
-//                Spacer()
-//            }
-//        case .failed(let error):
-//            Text(error)
-//        case .loaded(let image):
-//            Image(uiImage: image)
-//                .resizable()
-//                .aspectRatio(contentMode: .fill)
-//        }
-//    }
-//}
-
 class UIImageLoader: ObservableObject {
     let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     private var imageFileService: ImageFileService
-    enum State {
-        case idle
-        case loading
-        case failed(String)
-        case loaded(Data)
-    }
-    
+    private (set)var cachedImageData: Data?
     init() {
         self.imageFileService = ImageFileService()
     }
     
-    @Published private(set) var state = State.idle
-    @Published private(set) var uiBridgeImages: [String: Data] = [:]
-    
     @MainActor
-    
-    func clearImageCache(for imageURL: URL?) {
-        guard let imageURL = imageURL else {
-            return
+    func getImageData(for imageURL: URL?) async -> Data? {
+        guard let imageURL = imageURL else { return nil }
+        var imageData: Data?
+        if let cachedImageData = cachedImageData {
+            return cachedImageData
         }
         let imageFileName = imageFileName(imageURL)
-        uiBridgeImages.removeValue(forKey: imageFileName)
-    }
-    
-    @MainActor
-    func loadBridgeImage(for imageURL: URL?) {
-        Task {
+        let imageFileData = imageFileService.getData(for: imageFileName)
+        if let imageFileData = imageFileData {
+            imageData = imageFileData
+            cachedImageData = imageData
+        } else {
             do {
-                guard let imageURL = imageURL else {
-                    state = .failed("missing image URL")
-                    return
-                }
-                state = .loading
-                // already stored locally?
-                let imageFileName = imageFileName(imageURL)
-                let existingData = imageFileService.getData(for: imageFileName)
-                if let existingData =  existingData {
-                    state = .loaded(existingData)
-                    self.uiBridgeImages[imageFileName] = existingData
-                } else {
-                    let (data, response) = try await URLSession.shared.data(from: imageURL)
-                    logger.debug("\(response.debugDescription)")
-                    if existingData == nil {
-                        // persist, e.g. cache this data for future use
-                        imageFileService.save(data: data, to: imageFileName)
-                    }
-                    state = .loaded(data)
-                    self.uiBridgeImages[imageFileName] = data
-                }
-            } catch let error {
+                let (data, response) = try await URLSession.shared.data(from: imageURL)
+                logger.debug("\(#file) \(#function) \(response.debugDescription)")
+                // persist, e.g. cache this data for future use
+                imageData = data
+                cachedImageData = data
+                imageFileService.save(data: data, to: imageFileName)
+            } catch {
                 logger.error("\(error.localizedDescription)")
-                state = .failed(error.localizedDescription)
             }
         }
+        return imageData
     }
     
     func imageFileName(_ imageURL: URL?) -> String {
