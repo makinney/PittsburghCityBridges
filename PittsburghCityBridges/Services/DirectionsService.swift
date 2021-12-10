@@ -27,23 +27,23 @@ class DirectionsService {
     private var directionsRequested = DirectionsRequest.no
     private var userCoordinate = CLLocationCoordinate2D()
     private var userLocationRequest: UserLocationRequest = .none
-    private var locationManager: LocationManager
+    private var locationService: LocationService
     private let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     
     init() {
-        locationManager = LocationManager()
-        subscribeUserLocation()
+        locationService = LocationService()
+        subscribeUserCoordinatesUpdates()
     }
     
     func requestDirectionsTo(_ coordinate: CLLocationCoordinate2D) {
         directionsRequested = .yes
         userLocationRequest = .requested
         destinationCoordinate = coordinate
-        locationManager.requestUserLocation()
+        locationService.requestUserLocation()
     }
     
-    private func subscribeUserLocation() {
-        cancellable = locationManager.$userLocationCoordinate
+    private func subscribeUserCoordinatesUpdates() {
+        cancellable = locationService.$userLocationCoordinate
             .sink() { coordinate in
                 self.logger.info("\(#file) \(#function) received coordinates \(coordinate.latitude)")
                 if self.userLocationRequest == .requested {
@@ -57,6 +57,7 @@ class DirectionsService {
     }
     
     private func requestMapDirections(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) {
+        // opens Apple Maps
         let srcLat = from.latitude
         let srcLon = from.longitude
         let dstLat = to.latitude
