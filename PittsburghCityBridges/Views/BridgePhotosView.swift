@@ -27,7 +27,7 @@ struct BridgePhotosView: View {
                         }
                     }
                 }
-                .navigationTitle("Photos of Bridges")
+                .navigationTitle("Bridge Photos")
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
