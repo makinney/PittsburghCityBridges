@@ -13,11 +13,12 @@ struct BridgeMapUIView: UIViewRepresentable {
     typealias UIViewType = MKMapView
     let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     let bridgeModels: [BridgeModel]
-    let directionsProvider = DirectionsProvider()
+    private let directionsProvider = DirectionsProvider.shared
     let region: MKCoordinateRegion
     let hasDetailAccessoryView: Bool
-    
-    init(region: MKCoordinateRegion, bridgeModels: [BridgeModel], showsBridgeImage: Bool = true) {
+    init(region: MKCoordinateRegion,
+         bridgeModels: [BridgeModel],
+         showsBridgeImage: Bool = true) {
         logger.info("\(#file) \(#function)")
         self.region = region
         self.bridgeModels = bridgeModels
@@ -30,7 +31,9 @@ struct BridgeMapUIView: UIViewRepresentable {
         mapView.delegate = context.coordinator
         mapView.setRegion(region, animated: false)
         mapView.isRotateEnabled = false
-        mapView.showsUserLocation = true
+        if directionsProvider.userAuthorizationStatus == .authorizedAlways || directionsProvider.userAuthorizationStatus == .authorizedWhenInUse {
+            mapView.showsUserLocation = true
+        }
         return mapView
     }
     
@@ -81,16 +84,14 @@ struct BridgeMapUIView: UIViewRepresentable {
         }
         
         func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-            let location: CLLocation? = userLocation.location
-            let userCoordinates = location?.coordinate
-            if !mapView.isUserLocationVisible {
-                // move map so it's visible, maybe conditionally?
-                // move map to keep user in center of screen ?
-                // or maybe just once, per button toggle
-                
-            }
-            // need button to show and hide
-            print("\(#file) \(#function) coordinates \(String(describing: userCoordinates?.latitude)) , \(String(describing: userCoordinates?.longitude))")
+//            let location: CLLocation? = userLocation.location
+//            let userCoordinates = location?.coordinate
+//            if !mapView.isUserLocationVisible {
+//                // move map so it's visible, maybe conditionally?
+//                // move map to keep user in center of screen ?
+//                // or maybe just once, per button toggle
+//
+//            }
         }
         
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -113,6 +114,7 @@ struct BridgeMapUIView: UIViewRepresentable {
             annotationView.rightCalloutAccessoryView = directionsRequestButton
             if hasDetailAccessoryView {
                 let bridgeMapDetailAccessoryView = BridgeMapDetailAccessoryView(bridgeModel: bridgeMapAnnotation.bridgeModel)
+            //    bridgeMapDetailAccessoryView.
                 let hostingController = UIHostingController(rootView: bridgeMapDetailAccessoryView)
                 hostingController.view.translatesAutoresizingMaskIntoConstraints = false
                 annotationView.detailCalloutAccessoryView = hostingController.view

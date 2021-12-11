@@ -20,6 +20,9 @@ final class LocationService: NSObject, ObservableObject {
     @Published var locationCoordinate = CLLocationCoordinate2D()
     @Published var userLocationCoordinate = CLLocationCoordinate2D()
     private var userLocationRequest: UserLocationRequest = .none
+    var userAuthorizationStatus: CLAuthorizationStatus {
+        locationManager.authorizationStatus
+    }
     
     override init() {
         super.init()

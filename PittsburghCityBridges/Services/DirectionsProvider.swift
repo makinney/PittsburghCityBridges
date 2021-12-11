@@ -12,6 +12,7 @@ import os
 
 class DirectionsProvider {
     @Environment(\.openURL) private var openURL
+    static let shared = DirectionsProvider()
     enum DirectionsRequest {
         case no
         case yes
@@ -22,6 +23,7 @@ class DirectionsProvider {
         case requested
         case requestFullFilled
     }
+
     private var cancellable: AnyCancellable?
     private var destinationCoordinate = CLLocationCoordinate2D()
     private var directionsRequested = DirectionsRequest.no
@@ -29,8 +31,10 @@ class DirectionsProvider {
     private var userLocationRequest: UserLocationRequest = .none
     private var locationService: LocationService
     private let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
-    
-    init() {
+    var userAuthorizationStatus: CLAuthorizationStatus {
+        locationService.userAuthorizationStatus
+    }
+    private init() {
         locationService = LocationService()
         subscribeUserCoordinatesUpdates()
     }
