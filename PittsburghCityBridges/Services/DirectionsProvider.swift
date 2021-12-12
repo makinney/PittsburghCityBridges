@@ -31,9 +31,14 @@ class DirectionsProvider {
     private var userLocationRequest: UserLocationRequest = .none
     private var locationService: LocationService
     private let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
-    var userAuthorizationStatus: CLAuthorizationStatus {
-        locationService.userAuthorizationStatus
+    
+    var userlocationAuthorized: Bool {
+        if locationService.userAuthorizationStatus == .authorizedAlways || locationService.userAuthorizationStatus == .authorizedWhenInUse {
+            return true
+        }
+        return false
     }
+    
     private init() {
         locationService = LocationService()
         subscribeUserCoordinatesUpdates()

@@ -31,7 +31,7 @@ struct BridgeMapUIView: UIViewRepresentable {
         mapView.delegate = context.coordinator
         mapView.setRegion(region, animated: false)
         mapView.isRotateEnabled = false
-        if directionsProvider.userAuthorizationStatus == .authorizedAlways || directionsProvider.userAuthorizationStatus == .authorizedWhenInUse {
+        if directionsProvider.userlocationAuthorized {
             mapView.showsUserLocation = true
         }
         return mapView
@@ -126,6 +126,7 @@ struct BridgeMapUIView: UIViewRepresentable {
         func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
             if let bridgeMapAnnotation = view.annotation as? BridgeMapAnnotation {
                 directionsProvider.requestDirectionsTo(bridgeMapAnnotation.coordinate)
+                mapView.showsUserLocation = directionsProvider.userlocationAuthorized
                 mapView.deselectAnnotation(view.annotation, animated: true)
             }
         }
