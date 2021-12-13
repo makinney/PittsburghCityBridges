@@ -51,7 +51,7 @@ struct SinglePhotoView: View {
         ZStack {
             Image(uiImage: bridgeImage )
                 .resizable()
-                .aspectRatio(1.0, contentMode: .fill)
+                .aspectRatio(contentMode: .fit)
             VStack {
                 Spacer()
                 HStack {
@@ -59,11 +59,12 @@ struct SinglePhotoView: View {
                         .font(.caption)
                         .foregroundColor(.primary)
                         .background(.ultraThinMaterial)
+                        .opacity(imageLoaded ? 1.0 : 0.0)
                     Spacer()
                 }
                 .padding(4)
             }
-            ProgressView()
+            BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
                 .opacity(imageLoaded ? 0.0 : 1.0)
         }
         .onAppear {

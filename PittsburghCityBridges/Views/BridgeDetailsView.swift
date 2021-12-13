@@ -13,6 +13,7 @@ struct BridgeDetailsView: View {
     @State var bridgeImage = UIImage()
     @State private var dragOffset: CGSize = .zero
     @State private var imageScale: CGFloat = 1.0
+    @State private var bridgeImageLoaded = false
     @State private var startingOffset: CGSize = .zero
     @Namespace private var bridgeAnimations
     
@@ -111,25 +112,30 @@ struct BridgeDetailsView: View {
                         VStack(alignment: .leading) {
                             HStack {
                                 Spacer()
-                                Image(uiImage: bridgeImage)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .cornerRadius(imageCornerRadius)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: imageCornerRadius)
-                                            .stroke(Color.secondary, lineWidth: 2)
+                                ZStack {
+                                    Image(uiImage: bridgeImage)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .cornerRadius(imageCornerRadius)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: imageCornerRadius)
+                                                .stroke(Color.secondary, lineWidth: 2)
+                                        )
+                                        .frame(maxWidth: geometry.frame(in: .global).width, minHeight: 100)
+                                        .scaleEffect(imageScale)
+                                        .animation(.easeInOut, value: imageScale)
+                                        .clipped()
+                                        .opacity(bridgeImageLoaded ? 1.0 : 0.0)
+                                        .gesture(magGesture)
+                                        .gesture(
+                                            TapGesture(count: 1)
+                                                .onEnded{
+                                                    self.bridgeImageOnly = true
+                                                }
                                     )
-                                    .frame(maxWidth: geometry.frame(in: .global).width, minHeight: 100)
-                                    .scaleEffect(imageScale)
-                                    .animation(.easeInOut, value: imageScale)
-                                    .clipped()
-                                    .gesture(magGesture)
-                                    .gesture(
-                                        TapGesture(count: 1)
-                                            .onEnded{
-                                                self.bridgeImageOnly = true
-                                            }
-                                    )
+                                    BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
+                                        .opacity(bridgeImageLoaded ? 0.0 : 1.0)
+                                }
                                 Spacer()
                             }
                             //          .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
@@ -161,6 +167,7 @@ struct BridgeDetailsView: View {
                         do {
                             if let image = await bridgeImageSystem.getImage(url: bridgeModel.imageURL)  {
                                 bridgeImage = image
+                                bridgeImageLoaded = true
                             }
                         }
                     }

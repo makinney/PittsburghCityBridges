@@ -8,6 +8,7 @@ import SwiftUI
 
 struct BridgeMapDetailAccessoryView: View {
     @State var bridgeImage = UIImage()
+//    @State private var bridgeImageLoaded = false
     private var bridgeImageSystem: BridgeImageSystem
     var bridgeModel: BridgeModel
     init(bridgeModel: BridgeModel) {
@@ -16,17 +17,24 @@ struct BridgeMapDetailAccessoryView: View {
     }
     
     var body: some View {
-        Image(uiImage: bridgeImage)
-            .resizable()
-            .frame(width: 200)
-            .aspectRatio(1.0, contentMode: .fit)
-            .task {
-                do {
-                    if let image = await bridgeImageSystem.getThumbnailImage(url: bridgeModel.imageURL, size: CGSize(width: 500, height: 500)) {
-                        bridgeImage = image
-                    }
+        ZStack {
+            Image(uiImage: bridgeImage)
+                .resizable()
+                .frame(width: 200)
+                .aspectRatio(1.0, contentMode: .fit)
+//               .opacity(bridgeImageLoaded ? 1.0 : 0.0)
+//            BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
+//                .frame(width: 200, height: 200)
+//                .opacity(bridgeImageLoaded ? 0.0 : 1.0)
+        }
+        .task {
+            do {
+                if let image = await bridgeImageSystem.getThumbnailImage(url: bridgeModel.imageURL, size: CGSize(width: 500, height: 500)) {
+                    bridgeImage = image
+ //                   bridgeImageLoaded = true
                 }
             }
+        }
     }
 }
 
