@@ -54,7 +54,6 @@ class DirectionsProvider {
     private func subscribeUserCoordinatesUpdates() {
         cancellable = locationService.$userLocationCoordinate
             .sink() { coordinate in
-                self.logger.info("\(#file) \(#function) received coordinates \(coordinate.latitude)")
                 if self.userLocationRequest == .requested {
                     self.userCoordinate =  coordinate
                     self.logger.info("\(#file) \(#function) updated user coordinates lat \(coordinate.latitude) and long \(coordinate.longitude)")
