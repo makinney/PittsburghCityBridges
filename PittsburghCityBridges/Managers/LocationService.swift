@@ -1,5 +1,5 @@
 //
-//  LocationManager.swift
+//  LocationService.swift
 //  PittsburghCityBridges
 //
 //  Created by MAKinney on 10/21/21.
@@ -8,7 +8,7 @@
 import CoreLocation
 import os
 
-final class LocationManager: NSObject, ObservableObject {    
+final class LocationService: NSObject, ObservableObject {    
     enum UserLocationRequest {
         case none
         case requested
@@ -20,6 +20,9 @@ final class LocationManager: NSObject, ObservableObject {
     @Published var locationCoordinate = CLLocationCoordinate2D()
     @Published var userLocationCoordinate = CLLocationCoordinate2D()
     private var userLocationRequest: UserLocationRequest = .none
+    var userAuthorizationStatus: CLAuthorizationStatus {
+        locationManager.authorizationStatus
+    }
     
     override init() {
         super.init()
@@ -51,7 +54,7 @@ final class LocationManager: NSObject, ObservableObject {
     }
 }
 
-extension LocationManager: CLLocationManagerDelegate {
+extension LocationService: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
       if locationManager.authorizationStatus == .authorizedAlways || locationManager.authorizationStatus == .authorizedWhenInUse {
           requestOneLocationUpdate()

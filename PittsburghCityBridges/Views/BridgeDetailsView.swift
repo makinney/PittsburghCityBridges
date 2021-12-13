@@ -180,7 +180,7 @@ struct BridgeDetailsView: View {
                     if let locationCoordinate = bridgeModel.locationCoordinate {
                         Spacer()
                         Button {
-                            DirectionsService().requestDirectionsTo(locationCoordinate)
+                            DirectionsProvider.shared.requestDirectionsTo(locationCoordinate)
                         } label: {
                             Label("Directions", systemImage: "arrow.triangle.turn.up.right.circle.fill")
                                 .padding(4)

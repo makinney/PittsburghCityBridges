@@ -1,5 +1,5 @@
 //
-//  DirectionsService.swift
+//  DirectionsProvider.swift
 //  PittsburghCityBridges
 //
 //  Created by MAKinney on 10/21/21.
@@ -10,8 +10,9 @@ import Combine
 import SwiftUI
 import os
 
-class DirectionsService {
+class DirectionsProvider {
     @Environment(\.openURL) private var openURL
+    static let shared = DirectionsProvider()
     enum DirectionsRequest {
         case no
         case yes
@@ -22,30 +23,37 @@ class DirectionsService {
         case requested
         case requestFullFilled
     }
+
     private var cancellable: AnyCancellable?
     private var destinationCoordinate = CLLocationCoordinate2D()
     private var directionsRequested = DirectionsRequest.no
     private var userCoordinate = CLLocationCoordinate2D()
     private var userLocationRequest: UserLocationRequest = .none
-    private var locationManager: LocationManager
+    private var locationService: LocationService
     private let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     
-    init() {
-        locationManager = LocationManager()
-        subscribeUserLocation()
+    var userlocationAuthorized: Bool {
+        if locationService.userAuthorizationStatus == .authorizedAlways || locationService.userAuthorizationStatus == .authorizedWhenInUse {
+            return true
+        }
+        return false
+    }
+    
+    private init() {
+        locationService = LocationService()
+        subscribeUserCoordinatesUpdates()
     }
     
     func requestDirectionsTo(_ coordinate: CLLocationCoordinate2D) {
         directionsRequested = .yes
         userLocationRequest = .requested
         destinationCoordinate = coordinate
-        locationManager.requestUserLocation()
+        locationService.requestUserLocation()
     }
     
-    private func subscribeUserLocation() {
-        cancellable = locationManager.$userLocationCoordinate
+    private func subscribeUserCoordinatesUpdates() {
+        cancellable = locationService.$userLocationCoordinate
             .sink() { coordinate in
-                self.logger.info("\(#file) \(#function) received coordinates \(coordinate.latitude)")
                 if self.userLocationRequest == .requested {
                     self.userCoordinate =  coordinate
                     self.logger.info("\(#file) \(#function) updated user coordinates lat \(coordinate.latitude) and long \(coordinate.longitude)")
@@ -57,6 +65,7 @@ class DirectionsService {
     }
     
     private func requestMapDirections(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) {
+        // opens Apple Maps
         let srcLat = from.latitude
         let srcLon = from.longitude
         let dstLat = to.latitude
