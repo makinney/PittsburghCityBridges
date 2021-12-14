@@ -11,12 +11,15 @@ struct BridgeImageLoadingProgressView: View {
     var bridgeName: String
     
     var body: some View {
-        ProgressView {
-            Label("\(bridgeName)", systemImage: "arrow.down")
-                .labelStyle(.titleOnly)
-                .font(.caption)
+        VStack {
+            Text("Loading")
+            ProgressView {
+                Label("\(bridgeName)", systemImage: "arrow.down")
+                    .labelStyle(.titleOnly)
+            }
         }
         .foregroundColor(.primary)
+        .font(.caption)
     }
 }
 
