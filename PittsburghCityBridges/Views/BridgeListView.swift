@@ -83,11 +83,11 @@ struct BridgeListView: View {
         var title = ""
         switch selectedSection {
         case .name:
-            title = "Bridges by Name"
+            title = "by Name"
         case .neighborhood:
-            title = "Bridges by Location"
+            title = "by Location"
         case .year:
-            title = "Bridges by Year"
+            title = "by Year Built"
         }
         return title
     }
