@@ -11,14 +11,14 @@ import os
 struct BridgePhotosView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgePhotosView")
-    @State private var sectionListBy: BridgeListViewModel.SectionListBy = .neighborhood
+    private var sectionListBy: BridgeListViewModel.SectionListBy = .neighborhood
     private var bridgeListViewModel: BridgeListViewModel
 
-    init(_ bridgeListViewModel: BridgeListViewModel) {
+    init(_ bridgeListViewModel: BridgeListViewModel, sectionListBy: BridgeListViewModel.SectionListBy = .name) {
         self.bridgeListViewModel = bridgeListViewModel
+        self.sectionListBy = sectionListBy
         //      UITableView.appearance().backgroundColor = .green
     }
-    
     
     var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
     var body: some View {
@@ -48,31 +48,6 @@ struct BridgePhotosView: View {
             .listStyle(.grouped)
             .navigationTitle(makeNavigationTitle(for: sectionListBy))
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Menu(content: {
-                        Button {
-                            self.sectionListBy = .neighborhood
-                        } label: {
-                            makeCheckedLabel("Sort by Location", selectedSection: .neighborhood)
-                        }
-                        Button {
-                            self.sectionListBy = .name
-                        } label: {
-                            makeCheckedLabel("Sort by Name", selectedSection: .name)
-                        }
-                        Button {
-                            self.sectionListBy = .year
-                        } label: {
-                            makeCheckedLabel("Sort by Year", selectedSection: .year)
-                        }
-                    },
-                         label: {
-                        Label("Sort", systemImage: "arrow.down")
-                            .labelStyle(.titleAndIcon)
-                    })
-                }
-            }
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
@@ -96,24 +71,15 @@ struct BridgePhotosView: View {
 //        }
 //        .navigationViewStyle(StackNavigationViewStyle())
 //    }
-    
-    private func makeCheckedLabel(_ name: String, selectedSection: BridgeListViewModel.SectionListBy) -> Label<Text, Image> {
-        if self.sectionListBy == selectedSection {
-            return Label(name, systemImage: "checkmark")
-        } else {
-            return Label(name, systemImage: "")
-        }
-    }
-    
     private func makeNavigationTitle(for selectedSection: BridgeListViewModel.SectionListBy) -> String {
         var title = ""
         switch selectedSection {
         case .name:
-            title = "Bridges by Name"
+            title = "by Name"
         case .neighborhood:
-            title = "Bridges by Location"
+            title = "by Location"
         case .year:
-            title = "Bridges by Year Built"
+            title = "by Year Built"
         }
         return title
     }

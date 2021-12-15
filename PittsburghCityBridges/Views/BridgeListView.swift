@@ -10,12 +10,13 @@ import SwiftUI
 struct BridgeListView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @State private var showSheet = false
-    @State private var sectionListBy: BridgeListViewModel.SectionListBy = .neighborhood
+    private var sectionListBy: BridgeListViewModel.SectionListBy = .neighborhood
     
     private var bridgeListViewModel: BridgeListViewModel
     
-    init(_ bridgeListViewModel: BridgeListViewModel) {
+    init(_ bridgeListViewModel: BridgeListViewModel, sectionListBy: BridgeListViewModel.SectionListBy = .name) {
         self.bridgeListViewModel = bridgeListViewModel
+        self.sectionListBy = sectionListBy
         //      UITableView.appearance().backgroundColor = .green
     }
     
@@ -39,44 +40,10 @@ struct BridgeListView: View {
                 }
             }
             .navigationTitle(makeNavigationTitle(for: sectionListBy))
-            
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Menu(content: {
-                        Button {
-                            self.sectionListBy = .neighborhood
-                        } label: {
-                            makeCheckedLabel("Sort by Location", selectedSection: .neighborhood)
-                        }
-                        Button {
-                            self.sectionListBy = .name
-                        } label: {
-                            makeCheckedLabel("Sort by Name", selectedSection: .name)
-                        }
-                        Button {
-                            self.sectionListBy = .year
-                        } label: {
-                            makeCheckedLabel("Sort by Year", selectedSection: .year)
-                        }
-                    },
-                         label: {
-                        Label("Sort", systemImage: "arrow.down")
-                            .labelStyle(.titleAndIcon)
-                    })
-                }
-            }
         }
         //     .foregroundColor(Color.blue)
         .navigationViewStyle(StackNavigationViewStyle())
         
-    }
-    
-    private func makeCheckedLabel(_ name: String, selectedSection: BridgeListViewModel.SectionListBy) -> Label<Text, Image> {
-        if self.sectionListBy == selectedSection {
-            return Label(name, systemImage: "checkmark")
-        } else {
-            return Label(name, systemImage: "")
-        }
     }
     
     private func makeNavigationTitle(for selectedSection: BridgeListViewModel.SectionListBy) -> String {
