@@ -32,6 +32,7 @@ struct BridgeListView: View {
                         //               .background(Color("SteelersBlack"))
                         .font(.body)
                     }
+                    
                     //            .listRowBackground(Color.orange)
                     //           .background(Color.purple)
                     .font(.headline)
