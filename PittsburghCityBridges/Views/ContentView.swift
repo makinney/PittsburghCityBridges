@@ -16,7 +16,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("Bridges", systemImage: "list.dash")
                 }
-            BridgePhotosView()
+            BridgePhotosView(BridgeListViewModel(bridgeStore))
                 .tabItem {
                     Label("Photos", systemImage: "photo")
                 }

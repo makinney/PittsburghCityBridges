@@ -13,12 +13,12 @@ struct BridgeListView: View {
     @State private var sectionListBy: BridgeListViewModel.SectionListBy = .neighborhood
     
     private var bridgeListViewModel: BridgeListViewModel
-  
+    
     init(_ bridgeListViewModel: BridgeListViewModel) {
         self.bridgeListViewModel = bridgeListViewModel
-  //      UITableView.appearance().backgroundColor = .green
+        //      UITableView.appearance().backgroundColor = .green
     }
-
+    
     var body: some View {
         NavigationView {
             List {
@@ -29,38 +29,67 @@ struct BridgeListView: View {
                                 BridgeListRow(bridgeModel: bridgeModel)
                             }
                         }
-         //               .background(Color("SteelersBlack"))
+                        //               .background(Color("SteelersBlack"))
                         .font(.body)
                     }
-        //            .listRowBackground(Color.orange)
-         //           .background(Color.purple)
+                    
+                    //            .listRowBackground(Color.orange)
+                    //           .background(Color.purple)
                     .font(.headline)
                 }
             }
-            .navigationTitle("Bridge Lists")
-        
+            .navigationTitle(makeNavigationTitle(for: sectionListBy))
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu(content: {
-                        Button("Name") {
-                            self.sectionListBy = .name
-                        }
-                        Button("Neighborhood") {
+                        Button {
                             self.sectionListBy = .neighborhood
+                        } label: {
+                            makeCheckedLabel("Sort by Location", selectedSection: .neighborhood)
                         }
-                        Button("Year") {
+                        Button {
+                            self.sectionListBy = .name
+                        } label: {
+                            makeCheckedLabel("Sort by Name", selectedSection: .name)
+                        }
+                        Button {
                             self.sectionListBy = .year
+                        } label: {
+                            makeCheckedLabel("Sort by Year", selectedSection: .year)
                         }
                     },
                          label: {
-                        Text("Sort By")
+                        Label("Sort", systemImage: "arrow.down")
+                            .labelStyle(.titleAndIcon)
                     })
                 }
             }
         }
-   //     .foregroundColor(Color.blue)
+        //     .foregroundColor(Color.blue)
         .navigationViewStyle(StackNavigationViewStyle())
-
+        
+    }
+    
+    private func makeCheckedLabel(_ name: String, selectedSection: BridgeListViewModel.SectionListBy) -> Label<Text, Image> {
+        if self.sectionListBy == selectedSection {
+            return Label(name, systemImage: "checkmark")
+        } else {
+            return Label(name, systemImage: "")
+        }
+    }
+    
+    private func makeNavigationTitle(for selectedSection: BridgeListViewModel.SectionListBy) -> String {
+        var title = ""
+        switch selectedSection {
+        case .name:
+            title = "Bridges by Name"
+        case .neighborhood:
+            title = "Bridges by Location"
+        case .year:
+            title = "Bridges by Year"
+        }
+        return title
     }
 }
 
