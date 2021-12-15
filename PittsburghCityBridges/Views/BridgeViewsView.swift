@@ -24,13 +24,37 @@ struct BridgeViewsView: View {
         switch viewBridgeAs {
         case .list:
             VStack {
-                Text("Pittsburgh City Bridges")
+                menu()
                 BridgeListView(bridgeListViewModel)
             }
         case .photos:
             VStack {
-                Text("Pittsburgh City Bridges")
+                menu()
                 BridgePhotosView(bridgeListViewModel)
+            }
+        }
+    }
+    
+    private func menu() -> some View {
+        HStack {
+            ZStack {
+                HStack {
+                    Spacer()
+                    Text("Pittsburgh City Bridges")
+                    Spacer()
+                }
+                HStack {
+                    Menu("View" ,content: {
+                        Button("As List") {
+                            viewBridgeAs = .list
+                        }
+                        Button("As Photos") {
+                            viewBridgeAs = .photos
+                        }
+                    })
+                    .padding(.leading, 10)
+                    Spacer()
+                }
             }
         }
     }
@@ -38,8 +62,11 @@ struct BridgeViewsView: View {
 
 struct BridgeViewsView_Previews: PreviewProvider {
     static let bridgeStore = BridgeStore()
-
     static var previews: some View {
         BridgeViewsView(BridgeListViewModel(bridgeStore))
+            .environmentObject(bridgeStore)
+            .onAppear {
+                bridgeStore.preview()
+            }
     }
 }
