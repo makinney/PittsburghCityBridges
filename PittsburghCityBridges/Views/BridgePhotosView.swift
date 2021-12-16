@@ -25,10 +25,10 @@ struct BridgePhotosView: View {
         NavigationView {
             HStack {
                 Spacer()
-                List {
-                    ForEach(bridgeListViewModel.sectionList(sectionListBy)) { bridgesSection in
-                        Section("\(bridgesSection.sectionName)") {
-                       //     LazyVGrid(columns: columns) {
+                ScrollView {
+                    LazyVStack(spacing: 10, pinnedViews: [.sectionHeaders]) {
+                        ForEach(bridgeListViewModel.sectionList(sectionListBy)) { bridgesSection in
+                            Section {
                                 ForEach(bridgesSection.bridgeModels) { bridgeModel in
                                     if let imageURL = bridgeModel.imageURL {
                                         NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
@@ -36,41 +36,27 @@ struct BridgePhotosView: View {
                                         }
                                     }
                                 }
-                       //     }
-                            //               .background(Color("SteelersBlack"))
-                            .font(.body)
+                                //               .background(Color("SteelersBlack"))
+                                .font(.body)
+                            } header: {
+                                HStack {
+                                    Spacer()
+                                    Text("\(bridgesSection.sectionName)")
+                                    Spacer()
+                                }
+                                .background(Color.black)
+                            }
                         }
-                        //            .listRowBackground(Color.orange)
-                        //           .background(Color.purple)
-                        .font(.headline)
                     }
+                    
                 }
-            .listStyle(.grouped)
-            .navigationTitle(makeNavigationTitle(for: sectionListBy))
+                .padding(.trailing, 10)
+                .navigationBarHidden(true)
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
-//    var body: some View {
-//        NavigationView {
-//            GeometryReader { geometry in
-//                ScrollView {
-//                    LazyVGrid(columns: columns) {
-//                        ForEach(bridgeStore.bridgeModels) { bridgeModel in
-//                            if let imageURL = bridgeModel.imageURL {
-//                                NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
-//                                    SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel)
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//                .navigationTitle("Bridge Photos")
-//            }
-//        }
-//        .navigationViewStyle(StackNavigationViewStyle())
-//    }
     private func makeNavigationTitle(for selectedSection: BridgeListViewModel.SectionListBy) -> String {
         var title = ""
         switch selectedSection {
