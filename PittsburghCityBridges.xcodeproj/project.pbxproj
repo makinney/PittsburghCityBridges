@@ -145,13 +145,13 @@
 				2405C99C2767E1CF00C68307 /* BridgeImageLoadingProgressView.swift */,
 				240075D02716607B00CB864F /* BridgeListRow.swift */,
 				241012862713784D00FE7DEC /* BridgeListView.swift */,
+				24C65480276A855A006363B8 /* BridgeViewsView.swift */,
 				241012882713785C00FE7DEC /* BridgeMapView.swift */,
 				2419B8B8271F382600BFE3D8 /* BridgeMapUIView.swift */,
 				2419B8BC2721843700BFE3D8 /* BridgeMapDetailAccessoryView.swift */,
 				2410128A2713787200FE7DEC /* BridgePhotosView.swift */,
 				248FC584270276EA00BE168F /* CloudKitContentView.swift */,
 				2410128C2713855400FE7DEC /* ContentView.swift */,
-				24C65480276A855A006363B8 /* BridgeViewsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

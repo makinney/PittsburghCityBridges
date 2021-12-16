@@ -22,18 +22,23 @@ struct BridgeViewsView: View {
     }
     
     var body: some View {
-        switch viewBridgeAs {
-        case .list:
-            VStack {
-                menuBar()
-                BridgeListView(bridgeListViewModel, sectionListBy: sectionListBy)
-            }
-        case .photos:
-            VStack {
-                menuBar()
-                BridgePhotosView(bridgeListViewModel, sectionListBy: sectionListBy)
+        VStack {
+            switch viewBridgeAs {
+            case .list:
+                VStack {
+                    menuBar()
+                    BridgeListView(bridgeListViewModel, sectionListBy: sectionListBy)
+                }
+//                .transition(.opacity)
+            case .photos:
+                VStack {
+                    menuBar()
+                    BridgePhotosView(bridgeListViewModel, sectionListBy: sectionListBy)
+                }
             }
         }
+        .transition(.opacity)
+        .animation(.easeInOut, value: viewBridgeAs)
     }
     
     private func menuBar() -> some View {
