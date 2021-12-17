@@ -78,17 +78,17 @@ struct BridgeViewsView: View {
             Button {
                 sectionListBy = .name
             } label: {
-                makeCheckedSortLabel("Name Grouping", selectedSection: .name)
+                makeCheckedSortLabel("By Names", selectedSection: .name)
             }
             Button {
                 sectionListBy = .neighborhood
             } label: {
-                makeCheckedSortLabel("Neighborhood Grouping", selectedSection: .neighborhood)
+                makeCheckedSortLabel("By Neighborhoods", selectedSection: .neighborhood)
             }
             Button {
                 sectionListBy = .year
             } label: {
-                makeCheckedSortLabel("Year Built Grouping", selectedSection: .year)
+                makeCheckedSortLabel("By Year Built", selectedSection: .year)
             }
         }, label: {
             Label("Sort", systemImage: "rectangle.split.3x3")

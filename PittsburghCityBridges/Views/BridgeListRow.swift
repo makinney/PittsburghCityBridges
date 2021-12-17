@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BridgeListRow: View {
     var bridgeModel: BridgeModel
+
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -20,8 +21,14 @@ struct BridgeListRow: View {
                 }
                 Spacer()
             }
+            .multilineTextAlignment(.leading)
+            .foregroundColor(.primary)
+            Spacer()
+            VStack {
+            Image(systemName: "arrow.forward")
+                Spacer()
+            }
         }
- //       .foregroundColor(Color("PiratesGold"))
     }
 }
 

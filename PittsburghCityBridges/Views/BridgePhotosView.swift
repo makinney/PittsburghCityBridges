@@ -20,11 +20,8 @@ struct BridgePhotosView: View {
         //      UITableView.appearance().backgroundColor = .green
     }
     
-    var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
     var body: some View {
         NavigationView {
-            HStack {
-                Spacer()
                 ScrollView {
                     LazyVStack(spacing: 10, pinnedViews: [.sectionHeaders]) {
                         ForEach(bridgeListViewModel.sectionList(sectionListBy)) { bridgesSection in
@@ -42,32 +39,21 @@ struct BridgePhotosView: View {
                                 HStack {
                                     Spacer()
                                     Text("\(bridgesSection.sectionName)")
+                                        .foregroundColor(Color("SteelersGold"))
+
                                     Spacer()
                                 }
-                                .background(Color.black)
+                                .background(Color("SteelersBlack"))
+                       //         .background(Color.white)
                             }
                         }
                     }
                     
                 }
-                .padding(.trailing, 10)
+                .padding([.leading, .trailing], 10)
                 .navigationBarHidden(true)
-            }
         }
         .navigationViewStyle(StackNavigationViewStyle())
-    }
-    
-    private func makeNavigationTitle(for selectedSection: BridgeListViewModel.SectionListBy) -> String {
-        var title = ""
-        switch selectedSection {
-        case .name:
-            title = "by Name"
-        case .neighborhood:
-            title = "by Location"
-        case .year:
-            title = "by Year Built"
-        }
-        return title
     }
 }
 
@@ -90,16 +76,18 @@ struct SinglePhotoView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
             VStack {
-                Spacer()
                 HStack {
+                    Spacer()
                     Text("\(bridgeModel.name)")
                         .font(.caption)
-                        .foregroundColor(.primary)
-                        .background(.ultraThinMaterial)
+                        .foregroundColor(Color("SteelersGold"))
+                        .padding([.leading, .trailing], 5)
+                        .background(Color("SteelersBlack"))
                         .opacity(imageLoaded ? 1.0 : 0.0)
                     Spacer()
                 }
                 .padding(4)
+                Spacer()
             }
             BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
                 .opacity(imageLoaded ? 0.0 : 1.0)

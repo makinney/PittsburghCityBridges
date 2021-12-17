@@ -11,7 +11,6 @@ struct BridgeListView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @State private var showSheet = false
     private var sectionListBy: BridgeListViewModel.SectionListBy = .neighborhood
-    
     private var bridgeListViewModel: BridgeListViewModel
     
     init(_ bridgeListViewModel: BridgeListViewModel, sectionListBy: BridgeListViewModel.SectionListBy = .name) {
@@ -22,41 +21,43 @@ struct BridgeListView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(bridgeListViewModel.sectionList(sectionListBy)) { bridgesSection in
-                    Section("\(bridgesSection.sectionName)") {
-                        ForEach(bridgesSection.bridgeModels) { bridgeModel in
-                            NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
-                                BridgeListRow(bridgeModel: bridgeModel)
+            ScrollView {
+                LazyVStack(spacing: 5, pinnedViews: [.sectionHeaders]) {
+                    ForEach(bridgeListViewModel.sectionList(sectionListBy)) { bridgesSection in
+                        Section {
+                            ForEach(bridgesSection.bridgeModels) { bridgeModel in
+                                NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
+                                    BridgeListRow(bridgeModel: bridgeModel)
+                                        .padding([.trailing, .leading], 10)
+                                }
                             }
+                            //               .background(Color("SteelersBlack"))
+                            .font(.body)
+                        } header: {
+                            HStack {
+                                Spacer()
+                                Text("\(bridgesSection.sectionName)")
+                                    .foregroundColor(Color("SteelersGold"))
+                                Spacer()
+                            }
+                                .background(Color("SteelersBlack"))
+     //                       .background(Color.white)
+//                            .background(Color.black)
                         }
-                        //               .background(Color("SteelersBlack"))
-                        .font(.body)
+                        
+                        //            .listRowBackground(Color.orange)
+                        //           .background(Color.orange)
+                        .font(.headline)
                     }
                     
-                    //            .listRowBackground(Color.orange)
-                    //           .background(Color.purple)
-                    .font(.headline)
                 }
+                //       .listStyle(.grouped)
             }
+            
             .navigationBarHidden(true)
         }
         //     .foregroundColor(Color.blue)
         .navigationViewStyle(StackNavigationViewStyle())
-        
-    }
-    
-    private func makeNavigationTitle(for selectedSection: BridgeListViewModel.SectionListBy) -> String {
-        var title = ""
-        switch selectedSection {
-        case .name:
-            title = "by Name"
-        case .neighborhood:
-            title = "by Location"
-        case .year:
-            title = "by Year Built"
-        }
-        return title
     }
 }
 
