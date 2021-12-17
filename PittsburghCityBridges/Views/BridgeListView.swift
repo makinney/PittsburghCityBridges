@@ -39,7 +39,7 @@ struct BridgeListView: View {
                     .font(.headline)
                 }
             }
-            .navigationTitle(makeNavigationTitle(for: sectionListBy))
+            .navigationBarHidden(true)
         }
         //     .foregroundColor(Color.blue)
         .navigationViewStyle(StackNavigationViewStyle())
