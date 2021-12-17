@@ -12,14 +12,14 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
-            BridgeListView(BridgeListViewModel(bridgeStore))
+            BridgeViewsView(BridgeListViewModel(bridgeStore))
                 .tabItem {
-                    Label("Bridges", systemImage: "list.dash")
+                    Label("Bridges", systemImage: "waveform")
                 }
-            BridgePhotosView(BridgeListViewModel(bridgeStore))
-                .tabItem {
-                    Label("Photos", systemImage: "photo")
-                }
+//            BridgePhotosView(BridgeListViewModel(bridgeStore))
+//                .tabItem {
+//                    Label("Photos", systemImage: "photo")
+//                }
             BridgeMapView()
                 .tabItem {
                     Label("Map", systemImage: "map")

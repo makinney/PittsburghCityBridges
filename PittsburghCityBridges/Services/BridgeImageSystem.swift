@@ -54,6 +54,7 @@ class BridgeImageSystem: ObservableObject {
     
     @MainActor
     func getThumbnailImage(url: URL?, size: CGSize = CGSize(width: 100, height: 100)) async -> UIImage? {
+        // SMALL, MIDDLE, LARGE THUMBNAILS FOR ENTIRE APP AND CACHE FOR EACH
         if let cachedThumbnailImage = cachedThumbnailImage {
             return cachedThumbnailImage
         }

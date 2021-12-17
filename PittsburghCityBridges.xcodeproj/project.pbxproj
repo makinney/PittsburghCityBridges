@@ -39,6 +39,7 @@
 		248FC59A270278F100BE168F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 248FC599270278F100BE168F /* CloudKit.framework */; };
 		24B3FE8F272225B8004B93A6 /* MapExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3FE8E272225B8004B93A6 /* MapExtensions.swift */; };
 		24B3FE912722356A004B93A6 /* DirectionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3FE902722356A004B93A6 /* DirectionsProvider.swift */; };
+		24C65481276A855B006363B8 /* BridgeViewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C65480276A855A006363B8 /* BridgeViewsView.swift */; };
 		24CC1B4E270A8ABE009BE390 /* BridgeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CC1B4D270A8ABE009BE390 /* BridgeStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,7 @@
 		248FC599270278F100BE168F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		24B3FE8E272225B8004B93A6 /* MapExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapExtensions.swift; sourceTree = "<group>"; };
 		24B3FE902722356A004B93A6 /* DirectionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsProvider.swift; sourceTree = "<group>"; };
+		24C65480276A855A006363B8 /* BridgeViewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeViewsView.swift; sourceTree = "<group>"; };
 		24CC1B4D270A8ABE009BE390 /* BridgeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +145,7 @@
 				2405C99C2767E1CF00C68307 /* BridgeImageLoadingProgressView.swift */,
 				240075D02716607B00CB864F /* BridgeListRow.swift */,
 				241012862713784D00FE7DEC /* BridgeListView.swift */,
+				24C65480276A855A006363B8 /* BridgeViewsView.swift */,
 				241012882713785C00FE7DEC /* BridgeMapView.swift */,
 				2419B8B8271F382600BFE3D8 /* BridgeMapUIView.swift */,
 				2419B8BC2721843700BFE3D8 /* BridgeMapDetailAccessoryView.swift */,
@@ -310,6 +313,7 @@
 				241012662713757900FE7DEC /* PittsburghCityBridges.xcdatamodeld in Sources */,
 				2419B8BD2721843800BFE3D8 /* BridgeMapDetailAccessoryView.swift in Sources */,
 				2410128B2713787200FE7DEC /* BridgePhotosView.swift in Sources */,
+				24C65481276A855B006363B8 /* BridgeViewsView.swift in Sources */,
 				24B3FE8F272225B8004B93A6 /* MapExtensions.swift in Sources */,
 				240075CF27150F5800CB864F /* BridgeDetailsView.swift in Sources */,
 				248FC585270276EA00BE168F /* CloudKitContentView.swift in Sources */,

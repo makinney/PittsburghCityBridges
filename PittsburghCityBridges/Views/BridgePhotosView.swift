@@ -11,24 +11,21 @@ import os
 struct BridgePhotosView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgePhotosView")
-    @State private var sectionListBy: BridgeListViewModel.SectionListBy = .neighborhood
+    private var sectionListBy: BridgeListViewModel.SectionListBy = .neighborhood
     private var bridgeListViewModel: BridgeListViewModel
 
-    init(_ bridgeListViewModel: BridgeListViewModel) {
+    init(_ bridgeListViewModel: BridgeListViewModel, sectionListBy: BridgeListViewModel.SectionListBy = .name) {
         self.bridgeListViewModel = bridgeListViewModel
+        self.sectionListBy = sectionListBy
         //      UITableView.appearance().backgroundColor = .green
     }
     
-    
-    var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
     var body: some View {
         NavigationView {
-            HStack {
-                Spacer()
-                List {
-                    ForEach(bridgeListViewModel.sectionList(sectionListBy)) { bridgesSection in
-                        Section("\(bridgesSection.sectionName)") {
-                       //     LazyVGrid(columns: columns) {
+                ScrollView {
+                    LazyVStack(spacing: 10, pinnedViews: [.sectionHeaders]) {
+                        ForEach(bridgeListViewModel.sectionList(sectionListBy)) { bridgesSection in
+                            Section {
                                 ForEach(bridgesSection.bridgeModels) { bridgeModel in
                                     if let imageURL = bridgeModel.imageURL {
                                         NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
@@ -36,86 +33,27 @@ struct BridgePhotosView: View {
                                         }
                                     }
                                 }
-                       //     }
-                            //               .background(Color("SteelersBlack"))
-                            .font(.body)
+                                //               .background(Color("SteelersBlack"))
+                                .font(.body)
+                            } header: {
+                                HStack {
+                                    Spacer()
+                                    Text("\(bridgesSection.sectionName)")
+                                        .foregroundColor(Color("SteelersGold"))
+
+                                    Spacer()
+                                }
+                                .background(Color("SteelersBlack"))
+                       //         .background(Color.white)
+                            }
                         }
-                        //            .listRowBackground(Color.orange)
-                        //           .background(Color.purple)
-                        .font(.headline)
                     }
+                    
                 }
-            .listStyle(.grouped)
-            .navigationTitle(makeNavigationTitle(for: sectionListBy))
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Menu(content: {
-                        Button {
-                            self.sectionListBy = .neighborhood
-                        } label: {
-                            makeCheckedLabel("Sort by Location", selectedSection: .neighborhood)
-                        }
-                        Button {
-                            self.sectionListBy = .name
-                        } label: {
-                            makeCheckedLabel("Sort by Name", selectedSection: .name)
-                        }
-                        Button {
-                            self.sectionListBy = .year
-                        } label: {
-                            makeCheckedLabel("Sort by Year", selectedSection: .year)
-                        }
-                    },
-                         label: {
-                        Label("Sort", systemImage: "arrow.down")
-                            .labelStyle(.titleAndIcon)
-                    })
-                }
-            }
+                .padding([.leading, .trailing], 10)
+                .navigationBarHidden(true)
         }
         .navigationViewStyle(StackNavigationViewStyle())
-    }
-    
-//    var body: some View {
-//        NavigationView {
-//            GeometryReader { geometry in
-//                ScrollView {
-//                    LazyVGrid(columns: columns) {
-//                        ForEach(bridgeStore.bridgeModels) { bridgeModel in
-//                            if let imageURL = bridgeModel.imageURL {
-//                                NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
-//                                    SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel)
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//                .navigationTitle("Bridge Photos")
-//            }
-//        }
-//        .navigationViewStyle(StackNavigationViewStyle())
-//    }
-    
-    private func makeCheckedLabel(_ name: String, selectedSection: BridgeListViewModel.SectionListBy) -> Label<Text, Image> {
-        if self.sectionListBy == selectedSection {
-            return Label(name, systemImage: "checkmark")
-        } else {
-            return Label(name, systemImage: "")
-        }
-    }
-    
-    private func makeNavigationTitle(for selectedSection: BridgeListViewModel.SectionListBy) -> String {
-        var title = ""
-        switch selectedSection {
-        case .name:
-            title = "Bridges by Name"
-        case .neighborhood:
-            title = "Bridges by Location"
-        case .year:
-            title = "Bridges by Year Built"
-        }
-        return title
     }
 }
 
@@ -138,16 +76,18 @@ struct SinglePhotoView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
             VStack {
-                Spacer()
                 HStack {
+                    Spacer()
                     Text("\(bridgeModel.name)")
                         .font(.caption)
-                        .foregroundColor(.primary)
-                        .background(.ultraThinMaterial)
+                        .foregroundColor(Color("SteelersGold"))
+                        .padding([.leading, .trailing], 5)
+                        .background(Color("SteelersBlack"))
                         .opacity(imageLoaded ? 1.0 : 0.0)
                     Spacer()
                 }
                 .padding(4)
+                Spacer()
             }
             BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
                 .opacity(imageLoaded ? 0.0 : 1.0)
