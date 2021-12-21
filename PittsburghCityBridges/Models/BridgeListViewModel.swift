@@ -19,7 +19,7 @@ class BridgeListViewModel {
         var sectionName = ""
         var bridgeModels: [BridgeModel]
     }
-    enum SectionListBy {
+    enum SectionListBy: Int {
         case name
         case neighborhood
         case year
