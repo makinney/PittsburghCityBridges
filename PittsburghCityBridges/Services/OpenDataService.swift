@@ -7,6 +7,7 @@
 
 import CloudKit
 import Foundation
+import os
 
 enum CityBridgesMetaDataError: Error {
     case noRecords
@@ -15,6 +16,7 @@ enum CityBridgesMetaDataError: Error {
 class OpenDataService {
     let container: CKContainer
     let publicDB: CKDatabase
+    let openDataFileSystem: OpenDataFileSystem
     
     var openDataURL: String {
         get async throws {
@@ -22,9 +24,27 @@ class OpenDataService {
         }
     }
     
+    private let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
+    
     init(container: CKContainer = CKContainer.default()) {
         self.container = container
+        self.openDataFileSystem = OpenDataFileSystem()
         publicDB = container.publicCloudDatabase
+    }
+    
+    // let urlPath = try await OpenDataService().openDataURL
+    
+    func cityBridgesJSON() async -> Data? {
+        var jsonData: Data?
+    //    Task {
+            if let data = openDataFileSystem.getCityBridgesCachedData() {
+                jsonData = data
+            } else {
+                
+            }
+        //    data = await openDataFileSystem.getOpenData(for: url)
+    //    }
+        return jsonData
     }
     
     func cityBridgesMetaData() async throws -> OpenDataMetaData {

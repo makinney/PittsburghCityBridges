@@ -12,10 +12,12 @@ import os
 @MainActor
 class BridgeStore: ObservableObject {
     @Published var bridgeModels = [BridgeModel]()
+    private let openDataService: OpenDataService
     
     let logger: Logger
     init() {
         logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
+        openDataService = OpenDataService()
     }
     
     func sortedByName() -> [BridgeModel] {
@@ -45,38 +47,28 @@ class BridgeStore: ObservableObject {
         return sortedModels
     }
     
-    func refreshBridgeModels()  {
-        Task {
-            do {
-                let urlPath = try await OpenDataService().openDataURL
-                guard let url = URL(string: urlPath) else {
-                    logger.error("\(#file) \(#function) Could not create URL from path \(urlPath, privacy: .public)")
-                    return
-                }
-                loadModelsFrom(url: url)
-            } catch let error {
-                logger.error("\(#file) \(#function) \(error.localizedDescription, privacy: .public)")
-            }
-        }
+    func refreshBridgeModels() {
+        loadCityBridgeModels()
     }
     
     @MainActor
-    func loadModelsFrom(url: URL) {
+    func loadCityBridgeModels() {
         Task {
             var freshModels = [BridgeModel]()
             do {
-                let (data, _) = try await URLSession.shared.data(from: url)
-                let geoJSONObjects = try MKGeoJSONDecoder().decode(data)
-                for object in geoJSONObjects {
-                    if let feature = object as? MKGeoJSONFeature,
-                       let propertyData = feature.properties {
-                        let geometry = feature.geometry
-                        let geoJSONProp: GeoJSONProperty = try JSONDecoder().decode(GeoJSONProperty.self, from: propertyData)
-                        let bridgeModel = BridgeModel(geometry: geometry, geoJSON: geoJSONProp)
-                        freshModels.append(bridgeModel)
+                if let jsonData = await self.openDataService.cityBridgesJSON() {
+                    let geoJSONObjects = try MKGeoJSONDecoder().decode(jsonData)
+                    for object in geoJSONObjects {
+                        if let feature = object as? MKGeoJSONFeature,
+                           let propertyData = feature.properties {
+                            let geometry = feature.geometry
+                            let geoJSONProp: GeoJSONProperty = try JSONDecoder().decode(GeoJSONProperty.self, from: propertyData)
+                            let bridgeModel = BridgeModel(geometry: geometry, geoJSON: geoJSONProp)
+                            freshModels.append(bridgeModel)
+                        }
                     }
+                    self.bridgeModels = freshModels // Publish
                 }
-                self.bridgeModels = freshModels // Publish
             } catch let error {
                 logger.error("\(#file) \(#function) \(error.localizedDescription, privacy: .public)")
             }
@@ -86,10 +78,7 @@ class BridgeStore: ObservableObject {
 #if DEBUG
     @MainActor
     func preview() {
-        guard let url = Bundle.main.url(forResource: "BridgesOpenData", withExtension: "json") else {
-            return
-        }
-        loadModelsFrom(url: url)
+        loadCityBridgeModels()
     }
 #endif
     
