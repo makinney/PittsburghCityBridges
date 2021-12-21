@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-enum ViewBridgeAs {
+enum ViewBridgeAs: Int {
     case list
     case photos
 }
 struct BridgeViewsView: View {
     private var bridgeListViewModel: BridgeListViewModel
-    @State private var viewBridgeAs = ViewBridgeAs.list
-    @State private var sectionListBy: BridgeListViewModel.SectionListBy = .neighborhood
+    @AppStorage("viewBridgeAs") private var viewBridgeAs = ViewBridgeAs.list
+    @AppStorage("sectionListBy") private var sectionListBy = BridgeListViewModel.SectionListBy.neighborhood
     
     init(_ bridgeListViewModel: BridgeListViewModel) {
         self.bridgeListViewModel = bridgeListViewModel
