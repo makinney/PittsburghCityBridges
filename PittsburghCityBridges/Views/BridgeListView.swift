@@ -29,6 +29,7 @@ struct BridgeListView: View {
                                 NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
                                     BridgeListRow(bridgeModel: bridgeModel)
                                         .padding([.trailing, .leading], 10)
+                                        .padding([.top], 10)
                                 }
                             }
                             //               .background(Color("SteelersBlack"))
