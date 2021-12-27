@@ -35,34 +35,39 @@ struct BridgeListRow: View {
     
     var body: some View {
         HStack {
-            ZStack {
-                Image(uiImage: bridgeImage )
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .cornerRadius(imageCornerRadius)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: imageCornerRadius)
-                            .stroke(Color.secondary, lineWidth: imageStrokeWidth)
-                    )
-                BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
-                    .opacity(imageLoaded ? 0.0 : 1.0)
-            }
-            .frame(width: imageFrameSize.width, height: imageFrameSize.height)
+//            ZStack {
+//                Image(uiImage: bridgeImage )
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fit)
+//                    .cornerRadius(imageCornerRadius)
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: imageCornerRadius)
+//                            .stroke(Color.secondary, lineWidth: imageStrokeWidth)
+//                    )
+//                BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
+//                    .opacity(imageLoaded ? 0.0 : 1.0)
+//            }
+//            .frame(width: imageFrameSize.width, height: imageFrameSize.height)
             VStack(alignment: .leading) {
                 Spacer()
                 Text(bridgeModel.name)
                     .font(.headline)
-                    .multilineTextAlignment(.leading)
-                    .foregroundColor(.primary)
+                Text("\(bridgeModel.startNeighborhood) Neighborhood")
+                    .font(.subheadline)
+                Text("Year built: \(bridgeModel.yearBuilt)")
+                    .font(.subheadline)
                 Spacer()
             }
+            .multilineTextAlignment(.leading)
             Spacer()
             VStack {
                 Spacer()
                 Image(systemName: "arrow.forward")
+                    .foregroundColor(.blue)
                 Spacer()
             }
         }
+  //      .background(Color(UIColor.listTextBkgndColor))
         .onAppear {
             Task {
                 do {
@@ -81,5 +86,8 @@ struct BridgeListRow: View {
 struct BridgeListRow_Previews: PreviewProvider {
     static var previews: some View {
         BridgeListRow(bridgeModel: BridgeModel.preview)
+        BridgeListRow(bridgeModel: BridgeModel.preview)
+   //     BridgeListRow(bridgeModel: <#T##BridgeModel#>.preview)
+            .preferredColorScheme(.dark)
     }
 }
