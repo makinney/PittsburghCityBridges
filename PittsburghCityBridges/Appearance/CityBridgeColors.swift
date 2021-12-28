@@ -8,43 +8,35 @@
 import SwiftUI
 import UIKit
 
-struct AssetColors {
-    static var steelerGold = UIColor(named: "SteelersGold") ?? UIColor.yellow
-    static var steelerBlack = UIColor(named: "SteelersBlack") ?? UIColor.black
-    
-    static var bBa = UIColor(named: "bridgeBlueA") ?? UIColor.yellow
-    static var bBb = UIColor(named: "bridgeBlueB") ?? UIColor.yellow
-
-    static var bYa = UIColor(named: "bridgeYellowA") ?? UIColor.yellow
-    static var bYb = UIColor(named: "bridgeYellowB") ?? UIColor.yellow
-    static var bGa = UIColor(named: "bridgeGreenA") ?? UIColor.green
-    static var bGb = UIColor(named: "bridgeGreenB") ?? UIColor.green
-    static var bGc = UIColor(named: "bridgeGreenC") ?? UIColor.green
-
-    static var bBrownA = UIColor(named: "bridgeBrownA") ?? UIColor.brown
-    static var bBrownB = UIColor(named: "bridgeBrownB") ?? UIColor.brown
-
-    static var bBrownC = UIColor(named: "bridgeBrownC") ?? UIColor.brown
-
-    static var congreteA = UIColor(named: "congreteA") ?? UIColor.gray
-
-}
-
 extension Color {
-    static let listTextForegroundBrn = Color(light: AssetColors.steelerBlack, dark: AssetColors.bBrownA)
-    static let listTextBackgroundBrn = Color(light: AssetColors.bBrownA, dark: AssetColors.steelerBlack)
-    static let listTextForegroundGrn = Color(light: AssetColors.steelerBlack, dark: AssetColors.bGa)
-    static let listTextBackgroundGrn = Color(light: AssetColors.bGa, dark: AssetColors.steelerBlack)
-    static let listTextForegroundYel = Color(light: AssetColors.steelerBlack, dark: AssetColors.bYa)
-    static let listTextBackgroundYel = Color(light: AssetColors.bYa, dark: AssetColors.steelerBlack)
-    
-    static let listTextForegroundCongrete = Color(light: AssetColors.steelerBlack, dark: AssetColors.congreteA)
-    static let listTextBackgroundCongrete = Color(light: AssetColors.congreteA, dark: AssetColors.steelerBlack)
-    
-    static let titleTextFgnd =  Color(light: UIColor.label , dark: AssetColors.bYa)
-    static let titleTextBkgnd =  Color(light: UIColor.tertiarySystemBackground , dark: AssetColors.steelerBlack)
-    static let steelerBlack = Color(uiColor: AssetColors.steelerBlack)
+    static let pbTextFgndBrown = Color(light: Asset.bridgeBlackA, dark: Asset.bridgeBrownA)
+    static let pbTextBgndBrown = Color(light: Asset.bridgeBrownA, dark: Asset.bridgeBlackA)
+    static let pbTextFgndGreen = Color(light: Asset.bridgeBlackA, dark: Asset.bridgeGreenA)
+    static let pbTextBgndGreen = Color(light: Asset.bridgeGreenA, dark: Asset.bridgeBlackA)
+    static let pbTextFgndYellow = Color(light: Asset.bridgeBlackA, dark: Asset.bridgeYellowA)
+    static let pbTextBgndYellow = Color(light: Asset.bridgeYellowA, dark: Asset.bridgeBlackA)
+    static let pbTextFgndConcrete = Color(light: Asset.bridgeBlackA, dark: Asset.bridgeConcreteA)
+    static let pbTextBgndConcrete = Color(light: Asset.bridgeConcreteA, dark: Asset.bridgeBlackA)
+    static let pbTitleTextFgnd =  Color(light: UIColor.label , dark: Asset.bridgeYellowA)
+    static let pbTitleTextBgnd =  Color(light: UIColor.tertiarySystemBackground , dark: Asset.bridgeBlackA)
+    static let steelerBlack = Color(uiColor: Asset.bridgeBlackA)
 }
+
+private struct Asset {
+    static var bridgeBlackA = UIColor(named: "bridgeBlackA") ?? UIColor.black
+    static var bridgeBlueA = UIColor(named: "bridgeBlueA") ?? UIColor.yellow
+    static var bridgeBlueB = UIColor(named: "bridgeBlueB") ?? UIColor.yellow
+    static var bridgeYellowA = UIColor(named: "bridgeYellowA") ?? UIColor.yellow
+    static var bridgeYellowB = UIColor(named: "bridgeYellowB") ?? UIColor.yellow
+    static var bridgeGreenA = UIColor(named: "bridgeGreenA") ?? UIColor.green
+    static var bridgeGreenB = UIColor(named: "bridgeGreenB") ?? UIColor.green
+    static var bridgeGreenC = UIColor(named: "bridgeGreenC") ?? UIColor.green
+    static var bridgeBrownA = UIColor(named: "bridgeBrownA") ?? UIColor.brown
+    static var bridgeBrownB = UIColor(named: "bridgeBrownB") ?? UIColor.brown
+    static var bridgeBrownC = UIColor(named: "bridgeBrownC") ?? UIColor.brown
+    static var bridgeConcreteA = UIColor(named: "congreteA") ?? UIColor.gray
+}
+
 
 extension Color {
     // dyanmic Colors for light and dark modes

@@ -48,13 +48,13 @@ struct BridgeViewsView: View {
                 .padding(.leading, 10)
             Spacer()
             Text("Pittsburgh Bridges")
-                .foregroundColor(.titleTextFgnd)
+                .foregroundColor(.pbTitleTextFgnd)
                 .font(.title)
             Spacer()
             sortMenu()
                 .padding(.trailing, 10)
         }
-        .background(Color.titleTextBkgnd)
+        .background(Color.pbTitleTextBgnd)
     }
     
     private func sortedAs() -> some View {

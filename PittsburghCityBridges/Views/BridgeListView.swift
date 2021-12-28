@@ -27,7 +27,7 @@ struct BridgeListView: View {
                     ForEach(bridgeListViewModel.sectionList(sectionListBy)) { bridgesSection in
                         Section {
                             ForEach(bridgesSection.bridgeModels) { bridgeModel in
-                                NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, bridgeColorPalate: bridgesSection.bridgeColorPalate)) {
+                                NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)) {
                                     BridgeListRow(bridgeModel: bridgeModel)
                                         .padding([.leading])
                                //         .padding()
@@ -40,7 +40,7 @@ struct BridgeListView: View {
                         } header: {
                             HStack {
                                 sectionLabel(bridgesSection.sectionName, sectionListBy)
-                                    .foregroundColor(bridgesSection.bridgeColorPalate.listTextForeground)
+                                    .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
                                     .font(.title3)
                                     .padding([.leading])
                                 Spacer()
@@ -48,8 +48,8 @@ struct BridgeListView: View {
                         }
                  //       .padding([.top], 5)
                         .font(.headline)
-                        .foregroundColor(bridgesSection.bridgeColorPalate.listTextForeground)
-                        .background(bridgesSection.bridgeColorPalate.listTextBackground)
+                        .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
+                        .background(bridgesSection.pbColorPalate.textBgnd)
                     }
            //         .padding([.bottom], 20)
                     
