@@ -41,7 +41,7 @@
 		24B3FE8F272225B8004B93A6 /* MapExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3FE8E272225B8004B93A6 /* MapExtensions.swift */; };
 		24B3FE912722356A004B93A6 /* DirectionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3FE902722356A004B93A6 /* DirectionsProvider.swift */; };
 		24C65481276A855B006363B8 /* BridgeViewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C65480276A855A006363B8 /* BridgeViewsView.swift */; };
-		24C654852772BF55006363B8 /* CityBridgeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C654842772BF55006363B8 /* CityBridgeColors.swift */; };
+		24C654852772BF55006363B8 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C654842772BF55006363B8 /* AppColors.swift */; };
 		24CC1B4E270A8ABE009BE390 /* BridgeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CC1B4D270A8ABE009BE390 /* BridgeStore.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,7 +82,7 @@
 		24B3FE8E272225B8004B93A6 /* MapExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapExtensions.swift; sourceTree = "<group>"; };
 		24B3FE902722356A004B93A6 /* DirectionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsProvider.swift; sourceTree = "<group>"; };
 		24C65480276A855A006363B8 /* BridgeViewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeViewsView.swift; sourceTree = "<group>"; };
-		24C654842772BF55006363B8 /* CityBridgeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityBridgeColors.swift; sourceTree = "<group>"; };
+		24C654842772BF55006363B8 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		24CC1B4D270A8ABE009BE390 /* BridgeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -224,7 +224,7 @@
 		24C654862773FCD8006363B8 /* Appearance */ = {
 			isa = PBXGroup;
 			children = (
-				24C654842772BF55006363B8 /* CityBridgeColors.swift */,
+				24C654842772BF55006363B8 /* AppColors.swift */,
 				2481A29E277A54F200904275 /* PBColorPalate.swift */,
 			);
 			path = Appearance;
@@ -342,7 +342,7 @@
 				24808FD3274D443D00FF131C /* ViewExtensions.swift in Sources */,
 				241012872713784D00FE7DEC /* BridgeListView.swift in Sources */,
 				2419B8C42721D64E00BFE3D8 /* LocationService.swift in Sources */,
-				24C654852772BF55006363B8 /* CityBridgeColors.swift in Sources */,
+				24C654852772BF55006363B8 /* AppColors.swift in Sources */,
 				24808FDC275A6D9B00FF131C /* BridgeImageSystem.swift in Sources */,
 				240075D12716607B00CB864F /* BridgeListRow.swift in Sources */,
 				24101262270F323E00FE7DEC /* OpenDataService.swift in Sources */,
