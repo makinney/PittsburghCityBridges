@@ -39,11 +39,10 @@ struct BridgeListView: View {
                             .font(.body)
                         } header: {
                             HStack {
-                                Spacer()
                                 sectionLabel(bridgesSection.sectionName, sectionListBy)
                                     .foregroundColor(bridgesSection.bridgeColorPalate.listTextForeground)
                                     .font(.title3)
-//.padding([.leading])
+                                    .padding([.leading])
                                 Spacer()
                             }
                         }

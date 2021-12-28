@@ -26,6 +26,7 @@ struct AssetColors {
 
     static var bBrownC = UIColor(named: "bridgeBrownC") ?? UIColor.brown
 
+    static var congreteA = UIColor(named: "congreteA") ?? UIColor.gray
 
 }
 
@@ -36,6 +37,10 @@ extension Color {
     static let listTextBackgroundGrn = Color(light: AssetColors.bGa, dark: AssetColors.steelerBlack)
     static let listTextForegroundYel = Color(light: AssetColors.steelerBlack, dark: AssetColors.bYa)
     static let listTextBackgroundYel = Color(light: AssetColors.bYa, dark: AssetColors.steelerBlack)
+    
+    static let listTextForegroundCongrete = Color(light: AssetColors.steelerBlack, dark: AssetColors.congreteA)
+    static let listTextBackgroundCongrete = Color(light: AssetColors.congreteA, dark: AssetColors.steelerBlack)
+    
     static let titleTextFgnd =  Color(light: UIColor.label , dark: AssetColors.bYa)
     static let titleTextBkgnd =  Color(light: UIColor.tertiarySystemBackground , dark: AssetColors.steelerBlack)
     static let steelerBlack = Color(uiColor: AssetColors.steelerBlack)

@@ -21,7 +21,7 @@ class BridgeColorPalates {
         palates.append(BridgeColorPalate(listTextForeground:.listTextForegroundYel, listTextBackground: .listTextBackgroundYel))
         palates.append(BridgeColorPalate(listTextForeground:.listTextForegroundGrn, listTextBackground: .listTextBackgroundGrn))
         palates.append(BridgeColorPalate(listTextForeground:.listTextForegroundBrn, listTextBackground: .listTextBackgroundBrn))
-
+        palates.append(BridgeColorPalate(listTextForeground:.listTextForegroundCongrete, listTextBackground: .listTextBackgroundCongrete))
     }
     
     func getNext() -> BridgeColorPalate {
