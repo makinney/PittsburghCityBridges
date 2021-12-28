@@ -27,11 +27,13 @@ struct BridgeViewsView: View {
             case .list:
                 VStack {
                     menuBar()
+        //            sortedAs()
                     BridgeListView(bridgeListViewModel, sectionListBy: sectionListBy)
                 }
             case .photos:
                 VStack {
                     menuBar()
+           //         sortedAs()
                     BridgePhotosView(bridgeListViewModel, sectionListBy: sectionListBy)
                 }
             }
@@ -45,17 +47,31 @@ struct BridgeViewsView: View {
             viewModeButton()
                 .padding(.leading, 10)
             Spacer()
-            switch sectionListBy {
-            case .neighborhood:
-                Text("City Bridges by Neighborhood")
-            case .name:
-                Text("City Bridges by Names")
-            case .year:
-                Text("City Bridges by Year Built")
-            }
+            Text("Pittsburgh Bridges")
+                .foregroundColor(.titleTextFgnd)
+                .font(.title)
             Spacer()
             sortMenu()
                 .padding(.trailing, 10)
+        }
+        .background(Color.titleTextBkgnd)
+    }
+    
+    private func sortedAs() -> some View {
+        HStack {
+            Spacer()
+            switch sectionListBy {
+            case .neighborhood:
+                Text("by Neighborhood")
+                    .font(.headline)
+            case .name:
+                Text("by Names")
+                    .font(.headline)
+            case .year:
+                Text("by Year Built")
+                    .font(.headline)
+            }
+            Spacer()
         }
     }
     

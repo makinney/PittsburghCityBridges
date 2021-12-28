@@ -19,46 +19,62 @@ struct BridgeListView: View {
         //      UITableView.appearance().backgroundColor = .green
     }
     
+    
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVStack(spacing: 5, pinnedViews: [.sectionHeaders]) {
+                LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
                     ForEach(bridgeListViewModel.sectionList(sectionListBy)) { bridgesSection in
                         Section {
                             ForEach(bridgesSection.bridgeModels) { bridgeModel in
-                                NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
+                                NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, bridgeColorPalate: bridgesSection.bridgeColorPalate)) {
                                     BridgeListRow(bridgeModel: bridgeModel)
-                                        .padding([.trailing, .leading], 10)
-                                        .padding([.top], 10)
+                                        .padding([.leading])
+                               //         .padding()
+                                    //    .padding([.trailing, .leading], 10)
+                                    //    .padding([.top], 10)
                                 }
+                                Divider()
                             }
-                            //               .background(Color("SteelersBlack"))
                             .font(.body)
                         } header: {
                             HStack {
                                 Spacer()
-                                Text("\(bridgesSection.sectionName)")
-                                    .foregroundColor(Color("SteelersGold"))
+                                sectionLabel(bridgesSection.sectionName, sectionListBy)
+                                    .foregroundColor(bridgesSection.bridgeColorPalate.listTextForeground)
+                                    .font(.title3)
+//.padding([.leading])
                                 Spacer()
                             }
-                                .background(Color("SteelersBlack"))
-     //                       .background(Color.white)
-//                            .background(Color.black)
                         }
-                        
-                        //            .listRowBackground(Color.orange)
-                        //           .background(Color.orange)
+                 //       .padding([.top], 5)
                         .font(.headline)
+                        .foregroundColor(bridgesSection.bridgeColorPalate.listTextForeground)
+                        .background(bridgesSection.bridgeColorPalate.listTextBackground)
                     }
+           //         .padding([.bottom], 20)
                     
                 }
                 //       .listStyle(.grouped)
             }
-            
+            .background(Color.black)
             .navigationBarHidden(true)
         }
         //     .foregroundColor(Color.blue)
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+    
+    @ViewBuilder
+    private func sectionLabel(_ sectionName: String, _ sectionListby: BridgeListViewModel.SectionListBy) -> some View {
+        
+        switch sectionListby {
+        case .neighborhood:
+            Text("\(sectionName) Neighborhood")
+        case .name:
+            Text("Starting with \(sectionName)")
+        case .year:
+            Text("Built in \(sectionName)")
+        }
     }
 }
 

@@ -63,7 +63,6 @@ struct BridgeListRow: View {
             VStack {
                 Spacer()
                 Image(systemName: "arrow.forward")
-                    .foregroundColor(.blue)
                 Spacer()
             }
         }

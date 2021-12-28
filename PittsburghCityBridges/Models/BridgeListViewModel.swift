@@ -18,6 +18,7 @@ class BridgeListViewModel {
         var id = UUID()
         var sectionName = ""
         var bridgeModels: [BridgeModel]
+        var bridgeColorPalate = BridgeColorPalate()
     }
     enum SectionListBy: Int {
         case name
@@ -53,6 +54,7 @@ class BridgeListViewModel {
     func sectionByName() -> [Section] {
         var sections = [Section]()
         var bridgeModelsSortedByName = bridgeStore.sortedByName()
+        let bridgeColorPalates = BridgeColorPalates()
         var run = true
         while run {
             if let bridgeModel = bridgeModelsSortedByName.first,
@@ -65,7 +67,9 @@ class BridgeListViewModel {
                     }
                 }
                 if !bridgeModelsSlice.isEmpty {
-                    sections.append(Section(sectionName: firstLetterInFirstModel, bridgeModels: Array(bridgeModelsSlice)))
+                    sections.append(Section(sectionName: firstLetterInFirstModel,
+                                            bridgeModels: Array(bridgeModelsSlice),
+                                            bridgeColorPalate: bridgeColorPalates.getNext()))
                     bridgeModelsSortedByName.removeFirst(bridgeModelsSlice.count)
                 }
             } else {
@@ -86,6 +90,7 @@ class BridgeListViewModel {
     func sectionByNeighborhood() -> [Section] {
         var sections = [Section]()
         var sortedByNeighboorhood = bridgeStore.sortedByNeighborhoodAndName()
+        let bridgeColorPalates = BridgeColorPalates()
         var run = true
         while run {
             let neighborhood = sortedByNeighboorhood.first?.startNeighborhood
@@ -94,7 +99,9 @@ class BridgeListViewModel {
                     bridgeModel.startNeighborhood == neighborhood
                 }
                 if !bridgeModelSlice.isEmpty {
-                    sections.append(Section(sectionName: neighborhood, bridgeModels: Array(bridgeModelSlice)))
+                    sections.append(Section(sectionName: neighborhood,
+                                            bridgeModels: Array(bridgeModelSlice),
+                                            bridgeColorPalate: bridgeColorPalates.getNext()))
                     sortedByNeighboorhood.removeFirst(bridgeModelSlice.count)
                 }
             } else { // collection is empty
@@ -108,6 +115,7 @@ class BridgeListViewModel {
     func sectionByYear() -> [Section] {
         var sections = [Section]()
         var sortedByYear = bridgeStore.sortedByYearAndName()
+        let bridgeColorPalates = BridgeColorPalates()
         var run = true
         while run {
             let yearBuilt = sortedByYear.first?.yearBuilt
@@ -116,7 +124,9 @@ class BridgeListViewModel {
                     bridgeModel.yearBuilt == yearBuilt
                 }
                 if !bridgeModelSlice.isEmpty {
-                    sections.append(Section(sectionName: yearBuilt, bridgeModels: Array(bridgeModelSlice)))
+                    sections.append(Section(sectionName: yearBuilt,
+                                            bridgeModels: Array(bridgeModelSlice),
+                                            bridgeColorPalate: bridgeColorPalates.getNext()))
                     sortedByYear.removeFirst(bridgeModelSlice.count)
                 }
             } else { // collection is empty

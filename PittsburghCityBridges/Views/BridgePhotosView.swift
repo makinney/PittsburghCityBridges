@@ -28,8 +28,9 @@ struct BridgePhotosView: View {
                             Section {
                                 ForEach(bridgesSection.bridgeModels) { bridgeModel in
                                     if let imageURL = bridgeModel.imageURL {
-                                        NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel)) {
+                                        NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, bridgeColorPalate: bridgesSection.bridgeColorPalate)) {
                                             SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel)
+                                                .padding()
                                         }
                                     }
                                 }
