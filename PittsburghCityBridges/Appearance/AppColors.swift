@@ -34,7 +34,7 @@ private struct Asset {
     static var bridgeBrownA = UIColor(named: "bridgeBrownA") ?? UIColor.brown
     static var bridgeBrownB = UIColor(named: "bridgeBrownB") ?? UIColor.brown
     static var bridgeBrownC = UIColor(named: "bridgeBrownC") ?? UIColor.brown
-    static var bridgeConcreteA = UIColor(named: "congreteA") ?? UIColor.gray
+    static var bridgeConcreteA = UIColor(named: "bridgeConcreteA") ?? UIColor.gray
 }
 
 
