@@ -28,6 +28,8 @@ struct ContentView: View {
         .onAppear {
             bridgeStore.refreshBridgeModels()
         }
+        .accentColor(.blue)
+   //     .colorScheme(ColorScheme.dark)
     }
 }
 

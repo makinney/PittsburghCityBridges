@@ -17,6 +17,7 @@ struct BridgeDetailsView: View {
     @State private var startingOffset: CGSize = .zero
     @Namespace private var bridgeAnimations
     
+    var pbColorPalate = PBColorPalate()
     var bridgeModel: BridgeModel
     private var bridgeImageSystem: BridgeImageSystem
     private let buttonCornerRadius: CGFloat = 5
@@ -28,8 +29,9 @@ struct BridgeDetailsView: View {
         CGSize(width: offset.width + by.width, height: offset.height + by.height)
     }
     
-    init(bridgeModel: BridgeModel) {
+    init(bridgeModel: BridgeModel, pbColorPalate: PBColorPalate) {
         self.bridgeModel = bridgeModel
+        self.pbColorPalate = pbColorPalate
         bridgeImageSystem = BridgeImageSystem()
     }
     
@@ -65,7 +67,7 @@ struct BridgeDetailsView: View {
             if bridgeImageOnly {
                 GeometryReader { geometry in
                     VStack(alignment: .center) {
-                        Spacer()
+                      //  Spacer()
                         Image(uiImage: bridgeImage)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -100,6 +102,7 @@ struct BridgeDetailsView: View {
                         Spacer()
                     }
                 }
+                .background(pbColorPalate.textBgnd)
                 .onAppear {
                     UIScrollView.appearance().bounces = false
                 }
@@ -159,7 +162,9 @@ struct BridgeDetailsView: View {
                             }
                         }
                         .padding(.horizontal)
+                        .foregroundColor(pbColorPalate.textFgnd)
                     }
+                    .background(pbColorPalate.textBgnd)
                 }
                 .onAppear {
                     UIScrollView.appearance().bounces = true
@@ -208,8 +213,8 @@ struct BridgeDetailsView: View {
 
 struct BridgeDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        BridgeDetailsView(bridgeModel: BridgeModel.preview)
+        BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate())
             .preferredColorScheme(.dark)
-        BridgeDetailsView(bridgeModel: BridgeModel.preview)
+        BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate())
     }
 }
