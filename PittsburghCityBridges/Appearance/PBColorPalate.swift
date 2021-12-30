@@ -19,8 +19,8 @@ class PBColorPalateSource {
     
     init() {
         palates.append(PBColorPalate(textFgnd:.pbTextFgndYellow, textBgnd: .pbTextBgndYellow))
-   //     palates.append(PBColorPalate(textFgnd:.pbTextFgndGreen, textBgnd: .pbTextBgndGreen))
- //       palates.append(PBColorPalate(textFgnd:.pbTextFgndBrown, textBgnd: .pbTextBgndBrown))
+        palates.append(PBColorPalate(textFgnd:.pbTextFgndGreen, textBgnd: .pbTextBgndGreen))
+        palates.append(PBColorPalate(textFgnd:.pbTextFgndBrown, textBgnd: .pbTextBgndBrown))
   //      palates.append(PBColorPalate())
    //     palates.append(PBColorPalate(textFgnd:.pbTextFgndConcrete, textBgnd: .pbTextBgndConcrete))
     }

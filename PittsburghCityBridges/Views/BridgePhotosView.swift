@@ -13,7 +13,7 @@ struct BridgePhotosView: View {
     let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgePhotosView")
     @AppStorage("bridgePhotosView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
     private var bridgeListViewModel: BridgeListViewModel
-    
+
     init(_ bridgeListViewModel: BridgeListViewModel, bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) {
         self.bridgeListViewModel = bridgeListViewModel
         self.bridgeInfoGrouping = bridgeInfoGrouping
@@ -28,15 +28,15 @@ struct BridgePhotosView: View {
             VStack {
                 menuBar()
                 ScrollView {
-                    LazyVStack(spacing: 2, pinnedViews: [.sectionHeaders]) {
+                    LazyVStack(spacing: 20, pinnedViews: [.sectionHeaders]) {
                         ForEach(bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping)) { bridgesSection in
                             Section {
                                 ForEach(bridgesSection.bridgeModels) { bridgeModel in
                                     if let imageURL = bridgeModel.imageURL {
                                         NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)) {
                                             SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)
-                                                .padding()
                                         }
+                                        .padding([.top], 5)
                                     }
                                 }
                                 .font(.body)
@@ -44,22 +44,21 @@ struct BridgePhotosView: View {
                                 HStack {
                                     sectionLabel(bridgesSection.sectionName, bridgeInfoGrouping)
                                         .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
-                                        .font(.title3)
-                                        .padding([.leading])
+                                        .font(.title2)
+                               //         .padding([.leading])
                                     Spacer()
                                 }
                                 .font(.headline)
                                 .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
                                 .background(bridgesSection.pbColorPalate.textBgnd)
                             }
-                            Divider()
-
                 //            .background(bridgesSection.pbColorPalate.textBgnd)
                         }
                     }
+        //            .padding([.leading,.trailing], 20)
                 }
             }
-            .padding([.leading, .trailing], 10)
+            .padding([.leading, .trailing], 20)
             .navigationBarHidden(true)
         }
         .navigationViewStyle(StackNavigationViewStyle())
@@ -91,7 +90,6 @@ extension BridgePhotosView {
                 .font(.title)
             Spacer()
             sortMenu()
-                .padding(.trailing, 10)
         }
         .background(Color.pbTitleTextBgnd)
     }
@@ -114,8 +112,8 @@ extension BridgePhotosView {
                 makeCheckedSortLabel("By Year Built", selectedSection: .year)
             }
         }, label: {
-            Label("Sort", systemImage: "rectangle.split.3x3")
-                .labelStyle(.iconOnly)
+            Label("Sort", systemImage: "arrow.up.arrow.down.square")
+                .labelStyle(.titleAndIcon)
         })
     }
     
@@ -134,6 +132,7 @@ struct SinglePhotoView: View {
     private var bridgeModel: BridgeModel
     private var bridgeImageSystem: BridgeImageSystem
     private let pbColorPalate: PBColorPalate
+    private let imageCornerRadius: CGFloat = 10
     private let imageURL: URL
     
     init(imageURL: URL, bridgeModel: BridgeModel, pbColorPalate: PBColorPalate) {
@@ -147,11 +146,10 @@ struct SinglePhotoView: View {
         VStack {
             HStack {
                 Text("\(bridgeModel.name)")
-                    .font(.caption)
+                    .font(.title3)
                     .foregroundColor(pbColorPalate.textFgnd)
                     .padding([.leading, .trailing], 5)
                     .background(pbColorPalate.textBgnd)
-            
                     .opacity(imageLoaded ? 1.0 : 0.0)
                 Spacer()
             }
@@ -159,10 +157,16 @@ struct SinglePhotoView: View {
                 Image(uiImage: bridgeImage )
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .cornerRadius(imageCornerRadius)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: imageCornerRadius)
+                            .stroke(Color.secondary, lineWidth: 2)
+                    )
                 BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
                     .opacity(imageLoaded ? 0.0 : 1.0)
             }
         }
+        .background(pbColorPalate.textBgnd)
         .onAppear {
             Task {
                 do {

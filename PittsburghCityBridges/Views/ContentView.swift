@@ -9,25 +9,22 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
+    
+    init() {
+ //       UITabBar.appearance().isTranslucent = false
+ //       UITabBar.appearance().backgroundColor = UIColor.systemBackground
+    }
 
     var body: some View {
         TabView {
-            BridgePhotosView(BridgeListViewModel(bridgeStore))
-                .tabItem {
-                    Label("Photos", systemImage: "photo.on.rectangle")
-                }
             BridgeListView(BridgeListViewModel(bridgeStore))
                 .tabItem {
                     Label("Lists", systemImage: "list.dash")
                 }
-//            BridgeViewsView(BridgeListViewModel(bridgeStore))
-//                .tabItem {
-//                    Label("Bridges", systemImage: "waveform")
-//                }
-//            BridgePhotosView(BridgeListViewModel(bridgeStore))
-//                .tabItem {
-//                    Label("Photos", systemImage: "photo")
-//                }
+            BridgePhotosView(BridgeListViewModel(bridgeStore))
+                .tabItem {
+                    Label("Photos", systemImage: "photo.on.rectangle")
+                }
             BridgeMapView()
                 .tabItem {
                     Label("Map", systemImage: "map")
@@ -36,8 +33,7 @@ struct ContentView: View {
         .onAppear {
             bridgeStore.refreshBridgeModels()
         }
-        .accentColor(.blue)
-   //     .colorScheme(ColorScheme.dark)
+        .accentColor(.orange)
     }
 }
 
@@ -47,3 +43,4 @@ struct MainView_Previews: PreviewProvider {
             .environmentObject(BridgeStore())
     }
 }
+    

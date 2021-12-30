@@ -108,8 +108,8 @@ extension BridgeListView {
                 makeCheckedSortLabel("By Year Built", selectedSection: .year)
             }
         }, label: {
-            Label("Sort", systemImage: "rectangle.split.3x3")
-                .labelStyle(.iconOnly)
+            Label("Sort", systemImage: "arrow.up.arrow.down.square")
+                .labelStyle(.titleAndIcon)
         })
     }
     
