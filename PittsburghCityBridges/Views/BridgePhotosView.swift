@@ -11,20 +11,19 @@ import os
 struct BridgePhotosView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgePhotosView")
-    private var sectionListBy: BridgeListViewModel.SectionListBy = .neighborhood
+    private var brigeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping = .neighborhood
     private var bridgeListViewModel: BridgeListViewModel
 
-    init(_ bridgeListViewModel: BridgeListViewModel, sectionListBy: BridgeListViewModel.SectionListBy = .name) {
+    init(_ bridgeListViewModel: BridgeListViewModel, brigeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) {
         self.bridgeListViewModel = bridgeListViewModel
-        self.sectionListBy = sectionListBy
-        //      UITableView.appearance().backgroundColor = .green
-    }
+        self.brigeInfoGrouping = brigeInfoGrouping
+      }
     
     var body: some View {
         NavigationView {
                 ScrollView {
                     LazyVStack(spacing: 10, pinnedViews: [.sectionHeaders]) {
-                        ForEach(bridgeListViewModel.sectionList(sectionListBy)) { bridgesSection in
+                        ForEach(bridgeListViewModel.sections(groupedBy: brigeInfoGrouping)) { bridgesSection in
                             Section {
                                 ForEach(bridgesSection.bridgeModels) { bridgeModel in
                                     if let imageURL = bridgeModel.imageURL {
@@ -112,7 +111,7 @@ struct SinglePhotoView: View {
 struct BridgePhotosView_Previews: PreviewProvider {
     static let bridgeStore = BridgeStore()
     static var previews: some View {
-        BridgePhotosView(BridgeListViewModel(bridgeStore))
+        BridgePhotosView(BridgeListViewModel(bridgeStore), brigeInfoGrouping: .name)
             .environmentObject(bridgeStore)
             .onAppear {
                 bridgeStore.preview()

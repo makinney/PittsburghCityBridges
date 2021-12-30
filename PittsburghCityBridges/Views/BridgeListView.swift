@@ -10,61 +10,58 @@ import SwiftUI
 struct BridgeListView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @State private var showSheet = false
-    private var sectionListBy: BridgeListViewModel.SectionListBy = .neighborhood
+    @AppStorage("brigeInfoGrouping") private var brigeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
     private var bridgeListViewModel: BridgeListViewModel
     
-    init(_ bridgeListViewModel: BridgeListViewModel, sectionListBy: BridgeListViewModel.SectionListBy = .name) {
+    init(_ bridgeListViewModel: BridgeListViewModel, brigeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) {
         self.bridgeListViewModel = bridgeListViewModel
-        self.sectionListBy = sectionListBy
-        //      UITableView.appearance().backgroundColor = .green
+        self.brigeInfoGrouping = brigeInfoGrouping
     }
     
+    init(_ bridgeListViewModel: BridgeListViewModel) {
+        self.bridgeListViewModel = bridgeListViewModel
+    }
     
     var body: some View {
         NavigationView {
+            VStack {
+            menuBar()
             ScrollView {
                 LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                    ForEach(bridgeListViewModel.sectionList(sectionListBy)) { bridgesSection in
+                    ForEach(bridgeListViewModel.sections(groupedBy: brigeInfoGrouping)) { bridgesSection in
                         Section {
                             ForEach(bridgesSection.bridgeModels) { bridgeModel in
                                 NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)) {
                                     BridgeListRow(bridgeModel: bridgeModel)
                                         .padding([.leading])
-                               //         .padding()
-                                    //    .padding([.trailing, .leading], 10)
-                                    //    .padding([.top], 10)
                                 }
                                 Divider()
                             }
                             .font(.body)
                         } header: {
                             HStack {
-                                sectionLabel(bridgesSection.sectionName, sectionListBy)
+                                sectionLabel(bridgesSection.sectionName, brigeInfoGrouping)
                                     .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
                                     .font(.title3)
                                     .padding([.leading])
                                 Spacer()
                             }
                         }
-                 //       .padding([.top], 5)
                         .font(.headline)
                         .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
                         .background(bridgesSection.pbColorPalate.textBgnd)
                     }
-           //         .padding([.bottom], 20)
-                    
-                }
-                //       .listStyle(.grouped)
+                    }
             }
+        }
             .background(Color.black)
             .navigationBarHidden(true)
         }
-        //     .foregroundColor(Color.blue)
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
     @ViewBuilder
-    private func sectionLabel(_ sectionName: String, _ sectionListby: BridgeListViewModel.SectionListBy) -> some View {
+    private func sectionLabel(_ sectionName: String, _ sectionListby: BridgeListViewModel.BridgeInfoGrouping) -> some View {
         
         switch sectionListby {
         case .neighborhood:
@@ -75,6 +72,51 @@ struct BridgeListView: View {
             Text("Built in \(sectionName)")
         }
     }
+    
+    private func menuBar() -> some View {
+        HStack {
+            Spacer()
+            Text("Pittsburgh Bridges")
+                .foregroundColor(.pbTitleTextFgnd)
+                .font(.title)
+            Spacer()
+            sortMenu()
+                .padding(.trailing, 10)
+        }
+        .background(Color.pbTitleTextBgnd)
+    }
+    
+    private func sortMenu() -> some View {
+        Menu(content: {
+            Button {
+                brigeInfoGrouping = .name
+            } label: {
+                makeCheckedSortLabel("By Names", selectedSection: .name)
+            }
+            Button {
+                brigeInfoGrouping = .neighborhood
+            } label: {
+                makeCheckedSortLabel("By Neighborhoods", selectedSection: .neighborhood)
+            }
+            Button {
+                brigeInfoGrouping = .year
+            } label: {
+                makeCheckedSortLabel("By Year Built", selectedSection: .year)
+            }
+        }, label: {
+            Label("Sort", systemImage: "rectangle.split.3x3")
+                .labelStyle(.iconOnly)
+        })
+    }
+    
+    private func makeCheckedSortLabel(_ name: String, selectedSection: BridgeListViewModel.BridgeInfoGrouping) -> Label<Text, Image> {
+        if self.brigeInfoGrouping == selectedSection {
+            return Label(name, systemImage: "checkmark.square.fill")
+        } else {
+            return Label(name, systemImage: "square")
+        }
+    }
+    
 }
 
 struct BridgeListView_Previews: PreviewProvider {
