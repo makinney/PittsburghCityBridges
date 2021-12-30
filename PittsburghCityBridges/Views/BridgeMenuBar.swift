@@ -14,13 +14,13 @@ struct BridgeMenuBar: View {
     
     var body: some View {
         HStack {
-            Spacer()
             Text("Pittsburgh Bridges")
                 .foregroundColor(pbColorPalate.titleTextFgnd)
                 .font(.title)
+                .padding([.leading])
             Spacer()
             sortMenu()
-                .padding(.trailing, 10)
+                .padding([.trailing])
         }
         .background(pbColorPalate.titleTextBgnd)
     }
@@ -44,7 +44,8 @@ struct BridgeMenuBar: View {
             }
         }, label: {
             Label("Sort", systemImage: "arrow.up.arrow.down.square")
-                .labelStyle(.titleAndIcon)
+                .labelStyle(.titleOnly)
+                .font(.title2)
         })
     }
     

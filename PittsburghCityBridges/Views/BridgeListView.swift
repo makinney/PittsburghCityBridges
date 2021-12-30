@@ -33,11 +33,10 @@ struct BridgeListView: View {
                                 ForEach(bridgesSection.bridgeModels) { bridgeModel in
                                     NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)) {
                                         BridgeListRow(bridgeModel: bridgeModel)
-                                            .padding([.leading])
+                                            .padding([.leading, .trailing])
                                     }
                                     Divider()
                                 }
-                                .font(.body)
                             } header: {
                                 HStack {
                                     sectionLabel(bridgesSection.sectionName, bridgeInfoGrouping)

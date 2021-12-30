@@ -33,7 +33,7 @@ struct ContentView: View {
         .onAppear {
             bridgeStore.refreshBridgeModels()
         }
-        .accentColor(.orange)
+//        .accentColor(.orange)
     }
 }
 

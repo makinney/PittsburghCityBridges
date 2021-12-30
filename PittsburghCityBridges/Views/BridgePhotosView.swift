@@ -28,7 +28,7 @@ struct BridgePhotosView: View {
             VStack {
                 BridgeMenuBar(bridgeInfoGrouping: $bridgeInfoGrouping)
                 ScrollView {
-                    LazyVStack(spacing: 20, pinnedViews: [.sectionHeaders]) {
+                    LazyVStack(spacing: 10, pinnedViews: [.sectionHeaders]) {
                         ForEach(bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping)) { bridgesSection in
                             Section {
                                 ForEach(bridgesSection.bridgeModels) { bridgeModel in
@@ -36,7 +36,7 @@ struct BridgePhotosView: View {
                                         NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)) {
                                             SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)
                                         }
-                                        .padding([.top], 5)
+                //                        .padding([.top], 5)
                                     }
                                 }
                                 .font(.body)
@@ -45,7 +45,7 @@ struct BridgePhotosView: View {
                                     sectionLabel(bridgesSection.sectionName, bridgeInfoGrouping)
                                         .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
                                         .font(.title2)
-                               //         .padding([.leading])
+                                        .padding([.leading])
                                     Spacer()
                                 }
                                 .font(.headline)
@@ -58,7 +58,7 @@ struct BridgePhotosView: View {
         //            .padding([.leading,.trailing], 20)
                 }
             }
-            .padding([.leading, .trailing], 20)
+  //          .padding([.leading, .trailing], 20)
             .navigationBarHidden(true)
         }
         .navigationViewStyle(StackNavigationViewStyle())
@@ -100,7 +100,7 @@ struct SinglePhotoView: View {
                 Text("\(bridgeModel.name)")
                     .font(.title3)
                     .foregroundColor(pbColorPalate.textFgnd)
-                    .padding([.leading, .trailing], 5)
+                    .padding([.leading])
                     .background(pbColorPalate.textBgnd)
                     .opacity(imageLoaded ? 1.0 : 0.0)
                 Spacer()
