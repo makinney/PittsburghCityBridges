@@ -10,12 +10,12 @@ import SwiftUI
 struct BridgeListView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @State private var showSheet = false
-    @AppStorage("brigeInfoGrouping") private var brigeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
+    @AppStorage("bridgeListView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
     private var bridgeListViewModel: BridgeListViewModel
     
-    init(_ bridgeListViewModel: BridgeListViewModel, brigeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) {
+    init(_ bridgeListViewModel: BridgeListViewModel, bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) {
         self.bridgeListViewModel = bridgeListViewModel
-        self.brigeInfoGrouping = brigeInfoGrouping
+        self.bridgeInfoGrouping = bridgeInfoGrouping
     }
     
     init(_ bridgeListViewModel: BridgeListViewModel) {
@@ -28,7 +28,7 @@ struct BridgeListView: View {
             menuBar()
             ScrollView {
                 LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                    ForEach(bridgeListViewModel.sections(groupedBy: brigeInfoGrouping)) { bridgesSection in
+                    ForEach(bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping)) { bridgesSection in
                         Section {
                             ForEach(bridgesSection.bridgeModels) { bridgeModel in
                                 NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)) {
@@ -40,7 +40,7 @@ struct BridgeListView: View {
                             .font(.body)
                         } header: {
                             HStack {
-                                sectionLabel(bridgesSection.sectionName, brigeInfoGrouping)
+                                sectionLabel(bridgesSection.sectionName, bridgeInfoGrouping)
                                     .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
                                     .font(.title3)
                                     .padding([.leading])
@@ -51,9 +51,9 @@ struct BridgeListView: View {
                         .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
                         .background(bridgesSection.pbColorPalate.textBgnd)
                     }
-                    }
+                }
             }
-        }
+            }
             .background(Color.black)
             .navigationBarHidden(true)
         }
@@ -73,6 +73,10 @@ struct BridgeListView: View {
         }
     }
     
+}
+
+extension BridgeListView {
+    
     private func menuBar() -> some View {
         HStack {
             Spacer()
@@ -89,17 +93,17 @@ struct BridgeListView: View {
     private func sortMenu() -> some View {
         Menu(content: {
             Button {
-                brigeInfoGrouping = .name
+                bridgeInfoGrouping = .name
             } label: {
                 makeCheckedSortLabel("By Names", selectedSection: .name)
             }
             Button {
-                brigeInfoGrouping = .neighborhood
+                bridgeInfoGrouping = .neighborhood
             } label: {
                 makeCheckedSortLabel("By Neighborhoods", selectedSection: .neighborhood)
             }
             Button {
-                brigeInfoGrouping = .year
+                bridgeInfoGrouping = .year
             } label: {
                 makeCheckedSortLabel("By Year Built", selectedSection: .year)
             }
@@ -110,13 +114,12 @@ struct BridgeListView: View {
     }
     
     private func makeCheckedSortLabel(_ name: String, selectedSection: BridgeListViewModel.BridgeInfoGrouping) -> Label<Text, Image> {
-        if self.brigeInfoGrouping == selectedSection {
+        if self.bridgeInfoGrouping == selectedSection {
             return Label(name, systemImage: "checkmark.square.fill")
         } else {
             return Label(name, systemImage: "square")
         }
     }
-    
 }
 
 struct BridgeListView_Previews: PreviewProvider {
