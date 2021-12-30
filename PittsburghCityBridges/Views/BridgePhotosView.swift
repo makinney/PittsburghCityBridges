@@ -28,7 +28,7 @@ struct BridgePhotosView: View {
             VStack {
                 BridgeMenuBar(bridgeInfoGrouping: $bridgeInfoGrouping)
                 ScrollView {
-                    LazyVStack(spacing: 10, pinnedViews: [.sectionHeaders]) {
+                    LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
                         ForEach(bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping)) { bridgesSection in
                             Section {
                                 ForEach(bridgesSection.bridgeModels) { bridgeModel in
@@ -36,7 +36,6 @@ struct BridgePhotosView: View {
                                         NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)) {
                                             SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)
                                         }
-                //                        .padding([.top], 5)
                                     }
                                 }
                                 .font(.body)
@@ -45,20 +44,17 @@ struct BridgePhotosView: View {
                                     sectionLabel(bridgesSection.sectionName, bridgeInfoGrouping)
                                         .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
                                         .font(.title2)
-                                        .padding([.leading])
+                                        .padding([.leading, .top, .bottom])
                                     Spacer()
                                 }
                                 .font(.headline)
                                 .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
                                 .background(bridgesSection.pbColorPalate.textBgnd)
                             }
-                //            .background(bridgesSection.pbColorPalate.textBgnd)
                         }
                     }
-        //            .padding([.leading,.trailing], 20)
                 }
             }
-  //          .padding([.leading, .trailing], 20)
             .navigationBarHidden(true)
         }
         .navigationViewStyle(StackNavigationViewStyle())
@@ -71,7 +67,7 @@ struct BridgePhotosView: View {
         case .neighborhood:
             Text("\(sectionName) Neighborhood")
         case .name:
-            Text("Starting with \(sectionName)")
+            Text("\(sectionName)")
         case .year:
             Text("Built in \(sectionName)")
         }
@@ -95,28 +91,29 @@ struct SinglePhotoView: View {
     }
     
     var body: some View {
-        VStack {
-            HStack {
-                Text("\(bridgeModel.name)")
-                    .font(.title3)
-                    .foregroundColor(pbColorPalate.textFgnd)
-                    .padding([.leading])
-                    .background(pbColorPalate.textBgnd)
-                    .opacity(imageLoaded ? 1.0 : 0.0)
-                Spacer()
+        ZStack {
+            VStack {
+                HStack {
+                    Text("\(bridgeModel.name)")
+                        .font(.title3)
+                        .foregroundColor(pbColorPalate.textFgnd)
+                        .opacity(imageLoaded ? 1.0 : 0.0)
+                    Spacer()
+                }
+                ZStack {
+                    Image(uiImage: bridgeImage )
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .cornerRadius(imageCornerRadius)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: imageCornerRadius)
+                                .stroke(Color.secondary, lineWidth: 2)
+                        )
+                    BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
+                        .opacity(imageLoaded ? 0.0 : 1.0)
+                }
             }
-            ZStack {
-                Image(uiImage: bridgeImage )
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .cornerRadius(imageCornerRadius)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: imageCornerRadius)
-                            .stroke(Color.secondary, lineWidth: 2)
-                    )
-                BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
-                    .opacity(imageLoaded ? 0.0 : 1.0)
-            }
+            .padding([.leading, .trailing, .bottom])
         }
         .background(pbColorPalate.textBgnd)
         .onAppear {
