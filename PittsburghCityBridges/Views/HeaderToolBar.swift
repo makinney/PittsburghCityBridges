@@ -7,20 +7,17 @@
 
 import SwiftUI
 
-struct BridgeMenuBar: View {
+struct HeaderToolBar: View {
     
     @Binding var bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping
     var pbColorPalate = PBColorPalate()
-    
+
     var body: some View {
         HStack {
-            Text("Pittsburgh Bridges")
-                .foregroundColor(pbColorPalate.titleTextFgnd)
-                .font(.title)
-                .padding([.leading])
-            Spacer()
             sortMenu()
-                .padding([.trailing])
+                .padding([.leading])
+                .padding([.vertical], 5)
+            Spacer()
         }
         .background(pbColorPalate.titleTextBgnd)
     }
@@ -43,8 +40,8 @@ struct BridgeMenuBar: View {
                 makeCheckedSortLabel("By Year Built", selectedSection: .year)
             }
         }, label: {
-            Label("Sort", systemImage: "arrow.up.arrow.down.square")
-                .labelStyle(.titleOnly)
+            Label("Sort", systemImage: "slider.vertical.3")
+                .labelStyle(.iconOnly)
                 .font(.title2)
         })
     }
@@ -61,6 +58,6 @@ struct BridgeMenuBar: View {
 
 struct BridgeMenuBar_Previews: PreviewProvider {
     static var previews: some View {
-        BridgeMenuBar(bridgeInfoGrouping: .constant(.neighborhood), pbColorPalate: PBColorPalate())
+        HeaderToolBar(bridgeInfoGrouping: .constant(.neighborhood))
     }
 }

@@ -19,21 +19,21 @@ struct ContentView: View {
         TabView {
             BridgeListView(BridgeListViewModel(bridgeStore))
                 .tabItem {
-                    Label("Lists", systemImage: "list.dash")
+                    Label("Bridge List", systemImage: "list.dash")
                 }
             BridgePhotosView(BridgeListViewModel(bridgeStore))
                 .tabItem {
-                    Label("Photos", systemImage: "photo.on.rectangle")
+                    Label("Bridge Photos", systemImage: "photo.on.rectangle")
                 }
             BridgeMapView()
                 .tabItem {
-                    Label("Map", systemImage: "map")
+                    Label("Bridge Map", systemImage: "map")
                 }
         }
         .onAppear {
             bridgeStore.refreshBridgeModels()
         }
-//        .accentColor(.orange)
+//        .accentColor(Color.pbAccent)
     }
 }
 

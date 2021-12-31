@@ -24,8 +24,9 @@ struct BridgeListView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                BridgeMenuBar(bridgeInfoGrouping: $bridgeInfoGrouping)
+            VStack(spacing: 0) {
+                TitleHeader()
+                HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping)
                 ScrollView {
                     LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
                         ForEach(bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping)) { bridgesSection in
@@ -43,6 +44,8 @@ struct BridgeListView: View {
                                         .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
                                         .font(.title3)
                                         .padding([.leading])
+                                        .padding([.top], 10)
+                                        .padding([.bottom], 5)
                                     Spacer()
                                 }
                             }
@@ -63,11 +66,11 @@ struct BridgeListView: View {
     private func sectionLabel(_ sectionName: String, _ sectionListby: BridgeListViewModel.BridgeInfoGrouping) -> some View {
         switch sectionListby {
         case .neighborhood:
-            Text("\(sectionName) Neighborhood")
+            Text("\(sectionName)")
         case .name:
-            Text("Starting with \(sectionName)")
+            Text("\(sectionName)")
         case .year:
-            Text("Built in \(sectionName)")
+            Text("\(sectionName)")
         }
     }
 }
