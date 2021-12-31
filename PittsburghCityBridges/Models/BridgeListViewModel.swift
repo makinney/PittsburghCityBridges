@@ -20,7 +20,7 @@ class BridgeListViewModel {
         var bridgeModels: [BridgeModel]
         var pbColorPalate = PBColorPalate()
     }
-    enum SectionListBy: Int {
+    enum BridgeInfoGrouping: Int {
         case name
         case neighborhood
         case year
@@ -36,8 +36,8 @@ class BridgeListViewModel {
     }
     
     @MainActor
-    func sectionList(_ sectionListBy: SectionListBy) -> [Section] {
-        switch sectionListBy {
+    func sections(groupedBy: BridgeInfoGrouping) -> [Section] {
+        switch groupedBy {
         case .name:
             nameSectionCache = nameSectionCache.isEmpty ? sectionByName() : nameSectionCache
             return nameSectionCache

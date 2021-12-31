@@ -14,11 +14,10 @@ enum ViewBridgeAs: Int {
 struct BridgeViewsView: View {
     private var bridgeListViewModel: BridgeListViewModel
     @AppStorage("viewBridgeAs") private var viewBridgeAs = ViewBridgeAs.list
-    @AppStorage("sectionListBy") private var sectionListBy = BridgeListViewModel.SectionListBy.neighborhood
+    @AppStorage("bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
     
     init(_ bridgeListViewModel: BridgeListViewModel) {
         self.bridgeListViewModel = bridgeListViewModel
-        //      UITableView.appearance().backgroundColor = .green
     }
     
     var body: some View {
@@ -27,14 +26,12 @@ struct BridgeViewsView: View {
             case .list:
                 VStack {
                     menuBar()
-        //            sortedAs()
-                    BridgeListView(bridgeListViewModel, sectionListBy: sectionListBy)
+                    BridgeListView(bridgeListViewModel, bridgeInfoGrouping: bridgeInfoGrouping)
                 }
             case .photos:
                 VStack {
                     menuBar()
-           //         sortedAs()
-                    BridgePhotosView(bridgeListViewModel, sectionListBy: sectionListBy)
+                    BridgePhotosView(bridgeListViewModel, bridgeInfoGrouping: bridgeInfoGrouping)
                 }
             }
         }
@@ -60,7 +57,7 @@ struct BridgeViewsView: View {
     private func sortedAs() -> some View {
         HStack {
             Spacer()
-            switch sectionListBy {
+            switch bridgeInfoGrouping {
             case .neighborhood:
                 Text("by Neighborhood")
                     .font(.headline)
@@ -92,17 +89,17 @@ struct BridgeViewsView: View {
     private func sortMenu() -> some View {
         Menu(content: {
             Button {
-                sectionListBy = .name
+                bridgeInfoGrouping = .name
             } label: {
                 makeCheckedSortLabel("By Names", selectedSection: .name)
             }
             Button {
-                sectionListBy = .neighborhood
+                bridgeInfoGrouping = .neighborhood
             } label: {
                 makeCheckedSortLabel("By Neighborhoods", selectedSection: .neighborhood)
             }
             Button {
-                sectionListBy = .year
+                bridgeInfoGrouping = .year
             } label: {
                 makeCheckedSortLabel("By Year Built", selectedSection: .year)
             }
@@ -112,8 +109,8 @@ struct BridgeViewsView: View {
         })
     }
     
-    private func makeCheckedSortLabel(_ name: String, selectedSection: BridgeListViewModel.SectionListBy) -> Label<Text, Image> {
-        if self.sectionListBy == selectedSection {
+    private func makeCheckedSortLabel(_ name: String, selectedSection: BridgeListViewModel.BridgeInfoGrouping) -> Label<Text, Image> {
+        if self.bridgeInfoGrouping == selectedSection {
             return Label(name, systemImage: "checkmark.square.fill")
         } else {
             return Label(name, systemImage: "square")

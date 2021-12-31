@@ -10,69 +10,67 @@ import SwiftUI
 struct BridgeListView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @State private var showSheet = false
-    private var sectionListBy: BridgeListViewModel.SectionListBy = .neighborhood
+    @AppStorage("bridgeListView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
     private var bridgeListViewModel: BridgeListViewModel
     
-    init(_ bridgeListViewModel: BridgeListViewModel, sectionListBy: BridgeListViewModel.SectionListBy = .name) {
+    init(_ bridgeListViewModel: BridgeListViewModel, bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) {
         self.bridgeListViewModel = bridgeListViewModel
-        self.sectionListBy = sectionListBy
-        //      UITableView.appearance().backgroundColor = .green
+        self.bridgeInfoGrouping = bridgeInfoGrouping
     }
     
+    init(_ bridgeListViewModel: BridgeListViewModel) {
+        self.bridgeListViewModel = bridgeListViewModel
+    }
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                    ForEach(bridgeListViewModel.sectionList(sectionListBy)) { bridgesSection in
-                        Section {
-                            ForEach(bridgesSection.bridgeModels) { bridgeModel in
-                                NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)) {
-                                    BridgeListRow(bridgeModel: bridgeModel)
-                                        .padding([.leading])
-                               //         .padding()
-                                    //    .padding([.trailing, .leading], 10)
-                                    //    .padding([.top], 10)
+            VStack(spacing: 0) {
+                TitleHeader()
+                HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping)
+                ScrollView {
+                    LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+                        ForEach(bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping)) { bridgesSection in
+                            Section {
+                                ForEach(bridgesSection.bridgeModels) { bridgeModel in
+                                    NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)) {
+                                        BridgeListRow(bridgeModel: bridgeModel)
+                                            .padding([.leading, .trailing])
+                                    }
+                                    Divider()
                                 }
-                                Divider()
+                            } header: {
+                                HStack {
+                                    sectionLabel(bridgesSection.sectionName, bridgeInfoGrouping)
+                                        .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
+                                        .font(.title3)
+                                        .padding([.leading])
+                                        .padding([.top], 10)
+                                        .padding([.bottom], 5)
+                                    Spacer()
+                                }
                             }
-                            .font(.body)
-                        } header: {
-                            HStack {
-                                sectionLabel(bridgesSection.sectionName, sectionListBy)
-                                    .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
-                                    .font(.title3)
-                                    .padding([.leading])
-                                Spacer()
-                            }
+                            .font(.headline)
+                            .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
+                            .background(bridgesSection.pbColorPalate.textBgnd)
                         }
-                 //       .padding([.top], 5)
-                        .font(.headline)
-                        .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
-                        .background(bridgesSection.pbColorPalate.textBgnd)
                     }
-           //         .padding([.bottom], 20)
-                    
                 }
-                //       .listStyle(.grouped)
             }
             .background(Color.black)
             .navigationBarHidden(true)
         }
-        //     .foregroundColor(Color.blue)
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
     @ViewBuilder
-    private func sectionLabel(_ sectionName: String, _ sectionListby: BridgeListViewModel.SectionListBy) -> some View {
-        
+    private func sectionLabel(_ sectionName: String, _ sectionListby: BridgeListViewModel.BridgeInfoGrouping) -> some View {
         switch sectionListby {
         case .neighborhood:
-            Text("\(sectionName) Neighborhood")
+            Text("\(sectionName)")
         case .name:
-            Text("Starting with \(sectionName)")
+            Text("\(sectionName)")
         case .year:
-            Text("Built in \(sectionName)")
+            Text("\(sectionName)")
         }
     }
 }

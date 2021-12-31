@@ -11,50 +11,69 @@ import os
 struct BridgePhotosView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgePhotosView")
-    private var sectionListBy: BridgeListViewModel.SectionListBy = .neighborhood
+    @AppStorage("bridgePhotosView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
     private var bridgeListViewModel: BridgeListViewModel
 
-    init(_ bridgeListViewModel: BridgeListViewModel, sectionListBy: BridgeListViewModel.SectionListBy = .name) {
+    init(_ bridgeListViewModel: BridgeListViewModel, bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) {
         self.bridgeListViewModel = bridgeListViewModel
-        self.sectionListBy = sectionListBy
-        //      UITableView.appearance().backgroundColor = .green
+        self.bridgeInfoGrouping = bridgeInfoGrouping
+    }
+    
+    init(_ bridgeListViewModel: BridgeListViewModel) {
+        self.bridgeListViewModel = bridgeListViewModel
     }
     
     var body: some View {
         NavigationView {
+            VStack(spacing: 0) {
+                TitleHeader()
+                HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping)
                 ScrollView {
-                    LazyVStack(spacing: 10, pinnedViews: [.sectionHeaders]) {
-                        ForEach(bridgeListViewModel.sectionList(sectionListBy)) { bridgesSection in
+                    LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+                        ForEach(bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping)) { bridgesSection in
                             Section {
                                 ForEach(bridgesSection.bridgeModels) { bridgeModel in
                                     if let imageURL = bridgeModel.imageURL {
                                         NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)) {
-                                            SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel)
-                                                .padding()
+                                            SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)
                                         }
                                     }
                                 }
-                                //               .background(Color("SteelersBlack"))
                                 .font(.body)
                             } header: {
                                 HStack {
-                                    Spacer()
-                                    Text("\(bridgesSection.sectionName)")
-                                        .foregroundColor(Color("SteelersGold"))
-
+                                    sectionLabel(bridgesSection.sectionName, bridgeInfoGrouping)
+                                        .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
+                                        .font(.title2)
+                                        .padding([.leading])
+                                        .padding([.top], 10)
+                                        .padding([.bottom], 5)
                                     Spacer()
                                 }
-                                .background(Color("SteelersBlack"))
-                       //         .background(Color.white)
+                                .font(.headline)
+                                .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
+                                .background(bridgesSection.pbColorPalate.textBgnd)
                             }
                         }
                     }
-                    
                 }
-                .padding([.leading, .trailing], 10)
-                .navigationBarHidden(true)
+            }
+            .navigationBarHidden(true)
         }
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+    
+    @ViewBuilder
+    private func sectionLabel(_ sectionName: String, _ sectionListby: BridgeListViewModel.BridgeInfoGrouping) -> some View {
+        
+        switch sectionListby {
+        case .neighborhood:
+            Text("\(sectionName)")
+        case .name:
+            Text("\(sectionName)")
+        case .year:
+            Text("\(sectionName)")
+        }
     }
 }
 
@@ -63,36 +82,43 @@ struct SinglePhotoView: View {
     @State var imageLoaded = false
     private var bridgeModel: BridgeModel
     private var bridgeImageSystem: BridgeImageSystem
+    private let pbColorPalate: PBColorPalate
+    private let imageCornerRadius: CGFloat = 10
     private let imageURL: URL
     
-    init(imageURL: URL, bridgeModel: BridgeModel) {
+    init(imageURL: URL, bridgeModel: BridgeModel, pbColorPalate: PBColorPalate) {
         self.bridgeModel = bridgeModel
+        self.pbColorPalate = pbColorPalate
         self.imageURL = imageURL
         bridgeImageSystem = BridgeImageSystem()
     }
     
     var body: some View {
         ZStack {
-            Image(uiImage: bridgeImage )
-                .resizable()
-                .aspectRatio(contentMode: .fit)
             VStack {
                 HStack {
-                    Spacer()
                     Text("\(bridgeModel.name)")
-                        .font(.caption)
-                        .foregroundColor(Color("SteelersGold"))
-                        .padding([.leading, .trailing], 5)
-                        .background(Color("SteelersBlack"))
+                        .font(.title3)
+                        .foregroundColor(pbColorPalate.textFgnd)
                         .opacity(imageLoaded ? 1.0 : 0.0)
                     Spacer()
                 }
-                .padding(4)
-                Spacer()
+                ZStack {
+                    Image(uiImage: bridgeImage )
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .cornerRadius(imageCornerRadius)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: imageCornerRadius)
+                                .stroke(Color.secondary, lineWidth: 2)
+                        )
+                    BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
+                        .opacity(imageLoaded ? 0.0 : 1.0)
+                }
             }
-            BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
-                .opacity(imageLoaded ? 0.0 : 1.0)
+            .padding([.leading, .trailing, .bottom])
         }
+        .background(pbColorPalate.textBgnd)
         .onAppear {
             Task {
                 do {
@@ -112,7 +138,7 @@ struct SinglePhotoView: View {
 struct BridgePhotosView_Previews: PreviewProvider {
     static let bridgeStore = BridgeStore()
     static var previews: some View {
-        BridgePhotosView(BridgeListViewModel(bridgeStore))
+        BridgePhotosView(BridgeListViewModel(bridgeStore), bridgeInfoGrouping: .name)
             .environmentObject(bridgeStore)
             .onAppear {
                 bridgeStore.preview()

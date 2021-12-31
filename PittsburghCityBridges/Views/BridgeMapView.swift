@@ -10,9 +10,9 @@ import SwiftUI
 struct BridgeMapView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     var body: some View {
-        VStack {
-            Text("City Bridges Map")
-                .font(.title2) 
+        VStack(spacing: 0){
+            TitleHeader()
+                .padding([.bottom], 5)
             BridgeMapUIView(region: MapViewModel().multipleBridgesRegion, bridgeModels: bridgeStore.bridgeModels, showsBridgeImage: true)
         }
     }
