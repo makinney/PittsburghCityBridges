@@ -113,6 +113,12 @@ struct BridgeDetailsView: View {
                 GeometryReader { geometry in
                     ScrollView(showsIndicators: false) {
                         VStack(alignment: .leading) {
+                            Text("\(bridgeModel.name)")
+                                .font(.headline)
+                                .padding([.leading])
+                            Text(bridgeModel.builtHistory())
+                                .padding([.leading])
+                    
                             HStack {
                                 Spacer()
                                 ZStack {
@@ -142,15 +148,11 @@ struct BridgeDetailsView: View {
                                 Spacer()
                             }
                             //          .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
-                            Text("\(bridgeModel.name)")
-                                .font(.headline)
-                                .padding(.vertical)
-                            Text(bridgeModel.builtHistory())
-                                .padding(.bottom)
                             Text(bridgeModel.neighborhoods())
+                                .padding()
+                          
                             HStack {
                                 Spacer()
-                                
                                 makeMapView(bridgeModel)
                                     .frame(height: 200)
                                     .cornerRadius(imageCornerRadius)
@@ -190,19 +192,20 @@ struct BridgeDetailsView: View {
             VStack {
                 HStack {
                     if let locationCoordinate = bridgeModel.locationCoordinate {
-                        Spacer()
+                       
                         Button {
                             DirectionsProvider.shared.requestDirectionsTo(locationCoordinate)
                         } label: {
                             Label("Directions", systemImage: "arrow.triangle.turn.up.right.circle.fill")
                                 .padding(4)
-                                .background(Color(white: 0.9))
+                                .background(Color.pbTitleTextBgnd)
                         }
                         .overlay(
                             RoundedRectangle(cornerRadius: buttonCornerRadius)
                                 .stroke(Color.secondary, lineWidth: 2)
                         )
                         .padding()
+                        Spacer()
                     }
                 }
                 Spacer()
