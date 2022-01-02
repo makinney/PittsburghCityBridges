@@ -29,7 +29,7 @@ struct BridgeMapDetailAccessoryView: View {
         }
         .task {
             do {
-                if let image = await bridgeImageSystem.getThumbnailImage(url: bridgeModel.imageURL, size: CGSize(width: 500, height: 500)) {
+                if let image = await bridgeImageSystem.getThumbnailImage(url: bridgeModel.imageURL, desiredThumbnailWidth: 500) {
                     bridgeImage = image
  //                   bridgeImageLoaded = true
                 }

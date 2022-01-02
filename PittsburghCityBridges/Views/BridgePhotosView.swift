@@ -103,18 +103,20 @@ struct SinglePhotoView: View {
                         .opacity(imageLoaded ? 1.0 : 0.0)
                     Spacer()
                 }
-                ZStack {
-                    Image(uiImage: bridgeImage )
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .cornerRadius(imageCornerRadius)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: imageCornerRadius)
-                                .stroke(Color.secondary, lineWidth: 2)
-                        )
-                    BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
-                        .opacity(imageLoaded ? 0.0 : 1.0)
-                }
+                    ZStack {
+                        Image(uiImage: bridgeImage )
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            
+            //                .aspectRatio(contentMode: .fit)
+//                            .cornerRadius(imageCornerRadius)
+//                            .overlay(
+//                                RoundedRectangle(cornerRadius: imageCornerRadius)
+//                                    .stroke(Color.secondary, lineWidth: 2)
+//                            )
+                        BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
+                            .opacity(imageLoaded ? 0.0 : 1.0)
+                    }
             }
             .padding([.leading, .trailing, .bottom])
         }
@@ -122,7 +124,7 @@ struct SinglePhotoView: View {
         .onAppear {
             Task {
                 do {
-                    if let image = await bridgeImageSystem.getThumbnailImage(url:imageURL, size: CGSize(width: 1000, height: 1000)) {
+                    if let image = await bridgeImageSystem.getThumbnailImage(url:imageURL, desiredThumbnailWidth: 1000) {
                         bridgeImage = image
                         imageLoaded = true
                     }

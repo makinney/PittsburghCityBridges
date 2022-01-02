@@ -53,14 +53,22 @@ class BridgeImageSystem: ObservableObject {
     }
     
     @MainActor
-    func getThumbnailImage(url: URL?, size: CGSize = CGSize(width: 100, height: 100)) async -> UIImage? {
+    func getThumbnailImage(url: URL?, desiredThumbnailWidth: CGFloat = 500) async -> UIImage? {
         // SMALL, MIDDLE, LARGE THUMBNAILS FOR ENTIRE APP AND CACHE FOR EACH
         if let cachedThumbnailImage = cachedThumbnailImage {
             return cachedThumbnailImage
         }
         if let imageData = await getImageData(for: url) {
-            cachedThumbnailImage = await UIImage(data: imageData)?.byPreparingThumbnail(ofSize: size)
-           return cachedThumbnailImage
+            let uiImage = UIImage(data: imageData)
+            if let cgImage = uiImage?.cgImage {  // , Int(desiredThumbnailWidth) <= cgImage.width {
+                let thumbnailWidth = min(desiredThumbnailWidth, CGFloat(cgImage.width))
+                let aspectRatio =  CGFloat(cgImage.height) / CGFloat(cgImage.width)
+                let thumbnailHeight = thumbnailWidth * aspectRatio
+                let thumbNailSize = CGSize(width: desiredThumbnailWidth, height: thumbnailHeight)
+                cachedThumbnailImage = await uiImage?.byPreparingThumbnail(ofSize: thumbNailSize)
+               return cachedThumbnailImage
+            }
+            return nil
         }
         return nil
     }
