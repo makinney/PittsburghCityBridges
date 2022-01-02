@@ -25,7 +25,7 @@ struct BridgeListView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                TitleHeader()
+                TitleHeader(title: "Pittsburgh City Bridges")
                 HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping)
                 ScrollView {
                     LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {

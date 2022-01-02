@@ -19,8 +19,12 @@ extension Color {
     static let pbTextFgndConcrete = Color(light: Asset.bridgeBlackA, dark: Asset.bridgeConcreteA)
     static let pbTextBgndConcrete = Color(light: Asset.bridgeConcreteA, dark: Asset.bridgeBlackA)
     static let pbTitleTextFgnd =  Color(light: UIColor.label , dark: Asset.bridgeYellowA)
-    static let pbTitleTextBgnd =  Color(light: UIColor.tertiarySystemBackground , dark: Asset.bridgeBlackA)
+    static let pbTitleTextBgnd =  Color(light: UIColor.secondarySystemBackground , dark: Asset.bridgeBlackA)
     static let steelerBlack = Color(uiColor: Asset.bridgeBlackA)
+}
+
+extension UIColor {
+    static let pbTabBarBackground = UIColor(light: UIColor.secondarySystemBackground, dark: Asset.bridgeBlackA)
 }
 
 private struct Asset {

@@ -9,10 +9,12 @@ import SwiftUI
 
 struct TitleHeader: View {
     var pbColorPalate = PBColorPalate()
+    var title: String = "Pittsburgh City Bridges"
+
     var body: some View {
         HStack {
             Spacer()
-            Text("Pittsburgh City Bridges")
+            Text(title)
                 .foregroundColor(pbColorPalate.titleTextFgnd)
                 .font(.title2)
                 .italic()

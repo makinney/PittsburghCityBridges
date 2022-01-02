@@ -11,7 +11,7 @@ struct BridgeMapView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     var body: some View {
         VStack(spacing: 0){
-            TitleHeader()
+            TitleHeader(title: "Bridges Map")
                 .padding([.bottom], 5)
             BridgeMapUIView(region: MapViewModel().multipleBridgesRegion, bridgeModels: bridgeStore.bridgeModels, showsBridgeImage: true)
         }
