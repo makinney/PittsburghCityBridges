@@ -110,7 +110,10 @@ struct BridgeMapUIView: UIViewRepresentable {
             annotationView.markerTintColor = .systemRed
             annotationView.canShowCallout = true
             let buttonImage = UIImage(systemName: "arrow.triangle.turn.up.right.circle.fill") ?? UIImage()
-            let directionsRequestButton = UIButton.systemButton(with: buttonImage, target: nil, action: nil) // so we can tap and get the delegate callback
+            let directionsRequestButton = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50)) // so we can tap and get the delegate callback
+            directionsRequestButton.setImage(buttonImage, for: .normal)
+       //     directionsRequestButton.setTitle("Directions", for: .normal)
+      //      directionsRequestButton.setTitleColor(UIColor.red, for: .normal)
             annotationView.rightCalloutAccessoryView = directionsRequestButton
             if hasDetailAccessoryView {
                 let bridgeMapDetailAccessoryView = BridgeMapDetailAccessoryView(bridgeModel: bridgeMapAnnotation.bridgeModel)

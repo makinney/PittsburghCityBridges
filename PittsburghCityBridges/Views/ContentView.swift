@@ -11,8 +11,7 @@ struct ContentView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     
     init() {
- //       UITabBar.appearance().isTranslucent = false
- //       UITabBar.appearance().backgroundColor = UIColor.systemBackground
+        UITabBar.appearance().backgroundColor = UIColor.pbTabBarBackground
     }
 
     var body: some View {
