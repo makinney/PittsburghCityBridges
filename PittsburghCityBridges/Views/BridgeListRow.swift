@@ -15,7 +15,7 @@ struct BridgeListRow: View {
     private let imageURL: URL?
     private let imageCornerRadius: CGFloat = 4
     private let imageFrameSize: CGSize
-    private let thumbNailSize: CGSize
+    private let thumbNailWidth: CGFloat
     private let imageStrokeWidth: CGFloat
     
     init(bridgeModel: BridgeModel) {
@@ -23,11 +23,11 @@ struct BridgeListRow: View {
         imageURL = bridgeModel.imageURL
         bridgeImageSystem = BridgeImageSystem()
         if UIDevice.current.userInterfaceIdiom == .phone {
-            thumbNailSize = CGSize(width: 200, height: 200)
+            thumbNailWidth = 200
             imageFrameSize = CGSize(width: 50, height: 50)
             imageStrokeWidth = 1
         } else {
-            thumbNailSize = CGSize(width: 500, height: 500)
+            thumbNailWidth = 500
             imageFrameSize = CGSize(width: 100, height: 100)
             imageStrokeWidth = 2
         }
@@ -72,7 +72,7 @@ struct BridgeListRow: View {
                 do {
                     if let imageURL = bridgeModel.imageURL,
                        imageLoaded == false,
-                       let image = await bridgeImageSystem.getThumbnailImage(url:imageURL, size: thumbNailSize) {
+                       let image = await bridgeImageSystem.getThumbnailImage(url:imageURL, desiredThumbnailWidth: thumbNailWidth) {
                         bridgeImage = image
                         imageLoaded = true
                     }
