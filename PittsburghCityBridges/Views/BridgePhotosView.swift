@@ -26,7 +26,7 @@ struct BridgePhotosView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                TitleHeader(title: "Bridges Photos")
+                TitleHeader(title: "Photos")
                 HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping)
                 ScrollView {
                     LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
@@ -85,7 +85,8 @@ struct SinglePhotoView: View {
     private let pbColorPalate: PBColorPalate
     private let imageCornerRadius: CGFloat = 10
     private let imageURL: URL
-    
+    let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgePhotosView")
+
     init(imageURL: URL, bridgeModel: BridgeModel, pbColorPalate: PBColorPalate) {
         self.bridgeModel = bridgeModel
         self.pbColorPalate = pbColorPalate
@@ -94,45 +95,48 @@ struct SinglePhotoView: View {
     }
     
     var body: some View {
-        ZStack {
-            VStack {
-                HStack {
-                    Text("\(bridgeModel.name)")
-                        .font(.title3)
-                        .foregroundColor(pbColorPalate.textFgnd)
-                        .opacity(imageLoaded ? 1.0 : 0.0)
-                    Spacer()
-                }
-                    ZStack {
-                        Image(uiImage: bridgeImage )
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            
-            //                .aspectRatio(contentMode: .fit)
-//                            .cornerRadius(imageCornerRadius)
-//                            .overlay(
-//                                RoundedRectangle(cornerRadius: imageCornerRadius)
-//                                    .stroke(Color.secondary, lineWidth: 2)
-//                            )
-                        BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
-                            .opacity(imageLoaded ? 0.0 : 1.0)
-                    }
+        VStack {
+            HStack {
+                Text("\(bridgeModel.name)")
+                    .font(.headline)
+                    .foregroundColor(pbColorPalate.textFgnd)
+                    .opacity(imageLoaded ? 1.0 : 0.0)
+                Spacer()
             }
-            .padding([.leading, .trailing, .bottom])
+            ZStack {
+                Image(uiImage: bridgeImage )
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .cornerRadius(imageCornerRadius)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: imageCornerRadius)
+                            .stroke(Color.secondary, lineWidth: 2)
+                    )
+                    .opacity(imageLoaded ? 1.0 : 0.0)
+                BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
+                    .opacity(imageLoaded ? 0.0 : 1.0)
+            }
         }
+        .padding([.horizontal])
+        .frame(width: UIScreen.main.bounds.size.width)
+        .frame(height: UIScreen.main.bounds.size.width * 0.75)  // fraction of width
+        .padding([.leading, .trailing, .bottom])
         .background(pbColorPalate.textBgnd)
         .onAppear {
             Task {
                 do {
-                    if let image = await bridgeImageSystem.getThumbnailImage(url:imageURL, desiredThumbnailWidth: 1000) {
-                        bridgeImage = image
-                        imageLoaded = true
+                    if imageLoaded == false {
+                        if let image = await bridgeImageSystem.getThumbnailImage(url:imageURL, desiredThumbnailWidth: 1000) {
+                            bridgeImage = image
+                            imageLoaded = true
+                        }
                     }
                 }
             }
         }
         .onDisappear {
             bridgeImage = UIImage()
+            imageLoaded = false
         }
     }
 }
