@@ -25,7 +25,7 @@ struct BridgeListView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                TitleHeader(title: "Pittsburgh Bridges")
+                TitleHeader(title: "Pittsburgh City Bridges")
                 HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping)
                 ScrollView {
                     LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
@@ -66,11 +66,11 @@ struct BridgeListView: View {
     private func sectionLabel(_ sectionName: String, _ sectionListby: BridgeListViewModel.BridgeInfoGrouping) -> some View {
         switch sectionListby {
         case .neighborhood:
-            Text("\(sectionName)")
+            Text("\(PBText.SortedBySection.neighborhood) \(sectionName)")
         case .name:
-            Text("\(sectionName)")
+            Text("\(PBText.SortedBySection.name) \(sectionName)")
         case .year:
-            Text("\(sectionName)")
+            Text("\(PBText.SortedBySection.year) \(sectionName)")
         }
     }
 }
