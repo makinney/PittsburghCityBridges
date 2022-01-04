@@ -28,6 +28,10 @@ struct ContentView: View {
                 .tabItem {
                     Label("Bridge Map", systemImage: "map")
                 }
+            MoreScreenView()
+                .tabItem {
+                    Label("More", systemImage: "ellipsis")
+                }
         }
         .onAppear {
             bridgeStore.refreshBridgeModels()
