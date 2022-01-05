@@ -9,9 +9,9 @@ import Foundation
 
 struct PBText {
     struct SortedBySection {
-        static let neighborhood = "Neighborhood is"
-        static let name = "Bridge name starts with"
-        static let year = "Year built is"
+        static let neighborhood = "Neighborhood"
+        static let name = ""
+        static let year = "Year built: "
     }
     
 }
