@@ -11,10 +11,10 @@ import os
 struct BridgePhotosView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @EnvironmentObject var favorites: PersistedSet
-
-    let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgePhotosView")
     @AppStorage("bridgePhotosView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
     private var bridgeListViewModel: BridgeListViewModel
+
+    let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgePhotosView")
 
     init(_ bridgeListViewModel: BridgeListViewModel, bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) {
         self.bridgeListViewModel = bridgeListViewModel
@@ -75,70 +75,6 @@ struct BridgePhotosView: View {
             Text("\(sectionName) \(PBText.SortedBySection.name) ")
         case .year:
             Text("\(PBText.SortedBySection.year) \(sectionName)")
-        }
-    }
-}
-
-struct SinglePhotoView: View {
-    @State var bridgeImage = UIImage()
-    @State var imageLoaded = false
-    private var bridgeModel: BridgeModel
-    private var bridgeImageSystem: BridgeImageSystem
-    private let pbColorPalate: PBColorPalate
-    private let imageCornerRadius: CGFloat = 10
-    private let imageURL: URL
-    let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgePhotosView")
-
-    init(imageURL: URL, bridgeModel: BridgeModel, pbColorPalate: PBColorPalate) {
-        self.bridgeModel = bridgeModel
-        self.pbColorPalate = pbColorPalate
-        self.imageURL = imageURL
-        bridgeImageSystem = BridgeImageSystem()
-    }
-    
-    var body: some View {
-        VStack {
-            HStack {
-                Text("\(bridgeModel.name)")
-                    .font(.headline)
-                    .foregroundColor(pbColorPalate.textFgnd)
-                    .opacity(imageLoaded ? 1.0 : 0.0)
-                Spacer()
-            }
-            ZStack {
-                Image(uiImage: bridgeImage )
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .cornerRadius(imageCornerRadius)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: imageCornerRadius)
-                            .stroke(Color.secondary, lineWidth: 2)
-                    )
-                    .opacity(imageLoaded ? 1.0 : 0.0)
-                BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
-                    .opacity(imageLoaded ? 0.0 : 1.0)
-            }
-        }
-        .padding([.horizontal])
-        .frame(width: UIScreen.main.bounds.size.width)
-        .frame(height: UIScreen.main.bounds.size.width * 0.75)  // fraction of width
-        .padding([.leading, .trailing, .bottom])
-        .background(pbColorPalate.textBgnd)
-        .onAppear {
-            Task {
-                do {
-                    if imageLoaded == false {
-                        if let image = await bridgeImageSystem.getThumbnailImage(url:imageURL, desiredThumbnailWidth: 1000) {
-                            bridgeImage = image
-                            imageLoaded = true
-                        }
-                    }
-                }
-            }
-        }
-        .onDisappear {
-            bridgeImage = UIImage()
-            imageLoaded = false
         }
     }
 }

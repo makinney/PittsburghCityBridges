@@ -28,6 +28,7 @@
 		244A747A2719A1A600284608 /* GEOJSONModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244A74792719A1A600284608 /* GEOJSONModels.swift */; };
 		244E9C91273ABF2A00605134 /* BridgeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244E9C90273ABF2A00605134 /* BridgeListViewModel.swift */; };
 		2458020A278776510091365B /* FavoritesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24580209278776510091365B /* FavoritesButton.swift */; };
+		2458020C27879A530091365B /* SinglePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2458020B27879A530091365B /* SinglePhotoView.swift */; };
 		245BDCC1272C917D000FE644 /* Sequence+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245BDCC0272C917D000FE644 /* Sequence+Extensions.swift */; };
 		247214FA27052454004FBACD /* TwoBridge.json in Resources */ = {isa = PBXBuildFile; fileRef = 247214F927052317004FBACD /* TwoBridge.json */; };
 		247214FC27054B7B004FBACD /* BridgesOpenData.json in Resources */ = {isa = PBXBuildFile; fileRef = 247214FB27054B5A004FBACD /* BridgesOpenData.json */; };
@@ -73,6 +74,7 @@
 		244A74792719A1A600284608 /* GEOJSONModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GEOJSONModels.swift; sourceTree = "<group>"; };
 		244E9C90273ABF2A00605134 /* BridgeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeListViewModel.swift; sourceTree = "<group>"; };
 		24580209278776510091365B /* FavoritesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesButton.swift; sourceTree = "<group>"; };
+		2458020B27879A530091365B /* SinglePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePhotoView.swift; sourceTree = "<group>"; };
 		245BDCC0272C917D000FE644 /* Sequence+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Extensions.swift"; sourceTree = "<group>"; };
 		247214ED27027E0E004FBACD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		247214F927052317004FBACD /* TwoBridge.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TwoBridge.json; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				2412B89C2783D19F00BD557E /* MoreScreenView.swift */,
 				249C7D5C277F609600D72DA4 /* TitleHeader.swift */,
 				24580209278776510091365B /* FavoritesButton.swift */,
+				2458020B27879A530091365B /* SinglePhotoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				245BDCC1272C917D000FE644 /* Sequence+Extensions.swift in Sources */,
 				24808FE1275BDA9200FF131C /* FileManagerExtensions.swift in Sources */,
 				240FBEE2278634CD0029DCC5 /* PersistedSet.swift in Sources */,
+				2458020C27879A530091365B /* SinglePhotoView.swift in Sources */,
 				241012892713785C00FE7DEC /* BridgeMapView.swift in Sources */,
 				24B3FE912722356A004B93A6 /* DirectionsProvider.swift in Sources */,
 				2410128D2713855400FE7DEC /* ContentView.swift in Sources */,

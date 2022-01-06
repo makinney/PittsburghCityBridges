@@ -57,7 +57,6 @@ struct BridgeListView: View {
                     }
                 }
             }
-            .background(Color.black)
             .navigationBarHidden(true)
         }
         .navigationViewStyle(StackNavigationViewStyle())
