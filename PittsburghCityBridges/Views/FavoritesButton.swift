@@ -8,26 +8,23 @@
 import SwiftUI
 
 struct FavoritesButton: View {
-    
-    @ObservedObject var favoriteBridges: FavoriteBridges
-    private var bridgeName: String
-    private var isFavorite = false
-    init(_ favoriteBridges: FavoriteBridges, bridgeName: String) {
-        self.favoriteBridges = favoriteBridges
-        self.bridgeName = bridgeName
-        isFavorite = favoriteBridges.isFavorite(name: bridgeName)
+    @ObservedObject var favorites: PersistedSet
+    private var favorite: String
+    init(_ favorites: PersistedSet, favorite: String) {
+        self.favorites = favorites
+        self.favorite = favorite
     }
     
     var body: some View {
         return VStack {
             Button {
-                if isFavorite {
-                    self.favoriteBridges.removeFavorite(name: bridgeName)
+                if favorites.contains(element: favorite) {
+                    self.favorites.remove(element: favorite)
                 } else {
-                    self.favoriteBridges.addFavorite(name: bridgeName)
+                    self.favorites.add(element: favorite)
                 }
             } label: {
-                if isFavorite {
+                if favorites.contains(element: favorite) {
                     Label("Favorite", systemImage: "star.fill")
                 } else {
                     Label("Favorite", systemImage: "star")
@@ -41,6 +38,6 @@ struct FavoritesButton: View {
 struct FavoritesButton_Previews: PreviewProvider {
     static let name = "ABC"
     static var previews: some View {
-        FavoritesButton(FavoriteBridges(), bridgeName: name)
+        FavoritesButton(PersistedSet(), favorite: name)
     }
 }

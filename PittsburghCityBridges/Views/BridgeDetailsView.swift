@@ -9,10 +9,9 @@ import SwiftUI
 import os
 
 struct BridgeDetailsView: View {
-    @ObservedObject var favoriteBridges: FavoriteBridges
+    @ObservedObject var favorites: PersistedSet
     @State private var bridgeImageOnly = false
     @State var bridgeImage = UIImage()
-    @State var isFavorite = false
     @State private var dragOffset: CGSize = .zero
     @State private var imageScale: CGFloat = 1.0
     @State private var bridgeImageLoaded = false
@@ -31,12 +30,11 @@ struct BridgeDetailsView: View {
         CGSize(width: offset.width + by.width, height: offset.height + by.height)
     }
     
-    init(bridgeModel: BridgeModel, pbColorPalate: PBColorPalate, favoriteBridges: FavoriteBridges) {
+    init(bridgeModel: BridgeModel, pbColorPalate: PBColorPalate, favorites: PersistedSet) {
         self.bridgeModel = bridgeModel
         self.pbColorPalate = pbColorPalate
         bridgeImageSystem = BridgeImageSystem()
-        self.favoriteBridges = favoriteBridges
-        isFavorite = favoriteBridges.isFavorite(name: bridgeModel.name)
+        self.favorites = favorites
     }
     
     var dragGesture: some Gesture {
@@ -121,7 +119,7 @@ struct BridgeDetailsView: View {
                                 Text("\(bridgeModel.name)")
                                     .font(.headline)
                                 Spacer()
-                                FavoritesButton(favoriteBridges, bridgeName: bridgeModel.name)
+                                FavoritesButton(favorites, favorite: bridgeModel.name)
                             }
                             .padding([.leading, .trailing])
                             Text(bridgeModel.builtHistory())
@@ -177,7 +175,6 @@ struct BridgeDetailsView: View {
                     .background(pbColorPalate.textBgnd)
                 }
                 .onAppear {
-                    isFavorite = favoriteBridges.isFavorite(name: bridgeModel.name)
                     UIScrollView.appearance().bounces = true
                     Task {
                         do {
@@ -192,26 +189,6 @@ struct BridgeDetailsView: View {
             }
         }
         .animation(.default, value: bridgeImageOnly)
-    }
-    
-    func favoritesButton(_ favoriteBridges: FavoriteBridges, bridgeName: String) -> some View {
-        let isFavorite = favoriteBridges.isFavorite(name: bridgeName)
-        return VStack {
-            Button {
-                if isFavorite {
-                    favoriteBridges.removeFavorite(name: bridgeModel.name)
-                } else {
-                    favoriteBridges.addFavorite(name: bridgeModel.name)
-                }
-            } label: {
-                if isFavorite {
-                    Label("Favorite", systemImage: "star.fill")
-                } else {
-                    Label("Favorite", systemImage: "star")
-                    
-                }
-            }
-        }
     }
     
     func makeMapView(_ bridgeModel: BridgeModel) -> some View {
@@ -244,9 +221,9 @@ struct BridgeDetailsView: View {
 }
 
 struct BridgeDetailsView_Previews: PreviewProvider {
-    @ObservedObject static var favoriteBridges = FavoriteBridges()
+    @ObservedObject static var favorites = PersistedSet()
     static var previews: some View {
-        BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate(), favoriteBridges: favoriteBridges)
+        BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate(), favorites: favorites)
             .preferredColorScheme(.dark)
 //        BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate())
 //            .environmentObject(FavoriteBridges())
