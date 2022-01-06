@@ -6,20 +6,20 @@
 //
 
 import SwiftUI
+import os
 
 struct BridgesView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @EnvironmentObject var favorites: PersistedSet
-    
+    @AppStorage("bridgeListView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
+    private var bridgeListViewModel: BridgeListViewModel
     enum DisplayMode {
         case list
         case photos
     }
     private var displayMode = DisplayMode.list
-    
-    @AppStorage("bridgeListView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
-    private var bridgeListViewModel: BridgeListViewModel
-    
+    let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgePView")
+
     init(_ bridgeListViewModel: BridgeListViewModel, bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) {
         self.bridgeListViewModel = bridgeListViewModel
         self.bridgeInfoGrouping = bridgeInfoGrouping

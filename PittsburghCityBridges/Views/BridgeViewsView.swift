@@ -26,12 +26,12 @@ struct BridgeViewsView: View {
             case .list:
                 VStack {
                     menuBar()
-                    BridgeListView(bridgeListViewModel, bridgeInfoGrouping: bridgeInfoGrouping)
+             //       BridgeListView(bridgeListViewModel, bridgeInfoGrouping: bridgeInfoGrouping)
                 }
             case .photos:
                 VStack {
                     menuBar()
-                    BridgePhotosView(bridgeListViewModel, bridgeInfoGrouping: bridgeInfoGrouping)
+              //      BridgePhotosView(bridgeListViewModel, bridgeInfoGrouping: bridgeInfoGrouping)
                 }
             }
         }
