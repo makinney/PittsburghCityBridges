@@ -33,8 +33,7 @@ struct BridgeListView: View {
                         ForEach(bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping)) { bridgesSection in
                             Section {
                                 ForEach(bridgesSection.bridgeModels) { bridgeModel in
-                                    NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate, favorites: favorites))
-                                    {
+                                    NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate, favorites: favorites)) {
                                         BridgeListRow(bridgeModel: bridgeModel)
                                             .padding([.leading, .trailing])
                                     }

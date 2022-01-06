@@ -119,7 +119,7 @@ struct BridgeDetailsView: View {
                                 Text("\(bridgeModel.name)")
                                     .font(.headline)
                                 Spacer()
-                                FavoritesButton(favorites, favorite: bridgeModel.name)
+           //                     FavoritesButton(favorites, favorite: bridgeModel.name)
                                     .foregroundColor(.pbAccent)
                             }
                             .padding([.leading, .trailing])
@@ -173,6 +173,12 @@ struct BridgeDetailsView: View {
                         .padding(.horizontal)
                         .foregroundColor(pbColorPalate.textFgnd)
                     }
+                    .toolbar(content: {
+                        ToolbarItem {
+                            FavoritesButton(favorites, favorite: bridgeModel.name)
+                        }
+                    
+                    })
                     .background(pbColorPalate.textBgnd)
                 }
                 .onAppear {
