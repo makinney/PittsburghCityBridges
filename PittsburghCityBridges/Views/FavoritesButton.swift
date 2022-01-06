@@ -28,7 +28,6 @@ struct FavoritesButton: View {
                     Label("Favorite", systemImage: "star.fill")
                 } else {
                     Label("Favorite", systemImage: "star")
-                    
                 }
             }
         }

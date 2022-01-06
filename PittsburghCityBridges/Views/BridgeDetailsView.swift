@@ -120,6 +120,7 @@ struct BridgeDetailsView: View {
                                     .font(.headline)
                                 Spacer()
                                 FavoritesButton(favorites, favorite: bridgeModel.name)
+                                    .foregroundColor(.pbAccent)
                             }
                             .padding([.leading, .trailing])
                             Text(bridgeModel.builtHistory())
