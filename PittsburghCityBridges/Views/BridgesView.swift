@@ -1,13 +1,13 @@
 //
-//  BridgeListView.swift
+//  BridgesView.swift
 //  PittsburghCityBridges
 //
-//  Created by MAKinney on 10/10/21.
+//  Created by MAKinney on 1/6/22.
 //
-import UIKit
+
 import SwiftUI
 
-struct BridgeListView: View {
+struct BridgesView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @EnvironmentObject var favorites: PersistedSet
     
@@ -33,7 +33,7 @@ struct BridgeListView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                TitleHeader(title: "Pittsburgh City Bridges")
+                TitleHeader(title: displayMode == .list ? "Pittsburgh City Bridges" : "Photos")
                 HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping)
                 ScrollView {
                     LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
@@ -42,11 +42,11 @@ struct BridgeListView: View {
                                 ForEach(bridgesSection.bridgeModels) { bridgeModel in
                                     NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate, favorites: favorites)) {
                                         if displayMode == .list {
-                                        BridgeListRow(bridgeModel: bridgeModel)
-                                            .padding([.leading, .trailing])
+                                            BridgeListRow(bridgeModel: bridgeModel)
+                                                .padding([.leading, .trailing])
                                         } else {
                                             if let imageURL = bridgeModel.imageURL {
-                                            SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)
+                                                SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)
                                             }
                                         }
                                     }
@@ -88,17 +88,18 @@ struct BridgeListView: View {
     }
 }
 
-struct BridgeListView_Previews: PreviewProvider {
+struct BridgesView_Previews: PreviewProvider {
     static let bridgeStore = BridgeStore()
     static let favorites = PersistedSet()
+    
     static var previews: some View {
-        BridgeListView(BridgeListViewModel(bridgeStore))
+        BridgesView(BridgeListViewModel(bridgeStore))
             .environmentObject(bridgeStore)
             .environmentObject(favorites)
             .onAppear {
                 bridgeStore.preview()
             }
-        BridgeListView(BridgeListViewModel(bridgeStore))
+        BridgesView(BridgeListViewModel(bridgeStore))
             .preferredColorScheme(.dark)
             .environmentObject(bridgeStore)
             .environmentObject(favorites)
