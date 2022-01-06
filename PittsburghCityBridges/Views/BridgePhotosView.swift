@@ -10,6 +10,8 @@ import os
 
 struct BridgePhotosView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
+    @EnvironmentObject var favoriteBridges: FavoriteBridges
+
     let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgePhotosView")
     @AppStorage("bridgePhotosView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
     private var bridgeListViewModel: BridgeListViewModel
@@ -34,7 +36,7 @@ struct BridgePhotosView: View {
                             Section {
                                 ForEach(bridgesSection.bridgeModels) { bridgeModel in
                                     if let imageURL = bridgeModel.imageURL {
-                                        NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)) {
+                                        NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate, favoriteBridges: favoriteBridges)) {
                                             SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)
                                         }
                                     }

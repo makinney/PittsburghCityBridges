@@ -8,9 +8,9 @@
 import SwiftUI
 import os
 
-@MainActor final class FavoriteBridgesStore: ObservableObject {
+@MainActor final class FavoriteBridges: ObservableObject {
     
-    @Published var favoritesChanged = false
+    @Published var favoritesChanged = 0
     private var favorites = Set<String>()
     @AppStorage("favorites.bridge.store") private var persistentStore = Data()
     private let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
@@ -22,16 +22,14 @@ import os
     func addFavorite(name: String) {
         if favorites.insert(name).inserted == true {
             save(favorites)
-            favoritesChanged = true
         }
+        favoritesChanged += 1
     }
     
     func removeFavorite(name: String) {
-        if !favorites.contains(name) {
-            favorites.remove(name)
-            save(favorites)
-            favoritesChanged = true
-        }
+        favorites.remove(name)
+        save(favorites)
+        favoritesChanged += 1
     }
     
     func isFavorite(name: String) -> Bool {

@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
-    
+ //   @EnvironmentObject var favoriteBridges: FavoriteBridges
+
+
     init() {
         UITabBar.appearance().backgroundColor = UIColor.pbTabBarBackground
     }
@@ -44,6 +46,7 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .environmentObject(BridgeStore())
+            .environmentObject(FavoriteBridges())
     }
 }
     

@@ -9,7 +9,8 @@ import SwiftUI
 
 struct BridgeListView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
-    @State private var showSheet = false
+    @EnvironmentObject var favoriteBridges: FavoriteBridges
+
     @AppStorage("bridgeListView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
     private var bridgeListViewModel: BridgeListViewModel
     
@@ -32,7 +33,8 @@ struct BridgeListView: View {
                         ForEach(bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping)) { bridgesSection in
                             Section {
                                 ForEach(bridgesSection.bridgeModels) { bridgeModel in
-                                    NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)) {
+                                    NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate, favoriteBridges: favoriteBridges))
+                                    {
                                         BridgeListRow(bridgeModel: bridgeModel)
                                             .padding([.leading, .trailing])
                                     }

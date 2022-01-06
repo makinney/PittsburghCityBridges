@@ -9,8 +9,10 @@ import SwiftUI
 import os
 
 struct BridgeDetailsView: View {
+    @ObservedObject var favoriteBridges: FavoriteBridges
     @State private var bridgeImageOnly = false
     @State var bridgeImage = UIImage()
+    @State var isFavorite = false
     @State private var dragOffset: CGSize = .zero
     @State private var imageScale: CGFloat = 1.0
     @State private var bridgeImageLoaded = false
@@ -29,10 +31,12 @@ struct BridgeDetailsView: View {
         CGSize(width: offset.width + by.width, height: offset.height + by.height)
     }
     
-    init(bridgeModel: BridgeModel, pbColorPalate: PBColorPalate) {
+    init(bridgeModel: BridgeModel, pbColorPalate: PBColorPalate, favoriteBridges: FavoriteBridges) {
         self.bridgeModel = bridgeModel
         self.pbColorPalate = pbColorPalate
         bridgeImageSystem = BridgeImageSystem()
+        self.favoriteBridges = favoriteBridges
+        isFavorite = favoriteBridges.isFavorite(name: bridgeModel.name)
     }
     
     var dragGesture: some Gesture {
@@ -113,9 +117,13 @@ struct BridgeDetailsView: View {
                 GeometryReader { geometry in
                     ScrollView(showsIndicators: false) {
                         VStack(alignment: .leading) {
-                            Text("\(bridgeModel.name)")
-                                .font(.headline)
-                                .padding([.leading])
+                            HStack {
+                                Text("\(bridgeModel.name)")
+                                    .font(.headline)
+                                Spacer()
+                                FavoritesButton(favoriteBridges, bridgeName: bridgeModel.name)
+                            }
+                            .padding([.leading, .trailing])
                             Text(bridgeModel.builtHistory())
                                 .padding([.leading])
                     
@@ -169,6 +177,7 @@ struct BridgeDetailsView: View {
                     .background(pbColorPalate.textBgnd)
                 }
                 .onAppear {
+                    isFavorite = favoriteBridges.isFavorite(name: bridgeModel.name)
                     UIScrollView.appearance().bounces = true
                     Task {
                         do {
@@ -183,6 +192,26 @@ struct BridgeDetailsView: View {
             }
         }
         .animation(.default, value: bridgeImageOnly)
+    }
+    
+    func favoritesButton(_ favoriteBridges: FavoriteBridges, bridgeName: String) -> some View {
+        let isFavorite = favoriteBridges.isFavorite(name: bridgeName)
+        return VStack {
+            Button {
+                if isFavorite {
+                    favoriteBridges.removeFavorite(name: bridgeModel.name)
+                } else {
+                    favoriteBridges.addFavorite(name: bridgeModel.name)
+                }
+            } label: {
+                if isFavorite {
+                    Label("Favorite", systemImage: "star.fill")
+                } else {
+                    Label("Favorite", systemImage: "star")
+                    
+                }
+            }
+        }
     }
     
     func makeMapView(_ bridgeModel: BridgeModel) -> some View {
@@ -215,9 +244,12 @@ struct BridgeDetailsView: View {
 }
 
 struct BridgeDetailsView_Previews: PreviewProvider {
+    @ObservedObject static var favoriteBridges = FavoriteBridges()
     static var previews: some View {
-        BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate())
+        BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate(), favoriteBridges: favoriteBridges)
             .preferredColorScheme(.dark)
-        BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate())
+//        BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate())
+//            .environmentObject(FavoriteBridges())
+
     }
 }
