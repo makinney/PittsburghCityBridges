@@ -119,7 +119,6 @@ struct BridgeDetailsView: View {
                                 Text("\(bridgeModel.name)")
                                     .font(.headline)
                                 Spacer()
-           //                     FavoritesButton(favorites, favorite: bridgeModel.name)
                                     .foregroundColor(.pbAccent)
                             }
                             .padding([.leading, .trailing])
@@ -173,12 +172,16 @@ struct BridgeDetailsView: View {
                         .padding(.horizontal)
                         .foregroundColor(pbColorPalate.textFgnd)
                     }
-                    .toolbar(content: {
-                        ToolbarItem {
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
                             FavoritesButton(favorites, favorite: bridgeModel.name)
+                            .padding(.trailing, 10)
+//                            .overlay(
+//                                RoundedRectangle(cornerRadius: buttonCornerRadius)
+//                                    .stroke(Color.secondary, lineWidth: 2)
+//                            )
                         }
-                    
-                    })
+                    }
                     .background(pbColorPalate.textBgnd)
                 }
                 .onAppear {

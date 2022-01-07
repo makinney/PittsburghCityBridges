@@ -62,9 +62,9 @@ struct HeaderToolBar: View {
     
     private func makeFavoriteLabel(_ name: String, showFavorites: Bool) -> Label<Text, Image> {
         if showFavorites {
-            return Label(name, systemImage: "checkmark.square.fill")
+            return Label(name, systemImage: "star.fill")
         } else {
-            return Label(name, systemImage: "square")
+            return Label(name, systemImage: "star")
         }
     }
     
