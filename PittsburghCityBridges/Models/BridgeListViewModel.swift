@@ -35,7 +35,7 @@ class BridgeListViewModel {
         clearCacheOnModelChanges()
     }
     
-    @MainActor func filter(sections: [Section], favorites: PersistedSet) -> [Section] {
+    @MainActor func filter(sections: [Section], favorites: Favorites) -> [Section] {
         var filteredSections = [Section]()
         sections.forEach { section in
             let filterModels = section.bridgeModels.filter { bridgeModel in

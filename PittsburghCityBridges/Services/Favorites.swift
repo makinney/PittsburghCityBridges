@@ -1,5 +1,5 @@
 //
-//  FavoritesStore.swift
+//  Favorites.swift
 //  PittsburghCityBridges
 //
 //  Created by MAKinney on 1/5/22.
@@ -8,9 +8,9 @@
 import SwiftUI
 import os
 
-@MainActor final class PersistedSet: ObservableObject {
+@MainActor final class Favorites: ObservableObject {
     
-    @AppStorage("favorites.bridge.store") private var thePersistedData = Data()
+    @AppStorage("favorites.bridge.store") private var persistedData = Data()
     private var workingSet = Set<String>()
     @Published var setUpdated = 0
     private let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
@@ -21,7 +21,7 @@ import os
     
     func add(element: String) {
         if workingSet.insert(element).inserted == true {
-            save(setElements: workingSet)
+            save(elements: workingSet)
         }
         setUpdated += 1
     }
@@ -29,7 +29,7 @@ import os
 
     func remove(element: String) {
         if let _ = workingSet.remove(element) {
-            save(setElements: workingSet)
+            save(elements: workingSet)
         }
         setUpdated += 1
     }
@@ -38,12 +38,12 @@ import os
         return workingSet.contains(element)
     }
     
-    private func save(setElements: Set<String>) {
-        let favs = Array(setElements) // cannot store sets directly into UserDefaults
+    private func save(elements: Set<String>) {
+        let favs = Array(elements) // cannot store sets directly into UserDefaults
         do {
             let encoder = JSONEncoder()
             let data = try encoder.encode(favs)
-            thePersistedData = data
+            persistedData = data
         } catch {
             logger.info("\(#file) \(#function) error \(error.localizedDescription)")        }
     }
@@ -52,7 +52,7 @@ import os
         var favorites = [String]()
         do {
             let decoder = JSONDecoder()
-            favorites = try decoder.decode([String].self, from: thePersistedData)
+            favorites = try decoder.decode([String].self, from: persistedData)
         } catch {
             logger.info("\(#file) \(#function) error \(error.localizedDescription)")
         }

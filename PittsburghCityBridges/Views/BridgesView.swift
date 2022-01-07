@@ -10,7 +10,7 @@ import os
 
 struct BridgesView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
-    @EnvironmentObject var favorites: PersistedSet
+    @EnvironmentObject var favorites: Favorites
     @AppStorage("bridgeListView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
     @AppStorage("bridge.onlyShowFavorites") private var onlyShowFavorites = false
     private var bridgeListViewModel: BridgeListViewModel
@@ -93,7 +93,7 @@ struct BridgesView: View {
 
 struct BridgesView_Previews: PreviewProvider {
     static let bridgeStore = BridgeStore()
-    static let favorites = PersistedSet()
+    static let favorites = Favorites()
     
     static var previews: some View {
         BridgesView(BridgeListViewModel(bridgeStore))

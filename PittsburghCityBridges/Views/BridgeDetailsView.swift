@@ -9,7 +9,7 @@ import SwiftUI
 import os
 
 struct BridgeDetailsView: View {
-    @ObservedObject var favorites: PersistedSet
+    @ObservedObject var favorites: Favorites
     @State private var bridgeImageOnly = false
     @State var bridgeImage = UIImage()
     @State private var dragOffset: CGSize = .zero
@@ -30,7 +30,7 @@ struct BridgeDetailsView: View {
         CGSize(width: offset.width + by.width, height: offset.height + by.height)
     }
     
-    init(bridgeModel: BridgeModel, pbColorPalate: PBColorPalate, favorites: PersistedSet) {
+    init(bridgeModel: BridgeModel, pbColorPalate: PBColorPalate, favorites: Favorites) {
         self.bridgeModel = bridgeModel
         self.pbColorPalate = pbColorPalate
         bridgeImageSystem = BridgeImageSystem()
@@ -228,7 +228,7 @@ struct BridgeDetailsView: View {
 }
 
 struct BridgeDetailsView_Previews: PreviewProvider {
-    @ObservedObject static var favorites = PersistedSet()
+    @ObservedObject static var favorites = Favorites()
     static var previews: some View {
         BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate(), favorites: favorites)
             .preferredColorScheme(.dark)

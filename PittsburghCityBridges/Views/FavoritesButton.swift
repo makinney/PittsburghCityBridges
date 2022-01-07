@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct FavoritesButton: View {
-    @ObservedObject var favorites: PersistedSet
+    @ObservedObject var favorites: Favorites
     private var favorite: String
-    init(_ favorites: PersistedSet, favorite: String) {
+    init(_ favorites: Favorites, favorite: String) {
         self.favorites = favorites
         self.favorite = favorite
     }
@@ -37,6 +37,6 @@ struct FavoritesButton: View {
 struct FavoritesButton_Previews: PreviewProvider {
     static let name = "ABC"
     static var previews: some View {
-        FavoritesButton(PersistedSet(), favorite: name)
+        FavoritesButton(Favorites(), favorite: name)
     }
 }
