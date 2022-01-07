@@ -46,12 +46,6 @@ class BridgeListViewModel {
                 filteredSections.append(filteredSection)
             }
         }
-        
-        if filteredSections.isEmpty {
-            let section = Section(id: UUID(), sectionName: "No Favorites", bridgeModels: [BridgeModel](), pbColorPalate: sections.first?.pbColorPalate ?? PBColorPalate())
-            filteredSections.append(section)
-        }
-        
         return filteredSections
     }
     

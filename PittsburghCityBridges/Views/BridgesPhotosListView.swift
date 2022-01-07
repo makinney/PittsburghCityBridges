@@ -30,35 +30,45 @@ struct BridgesPhotosListView: View {
             VStack(spacing: 0) {
                 TitleHeader(title: "Photos")
                 HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping, onlyShowFavorites: $onlyShowFavorites)
-                ScrollView {
-                    LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                        let sections = bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping)
-                        let filterSections = onlyShowFavorites ?  bridgeListViewModel.filter(sections: sections, favorites: favorites) : sections
-                        ForEach(filterSections) { bridgesSection in
-                            Section {
-                                ForEach(bridgesSection.bridgeModels) { bridgeModel in
-                                    NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate, favorites: favorites)) {
-                                        if let imageURL = bridgeModel.imageURL {
-                                            SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)
+                let sections = bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping)
+                let filterSections = onlyShowFavorites ?  bridgeListViewModel.filter(sections: sections, favorites: favorites) : sections
+                if !filterSections.isEmpty {
+                    ScrollView {
+                        LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+                            
+                            ForEach(filterSections) { bridgesSection in
+                                Section {
+                                    ForEach(bridgesSection.bridgeModels) { bridgeModel in
+                                        NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate, favorites: favorites)) {
+                                            if let imageURL = bridgeModel.imageURL {
+                                                SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)
+                                            }
                                         }
+                                        Divider()
                                     }
-                                    Divider()
+                                } header: {
+                                    HStack {
+                                        sectionLabel(bridgesSection.sectionName, bridgeInfoGrouping)
+                                            .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
+                                            .font(.title3)
+                                            .padding([.leading])
+                                            .padding([.top], 10)
+                                            .padding([.bottom], 5)
+                                        Spacer()
+                                    }
                                 }
-                            } header: {
-                                HStack {
-                                    sectionLabel(bridgesSection.sectionName, bridgeInfoGrouping)
-                                        .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
-                                        .font(.title3)
-                                        .padding([.leading])
-                                        .padding([.top], 10)
-                                        .padding([.bottom], 5)
-                                    Spacer()
-                                }
+                                .font(.headline)
+                                .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
+                                .background(bridgesSection.pbColorPalate.textBgnd)
                             }
-                            .font(.headline)
-                            .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
-                            .background(bridgesSection.pbColorPalate.textBgnd)
                         }
+                    }
+                } else {
+                    VStack(alignment: .center) {
+                        Spacer()
+                        let msg = onlyShowFavorites ? "No Favorites Found" : ""
+                        Text(msg)
+                        Spacer()
                     }
                 }
             }
