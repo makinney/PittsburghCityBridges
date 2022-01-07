@@ -28,17 +28,17 @@ struct HeaderToolBar: View {
             Button {
                 bridgeInfoGrouping = .name
             } label: {
-                makeCheckedSortLabel("Group by Names", selectedSection: .name)
+                makeCheckedSortLabel("Names Sort", selectedSection: .name)
             }
             Button {
                 bridgeInfoGrouping = .neighborhood
             } label: {
-                makeCheckedSortLabel("Group by Neighborhoods", selectedSection: .neighborhood)
+                makeCheckedSortLabel("Neighborhoods Sort", selectedSection: .neighborhood)
             }
             Button {
                 bridgeInfoGrouping = .year
             } label: {
-                makeCheckedSortLabel("Group by Year Built", selectedSection: .year)
+                makeCheckedSortLabel("Year Built Sort", selectedSection: .year)
             }
             Button {
                 showFavorites.toggle()

@@ -23,7 +23,7 @@ struct BridgeMapView: View {
                 Spacer()
             }
             .background(Color.pbTitleTextBgnd)
-            let bridgeModels = filteredModels(bridgeStore.bridgeModels, favorites, showFavorites)
+            let bridgeModels = filtered(bridgeStore.bridgeModels, favorites, showFavorites)
             BridgeMapUIView(region: MapViewModel().multipleBridgesRegion, bridgeModels: bridgeModels, showsBridgeImage: true)
         }
     }
@@ -33,7 +33,7 @@ struct BridgeMapView: View {
             Button {
                 showFavorites.toggle()
             } label: {
-                makeFavoriteLabel("Show Favorites", showFavorites: showFavorites)
+                makeFavoriteLabel("Favorites", showFavorites: showFavorites)
             }
         }, label: {
             Label("Favorites", systemImage: "slider.vertical.3")
@@ -42,7 +42,7 @@ struct BridgeMapView: View {
         })
     }
     
-    private func filteredModels(_ bridgeModels: [BridgeModel], _ favorites: Favorites, _ showFavorites: Bool) -> [BridgeModel] {
+    private func filtered(_ bridgeModels: [BridgeModel], _ favorites: Favorites, _ showFavorites: Bool) -> [BridgeModel] {
         var filteredModels = [BridgeModel]()
         if showFavorites {
             filteredModels = bridgeModels.filter { bridgeModel in
