@@ -12,7 +12,7 @@ struct BridgesView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @EnvironmentObject var favorites: PersistedSet
     @AppStorage("bridgeListView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
-    @State var onlyShowFavorites = false
+    @AppStorage("bridge.onlyShowFavorites") private var onlyShowFavorites = false
     private var bridgeListViewModel: BridgeListViewModel
     enum DisplayMode {
         case list
@@ -38,7 +38,9 @@ struct BridgesView: View {
                 HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping, onlyShowFavorites: $onlyShowFavorites)
                 ScrollView {
                     LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                        ForEach(bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping)) { bridgesSection in
+                        let sections = bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping)
+                        let filterSections = onlyShowFavorites ?  bridgeListViewModel.filter(sections: sections, favorites: favorites) : sections
+                        ForEach(filterSections) { bridgesSection in
                             Section {
                                 ForEach(bridgesSection.bridgeModels) { bridgeModel in
                                     NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate, favorites: favorites)) {
