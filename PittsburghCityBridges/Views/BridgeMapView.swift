@@ -10,20 +10,20 @@ import SwiftUI
 struct BridgeMapView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @EnvironmentObject var favorites: Favorites
-    @AppStorage("bridgeMap.onlyShowFavorites") private var onlyShowFavorites = false
+    @AppStorage("bridgeMap.showFavorites") private var showFavorites = false
 
     var body: some View {
         VStack(spacing: 0){
             TitleHeader(title: "City Bridges Map")
                 .padding([.bottom], 5)
-            let bridgeModels = filteredModels(bridgeStore.bridgeModels, favorites, onlyShowFavorites)
+            let bridgeModels = filteredModels(bridgeStore.bridgeModels, favorites, showFavorites)
             BridgeMapUIView(region: MapViewModel().multipleBridgesRegion, bridgeModels: bridgeModels, showsBridgeImage: true)
         }
     }
     
     private func filteredModels(_ bridgeModels: [BridgeModel], _ favorites: Favorites, _ showFavorites: Bool) -> [BridgeModel] {
         var filteredModels = [BridgeModel]()
-        if onlyShowFavorites {
+        if showFavorites {
             filteredModels = bridgeModels.filter { bridgeModel in
                 favorites.contains(element: bridgeModel.name)
             }

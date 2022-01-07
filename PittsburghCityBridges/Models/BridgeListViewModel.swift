@@ -35,6 +35,14 @@ class BridgeListViewModel {
         clearCacheOnModelChanges()
     }
     
+    @MainActor func sections(groupedBy: BridgeInfoGrouping, favorites: Favorites?) -> [Section] {
+        var sections = sections(groupedBy: groupedBy)
+        if let favorites = favorites {
+             sections = filter(sections: sections, favorites: favorites)
+        }
+        return sections
+    }
+    
     @MainActor func filter(sections: [Section], favorites: Favorites) -> [Section] {
         var filteredSections = [Section]()
         sections.forEach { section in
@@ -49,6 +57,7 @@ class BridgeListViewModel {
         return filteredSections
     }
     
+   
     @MainActor
     func sections(groupedBy: BridgeInfoGrouping) -> [Section] {
         switch groupedBy {

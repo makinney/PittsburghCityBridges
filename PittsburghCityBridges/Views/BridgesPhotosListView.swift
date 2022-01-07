@@ -12,7 +12,7 @@ struct BridgesPhotosListView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @EnvironmentObject var favorites: Favorites
     @AppStorage("bridgesPhotoListView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
-    @AppStorage("bridgesPhotoListView.onlyShowFavorites") private var onlyShowFavorites = false
+    @AppStorage("bridgesPhotoListView.showFavorites") private var showFavorites = false
     private var bridgeListViewModel: BridgeListViewModel
     let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgesPhotosListView")
     
@@ -29,14 +29,12 @@ struct BridgesPhotosListView: View {
         NavigationView {
             VStack(spacing: 0) {
                 TitleHeader(title: "Photos")
-                HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping, onlyShowFavorites: $onlyShowFavorites)
-                let sections = bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping)
-                let filterSections = onlyShowFavorites ?  bridgeListViewModel.filter(sections: sections, favorites: favorites) : sections
-                if !filterSections.isEmpty {
+                HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping, showFavorites: $showFavorites)
+                let sections = bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping, favorites: showFavorites ? favorites : nil)
+                if !sections.isEmpty {
                     ScrollView {
                         LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                            
-                            ForEach(filterSections) { bridgesSection in
+                            ForEach(sections) { bridgesSection in
                                 Section {
                                     ForEach(bridgesSection.bridgeModels) { bridgeModel in
                                         NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate, favorites: favorites)) {
@@ -66,7 +64,7 @@ struct BridgesPhotosListView: View {
                 } else {
                     VStack(alignment: .center) {
                         Spacer()
-                        let msg = onlyShowFavorites ? "No Favorites Found" : ""
+                        let msg = showFavorites ? "No Favorites Found" : ""
                         Text(msg)
                         Spacer()
                     }

@@ -10,7 +10,7 @@ import SwiftUI
 struct HeaderToolBar: View {
     
     @Binding var bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping
-    @Binding var onlyShowFavorites: Bool
+    @Binding var showFavorites: Bool
     var pbColorPalate = PBColorPalate()
 
     var body: some View {
@@ -41,9 +41,9 @@ struct HeaderToolBar: View {
                 makeCheckedSortLabel("By Year Built", selectedSection: .year)
             }
             Button {
-                onlyShowFavorites.toggle()
+                showFavorites.toggle()
             } label: {
-                makeFavoriteLabel("Favorites Only", showFavorites: onlyShowFavorites)
+                makeFavoriteLabel("Favorites Only", showFavorites: showFavorites)
             }
         }, label: {
             Label("Sort", systemImage: "slider.vertical.3")
@@ -72,6 +72,6 @@ struct HeaderToolBar: View {
 
 struct BridgeMenuBar_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderToolBar(bridgeInfoGrouping: .constant(.neighborhood), onlyShowFavorites: .constant(false))
+        HeaderToolBar(bridgeInfoGrouping: .constant(.neighborhood), showFavorites: .constant(false))
     }
 }
