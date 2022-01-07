@@ -16,11 +16,6 @@ struct BridgesPhotosListView: View {
     private var bridgeListViewModel: BridgeListViewModel
     let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgesPhotosListView")
     
-    init(_ bridgeListViewModel: BridgeListViewModel, bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) {
-        self.bridgeListViewModel = bridgeListViewModel
-        self.bridgeInfoGrouping = bridgeInfoGrouping
-    }
-    
     init(_ bridgeListViewModel: BridgeListViewModel) {
         self.bridgeListViewModel = bridgeListViewModel
     }
