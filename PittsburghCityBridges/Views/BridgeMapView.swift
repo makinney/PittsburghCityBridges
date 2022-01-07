@@ -10,7 +10,7 @@ import SwiftUI
 struct BridgeMapView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @EnvironmentObject var favorites: Favorites
-    @AppStorage("bridge.onlyShowFavorites") private var onlyShowFavorites = false
+    @AppStorage("bridgeMap.onlyShowFavorites") private var onlyShowFavorites = false
 
     var body: some View {
         VStack(spacing: 0){

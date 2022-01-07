@@ -8,33 +8,27 @@
 import SwiftUI
 import os
 
-struct BridgesView: View {
+struct BridgesListsView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @EnvironmentObject var favorites: Favorites
-    @AppStorage("bridgeListView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
-    @AppStorage("bridge.onlyShowFavorites") private var onlyShowFavorites = false
+    @AppStorage("bridgesListsView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
+    @AppStorage("bridgesListsView.onlyShowFavorites") private var onlyShowFavorites = false
     private var bridgeListViewModel: BridgeListViewModel
-    enum DisplayMode {
-        case list
-        case photos
-    }
-    private var displayMode = DisplayMode.list
-    let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgePView")
-
+    let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgesListsView")
+    
     init(_ bridgeListViewModel: BridgeListViewModel, bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) {
         self.bridgeListViewModel = bridgeListViewModel
         self.bridgeInfoGrouping = bridgeInfoGrouping
     }
     
-    init(_ bridgeListViewModel: BridgeListViewModel, displayMode: DisplayMode = .list) {
+    init(_ bridgeListViewModel: BridgeListViewModel) {
         self.bridgeListViewModel = bridgeListViewModel
-        self.displayMode = displayMode
     }
     
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                TitleHeader(title: displayMode == .list ? "Pittsburgh City Bridges" : "Photos")
+                TitleHeader(title: "Pittsburgh City Bridges")
                 HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping, onlyShowFavorites: $onlyShowFavorites)
                 ScrollView {
                     LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
@@ -44,14 +38,8 @@ struct BridgesView: View {
                             Section {
                                 ForEach(bridgesSection.bridgeModels) { bridgeModel in
                                     NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate, favorites: favorites)) {
-                                        if displayMode == .list {
-                                            BridgeListRow(bridgeModel: bridgeModel)
-                                                .padding([.leading, .trailing])
-                                        } else {
-                                            if let imageURL = bridgeModel.imageURL {
-                                                SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)
-                                            }
-                                        }
+                                        BridgeListRow(bridgeModel: bridgeModel)
+                                            .padding([.leading, .trailing])
                                     }
                                     Divider()
                                 }
@@ -96,13 +84,13 @@ struct BridgesView_Previews: PreviewProvider {
     static let favorites = Favorites()
     
     static var previews: some View {
-        BridgesView(BridgeListViewModel(bridgeStore))
+        BridgesListsView(BridgeListViewModel(bridgeStore))
             .environmentObject(bridgeStore)
             .environmentObject(favorites)
             .onAppear {
                 bridgeStore.preview()
             }
-        BridgesView(BridgeListViewModel(bridgeStore))
+        BridgesListsView(BridgeListViewModel(bridgeStore))
             .preferredColorScheme(.dark)
             .environmentObject(bridgeStore)
             .environmentObject(favorites)

@@ -17,11 +17,11 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
-            BridgesView(BridgeListViewModel(bridgeStore))
+            BridgesListsView(BridgeListViewModel(bridgeStore))
                 .tabItem {
                     Label("Bridge List", systemImage: "list.dash")
                 }
-            BridgesView(BridgeListViewModel(bridgeStore), displayMode: .photos)
+            BridgesPhotosListView(BridgeListViewModel(bridgeStore))
                 .tabItem {
                     Label("Bridge Photos", systemImage: "photo.on.rectangle")
                 }
