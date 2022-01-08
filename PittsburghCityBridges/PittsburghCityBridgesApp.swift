@@ -10,11 +10,7 @@ import SwiftUI
 @main
 struct PittsburghCityBridgesApp: App {
     //    let persistenceController = PersistenceController.shared
-    @ObservedObject var bridgeStore: BridgeStore
-    
-    init() {
-        bridgeStore = BridgeStore()
-    }
+    @StateObject var bridgeStore: BridgeStore = BridgeStore()
     
     var body: some Scene {
         WindowGroup {

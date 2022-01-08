@@ -9,22 +9,75 @@ import SwiftUI
 
 struct BridgeMapView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
+    @EnvironmentObject var favorites: Favorites
+    @AppStorage("bridgeMap.showFavorites") private var showFavorites = false
+    private let pbColorPalate = PBColorPalate()
+    
     var body: some View {
         VStack(spacing: 0){
-            TitleHeader(title: "City Bridges Map")
-                .padding([.bottom], 5)
-            BridgeMapUIView(region: MapViewModel().multipleBridgesRegion, bridgeModels: bridgeStore.bridgeModels, showsBridgeImage: true)
+            TitleHeader(title: "Bridge Locations")
+            HStack {
+                favoritesMenu()
+                Spacer()
+                Text(showFavorites ? "Favorites" : "")
+                    .foregroundColor(pbColorPalate.titleTextFgnd)
+                    .padding([.trailing])
+                    .animation(.easeInOut, value: showFavorites)
+            }
+            .padding([.leading])
+            .padding([.top], 5)
+            .padding([.bottom], 10)
+            .background(Color.pbTitleTextBgnd)
+            let bridgeModels = filtered(bridgeStore.bridgeModels, favorites, showFavorites)
+            BridgeMapUIView(region: MapViewModel().multipleBridgesRegion, bridgeModels: bridgeModels, showsBridgeImage: true)
+        }
+    }
+    
+    private func favoritesMenu() -> some View {
+        Menu(content: {
+            Button {
+                showFavorites.toggle()
+            } label: {
+                makeFavoriteLabel("Favorites", showFavorites: showFavorites)
+            }
+        }, label: {
+            Label("Favorites", systemImage: "slider.vertical.3")
+                .labelStyle(.iconOnly)
+                .font(.title2)
+        })
+    }
+    
+    private func filtered(_ bridgeModels: [BridgeModel], _ favorites: Favorites, _ showFavorites: Bool) -> [BridgeModel] {
+        var filteredModels = [BridgeModel]()
+        if showFavorites {
+            filteredModels = bridgeModels.filter { bridgeModel in
+                favorites.contains(element: bridgeModel.name)
+            }
+        } else {
+            filteredModels = bridgeModels
+        }
+        return filteredModels
+    }
+    
+    private func makeFavoriteLabel(_ name: String, showFavorites: Bool) -> Label<Text, Image> {
+        if showFavorites {
+            return Label(name, systemImage: "star.fill")
+        } else {
+            return Label(name, systemImage: "star")
         }
     }
 }
 
 struct BridgeMapView_Previews: PreviewProvider {
     static let bridgeStore = BridgeStore()
+    static let favorites = Favorites()
     static var previews: some View {
         BridgeMapView()
+            .preferredColorScheme(.dark)
             .environmentObject(bridgeStore)
-        .onAppear {
-            bridgeStore.preview()
-        }
+            .environmentObject(favorites)
+            .onAppear {
+                bridgeStore.preview()
+            }
     }
 }

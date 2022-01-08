@@ -9,6 +9,7 @@ import SwiftUI
 import os
 
 struct BridgeDetailsView: View {
+    @ObservedObject var favorites: Favorites
     @State private var bridgeImageOnly = false
     @State var bridgeImage = UIImage()
     @State private var dragOffset: CGSize = .zero
@@ -29,10 +30,11 @@ struct BridgeDetailsView: View {
         CGSize(width: offset.width + by.width, height: offset.height + by.height)
     }
     
-    init(bridgeModel: BridgeModel, pbColorPalate: PBColorPalate) {
+    init(bridgeModel: BridgeModel, pbColorPalate: PBColorPalate, favorites: Favorites) {
         self.bridgeModel = bridgeModel
         self.pbColorPalate = pbColorPalate
         bridgeImageSystem = BridgeImageSystem()
+        self.favorites = favorites
     }
     
     var dragGesture: some Gesture {
@@ -113,9 +115,13 @@ struct BridgeDetailsView: View {
                 GeometryReader { geometry in
                     ScrollView(showsIndicators: false) {
                         VStack(alignment: .leading) {
-                            Text("\(bridgeModel.name)")
-                                .font(.headline)
-                                .padding([.leading])
+                            HStack {
+                                Text("\(bridgeModel.name)")
+                                    .font(.headline)
+                                Spacer()
+                                    .foregroundColor(.pbAccent)
+                            }
+                            .padding([.leading, .trailing])
                             Text(bridgeModel.builtHistory())
                                 .padding([.leading])
                     
@@ -166,6 +172,16 @@ struct BridgeDetailsView: View {
                         .padding(.horizontal)
                         .foregroundColor(pbColorPalate.textFgnd)
                     }
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            FavoritesButton(favorites, favorite: bridgeModel.name)
+                            .padding(.trailing, 10)
+//                            .overlay(
+//                                RoundedRectangle(cornerRadius: buttonCornerRadius)
+//                                    .stroke(Color.secondary, lineWidth: 2)
+//                            )
+                        }
+                    }
                     .background(pbColorPalate.textBgnd)
                 }
                 .onAppear {
@@ -215,9 +231,12 @@ struct BridgeDetailsView: View {
 }
 
 struct BridgeDetailsView_Previews: PreviewProvider {
+    @ObservedObject static var favorites = Favorites()
     static var previews: some View {
-        BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate())
+        BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate(), favorites: favorites)
             .preferredColorScheme(.dark)
-        BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate())
+//        BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate())
+//            .environmentObject(FavoriteBridges())
+
     }
 }

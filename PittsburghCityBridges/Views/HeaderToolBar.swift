@@ -10,6 +10,7 @@ import SwiftUI
 struct HeaderToolBar: View {
     
     @Binding var bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping
+    @Binding var showFavorites: Bool
     var pbColorPalate = PBColorPalate()
 
     var body: some View {
@@ -18,6 +19,10 @@ struct HeaderToolBar: View {
                 .padding([.leading])
                 .padding([.vertical], 5)
             Spacer()
+            Text(showFavorites ? "Favorites" : "")
+                .foregroundColor(pbColorPalate.titleTextFgnd)
+                .padding([.trailing])
+                .animation(.easeInOut, value: showFavorites)
         }
         .background(pbColorPalate.titleTextBgnd)
     }
@@ -27,17 +32,22 @@ struct HeaderToolBar: View {
             Button {
                 bridgeInfoGrouping = .name
             } label: {
-                makeCheckedSortLabel("By Names", selectedSection: .name)
+                makeCheckedSortLabel("Names Sort", selectedSection: .name)
             }
             Button {
                 bridgeInfoGrouping = .neighborhood
             } label: {
-                makeCheckedSortLabel("By Neighborhoods", selectedSection: .neighborhood)
+                makeCheckedSortLabel("Neighborhoods Sort", selectedSection: .neighborhood)
             }
             Button {
                 bridgeInfoGrouping = .year
             } label: {
-                makeCheckedSortLabel("By Year Built", selectedSection: .year)
+                makeCheckedSortLabel("Year Built Sort", selectedSection: .year)
+            }
+            Button {
+                showFavorites.toggle()
+            } label: {
+                makeFavoriteLabel("Favorites", showFavorites: showFavorites)
             }
         }, label: {
             Label("Sort", systemImage: "slider.vertical.3")
@@ -54,10 +64,18 @@ struct HeaderToolBar: View {
         }
     }
     
+    private func makeFavoriteLabel(_ name: String, showFavorites: Bool) -> Label<Text, Image> {
+        if showFavorites {
+            return Label(name, systemImage: "star.fill")
+        } else {
+            return Label(name, systemImage: "star")
+        }
+    }
+    
 }
 
 struct BridgeMenuBar_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderToolBar(bridgeInfoGrouping: .constant(.neighborhood))
+        HeaderToolBar(bridgeInfoGrouping: .constant(.neighborhood), showFavorites: .constant(false))
     }
 }

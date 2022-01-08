@@ -35,6 +35,29 @@ class BridgeListViewModel {
         clearCacheOnModelChanges()
     }
     
+    @MainActor func sections(groupedBy: BridgeInfoGrouping, favorites: Favorites?) -> [Section] {
+        var sections = sections(groupedBy: groupedBy)
+        if let favorites = favorites {
+             sections = filter(sections: sections, favorites: favorites)
+        }
+        return sections
+    }
+    
+    @MainActor func filter(sections: [Section], favorites: Favorites) -> [Section] {
+        var filteredSections = [Section]()
+        sections.forEach { section in
+            let filterModels = section.bridgeModels.filter { bridgeModel in
+                favorites.contains(element: bridgeModel.name)
+            }
+            if !filterModels.isEmpty {
+                let filteredSection = Section(id: section.id, sectionName: section.sectionName, bridgeModels: filterModels, pbColorPalate: section.pbColorPalate)
+                filteredSections.append(filteredSection)
+            }
+        }
+        return filteredSections
+    }
+    
+   
     @MainActor
     func sections(groupedBy: BridgeInfoGrouping) -> [Section] {
         switch groupedBy {

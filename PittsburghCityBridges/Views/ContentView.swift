@@ -9,18 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
-    
+    @StateObject var favorites: Favorites = Favorites()
+
     init() {
         UITabBar.appearance().backgroundColor = UIColor.pbTabBarBackground
     }
 
     var body: some View {
         TabView {
-            BridgeListView(BridgeListViewModel(bridgeStore))
+            BridgesListsView(BridgeListViewModel(bridgeStore))
                 .tabItem {
                     Label("Bridge List", systemImage: "list.dash")
                 }
-            BridgePhotosView(BridgeListViewModel(bridgeStore))
+            BridgesPhotosListView(BridgeListViewModel(bridgeStore))
                 .tabItem {
                     Label("Bridge Photos", systemImage: "photo.on.rectangle")
                 }
@@ -33,6 +34,7 @@ struct ContentView: View {
                     Label("More", systemImage: "ellipsis")
                 }
         }
+        .environmentObject(favorites)
         .onAppear {
             bridgeStore.refreshBridgeModels()
         }
@@ -44,6 +46,7 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .environmentObject(BridgeStore())
+            .environmentObject(Favorites())
     }
 }
     
