@@ -122,9 +122,6 @@ struct BridgeDetailsView: View {
                                     .foregroundColor(.pbAccent)
                             }
                             .padding([.leading, .trailing])
-                            Text(bridgeModel.builtHistory())
-                                .padding([.leading])
-                    
                             HStack {
                                 Spacer()
                                 ZStack {
@@ -142,21 +139,27 @@ struct BridgeDetailsView: View {
                                         .clipped()
                                         .opacity(bridgeImageLoaded ? 1.0 : 0.0)
                                         .gesture(magGesture)
-                                        .gesture(
-                                            TapGesture(count: 1)
-                                                .onEnded{
-                                                    self.bridgeImageOnly = true
-                                                }
-                                    )
                                     BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
                                         .opacity(bridgeImageLoaded ? 0.0 : 1.0)
                                 }
-                                Spacer()
+                                VStack {
+                                    Spacer()
+                                    Image(systemName: "plus.magnifyingglass")
+                                        .foregroundColor(.accentColor)
+                                    Spacer()
+                                }
                             }
+                            .gesture(
+                                TapGesture(count: 1)
+                                    .onEnded{
+                                        self.bridgeImageOnly = true
+                                    }
+                            )
                             //          .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
+                            Text(bridgeModel.builtHistory())
+                                .padding([.leading])
                             Text(bridgeModel.neighborhoods())
                                 .padding()
-                          
                             HStack {
                                 Spacer()
                                 makeMapView(bridgeModel)
@@ -214,6 +217,7 @@ struct BridgeDetailsView: View {
                         } label: {
                             Label("Directions", systemImage: "arrow.triangle.turn.up.right.circle.fill")
                                 .padding(4)
+                                .foregroundColor(.accentColor)
                                 .background(Color.pbTitleTextBgnd)
                         }
                         .overlay(

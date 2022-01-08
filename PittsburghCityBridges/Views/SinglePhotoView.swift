@@ -32,15 +32,25 @@ struct SinglePhotoView: View {
                 Spacer()
             }
             ZStack {
-                Image(uiImage: bridgeImage )
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .cornerRadius(imageCornerRadius)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: imageCornerRadius)
-                            .stroke(Color.secondary, lineWidth: 2)
-                    )
-                    .opacity(imageLoaded ? 1.0 : 0.0)
+                HStack {
+            //        Spacer()
+                    Image(uiImage: bridgeImage )
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .cornerRadius(imageCornerRadius)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: imageCornerRadius)
+                                .stroke(Color.secondary, lineWidth: 2)
+                        )
+                    Spacer()
+                    VStack {
+                        Spacer()
+                        Image(systemName: "arrow.forward")
+                            .foregroundColor(.accentColor)
+                        Spacer()
+                    }
+                }
+                .opacity(imageLoaded ? 1.0 : 0.0)
                 BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
                     .opacity(imageLoaded ? 0.0 : 1.0)
             }
