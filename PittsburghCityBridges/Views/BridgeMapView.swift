@@ -11,17 +11,22 @@ struct BridgeMapView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @EnvironmentObject var favorites: Favorites
     @AppStorage("bridgeMap.showFavorites") private var showFavorites = false
+    private let pbColorPalate = PBColorPalate()
     
     var body: some View {
         VStack(spacing: 0){
             TitleHeader(title: "Bridge Locations")
             HStack {
                 favoritesMenu()
-                    .padding([.leading])
-                    .padding([.top], 5)
-                    .padding([.bottom], 10)
                 Spacer()
+                Text(showFavorites ? "Favorites" : "")
+                    .foregroundColor(pbColorPalate.titleTextFgnd)
+                    .padding([.trailing])
+                    .animation(.easeInOut, value: showFavorites)
             }
+            .padding([.leading])
+            .padding([.top], 5)
+            .padding([.bottom], 10)
             .background(Color.pbTitleTextBgnd)
             let bridgeModels = filtered(bridgeStore.bridgeModels, favorites, showFavorites)
             BridgeMapUIView(region: MapViewModel().multipleBridgesRegion, bridgeModels: bridgeModels, showsBridgeImage: true)

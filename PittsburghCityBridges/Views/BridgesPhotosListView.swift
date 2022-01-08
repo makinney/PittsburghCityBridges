@@ -13,6 +13,7 @@ struct BridgesPhotosListView: View {
     @EnvironmentObject var favorites: Favorites
     @AppStorage("bridgesPhotoListView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
     @AppStorage("bridgesPhotoListView.showFavorites") private var showFavorites = false
+    @Namespace private var topID
     private var bridgeListViewModel: BridgeListViewModel
     let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgesPhotosListView")
     
@@ -27,34 +28,42 @@ struct BridgesPhotosListView: View {
                 HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping, showFavorites: $showFavorites)
                 let sections = bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping, favorites: showFavorites ? favorites : nil)
                 if !sections.isEmpty {
-                    ScrollView {
-                        LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                            ForEach(sections) { bridgesSection in
-                                Section {
-                                    ForEach(bridgesSection.bridgeModels) { bridgeModel in
-                                        NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate, favorites: favorites)) {
-                                            if let imageURL = bridgeModel.imageURL {
-                                                SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)
+                    ScrollViewReader { scrollViewReaderProxy in
+                        ScrollView {
+                            LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+                                ForEach(sections) { bridgesSection in
+                                    Section {
+                                        ForEach(bridgesSection.bridgeModels) { bridgeModel in
+                                            NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate, favorites: favorites)) {
+                                                if let imageURL = bridgeModel.imageURL {
+                                                    SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)
+                                                }
                                             }
+                                            Divider()
                                         }
-                                        Divider()
+                                        .id(topID)
+                                    } header: {
+                                        HStack {
+                                            sectionLabel(bridgesSection.sectionName, bridgeInfoGrouping)
+                                                .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
+                                                .font(.title3)
+                                                .padding([.leading])
+                                                .padding([.top], 10)
+                                                .padding([.bottom], 5)
+                                            Spacer()
+                                        }
                                     }
-                                } header: {
-                                    HStack {
-                                        sectionLabel(bridgesSection.sectionName, bridgeInfoGrouping)
-                                            .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
-                                            .font(.title3)
-                                            .padding([.leading])
-                                            .padding([.top], 10)
-                                            .padding([.bottom], 5)
-                                        Spacer()
-                                    }
+                                    .font(.headline)
+                                    .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
+                                    .background(bridgesSection.pbColorPalate.textBgnd)
                                 }
-                                .font(.headline)
-                                .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
-                                .background(bridgesSection.pbColorPalate.textBgnd)
                             }
                         }
+                        .onChange(of: showFavorites, perform: { value in
+                            if value == true {
+                                scrollViewReaderProxy.scrollTo(topID)
+                            }
+                        })
                     }
                 } else {
                     VStack(alignment: .center) {
