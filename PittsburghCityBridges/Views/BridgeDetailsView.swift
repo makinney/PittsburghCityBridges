@@ -24,6 +24,7 @@ struct BridgeDetailsView: View {
     private let buttonCornerRadius: CGFloat = 5
     private let imageCornerRadius: CGFloat = 10
     private let imageSmallestMagnification = 1.0
+    private let userInterfaceIdiom: UIUserInterfaceIdiom
     private let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     
     private func totalOffset(offset: CGSize, by: CGSize) -> CGSize {
@@ -35,6 +36,7 @@ struct BridgeDetailsView: View {
         self.pbColorPalate = pbColorPalate
         bridgeImageSystem = BridgeImageSystem()
         self.favorites = favorites
+        self.userInterfaceIdiom = UIDevice.current.userInterfaceIdiom
     }
     
     var dragGesture: some Gesture {
@@ -160,7 +162,7 @@ struct BridgeDetailsView: View {
                             Text(bridgeModel.neighborhoods())
                             HStack {
                                 makeMapView(bridgeModel)
-                                    .frame(height: 200)
+                                    .frame(height: (userInterfaceIdiom == .phone) ? 200 : 250)
                                     .cornerRadius(imageCornerRadius)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: imageCornerRadius)
@@ -228,7 +230,7 @@ struct BridgeDetailsView_Previews: PreviewProvider {
     @ObservedObject static var favorites = Favorites()
     static var previews: some View {
         BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate(), favorites: favorites)
-        //         .preferredColorScheme(.dark)
+                 .preferredColorScheme(.dark)
         //        BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate())
         //            .environmentObject(FavoriteBridges())
         
