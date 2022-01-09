@@ -126,9 +126,7 @@ struct BridgeDetailsView: View {
                                     }
                                     Spacer()
                                 }
-                                .padding([.leading, .trailing])
                                 HStack {
-                                    Spacer()
                                     ZStack {
                                         Image(uiImage: bridgeImage)
                                             .resizable()
@@ -150,21 +148,17 @@ struct BridgeDetailsView: View {
                                     }
                                 }
                             }
+                            .padding([.bottom], 5)
                             .gesture(
                                 TapGesture(count: 1)
                                     .onEnded{
                                         self.bridgeImageOnly = true
                                     }
                             )
-                            .padding([.bottom], 10)
                             Text(bridgeModel.builtHistory())
-                                .padding([.leading])
-                                .padding([.bottom], 10)
+                                .padding([.bottom], 5)
                             Text(bridgeModel.neighborhoods())
-                                .padding([.leading])
-                                .padding([.bottom], 10)
                             HStack {
-                                Spacer()
                                 makeMapView(bridgeModel)
                                     .frame(height: 200)
                                     .cornerRadius(imageCornerRadius)
@@ -172,12 +166,11 @@ struct BridgeDetailsView: View {
                                         RoundedRectangle(cornerRadius: imageCornerRadius)
                                             .stroke(Color.secondary, lineWidth: 2)
                                     )
-                                Spacer()
                             }
                         }
-                        .padding(.horizontal)
                         .foregroundColor(pbColorPalate.textFgnd)
                     }
+                    .padding([.leading, .trailing])
                     .toolbar {
                         ToolbarItem(placement: .navigationBarTrailing) {
                             FavoritesButton(favorites, favorite: bridgeModel.name)
@@ -235,7 +228,7 @@ struct BridgeDetailsView_Previews: PreviewProvider {
     @ObservedObject static var favorites = Favorites()
     static var previews: some View {
         BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate(), favorites: favorites)
-            .preferredColorScheme(.dark)
+        //         .preferredColorScheme(.dark)
         //        BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate())
         //            .environmentObject(FavoriteBridges())
         
