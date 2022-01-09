@@ -12,7 +12,7 @@ struct MoreScreenView: View {
         VStack {
             Spacer()
             Text("More")
-                .font(.title)
+                .font(.title2)
                 .foregroundColor(Color.pbTextFgndYellow)
             Spacer()
         }

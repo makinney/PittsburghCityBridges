@@ -33,7 +33,6 @@ struct SinglePhotoView: View {
             }
             ZStack {
                 HStack {
-            //        Spacer()
                     Image(uiImage: bridgeImage )
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -57,8 +56,7 @@ struct SinglePhotoView: View {
         }
         .padding([.horizontal])
         .frame(width: UIScreen.main.bounds.size.width)
-        .frame(height: UIScreen.main.bounds.size.width * 0.75)  // fraction of width
-        .padding([.leading, .trailing, .bottom])
+        .frame(height: UIScreen.main.bounds.size.width * 0.75)  // need to fix size since do not know image size
         .background(pbColorPalate.textBgnd)
         .onAppear {
             Task {

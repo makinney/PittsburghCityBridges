@@ -41,19 +41,19 @@ struct BridgesPhotosListView: View {
                                             }
                                             Divider()
                                         }
+                                        .padding([.bottom])
                                         .id(topID)
                                     } header: {
                                         HStack {
                                             sectionLabel(bridgesSection.sectionName, bridgeInfoGrouping)
                                                 .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
-                                                .font(.title3)
+                                                .font(.body)
                                                 .padding([.leading])
                                                 .padding([.top], 10)
                                                 .padding([.bottom], 5)
                                             Spacer()
                                         }
                                     }
-                                    .font(.headline)
                                     .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
                                     .background(bridgesSection.pbColorPalate.textBgnd)
                                 }

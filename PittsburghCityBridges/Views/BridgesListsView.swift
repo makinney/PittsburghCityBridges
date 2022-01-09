@@ -45,14 +45,13 @@ struct BridgesListsView: View {
                                         HStack {
                                             sectionLabel(bridgesSection.sectionName, bridgeInfoGrouping)
                                                 .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
-                                                .font(.headline)
+                                                .font(.body)
                                                 .padding([.leading])
                                                 .padding([.top], 10)
                                                 .padding([.bottom], 5)
                                             Spacer()
                                         }
                                     }
-                                    .font(.headline)
                                     .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
                                     .background(bridgesSection.pbColorPalate.textBgnd)
                                 }
