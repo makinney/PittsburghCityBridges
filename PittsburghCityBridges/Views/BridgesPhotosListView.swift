@@ -24,7 +24,7 @@ struct BridgesPhotosListView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                TitleHeader(title: "Photos")
+                TitleHeader(title: "City Bridges by Photos")
                 HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping, showFavorites: $showFavorites)
                 let sections = bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping, favorites: showFavorites ? favorites : nil)
                 if !sections.isEmpty {
