@@ -9,7 +9,6 @@ import SwiftUI
 import UIKit
 
 extension Color {
-    static let pbAccent = Color(uiColor: UIColor(named: "AccentColor") ?? UIColor.white)
     static let pbTextFgndBrown = Color(light: Asset.bridgeBlackA, dark: Asset.bridgeBrownA)
     static let pbTextBgndBrown = Color(light: Asset.bridgeBrownA, dark: Asset.bridgeBlackA)
     static let pbTextFgndGreen = Color(light: Asset.bridgeBlackA, dark: Asset.bridgeGreenA)

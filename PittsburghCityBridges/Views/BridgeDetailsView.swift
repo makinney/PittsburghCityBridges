@@ -24,6 +24,7 @@ struct BridgeDetailsView: View {
     private let buttonCornerRadius: CGFloat = 5
     private let imageCornerRadius: CGFloat = 10
     private let imageSmallestMagnification = 1.0
+    private let userInterfaceIdiom: UIUserInterfaceIdiom
     private let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     
     private func totalOffset(offset: CGSize, by: CGSize) -> CGSize {
@@ -35,6 +36,7 @@ struct BridgeDetailsView: View {
         self.pbColorPalate = pbColorPalate
         bridgeImageSystem = BridgeImageSystem()
         self.favorites = favorites
+        self.userInterfaceIdiom = UIDevice.current.userInterfaceIdiom
     }
     
     var dragGesture: some Gesture {
@@ -69,7 +71,6 @@ struct BridgeDetailsView: View {
             if bridgeImageOnly {
                 GeometryReader { geometry in
                     VStack(alignment: .center) {
-                      //  Spacer()
                         Image(uiImage: bridgeImage)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -78,6 +79,7 @@ struct BridgeDetailsView: View {
                                 RoundedRectangle(cornerRadius: imageCornerRadius)
                                     .stroke(Color.clear, lineWidth: 4)
                             )
+                            .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
                             .frame(maxWidth: geometry.frame(in: .global).width, maxHeight: geometry.frame(in: .global).height)
                             .scaleEffect(imageScale)
                             .animation(.easeInOut, value: imageScale)
@@ -85,7 +87,6 @@ struct BridgeDetailsView: View {
                             .animation(.easeInOut, value: dragOffset)
                             .gesture(magGesture.simultaneously(with: dragGesture))
                             .gesture(dblTapToZoomInGesture)
-                        //       .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
                             .toolbar {
                                 ToolbarItem(placement: .navigationBarTrailing) {
                                     Button("Done") {
@@ -115,75 +116,72 @@ struct BridgeDetailsView: View {
                 GeometryReader { geometry in
                     ScrollView(showsIndicators: false) {
                         VStack(alignment: .leading) {
-                            HStack {
-                                Text("\(bridgeModel.name)")
-                                    .font(.headline)
-                                Spacer()
-                                    .foregroundColor(.pbAccent)
-                            }
-                            .padding([.leading, .trailing])
-                            Text(bridgeModel.builtHistory())
-                                .padding([.leading])
-                    
-                            HStack {
-                                Spacer()
-                                ZStack {
-                                    Image(uiImage: bridgeImage)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .cornerRadius(imageCornerRadius)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: imageCornerRadius)
-                                                .stroke(Color.secondary, lineWidth: 2)
-                                        )
-                                        .frame(maxWidth: geometry.frame(in: .global).width, minHeight: 100)
-                                        .scaleEffect(imageScale)
-                                        .animation(.easeInOut, value: imageScale)
-                                        .clipped()
-                                        .opacity(bridgeImageLoaded ? 1.0 : 0.0)
-                                        .gesture(magGesture)
-                                        .gesture(
-                                            TapGesture(count: 1)
-                                                .onEnded{
-                                                    self.bridgeImageOnly = true
-                                                }
-                                    )
-                                    BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
-                                        .opacity(bridgeImageLoaded ? 0.0 : 1.0)
+                            VStack {
+                                HStack {
+                                    Text("\(bridgeModel.name)")
+                                        .font(.headline)
+                                    VStack {
+                                        Spacer()
+                                        Image(systemName: "plus.magnifyingglass")
+                                            .imageScale(.large)
+                                            .foregroundColor(.accentColor)
+                                    }
+                                    Spacer()
                                 }
-                                Spacer()
+                                HStack {
+                                    ZStack {
+                                        Image(uiImage: bridgeImage)
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .cornerRadius(imageCornerRadius)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: imageCornerRadius)
+                                                    .stroke(Color.secondary, lineWidth: 2)
+                                            )
+                                            .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
+                                            .frame(maxWidth: geometry.frame(in: .global).width, minHeight: 100)
+                                            .scaleEffect(imageScale)
+                                            .animation(.easeInOut, value: imageScale)
+                                            .clipped()
+                                            .opacity(bridgeImageLoaded ? 1.0 : 0.0)
+                                            .gesture(magGesture)
+                                        BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
+                                            .opacity(bridgeImageLoaded ? 0.0 : 1.0)
+                                    }
+                                }
                             }
-                            //          .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
+                            .padding([.bottom], 5)
+                            .gesture(
+                                TapGesture(count: 1)
+                                    .onEnded{
+                                        self.bridgeImageOnly = true
+                                    }
+                            )
+                            Text(bridgeModel.builtHistory())
+                                .padding([.bottom], 5)
                             Text(bridgeModel.neighborhoods())
-                                .padding()
-                          
                             HStack {
-                                Spacer()
                                 makeMapView(bridgeModel)
-                                    .frame(height: 200)
+                                    .frame(height: (userInterfaceIdiom == .phone) ? 200 : 250)
                                     .cornerRadius(imageCornerRadius)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: imageCornerRadius)
                                             .stroke(Color.secondary, lineWidth: 2)
                                     )
-                                Spacer()
                             }
                         }
-                        .padding(.horizontal)
                         .foregroundColor(pbColorPalate.textFgnd)
                     }
+                    .padding([.leading, .trailing])
                     .toolbar {
                         ToolbarItem(placement: .navigationBarTrailing) {
                             FavoritesButton(favorites, favorite: bridgeModel.name)
-                            .padding(.trailing, 10)
-//                            .overlay(
-//                                RoundedRectangle(cornerRadius: buttonCornerRadius)
-//                                    .stroke(Color.secondary, lineWidth: 2)
-//                            )
+                                .padding(.trailing, 10)
                         }
                     }
                     .background(pbColorPalate.textBgnd)
                 }
+                .font(.body)
                 .onAppear {
                     UIScrollView.appearance().bounces = true
                     Task {
@@ -204,16 +202,15 @@ struct BridgeDetailsView: View {
     func makeMapView(_ bridgeModel: BridgeModel) -> some View {
         ZStack {
             BridgeMapUIView(region: MapViewModel.singleBridgeRegion, bridgeModels: [bridgeModel], showsBridgeImage: false)
-            Spacer()
             VStack {
                 HStack {
                     if let locationCoordinate = bridgeModel.locationCoordinate {
-                       
                         Button {
                             DirectionsProvider.shared.requestDirectionsTo(locationCoordinate)
                         } label: {
                             Label("Directions", systemImage: "arrow.triangle.turn.up.right.circle.fill")
                                 .padding(4)
+                                .foregroundColor(.accentColor)
                                 .background(Color.pbTitleTextBgnd)
                         }
                         .overlay(
@@ -234,9 +231,9 @@ struct BridgeDetailsView_Previews: PreviewProvider {
     @ObservedObject static var favorites = Favorites()
     static var previews: some View {
         BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate(), favorites: favorites)
-            .preferredColorScheme(.dark)
-//        BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate())
-//            .environmentObject(FavoriteBridges())
-
+                 .preferredColorScheme(.dark)
+        //        BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate())
+        //            .environmentObject(FavoriteBridges())
+        
     }
 }

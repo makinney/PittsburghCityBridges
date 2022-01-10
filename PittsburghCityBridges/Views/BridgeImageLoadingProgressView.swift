@@ -19,7 +19,7 @@ struct BridgeImageLoadingProgressView: View {
             }
         }
         .foregroundColor(.primary)
-        .font(.caption)
+        .font(.body)
     }
 }
 

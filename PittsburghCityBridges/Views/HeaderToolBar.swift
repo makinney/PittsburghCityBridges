@@ -32,22 +32,22 @@ struct HeaderToolBar: View {
             Button {
                 bridgeInfoGrouping = .name
             } label: {
-                makeCheckedSortLabel("Names Sort", selectedSection: .name)
+                makeCheckedSortLabel("Sort by Names", selectedSection: .name)
             }
             Button {
                 bridgeInfoGrouping = .neighborhood
             } label: {
-                makeCheckedSortLabel("Neighborhoods Sort", selectedSection: .neighborhood)
+                makeCheckedSortLabel("Sort by Neighborhoods", selectedSection: .neighborhood)
             }
             Button {
                 bridgeInfoGrouping = .year
             } label: {
-                makeCheckedSortLabel("Year Built Sort", selectedSection: .year)
+                makeCheckedSortLabel("Sort by Year Built", selectedSection: .year)
             }
             Button {
                 showFavorites.toggle()
             } label: {
-                makeFavoriteLabel("Favorites", showFavorites: showFavorites)
+                makeFavoriteLabel("Favorites Only", showFavorites: showFavorites)
             }
         }, label: {
             Label("Sort", systemImage: "slider.vertical.3")

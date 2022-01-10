@@ -24,7 +24,7 @@ struct BridgesListsView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                TitleHeader(title: "Pittsburgh City Bridges")
+                TitleHeader(title: "Pittsburgh City Bridges by List")
                 HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping, showFavorites: $showFavorites)
                 let sections = bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping, favorites: showFavorites ? favorites : nil)
                 if !sections.isEmpty {
@@ -45,14 +45,13 @@ struct BridgesListsView: View {
                                         HStack {
                                             sectionLabel(bridgesSection.sectionName, bridgeInfoGrouping)
                                                 .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
-                                                .font(.headline)
+                                                .font(.body)
                                                 .padding([.leading])
                                                 .padding([.top], 10)
                                                 .padding([.bottom], 5)
                                             Spacer()
                                         }
                                     }
-                                    .font(.headline)
                                     .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
                                     .background(bridgesSection.pbColorPalate.textBgnd)
                                 }

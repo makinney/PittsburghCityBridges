@@ -53,9 +53,9 @@ struct BridgeListRow: View {
                 Text(bridgeModel.name)
                     .font(.headline)
                 Text("\(bridgeModel.startNeighborhood) Neighborhood")
-                    .font(.subheadline)
+                    .font(.body)
                 Text("Year built: \(bridgeModel.yearBuilt)")
-                    .font(.subheadline)
+                    .font(.body)
                 Spacer()
             }
             .multilineTextAlignment(.leading)
@@ -63,6 +63,7 @@ struct BridgeListRow: View {
             VStack {
                 Spacer()
                 Image(systemName: "arrow.forward")
+                    .foregroundColor(.accentColor)
                 Spacer()
             }
         }
