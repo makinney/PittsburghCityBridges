@@ -183,12 +183,6 @@ struct BridgeDetailsView: View {
                     .background(pbColorPalate.textBgnd)
                 }
                 .font(.body)
-                .sheet(isPresented: $showDisclaimerSheet,
-                       content: {
-                    VStack {
-                        DirectionsDisclaimerView()
-                    }
-                })
                 .onAppear {
                     UIScrollView.appearance().bounces = true
                     Task {
@@ -199,8 +193,11 @@ struct BridgeDetailsView: View {
                             }
                         }
                     }
-                    
                 }
+                .sheet(isPresented: $showDisclaimerSheet,
+                       content: {
+                        DirectionsDisclaimerView()
+                })
             }
         }
         .animation(.default, value: bridgeImageOnly)
