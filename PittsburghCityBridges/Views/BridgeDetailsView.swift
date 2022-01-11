@@ -16,6 +16,7 @@ struct BridgeDetailsView: View {
     @State private var imageScale: CGFloat = 1.0
     @State private var bridgeImageLoaded = false
     @State private var startingOffset: CGSize = .zero
+    @State private var showDisclaimerSheet = false
     @Namespace private var bridgeAnimations
     
     var pbColorPalate = PBColorPalate()
@@ -182,6 +183,12 @@ struct BridgeDetailsView: View {
                     .background(pbColorPalate.textBgnd)
                 }
                 .font(.body)
+                .sheet(isPresented: $showDisclaimerSheet,
+                       content: {
+                    VStack {
+                        DirectionsDisclaimerView()
+                    }
+                })
                 .onAppear {
                     UIScrollView.appearance().bounces = true
                     Task {
@@ -206,7 +213,11 @@ struct BridgeDetailsView: View {
                 HStack {
                     if let locationCoordinate = bridgeModel.locationCoordinate {
                         Button {
-                            DirectionsProvider.shared.requestDirectionsTo(locationCoordinate)
+                            if DirectionsProvider.shared.userAcceptedDirectionsDisclaimer {
+                                DirectionsProvider.shared.requestDirectionsTo(locationCoordinate)
+                            } else {
+                                self.showDisclaimerSheet = true
+                            }
                         } label: {
                             Label("Directions", systemImage: "arrow.triangle.turn.up.right.circle.fill")
                                 .padding(4)
