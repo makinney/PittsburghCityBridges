@@ -68,6 +68,7 @@ struct BridgeMapUIView: UIViewRepresentable {
     final class MapCoordinator: NSObject, MKMapViewDelegate {
         let hasDetailAccessoryView: Bool
         let directionsProvider: DirectionsProvider
+        var directionsDisclaimerViewController: UIHostingController<DirectionsDisclaimerView>? = nil
         init(_ directionsProvider: DirectionsProvider,_ hasDetailAccessoryView: Bool) {
             self.directionsProvider = directionsProvider
             self.hasDetailAccessoryView = hasDetailAccessoryView
@@ -128,9 +129,29 @@ struct BridgeMapUIView: UIViewRepresentable {
         
         func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
             if let bridgeMapAnnotation = view.annotation as? BridgeMapAnnotation {
-                directionsProvider.requestDirectionsTo(bridgeMapAnnotation.coordinate)
-                mapView.showsUserLocation = directionsProvider.userlocationAuthorized
-                mapView.deselectAnnotation(view.annotation, animated: true)
+                if directionsProvider.userAcceptedDirectionsDisclaimer {
+                    directionsProvider.requestDirectionsTo(bridgeMapAnnotation.coordinate)
+                    mapView.showsUserLocation = directionsProvider.userlocationAuthorized
+                    mapView.deselectAnnotation(view.annotation, animated: true)
+                } else {
+                    showDirectionsDisclaimerView(mapView: mapView)
+                }
+            }
+        }
+               
+        private func showDirectionsDisclaimerView(mapView: MKMapView) {
+            var directionsDisclaimerView = DirectionsDisclaimerView()
+            directionsDisclaimerView.closeTouched = {
+                self.directionsDisclaimerViewController?.view?.removeFromSuperview()
+            }
+            directionsDisclaimerViewController = UIHostingController(rootView: directionsDisclaimerView)
+            if let view = directionsDisclaimerViewController?.view {
+                mapView.addSubview(view)
+                view.translatesAutoresizingMaskIntoConstraints = false
+                view.topAnchor.constraint(equalTo: mapView.topAnchor).isActive = true
+                view.bottomAnchor.constraint(equalTo: mapView.bottomAnchor).isActive = true
+                view.leftAnchor.constraint(equalTo: mapView.leftAnchor).isActive = true
+                view.rightAnchor.constraint(equalTo: mapView.rightAnchor).isActive = true
             }
         }
     }

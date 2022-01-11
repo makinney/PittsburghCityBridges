@@ -10,22 +10,14 @@ import SwiftUI
 struct DirectionsDisclaimerView: View {
     @AppStorage(StorageKeys.userAgreedDirectionsDisclaimer) private var userAgreedDirectionsDisclaimer = false
     @Environment(\.presentationMode) var presentationMode
-    
-    let agreementText = """
-The mapping, directions and listing information are provided solely for entertainment purposes.
-
-No representation is made or warranty given as to their content, route practicability or efficiency, or map accuracy.
-
-User assumes all risk of use. Supplier assumes no legal liability or responsibility for any loss, damage, injury, or delay associated with the use of this product.
-
-"""
+    var closeTouched: (() -> Void)?
     
     var body: some View {
         GroupBox(label:
-                    Label("Legal Disclaimer", systemImage: "building.columns")
+                    Label("Disclaimer", systemImage: "building.columns")
         ) {
             ScrollView(.vertical, showsIndicators: true) {
-                Text(agreementText)
+                Text(PBText.directionDisclaimerAgreement)
                     .font(.footnote)
             }
             .frame(height: 200)
@@ -35,6 +27,7 @@ User assumes all risk of use. Supplier assumes no legal liability or responsibil
             .padding()
             Button("Close") {
                 presentationMode.wrappedValue.dismiss()
+                self.closeTouched?()
             }
             .padding([.leading, .trailing])
             .background(Color.white.cornerRadius(5))

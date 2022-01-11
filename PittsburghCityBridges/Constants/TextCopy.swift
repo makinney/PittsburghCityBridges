@@ -14,4 +14,12 @@ struct PBText {
         static let year = "Year built: "
     }
     
+    static let directionDisclaimerAgreement = """
+The mapping, directions and listing information are provided solely for entertainment purposes.
+
+No representation is made or warranty given as to their content, route practicability or efficiency, or map accuracy.
+
+User assumes all risk of use. Supplier assumes no legal liability or responsibility for any loss, damage, injury, or delay associated with the use of this product.
+
+"""
 }
