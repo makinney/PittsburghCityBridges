@@ -12,6 +12,8 @@ import os
 
 class DirectionsProvider {
     @Environment(\.openURL) private var openURL
+    @AppStorage(StorageKeys.userAgreedDirectionsDisclaimer) private var userAgreedDirectionsDisclaimer = false
+    
     static let shared = DirectionsProvider()
     enum DirectionsRequest {
         case no
@@ -39,6 +41,10 @@ class DirectionsProvider {
         return false
     }
     
+    var userAcceptedDirectionsDisclaimer: Bool {
+        userAgreedDirectionsDisclaimer
+    }
+    
     private init() {
         locationService = LocationService()
         subscribeUserCoordinatesUpdates()
@@ -57,7 +63,7 @@ class DirectionsProvider {
                 if self.userLocationRequest == .requested {
                     self.userCoordinate =  coordinate
                     self.logger.info("\(#file) \(#function) updated user coordinates lat \(coordinate.latitude) and long \(coordinate.longitude)")
-                    if self.directionsRequested == .yes {
+                    if self.directionsRequested == .yes && self.userAgreedDirectionsDisclaimer {
                         self.requestMapDirections(from: self.userCoordinate, to: self.destinationCoordinate)
                     }
                 }

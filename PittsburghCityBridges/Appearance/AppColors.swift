@@ -24,6 +24,7 @@ extension Color {
 
 extension UIColor {
     static let pbTabBarBackground = UIColor(light: UIColor.secondarySystemBackground, dark: Asset.bridgeBlackA)
+    static let accentColor = UIColor(named: "AccentColor") ?? UIColor.yellow  // There is also a Color.accentColor define by SwiftUI
 }
 
 private struct Asset {
