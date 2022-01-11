@@ -106,19 +106,17 @@ struct BridgeMapUIView: UIViewRepresentable {
             } else {
                 annotationView = MKMarkerAnnotationView(annotation: bridgeMapAnnotation, reuseIdentifier: reuseIdentifier)
             }
-            //      annotationView.frame = CGRect(x: 20, y: 20, width: 300, height: 300)
-            //    annotationView.glyphText = "Bridge"
-            annotationView.markerTintColor = UIColor(named: "AccentColor")
+            annotationView.markerTintColor = .accentColor
             annotationView.canShowCallout = true
-            let buttonImage = UIImage(systemName: "arrow.triangle.turn.up.right.circle.fill") ?? UIImage()
-            let directionsRequestButton = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50)) // so we can tap and get the delegate callback
+            var buttonImage = UIImage(systemName: "arrow.triangle.turn.up.right.circle.fill") ?? UIImage()
+            let buttonImageSize = CGSize(width: 44, height: 44)
+            buttonImage = buttonImage.resizeImageTo(size: buttonImageSize)
+            buttonImage = buttonImage.withTintColor(.accentColor)
+            let directionsRequestButton = UIButton(frame: CGRect(x: 0, y: 0, width: buttonImageSize.width, height: buttonImageSize.height))
             directionsRequestButton.setImage(buttonImage, for: .normal)
-       //     directionsRequestButton.setTitle("Directions", for: .normal)
-      //      directionsRequestButton.setTitleColor(UIColor.red, for: .normal)
             annotationView.rightCalloutAccessoryView = directionsRequestButton
             if hasDetailAccessoryView {
                 let bridgeMapDetailAccessoryView = BridgeMapDetailAccessoryView(bridgeModel: bridgeMapAnnotation.bridgeModel)
-            //    bridgeMapDetailAccessoryView.
                 let hostingController = UIHostingController(rootView: bridgeMapDetailAccessoryView)
                 hostingController.view.translatesAutoresizingMaskIntoConstraints = false
                 annotationView.detailCalloutAccessoryView = hostingController.view
