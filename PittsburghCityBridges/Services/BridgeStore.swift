@@ -10,7 +10,7 @@ import MapKit
 import os
 
 @MainActor
-class BridgeStore: ObservableObject {
+final class BridgeStore: ObservableObject {
     @Published var bridgeModels = [BridgeModel]()
     private let openDataService: OpenDataService
 
@@ -20,6 +20,40 @@ class BridgeStore: ObservableObject {
         openDataService = OpenDataService()
     }
     
+    @MainActor
+    func loadBridgeModels() {
+        Task {
+            var freshModels = [BridgeModel]()
+            do {
+                if let jsonData = await self.openDataService.getBridgesJSON() {
+                    let geoJSONObjects = try MKGeoJSONDecoder().decode(jsonData)
+                    for object in geoJSONObjects {
+                        if let feature = object as? MKGeoJSONFeature,
+                           let propertyData = feature.properties {
+                            let geometry = feature.geometry
+                            let geoJSONProp: GeoJSONProperty = try JSONDecoder().decode(GeoJSONProperty.self, from: propertyData)
+                            let bridgeModel = BridgeModel(geometry: geometry, geoJSON: geoJSONProp)
+                            freshModels.append(bridgeModel)
+                        }
+                    }
+                    self.bridgeModels = freshModels // Publish
+                }
+            } catch let error {
+                logger.error("\(#file) \(#function) \(error.localizedDescription, privacy: .public)")
+            }
+        }
+    }
+    
+#if DEBUG
+    @MainActor
+    func preview() {
+        loadBridgeModels()
+    }
+#endif
+    
+}
+
+extension BridgeStore {
     func sortedByName() -> [BridgeModel] {
         let sortedModels = bridgeModels.sorted { model1, model2 in
             return model1.name < model2.name
@@ -46,41 +80,4 @@ class BridgeStore: ObservableObject {
         }
         return sortedModels
     }
-    
-    func refreshBridgeModels() {
-        loadCityBridgeModels()
-    }
-    
-    @MainActor
-    func loadCityBridgeModels() {
-        Task {
-            var freshModels = [BridgeModel]()
-            do {
-                if let jsonData = await self.openDataService.cityBridgesJSON() {
-                    let geoJSONObjects = try MKGeoJSONDecoder().decode(jsonData)
-                    for object in geoJSONObjects {
-                        if let feature = object as? MKGeoJSONFeature,
-                           let propertyData = feature.properties {
-                            let geometry = feature.geometry
-                            let geoJSONProp: GeoJSONProperty = try JSONDecoder().decode(GeoJSONProperty.self, from: propertyData)
-                            let bridgeModel = BridgeModel(geometry: geometry, geoJSON: geoJSONProp)
-                            freshModels.append(bridgeModel)
-                        }
-                    }
-                    self.bridgeModels = freshModels // Publish
-                }
-            } catch let error {
-                logger.error("\(#file) \(#function) \(error.localizedDescription, privacy: .public)")
-            }
-        }
-    }
-    
-#if DEBUG
-    @MainActor
-    func preview() {
-        loadCityBridgeModels()
-    }
-#endif
-    
 }
-

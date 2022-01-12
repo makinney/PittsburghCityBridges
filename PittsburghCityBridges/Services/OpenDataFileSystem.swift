@@ -13,8 +13,7 @@ class OpenDataFileSystem: ObservableObject {
     private let openDataFolderName = "OpenData"
     private var openDataFolder: Folder?
     private (set)var cachesFolder: Folder?
-    private let cityBridgesCachedFileName = "CityBridges"
-    
+    private let localJSONFileName = "BridgesJSON"
     
     private let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     
@@ -40,59 +39,49 @@ class OpenDataFileSystem: ObservableObject {
         }
     }
     
-    func getBridgeJSONData(url: URL) async -> Data? {
- //       getCachedData(for: cityBridgesCachedFileName)
-     
-        let data = await getBundledCityBridgeJSON()
-        return data
-    }
-    
-    func getBundledCityBridgeJSON() async -> Data? {
+    func getBridges(url: URL?) async -> Data? {
         var data: Data?
-        if let bundleFileURL = getBundledFileURL() {
-            do {
-                let (bundledData, _) = try await URLSession.shared.data(from: bundleFileURL)
-                data = bundledData
-            } catch let error {
-                logger.error("\(#file) \(#function) \(error.localizedDescription, privacy: .public)")
-            }
+        if let cachedData = readSavedFileData(fileName: localJSONFileName) {
+            data = cachedData
         } else {
-            logger.error("\(#file) \(#function) no bundled JSON data")
-        }
-        return data
-    }
-    
-    
-    //                 let (data, _) = try await URLSession.shared.data(from: url)
-
-    func getOpenData(for url: URL) async -> Data? {
-        var data: Data?
-        // use file in cache folder if we have it
-        let fileName = getFileName(url)
-        let cachedData: Data? = getData(for: fileName)
-        if let cachedData = cachedData {
-           data = cachedData
-        } else {
-            // use bundled
             data = await getBundledCityBridgeJSON()
         }
-        // else use file in bundle
-        
-        // either way, update the cache folder file, either because it doesn't exist or the open data file on the server has updated
-        
+        Task {
+            if let url = url {
+                await manageSavedJSONData(serverURL: url)
+            }
+        }
         return data
     }
     
-
-    
-    private func getData(for fileName: String) -> Data? {
-        var data: Data?
-        if let file = getFile(fileName) {
-            do {
-                data = try file.read()
-            } catch {
-                logger.info("\(#file) \(#function) error \(error.localizedDescription)")
+    private func manageSavedJSONData(serverURL: URL) async {
+        let savedData: Data? = readSavedFileData(fileName: localJSONFileName)
+        if savedData == nil {
+            if let data = await getData(url: serverURL) {
+                saveToDisk(fileName: localJSONFileName, data: data)
+                logger.info("\(#file) \(#function) got server json data")
             }
+        }
+    }
+    
+    private func getData(url: URL) async -> Data? {
+        var data: Data?
+        do {
+            let (_data, _) = try await URLSession.shared.data(from: url)
+            data = _data
+        } catch let error {
+            logger.error("\(#file) \(#function) \(error.localizedDescription, privacy: .public)")
+        }
+        return data
+    }
+    
+    private func getBundledCityBridgeJSON() async -> Data? {
+        var data: Data?
+        if let bundleFileURL = getBundledFileURL() {
+            data = await getData(url: bundleFileURL)
+        }
+        if data == nil {
+            logger.error("\(#file) \(#function) no bundled JSON data")
         }
         return data
     }
@@ -101,7 +90,7 @@ class OpenDataFileSystem: ObservableObject {
         return Bundle.main.url(forResource: "BridgesOpenData", withExtension: "json")
     }
     
-    private func getFile(_ named: String) -> File? {
+    private func getSavedFile(named: String) -> File? {
         var file: File?
         do {
             file = try openDataFolder?.file(named: named)
@@ -111,33 +100,34 @@ class OpenDataFileSystem: ObservableObject {
         return file
     }
     
-    
-    private func getFileName(_ url: URL) -> String {
-        if let name = url.pathComponents.last {
-            return name
-        } else {
-            logger.info("\(#file) \(#function) error no file name for url \(url.debugDescription) ")
-            return ""
+    private func readSavedFileData(fileName: String) -> Data? {
+        var data: Data?
+        if let file = getSavedFile(named: fileName) {
+            do {
+                data = try file.read()
+            } catch {
+                logger.info("\(#file) \(#function) error \(error.localizedDescription)")
+            }
         }
+        return data
     }
     
-    
-//    private func saveToDisk(fileName: String, data: Data) {
-//        var existingFile = getFile(fileName)
-//        if existingFile == nil {
-//            do {
-//                existingFile = try bridgeImagesFolder?.createFile(named: fileName)
-//            } catch {
-//                logger.info("\(#file) \(#function) error \(error.localizedDescription)")
-//                fatalError("\(#file) \(#function) could not create image file name \(fileName)")
-//            }
-//        }
-//        do {
-//            try existingFile?.write(data)
-//        } catch {
-//            logger.info("\(#file) \(#function) error \(error.localizedDescription)")
-//            fatalError("\(#file) \(#function) could not create image file name \(fileName)")
-//        }
-//    }
+    private func saveToDisk(fileName: String, data: Data) {
+        var existingFile = getSavedFile(named: fileName)
+        if existingFile == nil {
+            do {
+                existingFile = try openDataFolder?.createFile(named: fileName)
+            } catch {
+                logger.info("\(#file) \(#function) error \(error.localizedDescription)")
+                fatalError("\(#file) \(#function) could not create image file name \(fileName)")
+            }
+        }
+        do {
+            try existingFile?.write(data)
+        } catch {
+            logger.info("\(#file) \(#function) error \(error.localizedDescription)")
+            fatalError("\(#file) \(#function) could not create image file name \(fileName)")
+        }
+    }
     
 }
