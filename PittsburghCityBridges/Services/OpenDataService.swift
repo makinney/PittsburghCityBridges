@@ -29,19 +29,18 @@ class OpenDataService {
         self.openDataFileSystem = OpenDataFileSystem()
         publicDB = container.publicCloudDatabase
     }
-    
-    // let urlPath = try await OpenDataService().openDataURL
-    
+        
     func cityBridgesJSON() async -> Data? {
         var jsonData: Data?
     //    Task {
-            if let data = openDataFileSystem.getCityBridgesCachedData() {
-                jsonData = data
-            } else {
-                
-            }
-        //    data = await openDataFileSystem.getOpenData(for: url)
-    //    }
+//        do {
+//            let url = try await cityBridgesMetaData().geoJSONURL
+//            let data = await openDataFileSystem.getBridgeJSONData(url: url)
+//        }  catch {
+//            logger.info("\(#file) \(#function) error \(error.localizedDescription)")
+//        }
+            
+
         return jsonData
     }
     

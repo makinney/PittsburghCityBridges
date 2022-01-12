@@ -40,9 +40,28 @@ class OpenDataFileSystem: ObservableObject {
         }
     }
     
-    func getCityBridgesCachedData() -> Data? {
-        getCachedData(for: cityBridgesCachedFileName)
+    func getBridgeJSONData(url: URL) async -> Data? {
+ //       getCachedData(for: cityBridgesCachedFileName)
+     
+        let data = await getBundledCityBridgeJSON()
+        return data
     }
+    
+    func getBundledCityBridgeJSON() async -> Data? {
+        var data: Data?
+        if let bundleFileURL = getBundledFileURL() {
+            do {
+                let (bundledData, _) = try await URLSession.shared.data(from: bundleFileURL)
+                data = bundledData
+            } catch let error {
+                logger.error("\(#file) \(#function) \(error.localizedDescription, privacy: .public)")
+            }
+        } else {
+            logger.error("\(#file) \(#function) no bundled JSON data")
+        }
+        return data
+    }
+    
     
     //                 let (data, _) = try await URLSession.shared.data(from: url)
 
@@ -50,19 +69,12 @@ class OpenDataFileSystem: ObservableObject {
         var data: Data?
         // use file in cache folder if we have it
         let fileName = getFileName(url)
-        var cachedData: Data? = getCachedData(for: fileName)
+        let cachedData: Data? = getData(for: fileName)
         if let cachedData = cachedData {
            data = cachedData
         } else {
             // use bundled
-            if let bundleFileURL = getBundledFileURL() {
-                do {
-                    let (bundledData, _) = try await URLSession.shared.data(from: bundleFileURL)
-                    data = bundledData
-                } catch let error {
-                    logger.error("\(#file) \(#function) \(error.localizedDescription, privacy: .public)")
-                }
-            }
+            data = await getBundledCityBridgeJSON()
         }
         // else use file in bundle
         
@@ -73,10 +85,9 @@ class OpenDataFileSystem: ObservableObject {
     
 
     
-    
-    private func getCachedData(for fileName: String) -> Data? {
+    private func getData(for fileName: String) -> Data? {
         var data: Data?
-        if let file = getCachedFile(fileName) {
+        if let file = getFile(fileName) {
             do {
                 data = try file.read()
             } catch {
@@ -90,7 +101,7 @@ class OpenDataFileSystem: ObservableObject {
         return Bundle.main.url(forResource: "BridgesOpenData", withExtension: "json")
     }
     
-    private func getCachedFile(_ named: String) -> File? {
+    private func getFile(_ named: String) -> File? {
         var file: File?
         do {
             file = try openDataFolder?.file(named: named)
