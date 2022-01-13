@@ -25,7 +25,7 @@ final class BridgeStore: ObservableObject {
         Task {
             var freshModels = [BridgeModel]()
             do {
-                if let jsonData = await self.openDataService.getBridgesJSON() {
+                if let jsonData = await self.openDataService.getBridgeModelOpenData() {
                     let geoJSONObjects = try MKGeoJSONDecoder().decode(jsonData)
                     for object in geoJSONObjects {
                         if let feature = object as? MKGeoJSONFeature,

@@ -15,113 +15,82 @@ enum CityBridgesMetaDataError: Error {
 
 class OpenDataService {
     let container: CKContainer
-    let publicDB: CKDatabase
     let openDataFileSystem: OpenDataFileSystem
-    private let localJSONFileName = "BridgesJSON"
-
+    private let bridgeModelsFileName = "cityBridgesOpenData"
     private let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
 
-    var openDataURL: String {
-        get async throws {
-            try await fetchMetaData().geoJSONURL
-        }
-    }
-    
-    var serverURL: URL? {
+    var cityBridgeOpenDataURL: URL? {
         get async {
-            await getBridgeDataBaseURL()
+            await getCityBridgeOpenDataURL()
         }
     }
 
     init(container: CKContainer = CKContainer.default()) {
         self.container = container
         self.openDataFileSystem = OpenDataFileSystem()
-        publicDB = container.publicCloudDatabase
     }
     
-    func getBridgesJSON() async -> Data? {
-        let data = await openDataFileSystem.getJSONBridgeDataFromCached(fileName: localJSONFileName)
+    func getBridgeModelOpenData() async -> Data? {
+        var bridgeModelData: Data?
+        bridgeModelData = await openDataFileSystem.getBridgeModedDataFromDisc(fileName: bridgeModelsFileName)
         Task {
-            await manageSavedJSONData()
+            let url = await cityBridgeOpenDataURL
+            if let url = url {
+                if let data = await openDataFileSystem.getDataFrom(url: url) {
+                    openDataFileSystem.saveToDisk(fileName: bridgeModelsFileName, data: data)
+                    logger.info("\(#file) \(#function) updated json data file from open data server")
+                }
+            }
         }
-        return data
+        return bridgeModelData
     }
     
-    private func getMetaData() async -> OpenDataMetaData? {
-        // thread running
-        var metaData: OpenDataMetaData?
+    private func getCityBridgeOpenDataURL() async -> URL? {
+        var cityBridgeOpenDataURL: URL?
+        if let metaData = await getOpenDataMetaData() {
+            let urlPath = metaData.cityBridgeOpenDataURL
+            let url = URL(string: urlPath)
+            guard let url = url else {
+                logger.error("\(#file) \(#function) Could not create URL from path \(urlPath, privacy: .public)")
+                return nil
+            }
+            cityBridgeOpenDataURL = url
+        }
+        return cityBridgeOpenDataURL
+    }
+    
+    private func getOpenDataMetaData() async -> CloudKitCityBridgeAppMaintenanceData? {
+        var metaData: CloudKitCityBridgeAppMaintenanceData?
         do {
-             metaData = try await fetchMetaData()
+             metaData = try await fetchCloudKitAppMaintenanceData()
         } catch {
             logger.info("\(#file) \(#function) error \(error.localizedDescription)")
         }
         return metaData
     }
     
-    private func getBridgeDataBaseURL() async -> URL? {
-        var url: URL?
-        if let metaData = await getMetaData() {
-            let urlPath = metaData.geoJSONURL
-            url = URL(string: urlPath)
-            if url == nil{
-                logger.error("\(#file) \(#function) Could not create URL from path \(urlPath, privacy: .public)")
-            }
-        }
-        return url
-    }
-    
-    private func manageSavedJSONData() async {
-        let savedData: Data? = openDataFileSystem.readSavedFileData(fileName: localJSONFileName)
-        if savedData == nil,
-           let url = await getBridgeDataBaseURL() {
-            if let data = await openDataFileSystem.getDataFrom(url: url) {
-                openDataFileSystem.saveToDisk(fileName: localJSONFileName, data: data)
-                logger.info("\(#file) \(#function) got server json data")
-            }
-        } else {
-            // existis, update if timing difference
-        }
-    }
-    
-    private func manageBridgeStore() {
-        // if no file create file
-    
-        // use meta data
-        // get meta data
-        // compare meta database last updated date against local  file update date
-        // update local saved data with what's on open data server
-        
-    }
-  
-    func fetchMetaData() async throws -> OpenDataMetaData {
+    private func fetchCloudKitAppMaintenanceData() async throws -> CloudKitCityBridgeAppMaintenanceData {
         let predicate = NSPredicate(value: true)
-        let query = CKQuery(recordType: OpenDataMetaData.recordType, predicate: predicate)
-        
-        typealias CityBridgeContinuation = CheckedContinuation<OpenDataMetaData, Error>
-        return try await withCheckedThrowingContinuation{ (continuation: CityBridgeContinuation) in
-            publicDB.perform(query, inZoneWith: CKRecordZone.default().zoneID) { records, error in
-                if let error = error {
-                    continuation.resume(throwing: error)
-                }
-                guard let records = records, let record = records.first else {
-         //           continuation.resume(throwing: CityBridgesMetaDataError.noRecords)
-                    return
-                }
-                
-                let metaData = OpenDataMetaData(record: record)
-                continuation.resume(returning: metaData)
-            }
+        let query = CKQuery(recordType: CloudKitCityBridgeAppMaintenanceData.recordType, predicate: predicate)
+        let database = CKContainer.default().publicCloudDatabase
+        let records = try await database.records(matching: query)
+            .matchResults.map { try $1.get() } // Result<CKRecord, Error>
+        if let record = records.first {
+            return CloudKitCityBridgeAppMaintenanceData(record: record)
+        } else {
+            fatalError("\(#file) \(#function) failed to fetch city bridges meta data")
         }
     }
 }
 
-class OpenDataMetaData {
+class CloudKitCityBridgeAppMaintenanceData {
     let title = "City of Pittsburgh Bridges"
-    private(set) var geoJSONURL: String = ""
+    private(set) var cityBridgeOpenDataURL: String = ""
+    private(set) var updated: Date = Date.distantPast
     private let recordID: CKRecord.ID
     static let recordType = "CityBridgesMetaData"
     init(record: CKRecord) {
         recordID = record.recordID
-        geoJSONURL = record["geoJSONURL"] as? String ?? ""
+        cityBridgeOpenDataURL = record["geoJSONURL"] as? String ?? ""
     }
 }

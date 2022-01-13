@@ -38,6 +38,27 @@ class OpenDataFileSystem: ObservableObject {
         }
     }
     
+    func getBridgeModedDataFromDisc(fileName: String) async -> Data? {
+        var data: Data?
+        if let cachedData = readData(fileName: fileName) {
+            data = cachedData
+        } else {
+            data = await getBridgeModelDataFromBundle()
+        }
+        return data
+    }
+    
+    func getBridgeModelDataFromBundle() async -> Data? {
+        var data: Data?
+        if let bundleFileURL = getBundledFileURL() {
+            data = await getDataFrom(url: bundleFileURL)
+        }
+        if data == nil {
+            logger.error("\(#file) \(#function) no bundled JSON data")
+        }
+        return data
+    }
+    
     func getDataFrom(url: URL) async -> Data? {
         var data: Data?
         do {
@@ -49,45 +70,9 @@ class OpenDataFileSystem: ObservableObject {
         return data
     }
     
-    func getJSONBridgeDataFromBundle() async -> Data? {
+    func readData(fileName: String) -> Data? {
         var data: Data?
-        if let bundleFileURL = getBundledFileURL() {
-            data = await getDataFrom(url: bundleFileURL)
-        }
-        if data == nil {
-            logger.error("\(#file) \(#function) no bundled JSON data")
-        }
-        return data
-    }
-    
-    func getJSONBridgeDataFromCached(fileName: String) async -> Data? {
-        var data: Data?
-        if let cachedData = readSavedFileData(fileName: fileName) {
-            data = cachedData
-        } else {
-            data = await getJSONBridgeDataFromBundle()
-        }
-        return data
-    }
-
-    
-    func getBundledFileURL() -> URL? {
-        return Bundle.main.url(forResource: "BridgesOpenData", withExtension: "json")
-    }
-    
-    func getSavedFile(named: String) -> File? {
-        var file: File?
-        do {
-            file = try openDataFolder?.file(named: named)
-        } catch {
-            logger.info("\(#file) \(#function) error \(error.localizedDescription)")
-        }
-        return file
-    }
-    
-    func readSavedFileData(fileName: String) -> Data? {
-        var data: Data?
-        if let file = getSavedFile(named: fileName) {
+        if let file = getFile(named: fileName) {
             do {
                 data = try file.read()
             } catch {
@@ -98,7 +83,7 @@ class OpenDataFileSystem: ObservableObject {
     }
     
     func saveToDisk(fileName: String, data: Data) {
-        var existingFile = getSavedFile(named: fileName)
+        var existingFile = getFile(named: fileName)
         if existingFile == nil {
             do {
                 existingFile = try openDataFolder?.createFile(named: fileName)
@@ -115,4 +100,17 @@ class OpenDataFileSystem: ObservableObject {
         }
     }
     
+    private func getBundledFileURL() -> URL? {
+        return Bundle.main.url(forResource: "BridgesOpenData", withExtension: "json")
+    }
+    
+    private func getFile(named: String) -> File? {
+        var file: File?
+        do {
+            file = try openDataFolder?.file(named: named)
+        } catch {
+            logger.info("\(#file) \(#function) error \(error.localizedDescription)")
+        }
+        return file
+    }
 }
