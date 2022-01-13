@@ -19,12 +19,6 @@ class OpenDataService {
     private let bridgeModelsFileName = "cityBridgesOpenData"
     private let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
 
-    var cityBridgeOpenDataURL: URL? {
-        get async {
-            await getCityBridgeOpenDataURL()
-        }
-    }
-
     init(container: CKContainer = CKContainer.default()) {
         self.container = container
         self.openDataFileSystem = OpenDataFileSystem()
@@ -34,11 +28,11 @@ class OpenDataService {
         var bridgeModelData: Data?
         bridgeModelData = await openDataFileSystem.getBridgeModedDataFromDisc(fileName: bridgeModelsFileName)
         Task {
-            let url = await cityBridgeOpenDataURL
+            let url = await getCityBridgeOpenDataURL()
             if let url = url {
                 if let data = await openDataFileSystem.getDataFrom(url: url) {
                     openDataFileSystem.saveToDisk(fileName: bridgeModelsFileName, data: data)
-                    logger.info("\(#file) \(#function) updated json data file from open data server")
+                    logger.info("\(#file) \(#function) updated json data file from open data server at url \(url)")
                 }
             }
         }
