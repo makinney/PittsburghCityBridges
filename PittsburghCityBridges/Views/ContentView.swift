@@ -36,7 +36,7 @@ struct ContentView: View {
         }
         .environmentObject(favorites)
         .onAppear {
-            bridgeStore.refreshBridgeModels()
+            bridgeStore.loadBridgeModels()
         }
     }
 }
