@@ -13,7 +13,6 @@ class OpenDataFileSystem: ObservableObject {
     private let openDataFolderName = "OpenData"
     private var openDataFolder: Folder?
     private (set)var cachesFolder: Folder?
-    private let localJSONFileName = "BridgesJSON"
     
     private let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     
@@ -39,32 +38,7 @@ class OpenDataFileSystem: ObservableObject {
         }
     }
     
-    func getBridges(url: URL?) async -> Data? {
-        var data: Data?
-        if let cachedData = readSavedFileData(fileName: localJSONFileName) {
-            data = cachedData
-        } else {
-            data = await getBundledCityBridgeJSON()
-        }
-        Task {
-            if let url = url {
-                await manageSavedJSONData(serverURL: url)
-            }
-        }
-        return data
-    }
-    
-    private func manageSavedJSONData(serverURL: URL) async {
-        let savedData: Data? = readSavedFileData(fileName: localJSONFileName)
-        if savedData == nil {
-            if let data = await getData(url: serverURL) {
-                saveToDisk(fileName: localJSONFileName, data: data)
-                logger.info("\(#file) \(#function) got server json data")
-            }
-        }
-    }
-    
-    private func getData(url: URL) async -> Data? {
+    func getDataFrom(url: URL) async -> Data? {
         var data: Data?
         do {
             let (_data, _) = try await URLSession.shared.data(from: url)
@@ -75,10 +49,10 @@ class OpenDataFileSystem: ObservableObject {
         return data
     }
     
-    private func getBundledCityBridgeJSON() async -> Data? {
+    func getJSONBridgeDataFromBundle() async -> Data? {
         var data: Data?
         if let bundleFileURL = getBundledFileURL() {
-            data = await getData(url: bundleFileURL)
+            data = await getDataFrom(url: bundleFileURL)
         }
         if data == nil {
             logger.error("\(#file) \(#function) no bundled JSON data")
@@ -86,11 +60,22 @@ class OpenDataFileSystem: ObservableObject {
         return data
     }
     
-    private func getBundledFileURL() -> URL? {
+    func getJSONBridgeDataFromCached(fileName: String) async -> Data? {
+        var data: Data?
+        if let cachedData = readSavedFileData(fileName: fileName) {
+            data = cachedData
+        } else {
+            data = await getJSONBridgeDataFromBundle()
+        }
+        return data
+    }
+
+    
+    func getBundledFileURL() -> URL? {
         return Bundle.main.url(forResource: "BridgesOpenData", withExtension: "json")
     }
     
-    private func getSavedFile(named: String) -> File? {
+    func getSavedFile(named: String) -> File? {
         var file: File?
         do {
             file = try openDataFolder?.file(named: named)
@@ -100,7 +85,7 @@ class OpenDataFileSystem: ObservableObject {
         return file
     }
     
-    private func readSavedFileData(fileName: String) -> Data? {
+    func readSavedFileData(fileName: String) -> Data? {
         var data: Data?
         if let file = getSavedFile(named: fileName) {
             do {
@@ -112,7 +97,7 @@ class OpenDataFileSystem: ObservableObject {
         return data
     }
     
-    private func saveToDisk(fileName: String, data: Data) {
+    func saveToDisk(fileName: String, data: Data) {
         var existingFile = getSavedFile(named: fileName)
         if existingFile == nil {
             do {

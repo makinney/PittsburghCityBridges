@@ -16,16 +16,23 @@ enum CityBridgesMetaDataError: Error {
 class OpenDataService {
     let container: CKContainer
     let publicDB: CKDatabase
-    var serverURL: URL?
     let openDataFileSystem: OpenDataFileSystem
+    private let localJSONFileName = "BridgesJSON"
+
     private let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
 
-//    var openDataURL: String {
-//        get async throws {
-//            try await cityBridgesMetaData().geoJSONURL
-//        }
-//    }
+    var openDataURL: String {
+        get async throws {
+            try await fetchMetaData().geoJSONURL
+        }
+    }
     
+    var serverURL: URL? {
+        get async {
+            await getBridgeDataBaseURL()
+        }
+    }
+
     init(container: CKContainer = CKContainer.default()) {
         self.container = container
         self.openDataFileSystem = OpenDataFileSystem()
@@ -33,29 +40,60 @@ class OpenDataService {
     }
     
     func getBridgesJSON() async -> Data? {
-        if serverURL == nil {
-            serverURL = await bridgeJSONServerURL()
+        let data = await openDataFileSystem.getJSONBridgeDataFromCached(fileName: localJSONFileName)
+        Task {
+            await manageSavedJSONData()
         }
-        return await openDataFileSystem.getBridges(url: serverURL)
+        return data
     }
     
-    private func bridgeJSONServerURL() async -> URL? {
-        var url: URL?
+    private func getMetaData() async -> OpenDataMetaData? {
+        // thread running
+        var metaData: OpenDataMetaData?
         do {
-            let metaData = try await cityBridgesMetaData()
+             metaData = try await fetchMetaData()
+        } catch {
+            logger.info("\(#file) \(#function) error \(error.localizedDescription)")
+        }
+        return metaData
+    }
+    
+    private func getBridgeDataBaseURL() async -> URL? {
+        var url: URL?
+        if let metaData = await getMetaData() {
             let urlPath = metaData.geoJSONURL
             url = URL(string: urlPath)
             if url == nil{
                 logger.error("\(#file) \(#function) Could not create URL from path \(urlPath, privacy: .public)")
             }
-        } catch {
-            logger.info("\(#file) \(#function) error \(error.localizedDescription)")
         }
         return url
     }
+    
+    private func manageSavedJSONData() async {
+        let savedData: Data? = openDataFileSystem.readSavedFileData(fileName: localJSONFileName)
+        if savedData == nil,
+           let url = await getBridgeDataBaseURL() {
+            if let data = await openDataFileSystem.getDataFrom(url: url) {
+                openDataFileSystem.saveToDisk(fileName: localJSONFileName, data: data)
+                logger.info("\(#file) \(#function) got server json data")
+            }
+        } else {
+            // existis, update if timing difference
+        }
+    }
+    
+    private func manageBridgeStore() {
+        // if no file create file
+    
+        // use meta data
+        // get meta data
+        // compare meta database last updated date against local  file update date
+        // update local saved data with what's on open data server
         
+    }
   
-    func cityBridgesMetaData() async throws -> OpenDataMetaData {
+    func fetchMetaData() async throws -> OpenDataMetaData {
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: OpenDataMetaData.recordType, predicate: predicate)
         
