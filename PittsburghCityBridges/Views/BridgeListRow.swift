@@ -68,18 +68,18 @@ struct BridgeListRow: View {
             }
         }
   //      .background(Color(UIColor.listTextBkgndColor))
-        .onAppear {
-            Task {
-                do {
-                    if let imageURL = bridgeModel.imageURL,
-                       imageLoaded == false,
-                       let image = await bridgeImageSystem.getThumbnailImage(url:imageURL, desiredThumbnailWidth: thumbNailWidth) {
-                        bridgeImage = image
-                        imageLoaded = true
-                    }
-                }
-            }
-        }
+//        .onAppear {
+//            Task {
+//                do {
+//                    if let imageURL = bridgeModel.imageURL,
+//                       imageLoaded == false,
+//                       let image = await bridgeImageSystem.getThumbnailImage(url:imageURL, desiredThumbnailWidth: thumbNailWidth) {
+//                        bridgeImage = image
+//                        imageLoaded = true
+//                    }
+//                }
+//            }
+//        }
     }
 }
 
