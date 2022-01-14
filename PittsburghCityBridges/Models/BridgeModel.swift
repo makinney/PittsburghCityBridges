@@ -107,7 +107,6 @@ extension BridgeModel {
 // MARK: SwiftUI Preview Support
 //
 extension BridgeModel {
-    #if DEBUG
     static let preview: BridgeModel = {
         let openDataID: Int = 123456
         let imagePath = "https://tools.wprdc.org/images/pittsburgh/bridges/Charles_Anderson_Bridge.jpg"
@@ -122,5 +121,4 @@ extension BridgeModel {
         geometry.append(polyline)
         return BridgeModel(geometry: geometry, geoJSON: property)
     }()
-    #endif
 }

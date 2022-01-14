@@ -44,12 +44,10 @@ final class BridgeStore: ObservableObject {
         }
     }
     
-#if DEBUG
     @MainActor
     func preview() {
         loadBridgeModels()
     }
-#endif
     
 }
 
