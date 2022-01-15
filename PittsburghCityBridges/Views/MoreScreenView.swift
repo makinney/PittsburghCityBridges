@@ -9,13 +9,17 @@ import SwiftUI
 
 struct MoreScreenView: View {
     var body: some View {
-        VStack {
-            Spacer()
-            Text("More")
-                .font(.title2)
-                .foregroundColor(Color.pbTextFgndYellow)
-            Spacer()
+        NavigationView {
+            List {
+                NavigationLink("Credits") {
+                    CreditsScreenView()
+                }
+                NavigationLink("Disclaimer") {
+                    DirectionsDisclaimerView(disclaimerTextOnly: true, closeTouched: nil)
+                }
+            }
         }
+        //     .navigationTitle("More")
     }
 }
 
