@@ -9,12 +9,36 @@ import SwiftUI
 
 struct MoreScreenView: View {
     var body: some View {
-        VStack {
-            Spacer()
-            Text("More")
-                .font(.title2)
-                .foregroundColor(Color.pbTextFgndYellow)
-            Spacer()
+        VStack(spacing: 0) {
+            TitleHeader(title: "Pittsburgh City Bridges")
+        NavigationView {
+            List {
+                NavigationLink {
+                    CreditsScreenView()
+                }
+                label: {
+                    Label("Credits", systemImage: "megaphone")
+                }
+                NavigationLink {
+                    DirectionsDisclaimerAgreement()
+                }
+                label: {
+                    Label("Disclaimer", systemImage: "building.columns")
+                }
+                NavigationLink {
+                    OnBoardingScreenView()
+                }
+                label: {
+                    Label("Landing Screens", systemImage: "sum")
+                }
+                NavigationLink {
+                    SettingsScreenView()
+                }
+                label: {
+                    Label("Settings", systemImage: "slider.vertical.3")
+                }
+            }
+        }
         }
     }
 }

@@ -12,27 +12,42 @@ struct DirectionsDisclaimerView: View {
     @Environment(\.presentationMode) var presentationMode
     var closeTouched: (() -> Void)?
     
+    init(closeTouched: (() -> Void)? = nil) {
+        self.closeTouched = closeTouched
+    }
+    
     var body: some View {
-        GroupBox(label:
-                    Label("Disclaimer", systemImage: "building.columns")
-        ) {
-            ScrollView(.vertical, showsIndicators: true) {
-                Text(PBText.directionDisclaimerAgreement)
-                    .font(.footnote)
+        VStack(alignment: .center) {
+            Text("Pittsburgh City Bridges")
+                .font(.title2)
+                .foregroundColor(.pbTitleTextFgnd)
+                .padding()
+            GroupBox(label:
+                        Label("Disclaimer", systemImage: "building.columns")
+            ) {
+                ScrollView(.vertical, showsIndicators: true) {
+                    HStack {
+                        Text(PBText.directionDisclaimerAgreement)
+                            .font(.body)
+                    }
+                }
+                .frame(height: 300)
+                HStack {
+                    Toggle(isOn: $userAgreedDirectionsDisclaimer) {
+                        Text("I agree to the above terms")
+                    }
+                }
+                .padding()
+                Button("Close") {
+                    presentationMode.wrappedValue.dismiss()
+                    self.closeTouched?()
+                }
+                .padding([.leading, .trailing])
+                .background(Color.white.cornerRadius(5))
             }
-            .frame(height: 200)
-            Toggle(isOn: $userAgreedDirectionsDisclaimer) {
-                Text("I agree to the above terms")
-            }
-            .padding()
-            Button("Close") {
-                presentationMode.wrappedValue.dismiss()
-                self.closeTouched?()
-            }
-            .padding([.leading, .trailing])
-            .background(Color.white.cornerRadius(5))
+            .frame(width: UIDevice.current.userInterfaceIdiom == .phone ? 350 : 400)
+            .shadow(radius: 10)
         }
-        .shadow(radius: 10)
     }
 }
 
