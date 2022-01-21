@@ -10,11 +10,9 @@ import SwiftUI
 struct DirectionsDisclaimerView: View {
     @AppStorage(StorageKeys.userAgreedDirectionsDisclaimer) private var userAgreedDirectionsDisclaimer = false
     @Environment(\.presentationMode) var presentationMode
-    var disclaimerTextOnly = false
     var closeTouched: (() -> Void)?
     
-    init(disclaimerTextOnly: Bool = false, closeTouched: (() -> Void)? = nil) {
-        self.disclaimerTextOnly = disclaimerTextOnly
+    init(closeTouched: (() -> Void)? = nil) {
         self.closeTouched = closeTouched
     }
     
@@ -24,7 +22,6 @@ struct DirectionsDisclaimerView: View {
                 .font(.title2)
                 .foregroundColor(.pbTitleTextFgnd)
                 .padding()
-                .opacity(disclaimerTextOnly ? 0.0 : 1.0)
             GroupBox(label:
                         Label("Disclaimer", systemImage: "building.columns")
             ) {
@@ -39,7 +36,6 @@ struct DirectionsDisclaimerView: View {
                     Toggle(isOn: $userAgreedDirectionsDisclaimer) {
                         Text("I agree to the above terms")
                     }
-                    .opacity(disclaimerTextOnly ? 0.0 : 1.0)
                 }
                 .padding()
                 Button("Close") {
@@ -48,7 +44,6 @@ struct DirectionsDisclaimerView: View {
                 }
                 .padding([.leading, .trailing])
                 .background(Color.white.cornerRadius(5))
-                .opacity(disclaimerTextOnly ? 0.0 : 1.0)
             }
             .frame(width: UIDevice.current.userInterfaceIdiom == .phone ? 350 : 400)
             .shadow(radius: 10)
