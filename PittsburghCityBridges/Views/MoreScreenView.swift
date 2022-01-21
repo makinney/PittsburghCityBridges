@@ -20,7 +20,7 @@ struct MoreScreenView: View {
                     Label("Credits", systemImage: "megaphone")
                 }
                 NavigationLink {
-                    DirectionsDisclaimerView(disclaimerTextOnly: true, closeTouched: nil)
+                    DirectionsDisclaimerAgreement()
                 }
                 label: {
                     Label("Disclaimer", systemImage: "building.columns")

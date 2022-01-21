@@ -21,6 +21,7 @@
 		2417C3C427935A2A005DF78C /* CreditsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417C3C327935A2A005DF78C /* CreditsScreenView.swift */; };
 		2417C3C62794C344005DF78C /* OnBoardingScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417C3C52794C343005DF78C /* OnBoardingScreenView.swift */; };
 		2417C3C82794C5E1005DF78C /* SettingsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417C3C72794C5E1005DF78C /* SettingsScreenView.swift */; };
+		2417C3CB279B456F005DF78C /* DirectionsDisclaimerAgreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417C3CA279B456F005DF78C /* DirectionsDisclaimerAgreement.swift */; };
 		2419B8B9271F382600BFE3D8 /* BridgeMapUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2419B8B8271F382600BFE3D8 /* BridgeMapUIView.swift */; };
 		2419B8BB271F3CD900BFE3D8 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2419B8BA271F3CD900BFE3D8 /* MapViewModel.swift */; };
 		2419B8BD2721843800BFE3D8 /* BridgeMapDetailAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2419B8BC2721843700BFE3D8 /* BridgeMapDetailAccessoryView.swift */; };
@@ -73,6 +74,7 @@
 		2417C3C327935A2A005DF78C /* CreditsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsScreenView.swift; sourceTree = "<group>"; };
 		2417C3C52794C343005DF78C /* OnBoardingScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingScreenView.swift; sourceTree = "<group>"; };
 		2417C3C72794C5E1005DF78C /* SettingsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenView.swift; sourceTree = "<group>"; };
+		2417C3CA279B456F005DF78C /* DirectionsDisclaimerAgreement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsDisclaimerAgreement.swift; sourceTree = "<group>"; };
 		2419B8B8271F382600BFE3D8 /* BridgeMapUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeMapUIView.swift; sourceTree = "<group>"; };
 		2419B8BA271F3CD900BFE3D8 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		2419B8BC2721843700BFE3D8 /* BridgeMapDetailAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeMapDetailAccessoryView.swift; sourceTree = "<group>"; };
@@ -139,6 +141,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		2417C3C9279B451E005DF78C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				2417C3CA279B456F005DF78C /* DirectionsDisclaimerAgreement.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		2419B8C02721B08A00BFE3D8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +193,7 @@
 		247214F627051F98004FBACD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2417C3C9279B451E005DF78C /* Components */,
 				240075CE27150F5800CB864F /* BridgeDetailsView.swift */,
 				2405C99C2767E1CF00C68307 /* BridgeImageLoadingProgressView.swift */,
 				240075D02716607B00CB864F /* BridgeListRow.swift */,
@@ -367,6 +378,7 @@
 				2481A29F277A54F200904275 /* PBColorPalate.swift in Sources */,
 				245BDCC1272C917D000FE644 /* Sequence+Extensions.swift in Sources */,
 				24808FE1275BDA9200FF131C /* FileManagerExtensions.swift in Sources */,
+				2417C3CB279B456F005DF78C /* DirectionsDisclaimerAgreement.swift in Sources */,
 				240FBEE2278634CD0029DCC5 /* Favorites.swift in Sources */,
 				2468A09A278F3D4100D724F5 /* OpenDataFileSystem.swift in Sources */,
 				2458020C27879A530091365B /* SinglePhotoView.swift in Sources */,
