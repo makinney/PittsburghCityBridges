@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MoreScreenView: View {
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             TitleHeader(title: "Pittsburgh City Bridges")
         NavigationView {
             List {
