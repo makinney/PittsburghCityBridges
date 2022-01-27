@@ -144,7 +144,13 @@
 		2417C3C9279B451E005DF78C /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				2405C99C2767E1CF00C68307 /* BridgeImageLoadingProgressView.swift */,
+				240075D02716607B00CB864F /* BridgeListRow.swift */,
 				2417C3CA279B456F005DF78C /* DirectionsDisclaimerAgreement.swift */,
+				24580209278776510091365B /* FavoritesButton.swift */,
+				249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */,
+				2458020B27879A530091365B /* SinglePhotoView.swift */,
+				249C7D5C277F609600D72DA4 /* TitleHeader.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -193,26 +199,16 @@
 		247214F627051F98004FBACD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2497B22227A3542E00C60E44 /* Bridges */,
 				2417C3C9279B451E005DF78C /* Components */,
-				240075CE27150F5800CB864F /* BridgeDetailsView.swift */,
-				2405C99C2767E1CF00C68307 /* BridgeImageLoadingProgressView.swift */,
-				240075D02716607B00CB864F /* BridgeListRow.swift */,
-				2458020D27879E1D0091365B /* BridgesListsView.swift */,
-				2458020F2788C2420091365B /* BridgesPhotosListView.swift */,
-				241012882713785C00FE7DEC /* BridgeMapView.swift */,
-				2419B8B8271F382600BFE3D8 /* BridgeMapUIView.swift */,
-				2419B8BC2721843700BFE3D8 /* BridgeMapDetailAccessoryView.swift */,
+				2497B22027A353CD00C60E44 /* Map */,
+				2497B22127A3540900C60E44 /* Onboarding */,
 				248FC584270276EA00BE168F /* CloudKitContentView.swift */,
 				2410128C2713855400FE7DEC /* ContentView.swift */,
 				2417C3C327935A2A005DF78C /* CreditsScreenView.swift */,
 				24496FA1278CDF170074720C /* DirectionsDisclaimerView.swift */,
-				24580209278776510091365B /* FavoritesButton.swift */,
-				249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */,
 				2412B89C2783D19F00BD557E /* MoreScreenView.swift */,
-				2417C3C52794C343005DF78C /* OnBoardingScreenView.swift */,
 				2417C3C72794C5E1005DF78C /* SettingsScreenView.swift */,
-				2458020B27879A530091365B /* SinglePhotoView.swift */,
-				249C7D5C277F609600D72DA4 /* TitleHeader.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -269,6 +265,34 @@
 				248FC599270278F100BE168F /* CloudKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2497B22027A353CD00C60E44 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				241012882713785C00FE7DEC /* BridgeMapView.swift */,
+				2419B8BC2721843700BFE3D8 /* BridgeMapDetailAccessoryView.swift */,
+				2419B8B8271F382600BFE3D8 /* BridgeMapUIView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		2497B22127A3540900C60E44 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				2417C3C52794C343005DF78C /* OnBoardingScreenView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		2497B22227A3542E00C60E44 /* Bridges */ = {
+			isa = PBXGroup;
+			children = (
+				240075CE27150F5800CB864F /* BridgeDetailsView.swift */,
+				2458020D27879E1D0091365B /* BridgesListsView.swift */,
+				2458020F2788C2420091365B /* BridgesPhotosListView.swift */,
+			);
+			path = Bridges;
 			sourceTree = "<group>";
 		};
 		24B3FE922722FD7B004B93A6 /* Managers */ = {
