@@ -39,6 +39,7 @@ struct MoreScreenView: View {
                 }
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }
