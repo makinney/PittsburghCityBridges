@@ -24,7 +24,7 @@ struct BridgesPhotosListView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                TitleHeader(title: "City Bridges by Photos")
+                TitleHeader(title: pageTitleText(bridgeInfoGrouping))
                 HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping, showFavorites: $showFavorites)
                 let sections = bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping, favorites: showFavorites ? favorites : nil)
                 if !sections.isEmpty {
@@ -77,6 +77,19 @@ struct BridgesPhotosListView: View {
             .navigationBarHidden(true)
         }
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+    
+    private func pageTitleText(_ bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) -> String {
+        var title = "City Bridge Photos by"
+        switch bridgeInfoGrouping {
+        case .name:
+            title += " Name"
+        case .neighborhood:
+            title += " Neighborhood"
+        case .year:
+            title += " Year Built"
+        }
+        return title
     }
     
     @ViewBuilder

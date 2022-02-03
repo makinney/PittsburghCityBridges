@@ -20,19 +20,7 @@ struct BridgesListsView: View {
     init(_ bridgeListViewModel: BridgeListViewModel) {
         self.bridgeListViewModel = bridgeListViewModel
     }
-    
-    private func pageTitleText(_ bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) -> String {
-        var title = "City Bridges by"
-        switch bridgeInfoGrouping {
-        case .name:
-            title += " Name"
-        case .neighborhood:
-            title += " Neighborhood"
-        case .year:
-            title += " Year Built"
-        }
-        return title
-    }
+
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
@@ -87,6 +75,19 @@ struct BridgesListsView: View {
             .navigationBarHidden(true)
         }
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+    
+    private func pageTitleText(_ bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) -> String {
+        var title = "City Bridges List by"
+        switch bridgeInfoGrouping {
+        case .name:
+            title += " Name"
+        case .neighborhood:
+            title += " Neighborhood"
+        case .year:
+            title += " Year Built"
+        }
+        return title
     }
     
     @ViewBuilder
