@@ -15,7 +15,7 @@ struct BridgeMapView: View {
     
     var body: some View {
         VStack(spacing: 0){
-            TitleHeader(title: "City Bridge Locations")
+            TitleHeader(title: "Pittsburgh City Bridge Locations")
             HStack {
                 favoritesMenu()
                 Spacer()

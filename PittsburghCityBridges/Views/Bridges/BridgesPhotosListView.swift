@@ -80,14 +80,14 @@ struct BridgesPhotosListView: View {
     }
     
     private func pageTitleText(_ bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) -> String {
-        var title = "City Bridge Photos by"
+        var title = "Photos by"
         switch bridgeInfoGrouping {
         case .name:
             title += " Name"
         case .neighborhood:
             title += " Neighborhood"
         case .year:
-            title += " Year Built"
+            title += " Year Bridge Built"
         }
         return title
     }
