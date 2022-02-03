@@ -21,10 +21,22 @@ struct BridgesListsView: View {
         self.bridgeListViewModel = bridgeListViewModel
     }
     
+    private func pageTitleText(_ bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) -> String {
+        var title = "City Bridges by"
+        switch bridgeInfoGrouping {
+        case .name:
+            title += " Name"
+        case .neighborhood:
+            title += " Neighborhood"
+        case .year:
+            title += " Year Built"
+        }
+        return title
+    }
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                TitleHeader(title: "Pittsburgh City Bridges by List")
+                TitleHeader(title: pageTitleText(bridgeInfoGrouping))
                 HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping, showFavorites: $showFavorites)
                 let sections = bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping, favorites: showFavorites ? favorites : nil)
                 if !sections.isEmpty {
@@ -81,9 +93,9 @@ struct BridgesListsView: View {
     private func sectionLabel(_ sectionName: String, _ sectionListby: BridgeListViewModel.BridgeInfoGrouping) -> some View {
         switch sectionListby {
         case .neighborhood:
-            Text("\(sectionName) \(PBText.SortedBySection.neighborhood) ")
+            Text("\(sectionName) \(PBText.SortedBySection.neighborhood)")
         case .name:
-            Text("\(sectionName) \(PBText.SortedBySection.name) ")
+            Text("\(sectionName) \(PBText.SortedBySection.name)")
         case .year:
             Text("\(PBText.SortedBySection.year) \(sectionName)")
         }

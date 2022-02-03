@@ -17,17 +17,17 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
-            BridgeMapView()
-                .tabItem {
-                    Label("Bridge Map", systemImage: "map")
-                }
             BridgesListsView(BridgeListViewModel(bridgeStore))
                 .tabItem {
-                    Label("Bridge List", systemImage: "list.dash")
+                    Label("List", systemImage: "list.dash")
+                }
+            BridgeMapView()
+                .tabItem {
+                    Label("Map", systemImage: "map")
                 }
             BridgesPhotosListView(BridgeListViewModel(bridgeStore))
                 .tabItem {
-                    Label("Bridge Photos", systemImage: "photo.on.rectangle")
+                    Label("Photos", systemImage: "photo.on.rectangle")
                 }
             MoreScreenView()
                 .tabItem {

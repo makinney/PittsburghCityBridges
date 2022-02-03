@@ -53,7 +53,7 @@
 		248FC59A270278F100BE168F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 248FC599270278F100BE168F /* CloudKit.framework */; };
 		2497B22427A357C500C60E44 /* OBScreenA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497B22327A357C500C60E44 /* OBScreenA.swift */; };
 		2497B22627A3592A00C60E44 /* OBScreenB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497B22527A3592A00C60E44 /* OBScreenB.swift */; };
-		2497B22827A3597000C60E44 /* OBScreenC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497B22727A3597000C60E44 /* OBScreenC.swift */; };
+		2497B22827A3597000C60E44 /* OnBoardDisclaimers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497B22727A3597000C60E44 /* OnBoardDisclaimers.swift */; };
 		249C7D5B277E52D700D72DA4 /* HeaderToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */; };
 		249C7D5D277F609600D72DA4 /* TitleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C7D5C277F609600D72DA4 /* TitleHeader.swift */; };
 		24B3FE8F272225B8004B93A6 /* MapExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3FE8E272225B8004B93A6 /* MapExtensions.swift */; };
@@ -111,7 +111,7 @@
 		248FC599270278F100BE168F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2497B22327A357C500C60E44 /* OBScreenA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBScreenA.swift; sourceTree = "<group>"; };
 		2497B22527A3592A00C60E44 /* OBScreenB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBScreenB.swift; sourceTree = "<group>"; };
-		2497B22727A3597000C60E44 /* OBScreenC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBScreenC.swift; sourceTree = "<group>"; };
+		2497B22727A3597000C60E44 /* OnBoardDisclaimers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardDisclaimers.swift; sourceTree = "<group>"; };
 		249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderToolBar.swift; sourceTree = "<group>"; };
 		249C7D5C277F609600D72DA4 /* TitleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeader.swift; sourceTree = "<group>"; };
 		24B3FE8E272225B8004B93A6 /* MapExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapExtensions.swift; sourceTree = "<group>"; };
@@ -289,7 +289,7 @@
 				2417C3C52794C343005DF78C /* OnBoardingContentView.swift */,
 				2497B22327A357C500C60E44 /* OBScreenA.swift */,
 				2497B22527A3592A00C60E44 /* OBScreenB.swift */,
-				2497B22727A3597000C60E44 /* OBScreenC.swift */,
+				2497B22727A3597000C60E44 /* OnBoardDisclaimers.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -418,7 +418,7 @@
 				2497B22427A357C500C60E44 /* OBScreenA.swift in Sources */,
 				245802102788C2420091365B /* BridgesPhotosListView.swift in Sources */,
 				241012892713785C00FE7DEC /* BridgeMapView.swift in Sources */,
-				2497B22827A3597000C60E44 /* OBScreenC.swift in Sources */,
+				2497B22827A3597000C60E44 /* OnBoardDisclaimers.swift in Sources */,
 				24496FA5278DDFCE0074720C /* StorageKeys.swift in Sources */,
 				24B3FE912722356A004B93A6 /* DirectionsProvider.swift in Sources */,
 				2410128D2713855400FE7DEC /* ContentView.swift in Sources */,

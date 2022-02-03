@@ -52,9 +52,9 @@ struct BridgeListRow: View {
                 Spacer()
                 Text(bridgeModel.name)
                     .font(.headline)
-                Text("\(bridgeModel.startNeighborhood) Neighborhood")
+                Text("\(bridgeModel.startNeighborhood)")
                     .font(.body)
-                Text("Year built: \(bridgeModel.yearBuilt)")
+                Text("Built: \(bridgeModel.yearBuilt)")
                     .font(.body)
                 Spacer()
             }
