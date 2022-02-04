@@ -15,7 +15,7 @@ struct OnBoardingContentView: View {
         TabView {
             OBScreenA()
             OBScreenB()
-            OBScreenC(onBoardingComplete: $done)
+            OnBoardDisclaimers(onBoardingComplete: $done)
         }
         .onChange(of: done, perform: { newValue in
             onBoardingComplete = done

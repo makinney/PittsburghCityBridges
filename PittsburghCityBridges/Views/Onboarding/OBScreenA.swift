@@ -9,7 +9,10 @@ import SwiftUI
 
 struct OBScreenA: View {
     var body: some View {
-        Text("OB Screen A")
+        Text("Pittsburgh City Bridges app provides access to a City of Pittsburgh Bridges Open Data dataset hosted by the Western Pennsylvania Regional Data Center. There are over 140 bridges, not all are vehicle bridges, a few are foot bridges.")
+            .multilineTextAlignment(.leading)
+            .padding()
+            // image
     }
 }
 

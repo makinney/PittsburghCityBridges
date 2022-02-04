@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct OBScreenC: View {
+struct OnBoardDisclaimers: View {
     @Binding var onBoardingComplete: Bool
     var body: some View {
         VStack {
             Spacer()
-            Text("OB Screen C")
+            Text(PBText.directionDisclaimerAgreement)
                 .padding()
             if !onBoardingComplete {
                 Button("Close") {
@@ -29,6 +29,6 @@ struct OBScreenC: View {
 
 struct OBScreenC_Previews: PreviewProvider {
     static var previews: some View {
-        OBScreenC(onBoardingComplete: .constant(false))
+        OnBoardDisclaimers(onBoardingComplete: .constant(false))
     }
 }

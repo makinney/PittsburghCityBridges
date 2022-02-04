@@ -56,6 +56,7 @@
 		2497B22827A3597000C60E44 /* OnBoardDisclaimers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497B22727A3597000C60E44 /* OnBoardDisclaimers.swift */; };
 		249C7D5B277E52D700D72DA4 /* HeaderToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */; };
 		249C7D5D277F609600D72DA4 /* TitleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C7D5C277F609600D72DA4 /* TitleHeader.swift */; };
+		24A9E14C27ACAB5200CCA97B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24A9E14B27ACAB5200CCA97B /* Launch Screen.storyboard */; };
 		24B3FE8F272225B8004B93A6 /* MapExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3FE8E272225B8004B93A6 /* MapExtensions.swift */; };
 		24B3FE912722356A004B93A6 /* DirectionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3FE902722356A004B93A6 /* DirectionsProvider.swift */; };
 		24C654852772BF55006363B8 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C654842772BF55006363B8 /* AppColors.swift */; };
@@ -114,6 +115,7 @@
 		2497B22727A3597000C60E44 /* OnBoardDisclaimers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardDisclaimers.swift; sourceTree = "<group>"; };
 		249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderToolBar.swift; sourceTree = "<group>"; };
 		249C7D5C277F609600D72DA4 /* TitleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeader.swift; sourceTree = "<group>"; };
+		24A9E14B27ACAB5200CCA97B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		24B3FE8E272225B8004B93A6 /* MapExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapExtensions.swift; sourceTree = "<group>"; };
 		24B3FE902722356A004B93A6 /* DirectionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsProvider.swift; sourceTree = "<group>"; };
 		24C654842772BF55006363B8 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				247214ED27027E0E004FBACD /* Info.plist */,
 				248FC586270276EE00BE168F /* Assets.xcassets */,
 				248FC588270276EE00BE168F /* Preview Content */,
+				24A9E14B27ACAB5200CCA97B /* Launch Screen.storyboard */,
 			);
 			path = PittsburghCityBridges;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24A9E14C27ACAB5200CCA97B /* Launch Screen.storyboard in Resources */,
 				247214FC27054B7B004FBACD /* BridgesOpenData.json in Resources */,
 				247214FA27052454004FBACD /* TwoBridge.json in Resources */,
 				248FC58A270276EE00BE168F /* Preview Assets.xcassets in Resources */,
@@ -595,6 +599,7 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Directions requires your locations to get started";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -629,6 +634,7 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Directions requires your locations to get started";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
