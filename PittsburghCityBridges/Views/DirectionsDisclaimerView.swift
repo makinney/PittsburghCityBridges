@@ -27,7 +27,7 @@ struct DirectionsDisclaimerView: View {
             ) {
                 ScrollView(.vertical, showsIndicators: true) {
                     HStack {
-                        Text(PBText.directionDisclaimerAgreement)
+                        Text(AppTextCopy.directionDisclaimerAgreement)
                             .font(.body)
                     }
                 }

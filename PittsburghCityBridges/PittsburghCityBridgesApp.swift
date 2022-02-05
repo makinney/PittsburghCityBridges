@@ -13,6 +13,11 @@ struct PittsburghCityBridgesApp: App {
     @AppStorage(StorageKeys.onBoardingComplete) private var onBoardingComplete = false
     @StateObject var bridgeStore: BridgeStore = BridgeStore()
     
+    init() {
+        #if DEBUG
+        onBoardingComplete = false
+        #endif
+    }
     var body: some Scene {
         WindowGroup {
             if onBoardingComplete {

@@ -94,11 +94,11 @@ struct BridgesListsView: View {
     private func sectionLabel(_ sectionName: String, _ sectionListby: BridgeListViewModel.BridgeInfoGrouping) -> some View {
         switch sectionListby {
         case .neighborhood:
-            Text("\(sectionName) \(PBText.SortedBySection.neighborhood)")
+            Text("\(sectionName) \(AppTextCopy.SortedBySection.neighborhood)")
         case .name:
-            Text("\(sectionName) \(PBText.SortedBySection.name)")
+            Text("\(sectionName) \(AppTextCopy.SortedBySection.name)")
         case .year:
-            Text("\(PBText.SortedBySection.year) \(sectionName)")
+            Text("\(AppTextCopy.SortedBySection.year) \(sectionName)")
         }
     }
 }

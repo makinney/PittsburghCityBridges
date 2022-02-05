@@ -31,6 +31,8 @@
 		244A747427187D1200284608 /* BridgeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244A747327187D1200284608 /* BridgeModel.swift */; };
 		244A747A2719A1A600284608 /* GEOJSONModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244A74792719A1A600284608 /* GEOJSONModels.swift */; };
 		244E9C91273ABF2A00605134 /* BridgeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244E9C90273ABF2A00605134 /* BridgeListViewModel.swift */; };
+		244EA80827AF12E800E5FC81 /* OnBoardingCloseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EA80727AF12E800E5FC81 /* OnBoardingCloseScreen.swift */; };
+		244EA80A27AF14CD00E5FC81 /* OnboardingCollapsedBridgeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EA80927AF14CD00E5FC81 /* OnboardingCollapsedBridgeScreen.swift */; };
 		2458020A278776510091365B /* FavoritesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24580209278776510091365B /* FavoritesButton.swift */; };
 		2458020C27879A530091365B /* SinglePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2458020B27879A530091365B /* SinglePhotoView.swift */; };
 		2458020E27879E1D0091365B /* BridgesListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2458020D27879E1D0091365B /* BridgesListsView.swift */; };
@@ -51,9 +53,8 @@
 		248FC58A270276EE00BE168F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 248FC589270276EE00BE168F /* Preview Assets.xcassets */; };
 		248FC58C270276EE00BE168F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248FC58B270276EE00BE168F /* Persistence.swift */; };
 		248FC59A270278F100BE168F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 248FC599270278F100BE168F /* CloudKit.framework */; };
-		2497B22427A357C500C60E44 /* OBScreenA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497B22327A357C500C60E44 /* OBScreenA.swift */; };
-		2497B22627A3592A00C60E44 /* OBScreenB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497B22527A3592A00C60E44 /* OBScreenB.swift */; };
-		2497B22827A3597000C60E44 /* OnBoardDisclaimers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497B22727A3597000C60E44 /* OnBoardDisclaimers.swift */; };
+		2497B22427A357C500C60E44 /* OnBoardingOpenDataStatementScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497B22327A357C500C60E44 /* OnBoardingOpenDataStatementScreen.swift */; };
+		2497B22627A3592A00C60E44 /* OnBoardingIntroScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497B22527A3592A00C60E44 /* OnBoardingIntroScreen.swift */; };
 		249C7D5B277E52D700D72DA4 /* HeaderToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */; };
 		249C7D5D277F609600D72DA4 /* TitleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C7D5C277F609600D72DA4 /* TitleHeader.swift */; };
 		24A9E14C27ACAB5200CCA97B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24A9E14B27ACAB5200CCA97B /* Launch Screen.storyboard */; };
@@ -88,6 +89,8 @@
 		244A747327187D1200284608 /* BridgeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeModel.swift; sourceTree = "<group>"; };
 		244A74792719A1A600284608 /* GEOJSONModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GEOJSONModels.swift; sourceTree = "<group>"; };
 		244E9C90273ABF2A00605134 /* BridgeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeListViewModel.swift; sourceTree = "<group>"; };
+		244EA80727AF12E800E5FC81 /* OnBoardingCloseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCloseScreen.swift; sourceTree = "<group>"; };
+		244EA80927AF14CD00E5FC81 /* OnboardingCollapsedBridgeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollapsedBridgeScreen.swift; sourceTree = "<group>"; };
 		24580209278776510091365B /* FavoritesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesButton.swift; sourceTree = "<group>"; };
 		2458020B27879A530091365B /* SinglePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePhotoView.swift; sourceTree = "<group>"; };
 		2458020D27879E1D0091365B /* BridgesListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgesListsView.swift; sourceTree = "<group>"; };
@@ -110,9 +113,8 @@
 		248FC58B270276EE00BE168F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		248FC597270278E000BE168F /* PittsburghCityBridges.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PittsburghCityBridges.entitlements; sourceTree = "<group>"; };
 		248FC599270278F100BE168F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		2497B22327A357C500C60E44 /* OBScreenA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBScreenA.swift; sourceTree = "<group>"; };
-		2497B22527A3592A00C60E44 /* OBScreenB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBScreenB.swift; sourceTree = "<group>"; };
-		2497B22727A3597000C60E44 /* OnBoardDisclaimers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardDisclaimers.swift; sourceTree = "<group>"; };
+		2497B22327A357C500C60E44 /* OnBoardingOpenDataStatementScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingOpenDataStatementScreen.swift; sourceTree = "<group>"; };
+		2497B22527A3592A00C60E44 /* OnBoardingIntroScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingIntroScreen.swift; sourceTree = "<group>"; };
 		249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderToolBar.swift; sourceTree = "<group>"; };
 		249C7D5C277F609600D72DA4 /* TitleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeader.swift; sourceTree = "<group>"; };
 		24A9E14B27ACAB5200CCA97B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -290,9 +292,10 @@
 			isa = PBXGroup;
 			children = (
 				2417C3C52794C343005DF78C /* OnBoardingContentView.swift */,
-				2497B22327A357C500C60E44 /* OBScreenA.swift */,
-				2497B22527A3592A00C60E44 /* OBScreenB.swift */,
-				2497B22727A3597000C60E44 /* OnBoardDisclaimers.swift */,
+				2497B22327A357C500C60E44 /* OnBoardingOpenDataStatementScreen.swift */,
+				2497B22527A3592A00C60E44 /* OnBoardingIntroScreen.swift */,
+				244EA80727AF12E800E5FC81 /* OnBoardingCloseScreen.swift */,
+				244EA80927AF14CD00E5FC81 /* OnboardingCollapsedBridgeScreen.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -419,10 +422,9 @@
 				240FBEE2278634CD0029DCC5 /* Favorites.swift in Sources */,
 				2468A09A278F3D4100D724F5 /* OpenDataFileSystem.swift in Sources */,
 				2458020C27879A530091365B /* SinglePhotoView.swift in Sources */,
-				2497B22427A357C500C60E44 /* OBScreenA.swift in Sources */,
+				2497B22427A357C500C60E44 /* OnBoardingOpenDataStatementScreen.swift in Sources */,
 				245802102788C2420091365B /* BridgesPhotosListView.swift in Sources */,
 				241012892713785C00FE7DEC /* BridgeMapView.swift in Sources */,
-				2497B22827A3597000C60E44 /* OnBoardDisclaimers.swift in Sources */,
 				24496FA5278DDFCE0074720C /* StorageKeys.swift in Sources */,
 				24B3FE912722356A004B93A6 /* DirectionsProvider.swift in Sources */,
 				2410128D2713855400FE7DEC /* ContentView.swift in Sources */,
@@ -442,15 +444,17 @@
 				244A747A2719A1A600284608 /* GEOJSONModels.swift in Sources */,
 				2419B8B9271F382600BFE3D8 /* BridgeMapUIView.swift in Sources */,
 				240075CD271493CB00CB864F /* AppLogging.swift in Sources */,
-				2497B22627A3592A00C60E44 /* OBScreenB.swift in Sources */,
+				2497B22627A3592A00C60E44 /* OnBoardingIntroScreen.swift in Sources */,
 				2405C99D2767E1CF00C68307 /* BridgeImageLoadingProgressView.swift in Sources */,
 				244A747427187D1200284608 /* BridgeModel.swift in Sources */,
 				248FC583270276EA00BE168F /* PittsburghCityBridgesApp.swift in Sources */,
 				244E9C91273ABF2A00605134 /* BridgeListViewModel.swift in Sources */,
 				249C7D5D277F609600D72DA4 /* TitleHeader.swift in Sources */,
 				24808FD3274D443D00FF131C /* ViewExtensions.swift in Sources */,
+				244EA80827AF12E800E5FC81 /* OnBoardingCloseScreen.swift in Sources */,
 				2417C3C62794C344005DF78C /* OnBoardingContentView.swift in Sources */,
 				249C7D5B277E52D700D72DA4 /* HeaderToolBar.swift in Sources */,
+				244EA80A27AF14CD00E5FC81 /* OnboardingCollapsedBridgeScreen.swift in Sources */,
 				2419B8C42721D64E00BFE3D8 /* LocationService.swift in Sources */,
 				24C654852772BF55006363B8 /* AppColors.swift in Sources */,
 				24808FDC275A6D9B00FF131C /* BridgeImageSystem.swift in Sources */,

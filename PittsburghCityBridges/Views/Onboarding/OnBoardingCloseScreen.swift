@@ -1,18 +1,21 @@
 //
-//  OBScreenC.swift
+//  OnBoardingCloseScreen.swift
 //  PittsburghCityBridges
 //
-//  Created by MAKinney on 1/27/22.
+//  Created by MAKinney on 2/5/22.
 //
 
 import SwiftUI
 
-struct OnBoardDisclaimers: View {
+struct OnBoardingCloseScreen: View {
     @Binding var onBoardingComplete: Bool
+
     var body: some View {
         VStack {
             Spacer()
-            Text(PBText.directionDisclaimerAgreement)
+            Text(AppTextCopy.onBoardingCloseScreen)
+                .font(.body)
+                .multilineTextAlignment(.leading)
                 .padding()
             if !onBoardingComplete {
                 Button("Close") {
@@ -21,14 +24,11 @@ struct OnBoardDisclaimers: View {
             }
             Spacer()
         }
-        .onAppear {
-            
-        }
     }
 }
 
-struct OBScreenC_Previews: PreviewProvider {
+struct OnBoardingCloseScreen_Previews: PreviewProvider {
     static var previews: some View {
-        OnBoardDisclaimers(onBoardingComplete: .constant(false))
+        OnBoardingCloseScreen(onBoardingComplete: .constant(false))
     }
 }
