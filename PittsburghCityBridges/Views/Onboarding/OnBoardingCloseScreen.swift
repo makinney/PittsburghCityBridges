@@ -11,20 +11,31 @@ struct OnBoardingCloseScreen: View {
     @Binding var onBoardingComplete: Bool
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Spacer()
+            Text(AppTextCopy.onboardingOpenDataSource)
+                .padding()
             Text(AppTextCopy.onBoardingCloseScreen)
-                .font(.body)
-                .multilineTextAlignment(.leading)
                 .padding()
             if !onBoardingComplete {
-                Button("Close") {
-                    onBoardingComplete  = true
+                HStack {
+                    Spacer()
+                    Button("Close") {
+                        onBoardingComplete  = true
+                    }
+                    .padding(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: PCBButton.cornerRadius)
+                            .stroke(Color.secondary, lineWidth: 2)
+                    )
+                    Spacer()
                 }
             }
             Spacer()
         }
-        .padding()
+        .font(.body)
+        .multilineTextAlignment(.leading)
+        .foregroundColor(.pbTextFgndYellow)
     }
 }
 

@@ -13,7 +13,6 @@ struct OnBoardingContentView: View {
  
     var body: some View {
         TabView {
-            OnBoardingOpenDataStatementScreen()
             OnBoardingIntroScreen()
             OnboardingCollapsedBridgeScreen()
             OnBoardingCloseScreen(onBoardingComplete: $done)

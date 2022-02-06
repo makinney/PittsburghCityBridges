@@ -26,11 +26,10 @@ Pittsburgh City Bridges come in all types.
 """
     
     static let onboardingOpenDataSource = """
-This app uses the City of Pittsburgh Bridges Open Data dataset provided by the [Western Pennsylvania Regional Data Center](http://www.wprdc.org). This dataset conatins over 140 bridges.
-
+This app uses data from the City of Pittsburgh Bridges Open Data dataset provided by the Western Pennsylvania Regional Data Center WPRDC at http://www.wprdc.org.
 """
     static let onBoardingCloseScreen = """
-Note no representation is made or warranty given as to data accuracy, including bridge descriptions, locations, photos, route practicability, or map accuracy. Use at own risk. Meant for educational purposes only.
+Disclaimer: No representation is made or warranty given as to data content. User assumes all risk of use. App maker assumes no legal liability or responsibility for any loss, damage, injury, or delay associated with the use of this product.
 """
 }
 

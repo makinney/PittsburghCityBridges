@@ -22,7 +22,6 @@ struct BridgeDetailsView: View {
     var pbColorPalate = PBColorPalate()
     var bridgeModel: BridgeModel
     private var bridgeImageSystem: BridgeImageSystem
-    private let buttonCornerRadius: CGFloat = 5
     private let imageCornerRadius: CGFloat = 10
     private let imageSmallestMagnification = 1.0
     private let userInterfaceIdiom: UIUserInterfaceIdiom
@@ -98,7 +97,7 @@ struct BridgeDetailsView: View {
                                     }
                                     .padding(.trailing, 10)
                                     .overlay(
-                                        RoundedRectangle(cornerRadius: buttonCornerRadius)
+                                        RoundedRectangle(cornerRadius: PCBButton.cornerRadius)
                                             .stroke(Color.secondary, lineWidth: 2)
                                     )
                                 }
@@ -222,7 +221,7 @@ struct BridgeDetailsView: View {
                                 .background(Color.pbTitleTextBgnd)
                         }
                         .overlay(
-                            RoundedRectangle(cornerRadius: buttonCornerRadius)
+                            RoundedRectangle(cornerRadius: PCBButton.cornerRadius)
                                 .stroke(Color.secondary, lineWidth: 2)
                         )
                         .padding()
