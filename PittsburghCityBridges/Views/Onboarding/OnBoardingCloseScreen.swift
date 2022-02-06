@@ -24,6 +24,7 @@ struct OnBoardingCloseScreen: View {
             }
             Spacer()
         }
+        .padding()
     }
 }
 

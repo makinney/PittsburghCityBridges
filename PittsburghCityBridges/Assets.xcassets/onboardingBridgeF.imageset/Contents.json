@@ -1,17 +1,16 @@
 {
   "images" : [
     {
-      "filename" : "Lowrie_Street_Bridge-2.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Lowrie_Street_Bridge-1.jpg",
+      "filename" : "South_Highland_Avenue_Bridge-1.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Lowrie_Street_Bridge.jpg",
+      "filename" : "South_Highland_Avenue_Bridge.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }
