@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OnBoardingIntroScreen: View {
+struct OnBoardingPhotosScreen: View {
     
     var vehicleBridges = ["onboardingBridgeA", "onboardingBridgeB", "onboardingBridgeC",
                           "onboardingBridgeD", "onboardingBridgeE", "onboardingBridgeF",
@@ -41,6 +41,6 @@ struct OnBoardingIntroScreen: View {
 
 struct OBScreenB_Previews: PreviewProvider {
     static var previews: some View {
-        OnBoardingIntroScreen()
+        OnBoardingPhotosScreen()
     }
 }
