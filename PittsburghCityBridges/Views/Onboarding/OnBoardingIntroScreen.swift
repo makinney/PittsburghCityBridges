@@ -11,8 +11,7 @@ struct OnBoardingIntroScreen: View {
     
     var vehicleBridges = ["onboardingBridgeA", "onboardingBridgeB", "onboardingBridgeC",
                           "onboardingBridgeD", "onboardingBridgeE", "onboardingBridgeF",
-                          "onboardingBridgeG", "onboardingBridgeH", "onboardingBridgeK",
-                          "onboardingBridgeL", "onboardingBridgeM", "onboardingBridgeN"]
+                          "onboardingBridgeG", "onboardingBridgeH", "onboardingBridgeK"]
     
     var bigBridgesColumns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     let imageCornerRadius = 4.0
@@ -22,7 +21,6 @@ struct OnBoardingIntroScreen: View {
             Text(AppTextCopy.onBoardingIntroFirstPart)
                 .padding()
                 .foregroundColor(.pbTextFgndYellow)
-            ScrollView {
                 LazyVGrid(columns: bigBridgesColumns) {
                     ForEach(vehicleBridges, id: \.self) { vehicleBridge in
                         Image(vehicleBridge)
@@ -36,7 +34,6 @@ struct OnBoardingIntroScreen: View {
                     }
                 }
                 .padding(.horizontal)
-            }
             Spacer()
         }
     }

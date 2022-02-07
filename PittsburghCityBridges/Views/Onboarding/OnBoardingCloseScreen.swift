@@ -13,8 +13,6 @@ struct OnBoardingCloseScreen: View {
     var body: some View {
         VStack(alignment: .leading) {
             Spacer()
-            Text(AppTextCopy.onboardingOpenDataSource)
-                .padding()
             Text(AppTextCopy.onBoardingCloseScreen)
                 .padding()
             if !onBoardingComplete {
