@@ -195,7 +195,12 @@ struct BridgeDetailsView: View {
                 }
                 .sheet(isPresented: $showDisclaimerSheet,
                        content: {
-                        DirectionsDisclaimerView()
+                    DirectionsDisclaimerView {
+                        if DirectionsProvider.shared.userAcceptedDirectionsDisclaimer,
+                           let locationCoordinate = bridgeModel.locationCoordinate {
+                            DirectionsProvider.shared.requestDirectionsTo(locationCoordinate)
+                        }
+                    }
                 })
             }
         }
