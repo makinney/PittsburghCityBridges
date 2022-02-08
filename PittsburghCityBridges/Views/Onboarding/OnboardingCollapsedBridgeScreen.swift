@@ -8,8 +8,20 @@
 import SwiftUI
 
 struct OnboardingCollapsedBridgeScreen: View {
+    let cornerRadius = 20.0
     var body: some View {
-        Text("Fern Hollow Bridge")
+        VStack {
+            Text("The Forbes Avenue Frick Park bridge also called the Fern Hollow bridge as it looked before it collapsed in January 2021. This is a City of Pittsburgh bridge.")
+            Image("frickParkBridge")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .clipped()
+                .cornerRadius(cornerRadius)
+                .overlay( RoundedRectangle(cornerRadius: cornerRadius)
+                    .stroke(Color.pbTextFgndYellow, lineWidth: 4))
+        }
+        .padding()
+        .foregroundColor(.pbTextFgndYellow)
     }
 }
 

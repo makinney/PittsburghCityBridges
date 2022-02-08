@@ -1,17 +1,16 @@
 {
   "images" : [
     {
-      "filename" : "PJ_McArdle_Viaduct_1-2.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "PJ_McArdle_Viaduct_1-1.jpg",
+      "filename" : "Forbes_Avenue_Frick_Park_Bridge-1.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "PJ_McArdle_Viaduct_1.jpg",
+      "filename" : "Forbes_Avenue_Frick_Park_Bridge.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }
