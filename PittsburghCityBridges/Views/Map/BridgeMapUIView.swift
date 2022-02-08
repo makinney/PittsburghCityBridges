@@ -132,15 +132,22 @@ struct BridgeMapUIView: UIViewRepresentable {
                     mapView.showsUserLocation = directionsProvider.userlocationAuthorized
                     mapView.deselectAnnotation(view.annotation, animated: true)
                 } else {
-                    showDirectionsDisclaimerView(mapView: mapView)
+                    showDirectionsDisclaimerView(mapView: mapView) {
+                        if self.directionsProvider.userAcceptedDirectionsDisclaimer {
+                            self.directionsProvider.requestDirectionsTo(bridgeMapAnnotation.coordinate)
+                            mapView.showsUserLocation = self.directionsProvider.userlocationAuthorized
+                            mapView.deselectAnnotation(view.annotation, animated: true)
+                        }
+                    }
                 }
             }
         }
-               
-        private func showDirectionsDisclaimerView(mapView: MKMapView) {
+            
+        private func showDirectionsDisclaimerView(mapView: MKMapView, done: (() -> Void)?) {
             var directionsDisclaimerView = DirectionsDisclaimerView()
             directionsDisclaimerView.closeTouched = {
                 self.directionsDisclaimerViewController?.view?.removeFromSuperview()
+                done?()
             }
             directionsDisclaimerViewController = UIHostingController(rootView: directionsDisclaimerView)
             if let view = directionsDisclaimerViewController?.view {
