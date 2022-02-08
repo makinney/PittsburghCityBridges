@@ -15,8 +15,8 @@ struct OnBoardingContentView: View {
         TabView {
             OnBoardingPhotosScreen()
             OnboardingCollapsedBridgeScreen()
-            OnBoardingDataSourceScreen()
             OnBoardingBrowseScreen()
+            OnBoardingDataSourceScreen()
             OnBoardingCloseScreen(onBoardingComplete: $done)
         }
         .onChange(of: done, perform: { newValue in
