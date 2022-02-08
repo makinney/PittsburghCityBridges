@@ -26,7 +26,7 @@ struct MoreScreenView: View {
                     Label("Disclaimer", systemImage: "building.columns")
                 }
                 NavigationLink {
-                    OnBoardingScreenView()
+                    OnBoardingContentView()
                 }
                 label: {
                     Label("Landing Screens", systemImage: "sum")
@@ -39,6 +39,7 @@ struct MoreScreenView: View {
                 }
             }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }

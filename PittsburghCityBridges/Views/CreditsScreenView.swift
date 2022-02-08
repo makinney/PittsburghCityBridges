@@ -68,7 +68,7 @@ struct CreditsScreenView: View {
                     .fill(strokeColor)
                     .opacity(strokeOpacity)
                 VStack(alignment: .leading){
-                    Text("This App uses the City of Pittsburgh Bridges Dataset from the [Western Pennsylvania Regional Data Center](http://www.wprdc.org) for bridge data including descriptions, gps coordinates and photos. This is one of over 300 publicly available so-called Open Data Datasets")
+                    Text("This App uses the City of Pittsburgh Bridges Dataset from the [Western Pennsylvania Regional Data Center](http://www.wprdc.org) for bridge data including descriptions, gps coordinates and photos. This is one of over 300 available Open Data Datasets")
                         .font(.body)
                         .multilineTextAlignment(.leading)
                     

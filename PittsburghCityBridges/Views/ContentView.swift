@@ -19,15 +19,15 @@ struct ContentView: View {
         TabView {
             BridgesListsView(BridgeListViewModel(bridgeStore))
                 .tabItem {
-                    Label("Bridge List", systemImage: "list.dash")
-                }
-            BridgesPhotosListView(BridgeListViewModel(bridgeStore))
-                .tabItem {
-                    Label("Bridge Photos", systemImage: "photo.on.rectangle")
+                    Label("List", systemImage: "list.dash")
                 }
             BridgeMapView()
                 .tabItem {
-                    Label("Bridge Map", systemImage: "map")
+                    Label("Map", systemImage: "map")
+                }
+            BridgesPhotosListView(BridgeListViewModel(bridgeStore))
+                .tabItem {
+                    Label("Photos", systemImage: "photo.on.rectangle")
                 }
             MoreScreenView()
                 .tabItem {
