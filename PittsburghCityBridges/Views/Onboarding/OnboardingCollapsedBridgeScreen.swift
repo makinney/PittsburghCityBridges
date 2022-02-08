@@ -12,13 +12,14 @@ struct OnboardingCollapsedBridgeScreen: View {
     var body: some View {
         VStack {
             Text("The Forbes Avenue Frick Park bridge also called the Fern Hollow bridge as it looked before it collapsed in January 2021. This is a City of Pittsburgh bridge.")
+                .padding(.vertical)
             Image("frickParkBridge")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .clipped()
                 .cornerRadius(cornerRadius)
                 .overlay( RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(Color.pbTextFgndYellow, lineWidth: 4))
+                    .stroke(Color.pbTextFgndYellow, lineWidth: 2))
         }
         .padding()
         .foregroundColor(.pbTextFgndYellow)
