@@ -26,6 +26,7 @@ struct OnBoardingPhotosScreen: View {
                         Image(vehicleBridge)
                                    .resizable()
                                    .aspectRatio(1.0, contentMode: .fit)
+                                   .clipped()
                                    .cornerRadius(imageCornerRadius)
                                    .overlay(
                                        RoundedRectangle(cornerRadius: imageCornerRadius)
