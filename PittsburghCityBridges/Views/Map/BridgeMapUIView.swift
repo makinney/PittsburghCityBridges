@@ -39,6 +39,7 @@ struct BridgeMapUIView: UIViewRepresentable {
     
     func updateUIView(_ mapView: MKMapView, context: Context) {
         logger.info("\(#file) \(#function)")
+        mapView.removeOverlays(mapView.overlays)
         for bridgeModel in bridgeModels {
             let overlays = bridgeModel.polylines
             if overlays.isEmpty { continue }
