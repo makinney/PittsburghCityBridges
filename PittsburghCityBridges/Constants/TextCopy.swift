@@ -19,7 +19,7 @@ The mapping, directions and bridge data is presented solely as a convenience bro
 
 No representation is made or warranty given as to data content, route practicability or efficiency, or map accuracy.
 
-User assumes all risk of use. App maker assumes no legal liability or responsibility for any loss, damage, injury, or delay associated with the use of this product.
+User assumes all risk of use. App maker assumes no legal liability or responsibility for any loss, damage, injury, or delay associated with the use of these direction services.
 """
     static let onBoardingIntroFirstPart = """
 This app lists over 140 bridges in the City of Pittsburgh. Most of these bridges cross roads, ravines, train tracks, or streams. 
