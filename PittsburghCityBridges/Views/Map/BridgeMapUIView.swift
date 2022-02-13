@@ -128,27 +128,20 @@ struct BridgeMapUIView: UIViewRepresentable {
         
         func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
             if let bridgeMapAnnotation = view.annotation as? BridgeMapAnnotation {
-                if directionsProvider.userAcceptedDirectionsDisclaimer {
-                    directionsProvider.requestDirectionsTo(bridgeMapAnnotation.coordinate)
-                    mapView.showsUserLocation = directionsProvider.userlocationAuthorized
-                    mapView.deselectAnnotation(view.annotation, animated: true)
-                } else {
-                    showDirectionsDisclaimerView(mapView: mapView) {
-                        if self.directionsProvider.userAcceptedDirectionsDisclaimer {
+                    showDirectionsDisclaimerView(mapView: mapView) { userAccepted in
+                        if userAccepted {
                             self.directionsProvider.requestDirectionsTo(bridgeMapAnnotation.coordinate)
                             mapView.showsUserLocation = self.directionsProvider.userlocationAuthorized
                             mapView.deselectAnnotation(view.annotation, animated: true)
                         }
                     }
-                }
             }
         }
             
-        private func showDirectionsDisclaimerView(mapView: MKMapView, done: (() -> Void)?) {
-            var directionsDisclaimerView = DirectionsDisclaimerView()
-            directionsDisclaimerView.closeTouched = {
+        private func showDirectionsDisclaimerView(mapView: MKMapView, userAccepted: ((Bool) -> Void)?) {
+            let directionsDisclaimerView = DirectionsDisclaimerView{ userAcceptedDisclaimer in
                 self.directionsDisclaimerViewController?.view?.removeFromSuperview()
-                done?()
+                userAccepted?(userAcceptedDisclaimer)
             }
             directionsDisclaimerViewController = UIHostingController(rootView: directionsDisclaimerView)
             if let view = directionsDisclaimerViewController?.view {

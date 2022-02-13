@@ -195,8 +195,8 @@ struct BridgeDetailsView: View {
                 }
                 .sheet(isPresented: $showDisclaimerSheet,
                        content: {
-                    DirectionsDisclaimerView {
-                        if DirectionsProvider.shared.userAcceptedDirectionsDisclaimer,
+                    DirectionsDisclaimerView { userAcceptedDisclaimer in
+                        if userAcceptedDisclaimer,
                            let locationCoordinate = bridgeModel.locationCoordinate {
                             DirectionsProvider.shared.requestDirectionsTo(locationCoordinate)
                         }
@@ -212,13 +212,9 @@ struct BridgeDetailsView: View {
             BridgeMapUIView(region: MapViewModel.singleBridgeRegion, bridgeModels: [bridgeModel], showsBridgeImage: false)
             VStack {
                 HStack {
-                    if let locationCoordinate = bridgeModel.locationCoordinate {
+                    if let _ = bridgeModel.locationCoordinate {
                         Button {
-                            if DirectionsProvider.shared.userAcceptedDirectionsDisclaimer {
-                                DirectionsProvider.shared.requestDirectionsTo(locationCoordinate)
-                            } else {
                                 self.showDisclaimerSheet = true
-                            }
                         } label: {
                             Label("Directions", systemImage: "arrow.triangle.turn.up.right.circle.fill")
                                 .padding(4)

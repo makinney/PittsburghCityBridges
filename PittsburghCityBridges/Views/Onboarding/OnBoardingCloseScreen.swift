@@ -18,7 +18,7 @@ struct OnBoardingCloseScreen: View {
             if !onBoardingComplete {
                 HStack {
                     Spacer()
-                    Button("Close") {
+                    Button("I agree") {
                         onBoardingComplete  = true
                     }
                     .padding(10)

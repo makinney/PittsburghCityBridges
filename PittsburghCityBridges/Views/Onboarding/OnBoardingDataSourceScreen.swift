@@ -13,10 +13,6 @@ struct OnBoardingDataSourceScreen: View {
             Spacer()
             Text(AppTextCopy.onboardingOpenDataSource)
             .padding()
-            Text(AppTextCopy.wprdcDescription)
-                .font(.body)
-                .italic()
-                .padding()
             Spacer()
         }
         .font(.subheadline)

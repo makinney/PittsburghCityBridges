@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct DirectionsDisclaimerView: View {
-    @AppStorage(StorageKeys.userAgreedDirectionsDisclaimer) private var userAgreedDirectionsDisclaimer = false
+    @State private var userAgreedDirectionsDisclaimer = false
     @Environment(\.presentationMode) var presentationMode
-    var closeTouched: (() -> Void)?
+    var userAcceptedDisclaimer: ((Bool) -> Void)?
     
-    init(closeTouched: (() -> Void)? = nil) {
-        self.closeTouched = closeTouched
+    init(userAcceptedDisclaimer: ((Bool) -> Void)? = nil) {
+        self.userAcceptedDisclaimer = userAcceptedDisclaimer
     }
     
     var body: some View {
         VStack(alignment: .center) {
             Text("Pittsburgh City Bridges")
-                .font(.title2)
+                .font(.title3)
                 .foregroundColor(.pbTitleTextFgnd)
                 .padding()
             GroupBox(label:
@@ -30,17 +30,17 @@ struct DirectionsDisclaimerView: View {
                         Text(AppTextCopy.directionDisclaimerAgreement)
                             .font(.body)
                     }
-                }
-                .frame(height: 300)
-                HStack {
-                    Toggle(isOn: $userAgreedDirectionsDisclaimer) {
-                        Text("I agree to the above terms")
+                    HStack {
+                        Toggle(isOn: $userAgreedDirectionsDisclaimer) {
+                            Text("I agree to the above terms")
+                        }
                     }
                 }
+                .frame(height: 400)
                 .padding()
                 Button("Close") {
                     presentationMode.wrappedValue.dismiss()
-                    self.closeTouched?()
+                    self.userAcceptedDisclaimer?(userAgreedDirectionsDisclaimer)
                 }
                 .padding([.leading, .trailing])
                 .background(Color.white.cornerRadius(5))
