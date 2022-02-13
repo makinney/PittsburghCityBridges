@@ -34,7 +34,7 @@ This Pittsburgh City Bridges App uses bridge information contained in the City o
     
 
     static let onBoardingCloseScreen = """
-No representation is made or warranty given as to data content. User assumes all risk of use. App maker assumes no legal liability or responsibility for any loss, damage, injury, or delay associated with the use of this product.
+No representation is made or warranty given as to data content. User assumes all risk of use.
 """
 }
 

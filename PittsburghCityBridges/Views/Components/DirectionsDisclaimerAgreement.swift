@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct DirectionsDisclaimerAgreement: View {
-    @AppStorage(StorageKeys.userAgreedDirectionsDisclaimer) private var userAgreedDirectionsDisclaimer = false
     var body: some View {
         GroupBox(label:
                     Label("Disclaimer", systemImage: "building.columns")
@@ -19,7 +18,6 @@ struct DirectionsDisclaimerAgreement: View {
                         .font(.body)
                 }
             }
-  //          .frame(height: 300)
         }
         .background(Color.creditscreenBgnd)
         .padding()

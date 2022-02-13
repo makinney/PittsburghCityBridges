@@ -11,9 +11,7 @@ import SwiftUI
 import os
 
 class DirectionsProvider {
-    @Environment(\.openURL) private var openURL
-    @AppStorage(StorageKeys.userAgreedDirectionsDisclaimer) private var userAgreedDirectionsDisclaimer = false
-    
+    @Environment(\.openURL) private var openURL    
     static let shared = DirectionsProvider()
     enum DirectionsRequest {
         case no
@@ -41,9 +39,9 @@ class DirectionsProvider {
         return false
     }
     
-    var userAcceptedDirectionsDisclaimer: Bool {
-        userAgreedDirectionsDisclaimer
-    }
+//    var userAcceptedDirectionsDisclaimer: Bool {
+//        userAgreedDirectionsDisclaimer
+//    }
     
     private init() {
         locationService = LocationService()
@@ -63,7 +61,7 @@ class DirectionsProvider {
                 if self.userLocationRequest == .requested {
                     self.userCoordinate =  coordinate
                     self.logger.info("\(#file) \(#function) updated user coordinates lat \(coordinate.latitude) and long \(coordinate.longitude)")
-                    if self.directionsRequested == .yes && self.userAgreedDirectionsDisclaimer {
+                    if self.directionsRequested == .yes {
                         self.requestMapDirections(from: self.userCoordinate, to: self.destinationCoordinate)
                     }
                 }
