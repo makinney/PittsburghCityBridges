@@ -10,20 +10,19 @@ import SwiftUI
 struct DirectionsDisclaimerView: View {
     @State private var userAgreedDirectionsDisclaimer = false
     @Environment(\.presentationMode) var presentationMode
-    var userAcceptedDisclaimer: ((Bool) -> Void)?
+    var showDirections: ((Bool) -> Void)?
     
-    init(userAcceptedDisclaimer: ((Bool) -> Void)? = nil) {
-        self.userAcceptedDisclaimer = userAcceptedDisclaimer
+    init(showDirections: ((Bool) -> Void)? = nil) {
+        self.showDirections = showDirections
     }
     
     var body: some View {
-        VStack(alignment: .center) {
+        VStack() {
             Text("Pittsburgh City Bridges")
-                .font(.title3)
+                .font(.headline)
                 .foregroundColor(.pbTitleTextFgnd)
-                .padding()
             GroupBox(label:
-                        Label("Disclaimer", systemImage: "building.columns")
+                        Label("Directions Disclaimer", systemImage: "building.columns")
             ) {
                 ScrollView(.vertical, showsIndicators: true) {
                     HStack {
@@ -34,19 +33,66 @@ struct DirectionsDisclaimerView: View {
                         Toggle(isOn: $userAgreedDirectionsDisclaimer) {
                             Text("I agree to the above terms")
                         }
+                        .padding()
+                    }
+                    Button("Cancel") {
+                        presentationMode.wrappedValue.dismiss()
+                        self.showDirections?(false)
+                    }
+                    .frame(width: 200)
+                    .padding(.vertical, 10)
+                    .background(Color.white.cornerRadius(5))
+                    .padding(.vertical, 10)
+                    mapButtons()
+                        .opacity(userAgreedDirectionsDisclaimer ? 1.0 : 0.70)
+                }
+            }
+        }
+        .frame(width: UIDevice.current.userInterfaceIdiom == .phone ? 350 : 400)
+    }
+    
+    private func mapButtons() -> some View {
+        VStack(alignment: .center) {
+            Text("Get Directions Using:")
+            if DirectionsProvider.shared.supportedMappingApps.contains(DirectionsProvider.MappingApp.apple) {
+                Button("Apple Maps") {
+                    if userAgreedDirectionsDisclaimer {
+                        DirectionsProvider.shared.select(mappingApp: .apple)
+                        presentationMode.wrappedValue.dismiss()
+                        self.showDirections?(true)
                     }
                 }
-                .frame(height: 400)
-                .padding()
-                Button("Close") {
-                    presentationMode.wrappedValue.dismiss()
-                    self.userAcceptedDisclaimer?(userAgreedDirectionsDisclaimer)
-                }
-                .padding([.leading, .trailing])
+                .frame(width: 200)
+                .padding(.vertical, 10)
                 .background(Color.white.cornerRadius(5))
+                .padding(.vertical, 10)
             }
-            .frame(width: UIDevice.current.userInterfaceIdiom == .phone ? 350 : 400)
-            .shadow(radius: 10)
+            if DirectionsProvider.shared.supportedMappingApps.contains(DirectionsProvider.MappingApp.google) {
+                Button("Google Maps") {
+                    if userAgreedDirectionsDisclaimer {
+                        DirectionsProvider.shared.select(mappingApp: .google)
+                        presentationMode.wrappedValue.dismiss()
+                        self.showDirections?(true)
+                    }
+                }
+                .frame(width: 200)
+                .padding(.vertical, 10)
+                .background(Color.white.cornerRadius(5))
+                .padding(.vertical,10)
+            }
+            if DirectionsProvider.shared.supportedMappingApps.contains(DirectionsProvider.MappingApp.waze) {
+                Button("Waze") {
+                    if userAgreedDirectionsDisclaimer {
+                        DirectionsProvider.shared.select(mappingApp: .waze)
+                        presentationMode.wrappedValue.dismiss()
+                        self.showDirections?(true)
+                    }
+                }
+                .frame(width: 200)
+                .padding(.vertical, 10)
+                .background(Color.white.cornerRadius(5))
+                .padding(.vertical, 10)
+            }
         }
     }
 }
@@ -55,7 +101,7 @@ struct DisclaimerView_Previews: PreviewProvider {
     static var previews: some View {
         DirectionsDisclaimerView()
             .preferredColorScheme(.dark)
-        DirectionsDisclaimerView()
-            .preferredColorScheme(.light)
+        //     DirectionsDisclaimerView()
+        //       .preferredColorScheme(.light)
     }
 }

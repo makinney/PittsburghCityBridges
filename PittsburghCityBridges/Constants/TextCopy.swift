@@ -15,11 +15,9 @@ struct AppTextCopy {
     }
     
     static let directionDisclaimerAgreement = """
-The mapping, directions and bridge data is presented solely as a convenience browser to publically accessible open data.
+No representation is made or warranty given as to data content, route practicability, efficiency, or map accuracy.
 
-No representation is made or warranty given as to data content, route practicability or efficiency, or map accuracy.
-
-User assumes all risk of use. App maker assumes no legal liability or responsibility for any loss, damage, injury, or delay associated with the use of these direction services.
+User assumes all risk of use. App maker assumes no legal liability or responsibility for any loss, damage, injury, or delay associated with the use of these services.
 """
     static let onBoardingIntroFirstPart = """
 This app lists over 140 bridges in the City of Pittsburgh. Most of these bridges cross roads, ravines, train tracks, or streams. 
