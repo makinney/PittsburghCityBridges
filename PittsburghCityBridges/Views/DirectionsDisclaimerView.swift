@@ -10,16 +10,16 @@ import SwiftUI
 struct DirectionsDisclaimerView: View {
     @State private var userAgreedDirectionsDisclaimer = false
     @Environment(\.presentationMode) var presentationMode
-    var userAcceptedDisclaimer: ((Bool) -> Void)?
+    var showDirections: ((Bool) -> Void)?
     
-    init(userAcceptedDisclaimer: ((Bool) -> Void)? = nil) {
-        self.userAcceptedDisclaimer = userAcceptedDisclaimer
+    init(showDirections: ((Bool) -> Void)? = nil) {
+        self.showDirections = showDirections
     }
     
     var body: some View {
-        VStack(alignment: .center) {
+        VStack() {
             Text("Pittsburgh City Bridges")
-                .font(.title3)
+                .font(.headline)
                 .foregroundColor(.pbTitleTextFgnd)
             GroupBox(label:
                         Label("Directions Disclaimer", systemImage: "building.columns")
@@ -33,18 +33,18 @@ struct DirectionsDisclaimerView: View {
                         Toggle(isOn: $userAgreedDirectionsDisclaimer) {
                             Text("I agree to the above terms")
                         }
+                        .padding()
                     }
                     Button("Cancel") {
                         presentationMode.wrappedValue.dismiss()
-                        self.userAcceptedDisclaimer?(false)
+                        self.showDirections?(false)
                     }
                     .frame(width: 200)
                     .padding(.vertical, 10)
                     .background(Color.white.cornerRadius(5))
                     .padding(.vertical, 10)
-                    if userAgreedDirectionsDisclaimer {
-                        mapButtons()
-                    }
+                    mapButtons()
+                        .opacity(userAgreedDirectionsDisclaimer ? 1.0 : 0.70)
                 }
             }
         }
@@ -54,12 +54,13 @@ struct DirectionsDisclaimerView: View {
     private func mapButtons() -> some View {
         VStack(alignment: .center) {
             Text("Get Directions Using:")
-                .padding(.vertical)
             if DirectionsProvider.shared.supportedMappingApps.contains(DirectionsProvider.MappingApp.apple) {
                 Button("Apple Maps") {
-                    DirectionsProvider.shared.select(mappingApp: .apple)
-                    presentationMode.wrappedValue.dismiss()
-                    self.userAcceptedDisclaimer?(userAgreedDirectionsDisclaimer)
+                    if userAgreedDirectionsDisclaimer {
+                        DirectionsProvider.shared.select(mappingApp: .apple)
+                        presentationMode.wrappedValue.dismiss()
+                        self.showDirections?(true)
+                    }
                 }
                 .frame(width: 200)
                 .padding(.vertical, 10)
@@ -68,9 +69,11 @@ struct DirectionsDisclaimerView: View {
             }
             if DirectionsProvider.shared.supportedMappingApps.contains(DirectionsProvider.MappingApp.google) {
                 Button("Google Maps") {
-                    DirectionsProvider.shared.select(mappingApp: .google)
-                    presentationMode.wrappedValue.dismiss()
-                    self.userAcceptedDisclaimer?(userAgreedDirectionsDisclaimer)
+                    if userAgreedDirectionsDisclaimer {
+                        DirectionsProvider.shared.select(mappingApp: .google)
+                        presentationMode.wrappedValue.dismiss()
+                        self.showDirections?(true)
+                    }
                 }
                 .frame(width: 200)
                 .padding(.vertical, 10)
@@ -79,9 +82,11 @@ struct DirectionsDisclaimerView: View {
             }
             if DirectionsProvider.shared.supportedMappingApps.contains(DirectionsProvider.MappingApp.waze) {
                 Button("Waze") {
-                    DirectionsProvider.shared.select(mappingApp: .waze)
-                    presentationMode.wrappedValue.dismiss()
-                    self.userAcceptedDisclaimer?(userAgreedDirectionsDisclaimer)
+                    if userAgreedDirectionsDisclaimer {
+                        DirectionsProvider.shared.select(mappingApp: .waze)
+                        presentationMode.wrappedValue.dismiss()
+                        self.showDirections?(true)
+                    }
                 }
                 .frame(width: 200)
                 .padding(.vertical, 10)
