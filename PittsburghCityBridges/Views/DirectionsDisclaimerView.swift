@@ -31,7 +31,7 @@ struct DirectionsDisclaimerView: View {
                     }
                     HStack {
                         Toggle(isOn: $userAgreedDirectionsDisclaimer) {
-                            Text("I agree to the above terms")
+                            Text("I understand and agree")
                         }
                         .padding()
                     }

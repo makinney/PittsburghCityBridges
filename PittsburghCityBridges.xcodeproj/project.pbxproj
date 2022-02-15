@@ -56,9 +56,11 @@
 		248FC58A270276EE00BE168F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 248FC589270276EE00BE168F /* Preview Assets.xcassets */; };
 		248FC58C270276EE00BE168F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248FC58B270276EE00BE168F /* Persistence.swift */; };
 		248FC59A270278F100BE168F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 248FC599270278F100BE168F /* CloudKit.framework */; };
-		2497B22627A3592A00C60E44 /* OnBoardingPhotosScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497B22527A3592A00C60E44 /* OnBoardingPhotosScreen.swift */; };
+		2497B22627A3592A00C60E44 /* OnBoardingPhotosVehicleBridgesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497B22527A3592A00C60E44 /* OnBoardingPhotosVehicleBridgesScreen.swift */; };
 		249C7D5B277E52D700D72DA4 /* HeaderToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */; };
 		249C7D5D277F609600D72DA4 /* TitleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C7D5C277F609600D72DA4 /* TitleHeader.swift */; };
+		249E68C127BC344400CE4FDD /* OnBoardingPhotosPedistrianBridgesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E68C027BC344400CE4FDD /* OnBoardingPhotosPedistrianBridgesScreen.swift */; };
+		249E68C327BC3E2D00CE4FDD /* OnBoardingPhotosParkBridgesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E68C227BC3E2D00CE4FDD /* OnBoardingPhotosParkBridgesScreen.swift */; };
 		24A9E14C27ACAB5200CCA97B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24A9E14B27ACAB5200CCA97B /* Launch Screen.storyboard */; };
 		24B3FE8F272225B8004B93A6 /* MapExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3FE8E272225B8004B93A6 /* MapExtensions.swift */; };
 		24B3FE912722356A004B93A6 /* DirectionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3FE902722356A004B93A6 /* DirectionsProvider.swift */; };
@@ -118,9 +120,11 @@
 		248FC58B270276EE00BE168F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		248FC597270278E000BE168F /* PittsburghCityBridges.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PittsburghCityBridges.entitlements; sourceTree = "<group>"; };
 		248FC599270278F100BE168F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		2497B22527A3592A00C60E44 /* OnBoardingPhotosScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPhotosScreen.swift; sourceTree = "<group>"; };
+		2497B22527A3592A00C60E44 /* OnBoardingPhotosVehicleBridgesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPhotosVehicleBridgesScreen.swift; sourceTree = "<group>"; };
 		249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderToolBar.swift; sourceTree = "<group>"; };
 		249C7D5C277F609600D72DA4 /* TitleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeader.swift; sourceTree = "<group>"; };
+		249E68C027BC344400CE4FDD /* OnBoardingPhotosPedistrianBridgesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPhotosPedistrianBridgesScreen.swift; sourceTree = "<group>"; };
+		249E68C227BC3E2D00CE4FDD /* OnBoardingPhotosParkBridgesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPhotosParkBridgesScreen.swift; sourceTree = "<group>"; };
 		24A9E14B27ACAB5200CCA97B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		24B3FE8E272225B8004B93A6 /* MapExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapExtensions.swift; sourceTree = "<group>"; };
 		24B3FE902722356A004B93A6 /* DirectionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsProvider.swift; sourceTree = "<group>"; };
@@ -299,7 +303,9 @@
 				244EA80727AF12E800E5FC81 /* OnBoardingCloseScreen.swift */,
 				244EA80927AF14CD00E5FC81 /* OnboardingCollapsedBridgeScreen.swift */,
 				246F309227B1B90800B75025 /* OnBoardingDataSourceScreen.swift */,
-				2497B22527A3592A00C60E44 /* OnBoardingPhotosScreen.swift */,
+				249E68C227BC3E2D00CE4FDD /* OnBoardingPhotosParkBridgesScreen.swift */,
+				249E68C027BC344400CE4FDD /* OnBoardingPhotosPedistrianBridgesScreen.swift */,
+				2497B22527A3592A00C60E44 /* OnBoardingPhotosVehicleBridgesScreen.swift */,
 				246F309427B2D72800B75025 /* OnBoardingBrowseScreen.swift */,
 			);
 			path = Onboarding;
@@ -431,7 +437,9 @@
 				2458020C27879A530091365B /* SinglePhotoView.swift in Sources */,
 				245802102788C2420091365B /* BridgesPhotosListView.swift in Sources */,
 				241012892713785C00FE7DEC /* BridgeMapView.swift in Sources */,
+				249E68C127BC344400CE4FDD /* OnBoardingPhotosPedistrianBridgesScreen.swift in Sources */,
 				24496FA5278DDFCE0074720C /* StorageKeys.swift in Sources */,
+				249E68C327BC3E2D00CE4FDD /* OnBoardingPhotosParkBridgesScreen.swift in Sources */,
 				24B3FE912722356A004B93A6 /* DirectionsProvider.swift in Sources */,
 				2410128D2713855400FE7DEC /* ContentView.swift in Sources */,
 				24496FA2278CDF170074720C /* DirectionsDisclaimerView.swift in Sources */,
@@ -451,7 +459,7 @@
 				244A747A2719A1A600284608 /* GEOJSONModels.swift in Sources */,
 				2419B8B9271F382600BFE3D8 /* BridgeMapUIView.swift in Sources */,
 				240075CD271493CB00CB864F /* AppLogging.swift in Sources */,
-				2497B22627A3592A00C60E44 /* OnBoardingPhotosScreen.swift in Sources */,
+				2497B22627A3592A00C60E44 /* OnBoardingPhotosVehicleBridgesScreen.swift in Sources */,
 				2405C99D2767E1CF00C68307 /* BridgeImageLoadingProgressView.swift in Sources */,
 				244A747427187D1200284608 /* BridgeModel.swift in Sources */,
 				248FC583270276EA00BE168F /* PittsburghCityBridgesApp.swift in Sources */,

@@ -1,29 +1,25 @@
 //
-//  OBScreenB.swift
+//  OnBoardingPhotosPedistrianBridgesScreen.swift
 //  PittsburghCityBridges
 //
-//  Created by MAKinney on 1/27/22.
+//  Created by MAKinney on 2/15/22.
 //
 
 import SwiftUI
 
-struct OnBoardingPhotosScreen: View {
-    
-    var vehicleBridges = ["onboardingBridgeA", "onboardingBridgeB", "onboardingBridgeC",
-                          "onboardingBridgeD", "onboardingBridgeE", "onboardingBridgeF",
-                          "onboardingBridgeG", "onboardingBridgeH", "onboardingBridgeK"]
-    
+struct OnBoardingPhotosPedestrianBridgesScreen: View {
+    var pedestrianBridges = ["onboardingBridgeD", "onboardingBridgeE", "onboardingBridgeF"]
     var bigBridgesColumns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     let imageCornerRadius = 4.0
     var body: some View {
         VStack {
             Spacer()
-            Text(AppTextCopy.onBoardingIntroFirstPart)
+            Text("There are pedestrian bridges")
                 .padding()
                 .foregroundColor(.pbTextFgndYellow)
                 LazyVGrid(columns: bigBridgesColumns) {
-                    ForEach(vehicleBridges, id: \.self) { vehicleBridge in
-                        Image(vehicleBridge)
+                    ForEach(pedestrianBridges, id: \.self) { pedestrianBridge in
+                        Image(pedestrianBridge)
                                    .resizable()
                                    .aspectRatio(1.0, contentMode: .fit)
                                    .clipped()
@@ -40,8 +36,8 @@ struct OnBoardingPhotosScreen: View {
     }
 }
 
-struct OBScreenB_Previews: PreviewProvider {
+struct OnBoardingPhotosPedistrianBridgesScreen_Previews: PreviewProvider {
     static var previews: some View {
-        OnBoardingPhotosScreen()
+        OnBoardingPhotosPedestrianBridgesScreen()
     }
 }

@@ -11,14 +11,15 @@ struct OnBoardingCloseScreen: View {
     @Binding var onBoardingComplete: Bool
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .center) {
             Spacer()
             Text(AppTextCopy.onBoardingCloseScreen)
+                .font(.headline)
                 .padding()
             if !onBoardingComplete {
                 HStack {
                     Spacer()
-                    Button("I agree") {
+                    Button("Close") {
                         onBoardingComplete  = true
                     }
                     .padding(10)
