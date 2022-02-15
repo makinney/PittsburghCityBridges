@@ -1,5 +1,5 @@
 //
-//  OnBoardingPhotosPedistrianBridgesScreen.swift
+//  OnBoardingPhotosParkBridgesScreen.swift
 //  PittsburghCityBridges
 //
 //  Created by MAKinney on 2/15/22.
@@ -7,19 +7,19 @@
 
 import SwiftUI
 
-struct OnBoardingPhotosPedestrianBridgesScreen: View {
-    var pedestrianBridges = ["onboardingBridgeD", "onboardingBridgeE", "onboardingBridgeF"]
+struct OnBoardingPhotosParkBridgesScreen: View {
+    var parkBridges = ["onboardingBridgeG", "onboardingBridgeH", "onboardingBridgeK"]
     var bigBridgesColumns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     let imageCornerRadius = 4.0
     var body: some View {
         VStack {
             Spacer()
-            Text("There are pedestrian bridges")
+            Text("There are park bridges")
                 .padding()
                 .foregroundColor(.pbTextFgndYellow)
                 LazyVGrid(columns: bigBridgesColumns) {
-                    ForEach(pedestrianBridges, id: \.self) { pedestrianBridge in
-                        Image(pedestrianBridge)
+                    ForEach(parkBridges, id: \.self) { parkBridge in
+                        Image(parkBridge)
                                    .resizable()
                                    .aspectRatio(1.0, contentMode: .fit)
                                    .clipped()
@@ -36,8 +36,8 @@ struct OnBoardingPhotosPedestrianBridgesScreen: View {
     }
 }
 
-struct OnBoardingPhotosPedistrianBridgesScreen_Previews: PreviewProvider {
+struct OnBoardingPhotosParkBridgesScreen_Previews: PreviewProvider {
     static var previews: some View {
-        OnBoardingPhotosPedestrianBridgesScreen()
+        OnBoardingPhotosParkBridgesScreen()
     }
 }

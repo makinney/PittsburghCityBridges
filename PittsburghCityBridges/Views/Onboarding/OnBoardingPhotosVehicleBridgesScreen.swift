@@ -15,7 +15,7 @@ struct OnBoardingPhotosVehicleBridgesScreen: View {
     var body: some View {
         VStack {
             Spacer()
-            Text("There are Vehicle Bridges")
+            Text("There are vehicle bridges")
                 .padding()
                 .foregroundColor(.pbTextFgndYellow)
                 LazyVGrid(columns: bigBridgesColumns) {

@@ -16,6 +16,7 @@ struct OnBoardingContentView: View {
             OnBoardingDataSourceScreen()
             OnBoardingPhotosVehicleBridgesScreen()
             OnBoardingPhotosPedestrianBridgesScreen()
+            OnBoardingPhotosParkBridgesScreen()
             OnboardingCollapsedBridgeScreen()
             OnBoardingBrowseScreen()
             OnBoardingCloseScreen(onBoardingComplete: $done)

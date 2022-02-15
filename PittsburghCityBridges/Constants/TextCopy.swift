@@ -15,9 +15,9 @@ struct AppTextCopy {
     }
     
     static let directionDisclaimerAgreement = """
-No representation is made or warranty given as to data content, route practicability, efficiency, or map accuracy.
+App uses publically available external data that may change at any time. No representation is made or warranty given as to data content, route practicability, efficiency, or map accuracy.
 
-User assumes all risk of use. App maker assumes no legal liability or responsibility for any loss, damage, injury, or delay associated with the use of these services.
+App maker assumes no legal liability or responsibility for any loss, damage, injury, or delay associated with the use of this product. User assumes all risk of use.
 """
     static let onBoardingIntroFirstPart = """
 Pittsburgh Pennsylvania has over 440 bridges, the most of any city in the world. This app is a collection of 140 of those bridges. Though many Pittsburgh bridges cross one of the three rivers, the bridges in this app cross valleys, streams and roads. These are so-called City Bridges.
@@ -36,7 +36,7 @@ The 140 bridges in the data are of all types. Swipe left to continue to next pag
     
 
     static let onBoardingCloseScreen = """
-No representation is made or warranty given as to data content. User assumes all risk of use.
+Welcome to Pittsburgh City Bridges.
 """
 }
 
