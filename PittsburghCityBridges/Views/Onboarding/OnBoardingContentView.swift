@@ -13,10 +13,11 @@ struct OnBoardingContentView: View {
  
     var body: some View {
         TabView {
-            OnBoardingPhotosScreen()
+            OnBoardingDataSourceScreen()
+            OnBoardingPhotosVehicleBridgesScreen()
+            OnBoardingPhotosPedestrianBridgesScreen()
             OnboardingCollapsedBridgeScreen()
             OnBoardingBrowseScreen()
-            OnBoardingDataSourceScreen()
             OnBoardingCloseScreen(onBoardingComplete: $done)
         }
         .onChange(of: done, perform: { newValue in
