@@ -14,28 +14,28 @@ struct MoreScreenView: View {
         NavigationView {
             List {
                 NavigationLink {
-                    CreditsScreenView()
+                    AppIconCreditsScreen()
                 }
                 label: {
-                    Label("Credits", systemImage: "megaphone")
+                    Label("App Icon Credit", systemImage: "megaphone")
                 }
                 NavigationLink {
                     DirectionsDisclaimerAgreement()
                 }
                 label: {
-                    Label("Disclaimer", systemImage: "building.columns")
+                    Label("Directions Disclaimer", systemImage: "building.columns")
                 }
                 NavigationLink {
                     OnBoardingContentView()
                 }
                 label: {
-                    Label("Landing Screens", systemImage: "sum")
+                    Label("OnBoarding Screens", systemImage: "sum")
                 }
                 NavigationLink {
-                    SettingsScreenView()
+                    OpenDataCreditsScreen()
                 }
                 label: {
-                    Label("Settings", systemImage: "slider.vertical.3")
+                    Label("Open Data Credit", systemImage: "slider.vertical.3")
                 }
             }
         }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CreditsScreenView: View {
+struct AppIconCreditsScreen: View {
     private let cardWidth: CGFloat = 350
     private let strokeColor = Color.pbTextFgndYellow
     private let strokeWidth = 2.0
@@ -15,7 +15,7 @@ struct CreditsScreenView: View {
     var body: some View {
         ScrollView {
             VStack {
-                Text("Credits")
+                Text("Asset Credits")
                     .font(.title2)
                     .italic()
                     .foregroundColor(.pbTextFgndYellow)
@@ -23,8 +23,6 @@ struct CreditsScreenView: View {
                     aidensCredit()
                         .frame(minHeight: 100)
                         .padding(.bottom)
-                    openDataCredit()
-                        .frame(minHeight: 200)
                     Spacer()
                 }
                 .padding()
@@ -52,37 +50,12 @@ struct CreditsScreenView: View {
             }
         }
     }
-    
-    private func theURL() -> some View {
-        Text("The URL")
-            .font(.body)
-            .onTapGesture {
-                print("tapped")
-            }
-    }
-    private func openDataCredit() -> some View {
-        VStack {
-            ZStack {
-                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    .stroke(lineWidth: strokeWidth)
-                    .fill(strokeColor)
-                    .opacity(strokeOpacity)
-                VStack(alignment: .leading){
-                    Text("This App uses the City of Pittsburgh Bridges Dataset from the [Western Pennsylvania Regional Data Center](http://www.wprdc.org) for bridge data including descriptions, gps coordinates and photos. This is one of over 300 available Open Data Datasets")
-                        .font(.body)
-                        .multilineTextAlignment(.leading)
-                    
-                }
-                .padding()
-            }
-        }
-    }
 }
 
 struct CreditsScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        CreditsScreenView()
-        CreditsScreenView()
+        AppIconCreditsScreen()
+        AppIconCreditsScreen()
             .preferredColorScheme(.dark)
     }
 }

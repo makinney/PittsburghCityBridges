@@ -15,7 +15,7 @@ struct AppTextCopy {
     }
     
     static let directionDisclaimerAgreement = """
-App uses publically available external data that may change at any time. No representation is made or warranty given as to data content, route practicability, efficiency, or map accuracy.
+App uses publicly available external data that may change at any time. No representation is made or warranty given as to data content, route practicability, efficiency, or map accuracy.
 
 App maker assumes no legal liability or responsibility for any loss, damage, injury, or delay associated with the use of this product. User assumes all risk of use.
 """
