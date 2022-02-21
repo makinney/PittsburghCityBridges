@@ -14,6 +14,7 @@ struct BridgesListsView: View {
     @AppStorage("bridgesListsView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
     @AppStorage("bridgesListsView.showFavorites") private var showFavorites = false
     @Namespace private var topID
+    @State private var searchText = ""
     private var bridgeListViewModel: BridgeListViewModel
     let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgesListsView")
     
@@ -26,7 +27,9 @@ struct BridgesListsView: View {
             VStack(spacing: 0) {
                 TitleHeader(title: pageTitleText(bridgeInfoGrouping))
                 HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping, showFavorites: $showFavorites)
-                let sections = bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping, favorites: showFavorites ? favorites : nil)
+                let sections = bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping,
+                                                            favorites: showFavorites ? favorites : nil,
+                                                            searchText: searchText)
                 if !sections.isEmpty {
                     ScrollViewReader { scrollViewReaderProxy in
                         ScrollView {

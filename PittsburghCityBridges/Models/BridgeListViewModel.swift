@@ -25,25 +25,29 @@ class BridgeListViewModel {
         case neighborhood
         case year
     }
+    
     private var nameSectionCache = [Section]()
     private var neighborhoodSectionCache = [Section]()
     private var yearSectionCache = [Section]()
-
+    
     init(_ bridgeStore: BridgeStore) {
         logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
         self.bridgeStore = bridgeStore
         clearCacheOnModelChanges()
     }
     
-    @MainActor func sections(groupedBy: BridgeInfoGrouping, favorites: Favorites?) -> [Section] {
+    @MainActor func sections(groupedBy: BridgeInfoGrouping, favorites: Favorites?, searchText: String? = nil) -> [Section] {
         var sections = sections(groupedBy: groupedBy)
         if let favorites = favorites {
-             sections = filter(sections: sections, favorites: favorites)
+            sections = filterFavorites(sections: sections, favorites: favorites)
+        }
+        if let searchText = searchText, !searchText.isEmpty {
+            sections = search(sections, for: searchText, in: groupedBy)
         }
         return sections
     }
     
-    @MainActor func filter(sections: [Section], favorites: Favorites) -> [Section] {
+    private func filterFavorites(sections: [Section], favorites: Favorites) -> [Section] {
         var filteredSections = [Section]()
         sections.forEach { section in
             let filterModels = section.bridgeModels.filter { bridgeModel in
@@ -57,15 +61,36 @@ class BridgeListViewModel {
         return filteredSections
     }
     
-   
-    @MainActor
-    func sections(groupedBy: BridgeInfoGrouping) -> [Section] {
+    private func search(_ sections: [Section], for searchText: String, in groupedBy: BridgeInfoGrouping) -> [Section] {
+        var foundSections = [Section]()
+        sections.forEach { section in
+            let foundModels = section.bridgeModels.filter { bridgeModel in
+                var searchField = ""
+                switch groupedBy {
+                case .name:
+                    searchField = bridgeModel.name
+                case .neighborhood:
+                    searchField = bridgeModel.startNeighborhood
+                case .year:
+                    searchField = bridgeModel.yearBuilt
+                }
+                return  searchField.localizedCaseInsensitiveContains(searchText)
+            }
+            if !foundModels.isEmpty {
+                let foundSection = Section(id: section.id, sectionName: section.sectionName, bridgeModels: foundModels, pbColorPalate: section.pbColorPalate)
+                foundSections.append(foundSection)
+            }
+        }
+        return foundSections
+    }
+    
+    private func sections(groupedBy: BridgeInfoGrouping) -> [Section] {
         switch groupedBy {
         case .name:
             nameSectionCache = nameSectionCache.isEmpty ? sectionByName() : nameSectionCache
             return nameSectionCache
         case .neighborhood:
-            neighborhoodSectionCache = neighborhoodSectionCache.isEmpty ? sectionByNeighborhood() : neighborhoodSectionCache
+            neighborhoodSectionCache = neighborhoodSectionCache.isEmpty ? sectionByName() : neighborhoodSectionCache
             return neighborhoodSectionCache
         case .year:
             yearSectionCache = yearSectionCache.isEmpty ? sectionByYear() : yearSectionCache
@@ -133,7 +158,7 @@ class BridgeListViewModel {
         }
         return sections
     }
-
+    
     @MainActor
     func sectionByYear() -> [Section] {
         var sections = [Section]()
