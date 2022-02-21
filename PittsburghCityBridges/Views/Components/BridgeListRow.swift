@@ -35,26 +35,13 @@ struct BridgeListRow: View {
     
     var body: some View {
         HStack {
-//            ZStack {
-//                Image(uiImage: bridgeImage )
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//                    .cornerRadius(imageCornerRadius)
-//                    .overlay(
-//                        RoundedRectangle(cornerRadius: imageCornerRadius)
-//                            .stroke(Color.secondary, lineWidth: imageStrokeWidth)
-//                    )
-//                BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
-//                    .opacity(imageLoaded ? 0.0 : 1.0)
-//            }
-//            .frame(width: imageFrameSize.width, height: imageFrameSize.height)
             VStack(alignment: .leading) {
                 Spacer()
                 Text(bridgeModel.name)
                     .font(.headline)
                 Text("\(bridgeModel.startNeighborhood)")
                     .font(.body)
-                Text("Built: \(bridgeModel.yearBuilt)")
+                Text("Year Built: \(bridgeModel.yearBuilt)")
                     .font(.body)
                 Spacer()
             }
@@ -67,19 +54,6 @@ struct BridgeListRow: View {
                 Spacer()
             }
         }
-  //      .background(Color(UIColor.listTextBkgndColor))
-//        .onAppear {
-//            Task {
-//                do {
-//                    if let imageURL = bridgeModel.imageURL,
-//                       imageLoaded == false,
-//                       let image = await bridgeImageSystem.getThumbnailImage(url:imageURL, desiredThumbnailWidth: thumbNailWidth) {
-//                        bridgeImage = image
-//                        imageLoaded = true
-//                    }
-//                }
-//            }
-//        }
     }
 }
 
