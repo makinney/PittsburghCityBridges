@@ -90,7 +90,7 @@ class BridgeListViewModel {
             nameSectionCache = nameSectionCache.isEmpty ? sectionByName() : nameSectionCache
             return nameSectionCache
         case .neighborhood:
-            neighborhoodSectionCache = neighborhoodSectionCache.isEmpty ? sectionByName() : neighborhoodSectionCache
+            neighborhoodSectionCache = neighborhoodSectionCache.isEmpty ? sectionByNeighborhood() : neighborhoodSectionCache
             return neighborhoodSectionCache
         case .year:
             yearSectionCache = yearSectionCache.isEmpty ? sectionByYear() : yearSectionCache
