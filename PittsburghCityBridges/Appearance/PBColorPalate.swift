@@ -10,7 +10,7 @@ import SwiftUI
 
 struct PBColorPalate {
     var textFgnd: Color = Color(uiColor: UIColor.label)
-    var textBgnd: Color = Color(UIColor.secondarySystemBackground)
+    var textBgnd: Color = .pbTitleTextBgnd
     var titleTextFgnd: Color = .pbTitleTextFgnd
     var titleTextBgnd: Color = .pbTitleTextBgnd
 }

@@ -18,7 +18,7 @@ extension Color {
     static let pbTextFgndConcrete = Color(light: Asset.bridgeBlackA, dark: Asset.bridgeConcreteA)
     static let pbTextBgndConcrete = Color(light: Asset.bridgeConcreteA, dark: Asset.bridgeBlackA)
     static let pbTitleTextFgnd =  Color(light: UIColor.label , dark: Asset.bridgeYellowA)
-    static let pbTitleTextBgnd =  Color(light: UIColor.secondarySystemBackground , dark: Asset.bridgeBlackA)
+    static let pbTitleTextBgnd =  Color(light: UIColor.white , dark: Asset.bridgeBlackA)
     static let steelerBlack = Color(uiColor: Asset.bridgeBlackA)
     static let creditscreenBgnd = Color(light: UIColor.secondarySystemBackground , dark: Asset.bridgeBlackA)
 }
