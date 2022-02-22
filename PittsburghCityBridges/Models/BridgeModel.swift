@@ -79,7 +79,7 @@ extension BridgeModel {
     func builtHistory() -> String {
         var history = ""
         if !yearBuilt.isEmpty {
-            history = "Built: \(yearBuilt) "
+            history = "Year Built: \(yearBuilt) "
         }
         if !yearRehab.isEmpty {
             history += "\nRehabbed: \(yearRehab)"

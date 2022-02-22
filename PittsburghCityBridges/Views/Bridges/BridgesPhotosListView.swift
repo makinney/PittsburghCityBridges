@@ -14,6 +14,7 @@ struct BridgesPhotosListView: View {
     @AppStorage("bridgesPhotoListView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
     @AppStorage("bridgesPhotoListView.showFavorites") private var showFavorites = false
     @Namespace private var topID
+    @State private var searchText = ""
     private var bridgeListViewModel: BridgeListViewModel
     let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgesPhotosListView")
     
@@ -26,7 +27,11 @@ struct BridgesPhotosListView: View {
             VStack(spacing: 0) {
                 TitleHeader(title: pageTitleText(bridgeInfoGrouping))
                 HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping, showFavorites: $showFavorites)
-                let sections = bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping, favorites: showFavorites ? favorites : nil)
+                SearchFieldView(searchText: $searchText, prompt: searchPrompt(bridgeInfoGrouping))
+                    .padding(.leading)
+                let sections = bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping,
+                                                            favorites: showFavorites ? favorites : nil,
+                                                            searchText: searchText)
                 if !sections.isEmpty {
                     ScrollViewReader { scrollViewReaderProxy in
                         ScrollView {
@@ -90,6 +95,19 @@ struct BridgesPhotosListView: View {
             title += " Year Bridge Built"
         }
         return title
+    }
+    
+    private func searchPrompt(_ bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) -> String {
+        var prompt = "Search by"
+        switch bridgeInfoGrouping {
+        case .name:
+            prompt += " Name"
+        case .neighborhood:
+            prompt += " Neighborhood"
+        case .year:
+            prompt += " Year Built"
+        }
+        return prompt
     }
     
     @ViewBuilder
