@@ -171,9 +171,9 @@
 				2417C3CA279B456F005DF78C /* DirectionsDisclaimerAgreement.swift */,
 				24580209278776510091365B /* FavoritesButton.swift */,
 				249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */,
+				24A3386A27C3D191007502DC /* SearchFieldView.swift */,
 				2458020B27879A530091365B /* SinglePhotoView.swift */,
 				249C7D5C277F609600D72DA4 /* TitleHeader.swift */,
-				24A3386A27C3D191007502DC /* SearchFieldView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";

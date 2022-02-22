@@ -51,8 +51,8 @@ struct HeaderToolBar: View {
             }
         }, label: {
             Label("Sort", systemImage: "slider.vertical.3")
-                .labelStyle(.iconOnly)
-                .font(.title2)
+                .labelStyle(.titleOnly)
+                .font(.title3)
         })
     }
     
