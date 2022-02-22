@@ -13,11 +13,15 @@ struct SearchFieldView: View {
     var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")
-                .padding(.trailing, 10)
+                .padding(.trailing, 5)
+            ZStack {
             TextField("Search", text: $searchText, prompt: Text(prompt))
                 .textInputAutocapitalization(.never)
                 .disableAutocorrection(true)
-                .textFieldStyle(.roundedBorder)
+            RoundedRectangle(cornerRadius: 5.0, style: .continuous)
+                .stroke(.secondary, lineWidth: 1.0)
+                .frame(maxHeight: 30)
+            }
             Button {
                 searchText = ""
             } label: {
