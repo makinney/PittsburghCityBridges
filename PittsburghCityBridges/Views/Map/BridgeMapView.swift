@@ -43,7 +43,7 @@ struct BridgeMapView: View {
         }, label: {
             Label("Favorites", systemImage: "slider.vertical.3")
                 .labelStyle(.iconOnly)
-                .font(.title2)
+                .font(.title)
         })
     }
     
