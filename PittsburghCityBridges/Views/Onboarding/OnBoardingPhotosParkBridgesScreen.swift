@@ -15,6 +15,7 @@ struct OnBoardingPhotosParkBridgesScreen: View {
         VStack {
             Spacer()
             Text("There are park bridges")
+                .font(UIDevice.current.userInterfaceIdiom == .phone ? .subheadline : .title2)
                 .padding()
                 .foregroundColor(.pbTextFgndYellow)
                 LazyVGrid(columns: bigBridgesColumns) {

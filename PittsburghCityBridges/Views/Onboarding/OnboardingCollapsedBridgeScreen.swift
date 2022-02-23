@@ -12,6 +12,7 @@ struct OnboardingCollapsedBridgeScreen: View {
     var body: some View {
         VStack {
             Text("The City of Pittsburgh Forbes Avenue Frick Park bridge also called the Fern Hollow bridge before it collapsed in January 2022.")
+                .font(UIDevice.current.userInterfaceIdiom == .phone ? .subheadline : .title2)
                 .padding(.vertical)
             Image("frickParkBridge")
                 .resizable()
