@@ -46,6 +46,14 @@ final class BridgeStore: ObservableObject {
                 logger.error("\(#file) \(#function) \(error.localizedDescription, privacy: .public)")
             }
     }
+    
+    @MainActor
+    func refreshBridgeModels() {
+        Task {
+            await downloadBridgeModelOpenData()
+            await loadBridgeModels()
+        }
+    }
 
     @MainActor
     func preview() {

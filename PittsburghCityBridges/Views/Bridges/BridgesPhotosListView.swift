@@ -35,6 +35,9 @@ struct BridgesPhotosListView: View {
                 if !sections.isEmpty {
                     ScrollViewReader { scrollViewReaderProxy in
                         ScrollView {
+                            RefreshControlView(coordinateSpace: .named("RefreshControlView")) {
+                                bridgeStore.refreshBridgeModels()
+                            }
                             LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
                                 ForEach(sections) { bridgesSection in
                                     Section {
