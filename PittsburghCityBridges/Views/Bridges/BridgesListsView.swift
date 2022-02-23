@@ -35,6 +35,9 @@ struct BridgesListsView: View {
                 if !sections.isEmpty {
                     ScrollViewReader { scrollViewReaderProxy in
                         ScrollView {
+                            RefreshControlView(coordinateSpace: .named("RefreshControlView")) {
+                                bridgeStore.refreshBridgeModels()
+                            }
                             LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
                                 ForEach(sections) { bridgesSection in
                                     Section {
@@ -62,6 +65,7 @@ struct BridgesListsView: View {
                                 }
                             }
                         }
+                        .coordinateSpace(name: "RefreshControlView")
                         .onChange(of: showFavorites, perform: { value in
                             if value == true {
                                 scrollViewReaderProxy.scrollTo(topID)

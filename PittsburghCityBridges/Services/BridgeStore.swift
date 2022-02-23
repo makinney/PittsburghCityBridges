@@ -21,11 +21,15 @@ final class BridgeStore: ObservableObject {
     }
     
     @MainActor
-    func loadBridgeModels() {
-        Task {
+    func downloadBridgeModelOpenData() async {
+        await openDataService.downLoadBridgeModelOpenData()
+    }
+    
+    @MainActor
+    func loadBridgeModels() async {
             var freshModels = [BridgeModel]()
             do {
-                if let jsonData = await self.openDataService.getBridgeModelOpenData() {
+                if let jsonData = await self.openDataService.loadBridgeModelOpenData() {
                     let geoJSONObjects = try MKGeoJSONDecoder().decode(jsonData)
                     for object in geoJSONObjects {
                         if let feature = object as? MKGeoJSONFeature,
@@ -41,12 +45,21 @@ final class BridgeStore: ObservableObject {
             } catch let error {
                 logger.error("\(#file) \(#function) \(error.localizedDescription, privacy: .public)")
             }
-        }
     }
     
     @MainActor
+    func refreshBridgeModels() {
+        Task {
+            await downloadBridgeModelOpenData()
+            await loadBridgeModels()
+        }
+    }
+
+    @MainActor
     func preview() {
-        loadBridgeModels()
+        Task {
+            await loadBridgeModels()
+        }
     }
     
 }
