@@ -36,7 +36,10 @@ struct ContentView: View {
         }
         .environmentObject(favorites)
         .onAppear {
-            bridgeStore.loadBridgeModels()
+            Task {
+                await bridgeStore.loadBridgeModels()
+                await bridgeStore.downloadBridgeModelOpenData()
+            }
         }
     }
 }

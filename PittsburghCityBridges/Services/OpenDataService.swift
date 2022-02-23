@@ -24,19 +24,19 @@ class OpenDataService {
         self.openDataFileSystem = OpenDataFileSystem()
     }
     
-    func getBridgeModelOpenData() async -> Data? {
-        var bridgeModelData: Data?
-        bridgeModelData = await openDataFileSystem.getBridgeModedDataFromDisc(fileName: bridgeModelsFileName)
-        Task {
-            let url = await getCityBridgeOpenDataURL()
-            if let url = url {
-                if let data = await openDataFileSystem.getDataFrom(url: url) {
-                    openDataFileSystem.saveToDisk(fileName: bridgeModelsFileName, data: data)
-                    logger.info("\(#file) \(#function) updated json data file from open data server at url \(url)")
-                }
+    func loadBridgeModelOpenData() async -> Data? {
+        let bridgeModelData = await openDataFileSystem.getBridgeModedDataFromDisc(fileName: bridgeModelsFileName)
+        return bridgeModelData
+    }
+    
+    func downLoadBridgeModelOpenData() async {
+        let url = await getCityBridgeOpenDataURL()
+        if let url = url {
+            if let data = await openDataFileSystem.getDataFrom(url: url) {
+                openDataFileSystem.saveToDisk(fileName: bridgeModelsFileName, data: data)
+                logger.info("\(#file) \(#function) updated json data file from open data server at url \(url)")
             }
         }
-        return bridgeModelData
     }
     
     private func getCityBridgeOpenDataURL() async -> URL? {
