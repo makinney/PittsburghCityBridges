@@ -15,7 +15,7 @@ struct AppIconCreditsScreen: View {
     var body: some View {
         ScrollView {
             VStack {
-                Text("Asset Credits")
+                Text("App Icon")
                     .font(.title2)
                     .italic()
                     .foregroundColor(.pbTextFgndYellow)
