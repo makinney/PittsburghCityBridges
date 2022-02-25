@@ -11,7 +11,6 @@ import UIKit
 extension Color {
     static let pbTextFnd = Color(light: Asset.bridgeBlackA, dark: Asset.bridgeYellowA)
     static let pbBgnd =  Color(light: Asset.bridgeGreenA , dark: Asset.bridgeBlackA)
-    static let creditscreenBgnd = Color(light: Asset.bridgeYellowA , dark: Asset.bridgeBlackA)
 }
 
 extension UIColor {

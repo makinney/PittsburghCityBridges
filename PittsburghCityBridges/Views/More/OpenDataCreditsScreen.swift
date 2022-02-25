@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OpenDataCreditsScreen: View {
     private let cardWidth: CGFloat = 350
-    private let strokeColor = Color.pbTextFgndYellow
+    private let strokeColor = Color.pbTextFnd
     private let strokeWidth = 2.0
     private let strokeOpacity = 0.9
     var body: some View {
@@ -18,7 +18,7 @@ struct OpenDataCreditsScreen: View {
                 Text("Open Data Source")
                     .font(.title2)
                     .italic()
-                    .foregroundColor(.pbTextFgndYellow)
+                    .foregroundColor(.pbTextFnd)
                 VStack {
                     openDataCredit()
                         .frame(minHeight: 200)
@@ -27,7 +27,7 @@ struct OpenDataCreditsScreen: View {
                 .padding()
             }
         }
-        .background(Color.creditscreenBgnd)
+        .background(Color.pbBgnd)
     }
     
     private func openDataCredit() -> some View {

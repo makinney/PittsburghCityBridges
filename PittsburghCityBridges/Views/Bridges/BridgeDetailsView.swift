@@ -180,6 +180,7 @@ struct BridgeDetailsView: View {
                     .background(Color.pbBgnd)
                 }
                 .font(.body)
+                .background(Color.pbBgnd)
                 .onAppear {
                     UIScrollView.appearance().bounces = true
                     Task {

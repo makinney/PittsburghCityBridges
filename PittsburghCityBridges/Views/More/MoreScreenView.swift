@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MoreScreenView: View {
     init() {
-        UITableView.appearance().backgroundColor = UIColor(Color.pbTitleTextBgnd)
+        UITableView.appearance().backgroundColor = UIColor(Color.pbBgnd)
     }
     var body: some View {
         ZStack {
@@ -24,35 +24,28 @@ struct MoreScreenView: View {
                                 label: {
                                     Label("App Icon Credit", systemImage: "megaphone")
                                 }
-                                .listRowBackground(Color.pbTitleTextBgnd)
-                                NavigationLink {
-                                    DirectionsDisclaimerAgreement()
-                                }
-                                label: {
-                                    Label("Directions Disclaimer", systemImage: "building.columns")
-                                }
-                                .listRowBackground(Color.pbTitleTextBgnd)
+                                .listRowBackground(Color.pbBgnd)
                                 NavigationLink {
                                     OnBoardingContentView()
                                 }
                                 label: {
                                     Label("OnBoarding Screens", systemImage: "sum")
                                 }
-                                .listRowBackground(Color.pbTitleTextBgnd)
+                                .listRowBackground(Color.pbBgnd)
                                 NavigationLink {
                                     OpenDataCreditsScreen()
                                 }
                                 label: {
                                     Label("Open Data Credit", systemImage: "slider.vertical.3")
                                 }
-                                .listRowBackground(Color.pbTitleTextBgnd)
+                                .listRowBackground(Color.pbBgnd)
                             }
-                            .foregroundColor(Color.pbTitleTextFgnd)
+                            .foregroundColor(Color.pbTextFnd)
             
                         }
                         .navigationViewStyle(StackNavigationViewStyle())
                     }
-            .background(Color.pbTitleTextBgnd)
+            .background(Color.pbBgnd)
         }
         }
 }
