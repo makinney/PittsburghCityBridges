@@ -203,6 +203,7 @@ struct BridgeDetailsView: View {
                 })
             }
         }
+        .background(Color.pbBgnd)
         .animation(.default, value: bridgeImageOnly)
     }
     

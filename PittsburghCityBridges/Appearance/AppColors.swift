@@ -10,7 +10,7 @@ import UIKit
 
 extension Color {
     static let pbTextFnd = Color(light: Asset.bridgeBlackA, dark: Asset.bridgeYellowA)
-    static let pbBgnd =  Color(light: Asset.bridgeGreenA , dark: Asset.bridgeBlackA)
+    static let pbBgnd =  Color(light: Asset.bridgeYellowB , dark: Asset.bridgeBlackA)
 }
 
 extension UIColor {
@@ -30,7 +30,9 @@ private struct Asset {
     static var bridgeBrownA = UIColor(named: "bridgeBrownA") ?? UIColor.brown
     static var bridgeBrownB = UIColor(named: "bridgeBrownB") ?? UIColor.brown
     static var bridgeBrownC = UIColor(named: "bridgeBrownC") ?? UIColor.brown
-    static var bridgeConcreteA = UIColor(named: "bridgeConcreteA") ?? UIColor.gray
+    static var launchScreenText = UIColor(named: "launchScreenText") ?? UIColor.label
+    static var launchScreenBackground = UIColor(named: "launchScreenBackground") ?? UIColor.label
+
 }
 
 

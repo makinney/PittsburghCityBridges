@@ -83,7 +83,7 @@ struct BridgesPhotosListView: View {
                 }
             }
             .navigationBarHidden(true)
-            .background(Color.pbTextFnd)
+            .background(Color.pbBgnd)
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
