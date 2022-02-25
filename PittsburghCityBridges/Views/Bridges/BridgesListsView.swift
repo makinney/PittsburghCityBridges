@@ -42,7 +42,7 @@ struct BridgesListsView: View {
                                 ForEach(sections) { bridgesSection in
                                     Section {
                                         ForEach(bridgesSection.bridgeModels) { bridgeModel in
-                                            NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate, favorites: favorites)) {
+                                            NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, favorites: favorites)) {
                                                 BridgeListRow(bridgeModel: bridgeModel)
                                                     .padding([.leading, .trailing])
                                             }
@@ -52,7 +52,7 @@ struct BridgesListsView: View {
                                     } header: {
                                         HStack {
                                             sectionLabel(bridgesSection.sectionName, bridgeInfoGrouping)
-                                                .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
+                                                .foregroundColor(Color.pbTextFnd)
                                                 .font(.body)
                                                 .padding([.leading])
                                                 .padding([.top], 10)
@@ -60,8 +60,8 @@ struct BridgesListsView: View {
                                             Spacer()
                                         }
                                     }
-                                    .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
-                                    .background(bridgesSection.pbColorPalate.textBgnd)
+                                    .foregroundColor(Color.pbTextFnd)
+                                    .background(Color.pbBgnd)
                                 }
                             }
                         }
@@ -81,6 +81,7 @@ struct BridgesListsView: View {
                     }
                 }
             }
+            .background(Color.pbBgnd)
             .navigationBarHidden(true)
         }
         .navigationViewStyle(StackNavigationViewStyle())

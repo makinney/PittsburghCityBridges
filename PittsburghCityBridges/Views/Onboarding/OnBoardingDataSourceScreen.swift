@@ -15,9 +15,10 @@ struct OnBoardingDataSourceScreen: View {
             .padding()
             Spacer()
         }
-        .font(.subheadline)
+        .frame(maxWidth: UIDevice.current.userInterfaceIdiom == .phone ? 350 : 500)
+        .font(UIDevice.current.userInterfaceIdiom == .phone ? .subheadline : .title2)
         .multilineTextAlignment(.leading)
-        .foregroundColor(.pbTextFgndYellow)
+        .foregroundColor(.pbTextFnd)
     }
 }
 

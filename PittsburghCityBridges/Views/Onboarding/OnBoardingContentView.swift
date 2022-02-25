@@ -21,6 +21,7 @@ struct OnBoardingContentView: View {
             OnBoardingBrowseScreen()
             OnBoardingCloseScreen(onBoardingComplete: $done)
         }
+        .background(Color.pbBgnd)
         .onChange(of: done, perform: { newValue in
             onBoardingComplete = done
         })

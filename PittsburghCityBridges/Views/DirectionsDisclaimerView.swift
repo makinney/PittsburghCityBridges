@@ -20,7 +20,7 @@ struct DirectionsDisclaimerView: View {
         VStack() {
             Text("Pittsburgh City Bridges")
                 .font(.headline)
-                .foregroundColor(.pbTitleTextFgnd)
+                .foregroundColor(.pbTextFnd)
             GroupBox(label:
                         Label("Directions Disclaimer", systemImage: "building.columns")
             ) {

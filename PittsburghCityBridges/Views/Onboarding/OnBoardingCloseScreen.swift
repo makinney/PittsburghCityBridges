@@ -14,7 +14,7 @@ struct OnBoardingCloseScreen: View {
         VStack(alignment: .center) {
             Spacer()
             Text(AppTextCopy.onBoardingCloseScreen)
-                .font(.headline)
+                .font(UIDevice.current.userInterfaceIdiom == .phone ? .subheadline : .title2)
                 .padding()
             if !onBoardingComplete {
                 HStack {
@@ -34,7 +34,7 @@ struct OnBoardingCloseScreen: View {
         }
         .font(.body)
         .multilineTextAlignment(.leading)
-        .foregroundColor(.pbTextFgndYellow)
+        .foregroundColor(.pbTextFnd)
     }
 }
 

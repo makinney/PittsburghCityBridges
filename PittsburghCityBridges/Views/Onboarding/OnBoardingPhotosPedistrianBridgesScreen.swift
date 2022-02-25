@@ -15,8 +15,9 @@ struct OnBoardingPhotosPedestrianBridgesScreen: View {
         VStack {
             Spacer()
             Text("There are pedestrian bridges")
+                .font(UIDevice.current.userInterfaceIdiom == .phone ? .subheadline : .title2)
                 .padding()
-                .foregroundColor(.pbTextFgndYellow)
+                .foregroundColor(.pbTextFnd)
                 LazyVGrid(columns: bigBridgesColumns) {
                     ForEach(pedestrianBridges, id: \.self) { pedestrianBridge in
                         Image(pedestrianBridge)
@@ -26,7 +27,7 @@ struct OnBoardingPhotosPedestrianBridgesScreen: View {
                                    .cornerRadius(imageCornerRadius)
                                    .overlay(
                                        RoundedRectangle(cornerRadius: imageCornerRadius)
-                                        .stroke(Color.pbTextFgndYellow, lineWidth: 2)
+                                        .stroke(Color.pbTextFnd, lineWidth: 2)
                                        )
                     }
                 }

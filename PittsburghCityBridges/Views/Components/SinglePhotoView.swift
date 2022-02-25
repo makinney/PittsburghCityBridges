@@ -11,13 +11,11 @@ struct SinglePhotoView: View {
     @State var imageLoaded = false
     private var bridgeModel: BridgeModel
     private var bridgeImageSystem: BridgeImageSystem
-    private let pbColorPalate: PBColorPalate
     private let imageCornerRadius: CGFloat = 10
     private let imageURL: URL
 
-    init(imageURL: URL, bridgeModel: BridgeModel, pbColorPalate: PBColorPalate) {
+    init(imageURL: URL, bridgeModel: BridgeModel) {
         self.bridgeModel = bridgeModel
-        self.pbColorPalate = pbColorPalate
         self.imageURL = imageURL
         bridgeImageSystem = BridgeImageSystem()
     }
@@ -27,7 +25,7 @@ struct SinglePhotoView: View {
             HStack {
                 Text("\(bridgeModel.name)")
                     .font(.headline)
-                    .foregroundColor(pbColorPalate.textFgnd)
+                    .foregroundColor(Color.pbTextFnd)
                     .opacity(imageLoaded ? 1.0 : 0.0)
                 Spacer()
             }
@@ -57,7 +55,7 @@ struct SinglePhotoView: View {
         .padding([.horizontal])
         .frame(width: UIScreen.main.bounds.size.width)
         .frame(height: UIScreen.main.bounds.size.width * 0.75)  // need to fix size since do not know image size
-        .background(pbColorPalate.textBgnd)
+        .background(Color.pbBgnd)
         .onAppear {
             Task {
                 do {

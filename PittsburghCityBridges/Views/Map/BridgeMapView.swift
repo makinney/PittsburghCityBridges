@@ -11,7 +11,6 @@ struct BridgeMapView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @EnvironmentObject var favorites: Favorites
     @AppStorage("bridgeMap.showFavorites") private var showFavorites = false
-    private let pbColorPalate = PBColorPalate()
     
     var body: some View {
         VStack(spacing: 0){
@@ -20,14 +19,14 @@ struct BridgeMapView: View {
                 favoritesMenu()
                 Spacer()
                 Text(showFavorites ? "Favorites" : "")
-                    .foregroundColor(pbColorPalate.titleTextFgnd)
+                    .foregroundColor(Color.pbTextFnd)
                     .padding([.trailing])
                     .animation(.easeInOut, value: showFavorites)
             }
             .padding([.leading])
             .padding([.top], 5)
             .padding([.bottom], 10)
-            .background(Color.pbTitleTextBgnd)
+            .background(Color.pbBgnd)
             let bridgeModels = filtered(bridgeStore.bridgeModels, favorites, showFavorites)
             BridgeMapUIView(region: MapViewModel().multipleBridgesRegion, bridgeModels: bridgeModels, showsBridgeImage: true)
         }
@@ -43,7 +42,7 @@ struct BridgeMapView: View {
         }, label: {
             Label("Favorites", systemImage: "slider.vertical.3")
                 .labelStyle(.iconOnly)
-                .font(.title2)
+                .font(.title)
         })
     }
     

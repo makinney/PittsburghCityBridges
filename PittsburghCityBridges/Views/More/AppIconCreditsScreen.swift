@@ -9,16 +9,16 @@ import SwiftUI
 
 struct AppIconCreditsScreen: View {
     private let cardWidth: CGFloat = 350
-    private let strokeColor = Color.pbTextFgndYellow
+    private let strokeColor = Color.pbTextFnd
     private let strokeWidth = 2.0
     private let strokeOpacity = 0.9
     var body: some View {
         ScrollView {
             VStack {
-                Text("Asset Credits")
+                Text("App Icon")
                     .font(.title2)
                     .italic()
-                    .foregroundColor(.pbTextFgndYellow)
+                    .foregroundColor(.pbTextFnd)
                 VStack {
                     aidensCredit()
                         .frame(minHeight: 100)
@@ -28,7 +28,7 @@ struct AppIconCreditsScreen: View {
                 .padding()
             }
         }
-        .background(Color.creditscreenBgnd)
+        .background(Color.pbBgnd)
     }
     
     private func aidensCredit() -> some View {
@@ -45,7 +45,7 @@ struct AppIconCreditsScreen: View {
                     .cornerRadius(10)
                     .padding(.vertical)
                     .padding([.leading], 20.0)
-                Text("Pittsburgh City Bridges App Icon created by Aidan K.")
+                Text("Pittsburgh City Bridges App Icon created by 10 year old Aidan K.")
                     .padding(.trailing)
             }
         }

@@ -29,7 +29,8 @@ struct OnBoardingBrowseScreen: View {
             Text("Photos")
             Spacer()
         }
-        .foregroundColor(.pbTextFgndYellow)
+        .font(UIDevice.current.userInterfaceIdiom == .phone ? .subheadline : .title2)
+        .foregroundColor(.pbTextFnd)
     }
 }
 

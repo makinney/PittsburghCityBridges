@@ -11,7 +11,6 @@ struct HeaderToolBar: View {
     
     @Binding var bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping
     @Binding var showFavorites: Bool
-    var pbColorPalate = PBColorPalate()
 
     var body: some View {
         HStack {
@@ -20,11 +19,11 @@ struct HeaderToolBar: View {
                 .padding([.vertical], 5)
             Spacer()
             Text(showFavorites ? "Favorites" : "")
-                .foregroundColor(pbColorPalate.titleTextFgnd)
+                .foregroundColor(Color.pbTextFnd)
                 .padding([.trailing])
                 .animation(.easeInOut, value: showFavorites)
         }
-        .background(pbColorPalate.titleTextBgnd)
+        .background(Color.pbBgnd)
     }
     
     private func sortMenu() -> some View {
