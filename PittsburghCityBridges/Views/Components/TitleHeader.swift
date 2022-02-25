@@ -19,7 +19,7 @@ struct TitleHeader: View {
                 .italic()
             Spacer()
         }
-        .background(Color.pbTitleTextBgnd)
+        .background(Color.pbBgnd)
     }
 }
 

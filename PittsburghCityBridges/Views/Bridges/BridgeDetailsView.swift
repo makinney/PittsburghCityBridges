@@ -103,7 +103,7 @@ struct BridgeDetailsView: View {
                         Spacer()
                     }
                 }
-                .background(Color.pbTitleTextBgnd)
+                .background(Color.pbBgnd)
                 .onAppear {
                     UIScrollView.appearance().bounces = false
                 }
@@ -177,7 +177,7 @@ struct BridgeDetailsView: View {
                                 .padding(.trailing, 10)
                         }
                     }
-                    .background(Color.pbTitleTextBgnd)
+                    .background(Color.pbBgnd)
                 }
                 .font(.body)
                 .onAppear {
@@ -217,7 +217,7 @@ struct BridgeDetailsView: View {
                             Label("Directions", systemImage: "arrow.triangle.turn.up.right.circle.fill")
                                 .padding(4)
                                 .foregroundColor(.accentColor)
-                                .background(Color.pbTitleTextBgnd)
+                                .background(Color.pbBgnd)
                         }
                         .overlay(
                             RoundedRectangle(cornerRadius: PCBButton.cornerRadius)

@@ -61,7 +61,7 @@ struct BridgesListsView: View {
                                         }
                                     }
                                     .foregroundColor(Color.pbTextFnd)
-                                    .background(Color.pbTitleTextBgnd)
+                                    .background(Color.pbBgnd)
                                 }
                             }
                         }
@@ -81,7 +81,7 @@ struct BridgesListsView: View {
                     }
                 }
             }
-            .background(Color.pbTitleTextBgnd)
+            .background(Color.pbBgnd)
             .navigationBarHidden(true)
         }
         .navigationViewStyle(StackNavigationViewStyle())

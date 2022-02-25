@@ -23,7 +23,7 @@ struct HeaderToolBar: View {
                 .padding([.trailing])
                 .animation(.easeInOut, value: showFavorites)
         }
-        .background(Color.pbTitleTextBgnd)
+        .background(Color.pbBgnd)
     }
     
     private func sortMenu() -> some View {

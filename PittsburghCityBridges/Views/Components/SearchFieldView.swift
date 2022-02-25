@@ -36,7 +36,7 @@ struct SearchFieldView: View {
             }
             .padding(.trailing)
         }
-        .background(Color.pbTitleTextBgnd)
+        .background(Color.pbBgnd)
     }
 }
 

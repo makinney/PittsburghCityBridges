@@ -63,7 +63,7 @@ struct BridgesPhotosListView: View {
                                         }
                                     }
                                     .foregroundColor(Color.pbTextFnd)
-                                    .background(Color.pbTitleTextBgnd)
+                                    .background(Color.pbBgnd)
                                 }
                             }
                         }

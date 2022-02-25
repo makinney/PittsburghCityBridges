@@ -55,7 +55,7 @@ struct SinglePhotoView: View {
         .padding([.horizontal])
         .frame(width: UIScreen.main.bounds.size.width)
         .frame(height: UIScreen.main.bounds.size.width * 0.75)  // need to fix size since do not know image size
-        .background(Color.pbTitleTextBgnd)
+        .background(Color.pbBgnd)
         .onAppear {
             Task {
                 do {
