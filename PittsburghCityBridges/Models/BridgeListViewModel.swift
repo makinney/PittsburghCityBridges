@@ -18,7 +18,6 @@ class BridgeListViewModel {
         var id = UUID()
         var sectionName = ""
         var bridgeModels: [BridgeModel]
-        var pbColorPalate = PBColorPalate()
     }
     enum BridgeInfoGrouping: Int {
         case name
@@ -54,7 +53,7 @@ class BridgeListViewModel {
                 favorites.contains(element: bridgeModel.name)
             }
             if !filterModels.isEmpty {
-                let filteredSection = Section(id: section.id, sectionName: section.sectionName, bridgeModels: filterModels, pbColorPalate: section.pbColorPalate)
+                let filteredSection = Section(id: section.id, sectionName: section.sectionName, bridgeModels: filterModels)
                 filteredSections.append(filteredSection)
             }
         }
@@ -77,7 +76,7 @@ class BridgeListViewModel {
                 return  searchField.localizedCaseInsensitiveContains(searchText)
             }
             if !foundModels.isEmpty {
-                let foundSection = Section(id: section.id, sectionName: section.sectionName, bridgeModels: foundModels, pbColorPalate: section.pbColorPalate)
+                let foundSection = Section(id: section.id, sectionName: section.sectionName, bridgeModels: foundModels)
                 foundSections.append(foundSection)
             }
         }
@@ -102,7 +101,6 @@ class BridgeListViewModel {
     func sectionByName() -> [Section] {
         var sections = [Section]()
         var bridgeModelsSortedByName = bridgeStore.sortedByName()
-        let pbColorPalateSource = PBColorPalateSource()
         var run = true
         while run {
             if let bridgeModel = bridgeModelsSortedByName.first,
@@ -116,8 +114,7 @@ class BridgeListViewModel {
                 }
                 if !bridgeModelsSlice.isEmpty {
                     sections.append(Section(sectionName: firstLetterInFirstModel,
-                                            bridgeModels: Array(bridgeModelsSlice),
-                                            pbColorPalate: pbColorPalateSource.next()))
+                                            bridgeModels: Array(bridgeModelsSlice)))
                     bridgeModelsSortedByName.removeFirst(bridgeModelsSlice.count)
                 }
             } else {
@@ -138,7 +135,6 @@ class BridgeListViewModel {
     func sectionByNeighborhood() -> [Section] {
         var sections = [Section]()
         var sortedByNeighboorhood = bridgeStore.sortedByNeighborhoodAndName()
-        let pbColorPalateSource = PBColorPalateSource()
         var run = true
         while run {
             let neighborhood = sortedByNeighboorhood.first?.startNeighborhood
@@ -148,8 +144,7 @@ class BridgeListViewModel {
                 }
                 if !bridgeModelSlice.isEmpty {
                     sections.append(Section(sectionName: neighborhood,
-                                            bridgeModels: Array(bridgeModelSlice),
-                                            pbColorPalate: pbColorPalateSource.next()))
+                                            bridgeModels: Array(bridgeModelSlice)))
                     sortedByNeighboorhood.removeFirst(bridgeModelSlice.count)
                 }
             } else { // collection is empty
@@ -163,7 +158,6 @@ class BridgeListViewModel {
     func sectionByYear() -> [Section] {
         var sections = [Section]()
         var sortedByYear = bridgeStore.sortedByYearAndName()
-        let pbColorPalateSource = PBColorPalateSource()
         var run = true
         while run {
             let yearBuilt = sortedByYear.first?.yearBuilt
@@ -172,9 +166,7 @@ class BridgeListViewModel {
                     bridgeModel.yearBuilt == yearBuilt
                 }
                 if !bridgeModelSlice.isEmpty {
-                    sections.append(Section(sectionName: yearBuilt,
-                                            bridgeModels: Array(bridgeModelSlice),
-                                            pbColorPalate: pbColorPalateSource.next()))
+                    sections.append(Section(sectionName: yearBuilt, bridgeModels:Array(bridgeModelSlice)))
                     sortedByYear.removeFirst(bridgeModelSlice.count)
                 }
             } else { // collection is empty

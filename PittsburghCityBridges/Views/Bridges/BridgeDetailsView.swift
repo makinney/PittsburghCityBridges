@@ -19,7 +19,6 @@ struct BridgeDetailsView: View {
     @State private var showDisclaimerSheet = false
     @Namespace private var bridgeAnimations
     
-    var pbColorPalate = PBColorPalate()
     var bridgeModel: BridgeModel
     private var bridgeImageSystem: BridgeImageSystem
     private let imageCornerRadius: CGFloat = 10
@@ -31,9 +30,8 @@ struct BridgeDetailsView: View {
         CGSize(width: offset.width + by.width, height: offset.height + by.height)
     }
     
-    init(bridgeModel: BridgeModel, pbColorPalate: PBColorPalate, favorites: Favorites) {
+    init(bridgeModel: BridgeModel, favorites: Favorites) {
         self.bridgeModel = bridgeModel
-        self.pbColorPalate = pbColorPalate
         bridgeImageSystem = BridgeImageSystem()
         self.favorites = favorites
         self.userInterfaceIdiom = UIDevice.current.userInterfaceIdiom
@@ -105,7 +103,7 @@ struct BridgeDetailsView: View {
                         Spacer()
                     }
                 }
-                .background(pbColorPalate.textBgnd)
+                .background(Color.pbTitleTextBgnd)
                 .onAppear {
                     UIScrollView.appearance().bounces = false
                 }
@@ -170,7 +168,7 @@ struct BridgeDetailsView: View {
                                     )
                             }
                         }
-                        .foregroundColor(pbColorPalate.textFgnd)
+                        .foregroundColor(Color.pbTitleTextFgnd)
                     }
                     .padding([.leading, .trailing])
                     .toolbar {
@@ -179,7 +177,7 @@ struct BridgeDetailsView: View {
                                 .padding(.trailing, 10)
                         }
                     }
-                    .background(pbColorPalate.textBgnd)
+                    .background(Color.pbTitleTextBgnd)
                 }
                 .font(.body)
                 .onAppear {
@@ -238,9 +236,9 @@ struct BridgeDetailsView: View {
 struct BridgeDetailsView_Previews: PreviewProvider {
     @ObservedObject static var favorites = Favorites()
     static var previews: some View {
-        BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate(), favorites: favorites)
+        BridgeDetailsView(bridgeModel: BridgeModel.preview, favorites: favorites)
                  .preferredColorScheme(.dark)
-        //        BridgeDetailsView(bridgeModel: BridgeModel.preview, pbColorPalate: PBColorPalate())
+        //        BridgeDetailsView(bridgeModel: BridgeModel.preview)
         //            .environmentObject(FavoriteBridges())
         
     }

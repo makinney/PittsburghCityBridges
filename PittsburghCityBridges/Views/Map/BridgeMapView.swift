@@ -11,7 +11,6 @@ struct BridgeMapView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @EnvironmentObject var favorites: Favorites
     @AppStorage("bridgeMap.showFavorites") private var showFavorites = false
-    private let pbColorPalate = PBColorPalate()
     
     var body: some View {
         VStack(spacing: 0){
@@ -20,7 +19,7 @@ struct BridgeMapView: View {
                 favoritesMenu()
                 Spacer()
                 Text(showFavorites ? "Favorites" : "")
-                    .foregroundColor(pbColorPalate.titleTextFgnd)
+                    .foregroundColor(Color.pbTitleTextFgnd)
                     .padding([.trailing])
                     .animation(.easeInOut, value: showFavorites)
             }

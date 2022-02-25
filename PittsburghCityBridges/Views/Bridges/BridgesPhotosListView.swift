@@ -42,9 +42,9 @@ struct BridgesPhotosListView: View {
                                 ForEach(sections) { bridgesSection in
                                     Section {
                                         ForEach(bridgesSection.bridgeModels) { bridgeModel in
-                                            NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate, favorites: favorites)) {
+                                            NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, favorites: favorites)) {
                                                 if let imageURL = bridgeModel.imageURL {
-                                                    SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel, pbColorPalate: bridgesSection.pbColorPalate)
+                                                    SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel)
                                                 }
                                             }
                                             Divider()
@@ -54,7 +54,7 @@ struct BridgesPhotosListView: View {
                                     } header: {
                                         HStack {
                                             sectionLabel(bridgesSection.sectionName, bridgeInfoGrouping)
-                                                .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
+                                                .foregroundColor(Color.pbTitleTextFgnd)
                                                 .font(.body)
                                                 .padding([.leading])
                                                 .padding([.top], 10)
@@ -62,8 +62,8 @@ struct BridgesPhotosListView: View {
                                             Spacer()
                                         }
                                     }
-                                    .foregroundColor(bridgesSection.pbColorPalate.textFgnd)
-                                    .background(bridgesSection.pbColorPalate.textBgnd)
+                                    .foregroundColor(Color.pbTitleTextFgnd)
+                                    .background(Color.pbTitleTextBgnd)
                                 }
                             }
                         }
@@ -83,6 +83,7 @@ struct BridgesPhotosListView: View {
                 }
             }
             .navigationBarHidden(true)
+            .background(Color.pbTitleTextFgnd)
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
