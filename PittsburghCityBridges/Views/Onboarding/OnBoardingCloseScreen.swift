@@ -34,7 +34,7 @@ struct OnBoardingCloseScreen: View {
         }
         .font(.body)
         .multilineTextAlignment(.leading)
-        .foregroundColor(.pbTextFgndYellow)
+        .foregroundColor(.pbTextFnd)
     }
 }
 

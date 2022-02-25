@@ -52,7 +52,7 @@ struct BridgesListsView: View {
                                     } header: {
                                         HStack {
                                             sectionLabel(bridgesSection.sectionName, bridgeInfoGrouping)
-                                                .foregroundColor(Color.pbTitleTextFgnd)
+                                                .foregroundColor(Color.pbTextFnd)
                                                 .font(.body)
                                                 .padding([.leading])
                                                 .padding([.top], 10)
@@ -60,7 +60,7 @@ struct BridgesListsView: View {
                                             Spacer()
                                         }
                                     }
-                                    .foregroundColor(Color.pbTitleTextFgnd)
+                                    .foregroundColor(Color.pbTextFnd)
                                     .background(Color.pbTitleTextBgnd)
                                 }
                             }

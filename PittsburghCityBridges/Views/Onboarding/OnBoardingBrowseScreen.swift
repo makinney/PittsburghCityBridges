@@ -30,7 +30,7 @@ struct OnBoardingBrowseScreen: View {
             Spacer()
         }
         .font(UIDevice.current.userInterfaceIdiom == .phone ? .subheadline : .title2)
-        .foregroundColor(.pbTextFgndYellow)
+        .foregroundColor(.pbTextFnd)
     }
 }
 

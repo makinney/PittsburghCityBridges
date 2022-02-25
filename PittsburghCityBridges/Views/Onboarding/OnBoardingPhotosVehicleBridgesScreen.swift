@@ -18,7 +18,7 @@ struct OnBoardingPhotosVehicleBridgesScreen: View {
             Text("There are vehicle bridges")
                 .font(UIDevice.current.userInterfaceIdiom == .phone ? .subheadline : .title2)
                 .padding()
-                .foregroundColor(.pbTextFgndYellow)
+                .foregroundColor(.pbTextFnd)
                 LazyVGrid(columns: bigBridgesColumns) {
                     ForEach(vehicleBridges, id: \.self) { vehicleBridge in
                         Image(vehicleBridge)
@@ -28,7 +28,7 @@ struct OnBoardingPhotosVehicleBridgesScreen: View {
                                    .cornerRadius(imageCornerRadius)
                                    .overlay(
                                        RoundedRectangle(cornerRadius: imageCornerRadius)
-                                        .stroke(Color.pbTextFgndYellow, lineWidth: 2)
+                                        .stroke(Color.pbTextFnd, lineWidth: 2)
                                        )
                     }
                 }

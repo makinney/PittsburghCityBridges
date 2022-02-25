@@ -19,7 +19,7 @@ struct BridgeMapView: View {
                 favoritesMenu()
                 Spacer()
                 Text(showFavorites ? "Favorites" : "")
-                    .foregroundColor(Color.pbTitleTextFgnd)
+                    .foregroundColor(Color.pbTextFnd)
                     .padding([.trailing])
                     .animation(.easeInOut, value: showFavorites)
             }

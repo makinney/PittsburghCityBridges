@@ -20,10 +20,10 @@ struct OnboardingCollapsedBridgeScreen: View {
                 .clipped()
                 .cornerRadius(cornerRadius)
                 .overlay( RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(Color.pbTextFgndYellow, lineWidth: 2))
+                    .stroke(Color.pbTextFnd, lineWidth: 2))
         }
         .padding()
-        .foregroundColor(.pbTextFgndYellow)
+        .foregroundColor(.pbTextFnd)
     }
 }
 

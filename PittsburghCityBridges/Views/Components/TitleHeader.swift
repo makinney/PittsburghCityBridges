@@ -14,7 +14,7 @@ struct TitleHeader: View {
         HStack {
             Spacer()
             Text(title)
-                .foregroundColor(Color.pbTitleTextFgnd)
+                .foregroundColor(Color.pbTextFnd)
                 .font(.headline)
                 .italic()
             Spacer()

@@ -25,7 +25,7 @@ struct SinglePhotoView: View {
             HStack {
                 Text("\(bridgeModel.name)")
                     .font(.headline)
-                    .foregroundColor(Color.pbTitleTextFgnd)
+                    .foregroundColor(Color.pbTextFnd)
                     .opacity(imageLoaded ? 1.0 : 0.0)
                 Spacer()
             }

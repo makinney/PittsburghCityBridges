@@ -54,7 +54,7 @@ struct BridgesPhotosListView: View {
                                     } header: {
                                         HStack {
                                             sectionLabel(bridgesSection.sectionName, bridgeInfoGrouping)
-                                                .foregroundColor(Color.pbTitleTextFgnd)
+                                                .foregroundColor(Color.pbTextFnd)
                                                 .font(.body)
                                                 .padding([.leading])
                                                 .padding([.top], 10)
@@ -62,7 +62,7 @@ struct BridgesPhotosListView: View {
                                             Spacer()
                                         }
                                     }
-                                    .foregroundColor(Color.pbTitleTextFgnd)
+                                    .foregroundColor(Color.pbTextFnd)
                                     .background(Color.pbTitleTextBgnd)
                                 }
                             }
@@ -83,7 +83,7 @@ struct BridgesPhotosListView: View {
                 }
             }
             .navigationBarHidden(true)
-            .background(Color.pbTitleTextFgnd)
+            .background(Color.pbTextFnd)
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

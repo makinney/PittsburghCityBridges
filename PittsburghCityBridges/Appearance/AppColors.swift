@@ -9,22 +9,13 @@ import SwiftUI
 import UIKit
 
 extension Color {
-    static let pbTextFgndBrown = Color(light: Asset.bridgeBlackA, dark: Asset.bridgeBrownA)
-    static let pbTextBgndBrown = Color(light: Asset.bridgeBrownA, dark: Asset.bridgeBlackA)
-    static let pbTextFgndGreen = Color(light: Asset.bridgeBlackA, dark: Asset.bridgeGreenA)
-    static let pbTextBgndGreen = Color(light: Asset.bridgeGreenA, dark: Asset.bridgeBlackA)
-    static let pbTextFgndYellow = Color(light: Asset.bridgeBlackA, dark: Asset.bridgeYellowA)
-    static let pbTextBgndYellow = Color(light: Asset.bridgeYellowA, dark: Asset.bridgeBlackA)
-    static let pbTextFgndConcrete = Color(light: Asset.bridgeBlackA, dark: Asset.bridgeConcreteA)
-    static let pbTextBgndConcrete = Color(light: Asset.bridgeConcreteA, dark: Asset.bridgeBlackA)
-    static let pbTitleTextFgnd =  Color(light: UIColor.label , dark: Asset.bridgeYellowA)
-    static let pbTitleTextBgnd =  Color(light: UIColor.white , dark: Asset.bridgeBlackA)
-    static let steelerBlack = Color(uiColor: Asset.bridgeBlackA)
-    static let creditscreenBgnd = Color(light: UIColor.secondarySystemBackground , dark: Asset.bridgeBlackA)
+    static let pbTextFnd = Color(light: Asset.bridgeBlackA, dark: Asset.bridgeYellowA)
+    static let pbTitleTextBgnd =  Color(light: Asset.bridgeGreenA , dark: Asset.bridgeBlackA)
+    static let creditscreenBgnd = Color(light: Asset.bridgeYellowA , dark: Asset.bridgeBlackA)
 }
 
 extension UIColor {
-    static let pbTabBarBackground = UIColor(light: UIColor.secondarySystemBackground, dark: Asset.bridgeBlackA)
+    static let pbTabBarBackground = UIColor(light: Asset.bridgeYellowA, dark: Asset.bridgeBlackA)
     static let accentColor = UIColor(named: "AccentColor") ?? UIColor.yellow  // There is also a Color.accentColor define by SwiftUI
 }
 

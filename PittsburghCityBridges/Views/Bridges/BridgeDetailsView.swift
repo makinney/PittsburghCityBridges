@@ -168,7 +168,7 @@ struct BridgeDetailsView: View {
                                     )
                             }
                         }
-                        .foregroundColor(Color.pbTitleTextFgnd)
+                        .foregroundColor(Color.pbTextFnd)
                     }
                     .padding([.leading, .trailing])
                     .toolbar {

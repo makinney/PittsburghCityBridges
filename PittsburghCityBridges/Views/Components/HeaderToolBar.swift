@@ -19,7 +19,7 @@ struct HeaderToolBar: View {
                 .padding([.vertical], 5)
             Spacer()
             Text(showFavorites ? "Favorites" : "")
-                .foregroundColor(Color.pbTitleTextFgnd)
+                .foregroundColor(Color.pbTextFnd)
                 .padding([.trailing])
                 .animation(.easeInOut, value: showFavorites)
         }
