@@ -107,7 +107,6 @@ struct BridgeMapUIView: UIViewRepresentable {
             } else {
                 annotationView = MKMarkerAnnotationView(annotation: bridgeMapAnnotation, reuseIdentifier: reuseIdentifier)
             }
-            annotationView.markerTintColor = .accentColor
             annotationView.canShowCallout = true
             var buttonImage = UIImage(systemName: "arrow.triangle.turn.up.right.circle.fill") ?? UIImage()
             let buttonImageSize = CGSize(width: 44, height: 44)
