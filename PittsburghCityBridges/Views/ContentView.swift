@@ -10,17 +10,13 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @StateObject var favorites: Favorites = Favorites()
-
+    
     init() {
         UITabBar.appearance().backgroundColor = UIColor.pbTabBarBackground
     }
-
+    
     var body: some View {
         TabView {
-            BridgesListsView(BridgeListViewModel(bridgeStore))
-                .tabItem {
-                    Label("List", systemImage: "list.dash")
-                }
             BridgeMapView()
                 .tabItem {
                     Label("Map", systemImage: "map")
@@ -28,6 +24,10 @@ struct ContentView: View {
             BridgesPhotosListView(BridgeListViewModel(bridgeStore))
                 .tabItem {
                     Label("Photos", systemImage: "photo.on.rectangle")
+                }
+            BridgesListsView(BridgeListViewModel(bridgeStore))
+                .tabItem {
+                    Label("List", systemImage: "list.dash")
                 }
             MoreScreenView()
                 .tabItem {
@@ -51,4 +51,4 @@ struct MainView_Previews: PreviewProvider {
             .environmentObject(Favorites())
     }
 }
-    
+
