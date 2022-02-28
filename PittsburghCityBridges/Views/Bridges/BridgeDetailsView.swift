@@ -24,6 +24,7 @@ struct BridgeDetailsView: View {
     private var bridgeImageSystem: BridgeImageSystem
     private let imageCornerRadius: CGFloat = 10
     private let imageSmallestMagnification = 1.0
+    private let navBarAppearance = UINavigationBarAppearance()
     private let userInterfaceIdiom: UIUserInterfaceIdiom
     private let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     
@@ -36,6 +37,10 @@ struct BridgeDetailsView: View {
         bridgeImageSystem = BridgeImageSystem()
         self.favorites = favorites
         self.userInterfaceIdiom = UIDevice.current.userInterfaceIdiom
+        navBarAppearance.configureWithDefaultBackground()
+        navBarAppearance.backgroundColor = UIColor(.pbBgnd)
+        UINavigationBar.appearance().standardAppearance = navBarAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
     }
     
     var dragGesture: some Gesture {

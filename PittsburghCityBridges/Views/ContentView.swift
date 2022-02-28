@@ -10,9 +10,13 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @StateObject var favorites: Favorites = Favorites()
+    private let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
     
-    init() {
-        UITabBar.appearance().backgroundColor = UIColor.pbTabBarBackground
+    init() {        
+        tabBarAppearance.configureWithDefaultBackground()
+        tabBarAppearance.backgroundColor = UIColor(Color.pbBgnd)
+        UITabBar.appearance().standardAppearance = tabBarAppearance
+        UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
     }
     
     var body: some View {
