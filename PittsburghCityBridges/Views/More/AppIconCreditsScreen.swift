@@ -15,10 +15,10 @@ struct AppIconCreditsScreen: View {
     var body: some View {
         ScrollView {
             VStack {
-                Text("App Icon")
-                    .font(.title2)
-                    .italic()
-                    .foregroundColor(.pbTextFnd)
+//                Text("App Icon")
+//                    .font(.title2)
+//                    .italic()
+//                    .foregroundColor(.pbTextFnd)
                 VStack {
                     aidensCredit()
                         .frame(minHeight: 100)
@@ -28,6 +28,8 @@ struct AppIconCreditsScreen: View {
                 .padding()
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("App Icon")
         .background(Color.pbBgnd)
     }
     
@@ -45,8 +47,9 @@ struct AppIconCreditsScreen: View {
                     .cornerRadius(10)
                     .padding(.vertical)
                     .padding([.leading], 20.0)
-                Text("Pittsburgh City Bridges App Icon created by 10 year old Aidan K.")
+                Text("Pittsburgh City Bridges App Icon created Aidan K. Who is demonstrating some natural talent and real skill at 10 years old")
                     .padding(.trailing)
+                    .foregroundColor(.pbTextFnd)
             }
         }
     }

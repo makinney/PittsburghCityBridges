@@ -15,10 +15,6 @@ struct OpenDataCreditsScreen: View {
     var body: some View {
         ScrollView {
             VStack {
-                Text("Open Data Source")
-                    .font(.title2)
-                    .italic()
-                    .foregroundColor(.pbTextFnd)
                 VStack {
                     openDataCredit()
                         .frame(minHeight: 200)
@@ -27,6 +23,8 @@ struct OpenDataCreditsScreen: View {
                 .padding()
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Open Data Source")
         .background(Color.pbBgnd)
     }
     
@@ -40,6 +38,7 @@ struct OpenDataCreditsScreen: View {
                 VStack(alignment: .leading){
                     Text("This App uses the City of Pittsburgh Bridges Open Data dataset provided by  the [Western Pennsylvania Regional Data Center](http://www.wprdc.org). This bridge data includes names, locations, gps coordinates and photos. This dataset is one of over 300 publicly available Open Data datasets provided by the WPRDC")
                         .font(.body)
+                        .foregroundColor(.pbTextFnd)
                         .multilineTextAlignment(.leading)
                     
                 }
