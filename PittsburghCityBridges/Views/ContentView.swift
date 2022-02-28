@@ -10,9 +10,15 @@ import SwiftUI
 struct ContentView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @StateObject var favorites: Favorites = Favorites()
+    private let navBarAppearance = UINavigationBarAppearance()
     private let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
     
-    init() {        
+    init() {
+        navBarAppearance.configureWithDefaultBackground()
+        navBarAppearance.backgroundColor = UIColor(.pbBgnd)
+        UINavigationBar.appearance().standardAppearance = navBarAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
+
         tabBarAppearance.configureWithDefaultBackground()
         tabBarAppearance.backgroundColor = UIColor(Color.pbBgnd)
         UITabBar.appearance().standardAppearance = tabBarAppearance
