@@ -16,6 +16,7 @@ struct ContentView: View {
     init() {
         navBarAppearance.configureWithDefaultBackground()
         navBarAppearance.backgroundColor = UIColor(.pbBgnd)
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor(.pbTextFnd)]
         UINavigationBar.appearance().standardAppearance = navBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
 

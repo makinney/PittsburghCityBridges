@@ -36,8 +36,10 @@ struct FavoritesButton: View {
                 } label: {
                     if favorites.contains(element: favorite) {
                         Label("Favorite", systemImage: "star.fill")
+                            .foregroundColor(.accentColor)
                     } else {
                         Label("Favorite", systemImage: "star")
+                            .foregroundColor(.accentColor)
                     }
                 }
             }
@@ -48,14 +50,16 @@ struct FavoritesButton: View {
         var message = ""
         switch favoriteAction {
         case .added:
-            message = "Added to Favorites"
+            message = "Favorite"
         case .removed:
-            message = "Removed from Favorites"
+            message = ""
         case .undefined:
             message = ""
         }
         return VStack {
             Text(message)
+                .font(.body)
+                .foregroundColor(.pbTextFnd)
         }
     }
 }

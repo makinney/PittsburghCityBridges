@@ -47,7 +47,7 @@ struct BridgeDetailsView: View {
             }
             .onEnded { value in
                 self.initialDragOffset = CGSize(width: self.initialDragOffset.width + value.translation.width,
-                                             height: self.initialDragOffset.height + value.translation.height)
+                                                height: self.initialDragOffset.height + value.translation.height)
             }
     }
     
@@ -122,16 +122,13 @@ struct BridgeDetailsView: View {
                         VStack(alignment: .leading) {
                             VStack {
                                 HStack {
-                                    Text("\(bridgeModel.name)")
-                                        .font(.headline)
-                                    VStack {
-                                        Spacer()
-                                        Image(systemName: "plus.magnifyingglass")
-                                            .imageScale(.large)
-                                            .foregroundColor(.accentColor)
-                                    }
+                                    Image(systemName: "plus.magnifyingglass")
+                                        .imageScale(.large)
+                                    Text("Zoom")
                                     Spacer()
                                 }
+                                .foregroundColor(.accentColor)
+                                .padding(.top, 10)
                                 HStack {
                                     ZStack {
                                         Image(uiImage: bridgeImage)
@@ -209,6 +206,8 @@ struct BridgeDetailsView: View {
                 })
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("\(bridgeModel.name)")
         .background(Color.pbBgnd)
         .animation(.default, value: bridgeImageOnly)
     }
@@ -220,7 +219,7 @@ struct BridgeDetailsView: View {
                 HStack {
                     if let _ = bridgeModel.locationCoordinate {
                         Button {
-                                self.showDisclaimerSheet = true
+                            self.showDisclaimerSheet = true
                         } label: {
                             Label("Directions", systemImage: "arrow.triangle.turn.up.right.circle.fill")
                                 .padding(4)
@@ -245,7 +244,7 @@ struct BridgeDetailsView_Previews: PreviewProvider {
     @ObservedObject static var favorites = Favorites()
     static var previews: some View {
         BridgeDetailsView(bridgeModel: BridgeModel.preview, favorites: favorites)
-                 .preferredColorScheme(.dark)
+            .preferredColorScheme(.dark)
         //        BridgeDetailsView(bridgeModel: BridgeModel.preview)
         //            .environmentObject(FavoriteBridges())
         
