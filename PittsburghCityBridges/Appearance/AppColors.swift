@@ -9,7 +9,7 @@ import SwiftUI
 import UIKit
 
 extension Color {
-    static let pbTextFnd = Color(light: Asset.bridgeBlackA, dark: Asset.bridgeYellowA)
+    static let pbTextFnd = Color(light: Asset.bridgeBlackA, dark: Asset.bridgeYellowB)
     static let pbBgnd =  Color(light: Asset.bridgeYellowB , dark: Asset.bridgeBlackA)
 }
 

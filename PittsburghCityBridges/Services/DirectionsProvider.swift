@@ -86,7 +86,6 @@ class DirectionsProvider {
                 guard let self = self else { return }
                 if self.userLocationRequest == .requested {
                     self.userCoordinate =  coordinate
-                    self.logger.info("\(#file) \(#function) updated user coordinates lat \(coordinate.latitude) and long \(coordinate.longitude)")
                     if self.directionsRequested == .yes {
                         switch self.selectedMappingApp {
                         case .apple:

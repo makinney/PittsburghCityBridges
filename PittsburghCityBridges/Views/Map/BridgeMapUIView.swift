@@ -19,14 +19,12 @@ struct BridgeMapUIView: UIViewRepresentable {
     init(region: MKCoordinateRegion,
          bridgeModels: [BridgeModel],
          showsBridgeImage: Bool = true) {
-        logger.info("\(#file) \(#function)")
         self.region = region
         self.bridgeModels = bridgeModels
         self.hasDetailAccessoryView = showsBridgeImage
     }
     
     func makeUIView(context: Context) -> MKMapView {
-        logger.info("\(#file) \(#function)")
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
         mapView.setRegion(region, animated: false)
@@ -38,7 +36,6 @@ struct BridgeMapUIView: UIViewRepresentable {
     }
     
     func updateUIView(_ mapView: MKMapView, context: Context) {
-        logger.info("\(#file) \(#function)")
         mapView.removeOverlays(mapView.overlays)
         for bridgeModel in bridgeModels {
             let overlays = bridgeModel.polylines
@@ -96,6 +93,7 @@ struct BridgeMapUIView: UIViewRepresentable {
 //            }
         }
         
+        @MainActor
         func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
             guard let bridgeMapAnnotation = annotation as? BridgeMapAnnotation else {
                 return nil

@@ -6,6 +6,7 @@
 //
 import SwiftUI
 
+@MainActor
 struct BridgeMapDetailAccessoryView: View {
     @State var bridgeImage = UIImage()
     private var bridgeImageSystem: BridgeImageSystem

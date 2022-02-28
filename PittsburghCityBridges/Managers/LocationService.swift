@@ -17,7 +17,6 @@ final class LocationService: NSObject, ObservableObject {
     
     let logger: Logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     var locationManager = CLLocationManager()
-    @Published var locationCoordinate = CLLocationCoordinate2D()
     @Published var userLocationCoordinate = CLLocationCoordinate2D()
     private var userLocationRequest: UserLocationRequest = .none
     var userAuthorizationStatus: CLAuthorizationStatus {
@@ -63,7 +62,6 @@ extension LocationService: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else { return }
-        locationCoordinate = location.coordinate
         if userLocationRequest == .requested {
             userLocationCoordinate = location.coordinate
             userLocationRequest = .requestFullFilled
