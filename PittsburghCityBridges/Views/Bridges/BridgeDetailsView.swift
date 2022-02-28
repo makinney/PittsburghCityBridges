@@ -14,8 +14,9 @@ struct BridgeDetailsView: View {
     @State var bridgeImage = UIImage()
     @State private var dragOffset: CGSize = .zero
     @State private var imageScale: CGFloat = 1.0
+    @State private var imageMagnification: CGFloat = 1.0
     @State private var bridgeImageLoaded = false
-    @State private var startingOffset: CGSize = .zero
+    @State private var initialDragOffset: CGSize = .zero
     @State private var showDisclaimerSheet = false
     @Namespace private var bridgeAnimations
     
@@ -41,25 +42,29 @@ struct BridgeDetailsView: View {
         DragGesture()
             .onChanged {
                 if self.bridgeImageOnly {
-                    self.dragOffset = self.totalOffset(offset: self.startingOffset, by: $0.translation)
+                    self.dragOffset = self.totalOffset(offset: self.initialDragOffset, by: $0.translation)
                 }
             }
             .onEnded { value in
-                self.startingOffset = CGSize(width: self.startingOffset.width + value.translation.width,
-                                             height: self.startingOffset.height + value.translation.height)
+                self.initialDragOffset = CGSize(width: self.initialDragOffset.width + value.translation.width,
+                                             height: self.initialDragOffset.height + value.translation.height)
             }
     }
     
     var magGesture: some Gesture {
         MagnificationGesture()
             .onChanged { newValue in
-                self.imageScale = max(newValue, imageSmallestMagnification)
+                self.imageScale = max(imageMagnification * newValue, imageSmallestMagnification)
+            }
+            .onEnded { value in
+                self.imageMagnification = imageScale
             }
     }
     
     var dblTapToZoomInGesture: some Gesture {
         TapGesture(count: 2)
             .onEnded {
+                self.imageMagnification = imageScale
                 self.imageScale *= 2.0
             }
     }
@@ -89,8 +94,9 @@ struct BridgeDetailsView: View {
                                 ToolbarItem(placement: .navigationBarTrailing) {
                                     Button("Done") {
                                         self.dragOffset = .zero
+                                        self.initialDragOffset = .zero
                                         self.imageScale = 1.0
-                                        self.startingOffset = .zero
+                                        self.imageMagnification = 1.0
                                         self.bridgeImageOnly = false
                                     }
                                     .padding(.trailing, 10)
