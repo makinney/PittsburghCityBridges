@@ -15,14 +15,11 @@ struct AppIconCreditsScreen: View {
     var body: some View {
         ScrollView {
             VStack {
-//                Text("App Icon")
-//                    .font(.title2)
-//                    .italic()
-//                    .foregroundColor(.pbTextFnd)
+
                 VStack {
                     aidensCredit()
-                        .frame(minHeight: 100)
-                        .padding(.bottom)
+                        .frame(minHeight: 150)
+                        .padding()
                     Spacer()
                 }
                 .padding()
