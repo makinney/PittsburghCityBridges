@@ -6,6 +6,7 @@
 //
 import SwiftUI
 
+@MainActor
 struct SinglePhotoView: View {
     @State var bridgeImage = UIImage()
     @State var imageLoaded = false
@@ -13,7 +14,7 @@ struct SinglePhotoView: View {
     private var bridgeImageSystem: BridgeImageSystem
     private let imageCornerRadius: CGFloat = 10
     private let imageURL: URL
-
+    
     init(imageURL: URL, bridgeModel: BridgeModel) {
         self.bridgeModel = bridgeModel
         self.imageURL = imageURL
@@ -79,6 +80,6 @@ struct SinglePhotoView: View {
 struct SinglePhotoView_Previews: PreviewProvider {
     static var previews: some View {
         Text("TODO preview Needs implemented")
-   //     SinglePhotoView()
+        //     SinglePhotoView()
     }
 }

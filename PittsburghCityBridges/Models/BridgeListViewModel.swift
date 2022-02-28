@@ -35,7 +35,7 @@ class BridgeListViewModel {
         clearCacheOnModelChanges()
     }
     
-    @MainActor func sections(groupedBy: BridgeInfoGrouping, favorites: Favorites?, searchText: String? = nil) -> [Section] {
+    func sections(groupedBy: BridgeInfoGrouping, favorites: Favorites?, searchText: String? = nil) -> [Section] {
         var sections = sections(groupedBy: groupedBy)
         if let favorites = favorites {
             sections = filterFavorites(sections: sections, favorites: favorites)
@@ -97,7 +97,6 @@ class BridgeListViewModel {
         }
     }
     
-    @MainActor
     func sectionByName() -> [Section] {
         var sections = [Section]()
         var bridgeModelsSortedByName = bridgeStore.sortedByName()
@@ -131,7 +130,6 @@ class BridgeListViewModel {
         return nil
     }
     
-    @MainActor
     func sectionByNeighborhood() -> [Section] {
         var sections = [Section]()
         var sortedByNeighboorhood = bridgeStore.sortedByNeighborhoodAndName()
@@ -154,7 +152,6 @@ class BridgeListViewModel {
         return sections
     }
     
-    @MainActor
     func sectionByYear() -> [Section] {
         var sections = [Section]()
         var sortedByYear = bridgeStore.sortedByYearAndName()
