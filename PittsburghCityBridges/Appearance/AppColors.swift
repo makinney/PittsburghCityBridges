@@ -14,7 +14,6 @@ extension Color {
 }
 
 extension UIColor {
-    static let pbTabBarBackground = UIColor(Color.pbBgnd)
     static let accentColor = UIColor(named: "AccentColor") ?? UIColor.yellow  // There is also a Color.accentColor define by SwiftUI
 }
 
