@@ -26,9 +26,10 @@ struct BridgesListsView: View {
         NavigationView {
             VStack(spacing: 0) {
                 TitleHeader(title: pageTitleText(bridgeInfoGrouping))
-                HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping, showFavorites: $showFavorites)
-                SearchFieldView(searchText: $searchText, prompt: searchPrompt(bridgeInfoGrouping))
-                    .padding(.leading)
+                    .padding(.bottom, 10)
+                HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping,
+                              showFavorites: $showFavorites,
+                              searchText: $searchText)
                 let sections = bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping,
                                                             favorites: showFavorites ? favorites : nil,
                                                             searchText: searchText)
@@ -98,19 +99,6 @@ struct BridgesListsView: View {
             title += " Year Built"
         }
         return title
-    }
-    
-    private func searchPrompt(_ bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) -> String {
-        var prompt = "Search by"
-        switch bridgeInfoGrouping {
-        case .name:
-            prompt += " Name"
-        case .neighborhood:
-            prompt += " Neighborhood"
-        case .year:
-            prompt += " Year Built"
-        }
-        return prompt
     }
     
     @ViewBuilder

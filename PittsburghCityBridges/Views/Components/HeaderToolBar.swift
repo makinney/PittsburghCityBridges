@@ -11,13 +11,13 @@ struct HeaderToolBar: View {
     
     @Binding var bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping
     @Binding var showFavorites: Bool
+    @Binding var searchText: String
 
     var body: some View {
         HStack {
             sortMenu()
                 .padding([.leading])
-                .padding([.vertical], 5)
-            Spacer()
+            SearchFieldView(searchText: $searchText, bridgeInfoGrouping: bridgeInfoGrouping)
             Text(showFavorites ? "Favorites" : "")
                 .foregroundColor(Color.pbTextFnd)
                 .padding([.trailing])
@@ -75,6 +75,6 @@ struct HeaderToolBar: View {
 
 struct BridgeMenuBar_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderToolBar(bridgeInfoGrouping: .constant(.neighborhood), showFavorites: .constant(false))
+        HeaderToolBar(bridgeInfoGrouping: .constant(.neighborhood), showFavorites: .constant(false), searchText: .constant("Search Neighborhood"))
     }
 }
