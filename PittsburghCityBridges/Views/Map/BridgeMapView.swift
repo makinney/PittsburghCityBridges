@@ -24,8 +24,7 @@ struct BridgeMapView: View {
                     .animation(.easeInOut, value: showFavorites)
             }
             .padding([.leading])
-            .padding([.top], 5)
-            .padding([.bottom], 10)
+            .padding(.vertical, 10)
             .background(Color.pbBgnd)
             let bridgeModels = filtered(bridgeStore.bridgeModels, favorites, showFavorites)
             BridgeMapUIView(region: MapViewModel().multipleBridgesRegion, bridgeModels: bridgeModels, showsBridgeImage: true)

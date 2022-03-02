@@ -9,7 +9,9 @@ import SwiftUI
 
 struct SearchFieldView: View {
     @Binding var searchText: String
-    var prompt: String
+    var bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping
+    var prompt: String = "Search"
+    
     var body: some View {
         HStack {
             ZStack {
@@ -18,7 +20,7 @@ struct SearchFieldView: View {
                         .renderingMode(.template)
                         .foregroundColor(.accentColor)
                         .padding(.leading, 5)
-                    TextField("Search", text: $searchText, prompt: Text(prompt))
+                    TextField("Search", text: $searchText, prompt: Text(searchPrompt(bridgeInfoGrouping)))
                         .textInputAutocapitalization(.never)
                         .disableAutocorrection(true)
                         .foregroundColor(Color.pbTextFnd)
@@ -38,12 +40,25 @@ struct SearchFieldView: View {
         }
         .background(Color.pbBgnd)
     }
+    
+    private func searchPrompt(_ bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) -> String {
+        var prompt = "Search by"
+        switch bridgeInfoGrouping {
+        case .name:
+            prompt += " Name"
+        case .neighborhood:
+            prompt += " Neighborhood"
+        case .year:
+            prompt += " Year Built"
+        }
+        return prompt
+    }
 }
 
 struct SearchFieldView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchFieldView(searchText: .constant("abc"), prompt: "Enter Text")
-        SearchFieldView(searchText: .constant("abc"), prompt: "Enter Text")
+        SearchFieldView(searchText: .constant("abc"), bridgeInfoGrouping: .neighborhood)
+        SearchFieldView(searchText: .constant("abc"), bridgeInfoGrouping: .neighborhood)
             .preferredColorScheme(.dark)
     }
 }
