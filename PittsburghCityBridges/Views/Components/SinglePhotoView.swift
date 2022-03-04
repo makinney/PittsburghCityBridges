@@ -38,7 +38,7 @@ struct SinglePhotoView: View {
                         .cornerRadius(imageCornerRadius)
                         .overlay(
                             RoundedRectangle(cornerRadius: imageCornerRadius)
-                                .stroke(Color.secondary, lineWidth: 2)
+                                .stroke(Color.pbTextFnd, lineWidth: 2)
                         )
                     Spacer()
                     VStack {

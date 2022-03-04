@@ -102,7 +102,7 @@ struct BridgeDetailsView: View {
                                     .padding(.trailing, 10)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: PCBButton.cornerRadius)
-                                            .stroke(Color.secondary, lineWidth: 2)
+                                            .stroke(Color.pbTextFnd, lineWidth: 2)
                                     )
                                 }
                             }
@@ -137,10 +137,10 @@ struct BridgeDetailsView: View {
                                             .cornerRadius(imageCornerRadius)
                                             .overlay(
                                                 RoundedRectangle(cornerRadius: imageCornerRadius)
-                                                    .stroke(Color.secondary, lineWidth: 2)
+                                                    .stroke(Color.pbTextFnd, lineWidth: 4)
                                             )
-                                            .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
                                             .frame(maxWidth: geometry.frame(in: .global).width, minHeight: 100)
+                                            .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
                                             .scaleEffect(imageScale)
                                             .animation(.easeInOut, value: imageScale)
                                             .clipped()
@@ -164,11 +164,6 @@ struct BridgeDetailsView: View {
                             HStack {
                                 makeMapView(bridgeModel)
                                     .frame(height: (userInterfaceIdiom == .phone) ? 200 : 250)
-                                    .cornerRadius(imageCornerRadius)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: imageCornerRadius)
-                                            .stroke(Color.secondary, lineWidth: 2)
-                                    )
                             }
                         }
                         .foregroundColor(Color.pbTextFnd)
@@ -215,6 +210,11 @@ struct BridgeDetailsView: View {
     func makeMapView(_ bridgeModel: BridgeModel) -> some View {
         ZStack {
             BridgeMapUIView(region: MapViewModel.singleBridgeRegion, bridgeModels: [bridgeModel], showsBridgeImage: false)
+                .cornerRadius(imageCornerRadius)
+                .overlay(
+                    RoundedRectangle(cornerRadius: imageCornerRadius)
+                        .stroke(Color.pbTextFnd, lineWidth: 2)
+                )
             VStack {
                 HStack {
                     if let _ = bridgeModel.locationCoordinate {
@@ -228,7 +228,7 @@ struct BridgeDetailsView: View {
                         }
                         .overlay(
                             RoundedRectangle(cornerRadius: PCBButton.cornerRadius)
-                                .stroke(Color.secondary, lineWidth: 2)
+                                .stroke(Color.pbTextFnd, lineWidth: 2)
                         )
                         .padding()
                         Spacer()

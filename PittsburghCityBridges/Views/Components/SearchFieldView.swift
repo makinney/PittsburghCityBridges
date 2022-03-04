@@ -33,7 +33,7 @@ struct SearchFieldView: View {
                     .padding(.trailing, 5)
                 }
                 RoundedRectangle(cornerRadius: 5.0, style: .continuous)
-                    .stroke(.secondary, lineWidth: 1.0)
+                    .stroke(Color.pbTextFnd, lineWidth: 1.0)
                     .frame(maxHeight: 30)
             }
             .padding(.trailing)
