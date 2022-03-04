@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-struct OnBoardingDataSourceScreen: View {
+struct OnBoardingIntroScreen: View {
     var body: some View {
         VStack(alignment: .leading) {
             Spacer()
-            Text(AppTextCopy.onboardingOpenDataSource)
+            Text(AppTextCopy.onBoardingIntroFirstPart)
             .padding()
             Spacer()
         }
-        .frame(maxWidth: UIDevice.current.userInterfaceIdiom == .phone ? 350 : 500)
         .font(UIDevice.current.userInterfaceIdiom == .phone ? .subheadline : .title2)
+        .frame(maxWidth: UIDevice.current.userInterfaceIdiom == .phone ? 350 : 500)
         .multilineTextAlignment(.leading)
         .foregroundColor(.pbTextFnd)
     }
@@ -24,6 +24,6 @@ struct OnBoardingDataSourceScreen: View {
 
 struct OnBoardingDataSourceScreen_Previews: PreviewProvider {
     static var previews: some View {
-        OnBoardingDataSourceScreen()
+        OnBoardingIntroScreen()
     }
 }

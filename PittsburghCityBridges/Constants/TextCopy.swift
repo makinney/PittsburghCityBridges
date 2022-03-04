@@ -20,7 +20,12 @@ App uses publicly available external data that may change at any time. No repres
 App maker assumes no legal liability or responsibility for any loss, damage, injury, or delay associated with the use of this product. User assumes all risk of use.
 """
     static let onBoardingIntroFirstPart = """
-Pittsburgh Pennsylvania has over 440 bridges, the most of any city in the world. This app is a collection of 140 of those bridges. Though many Pittsburgh bridges cross one of the three rivers, the bridges in this app cross valleys, streams and roads. These are so-called City Bridges.
+This Pittsburgh City Bridges app contains information on over 130 bridges publicly available from the City of Pittsburgh Bridges OpenData database.
+
+These city bridges cross roads, ravines, and streams. They are old bridges, new bridges, small, medium and large bridges.
+
+Bridge information provided includes bridge name, neighborhood, year built, gps location, and photos.
+
 """
     
     static let onboardingOpenDataSource = """

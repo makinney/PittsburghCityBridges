@@ -70,7 +70,6 @@ struct HeaderToolBar: View {
             return Label(name, systemImage: "star")
         }
     }
-    
 }
 
 struct BridgeMenuBar_Previews: PreviewProvider {

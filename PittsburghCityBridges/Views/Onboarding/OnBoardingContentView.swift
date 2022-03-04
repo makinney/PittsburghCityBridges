@@ -13,12 +13,12 @@ struct OnBoardingContentView: View {
  
     var body: some View {
         TabView {
-            OnBoardingDataSourceScreen()
-            OnBoardingPhotosVehicleBridgesScreen()
-            OnBoardingPhotosPedestrianBridgesScreen()
-            OnBoardingPhotosParkBridgesScreen()
-            OnboardingCollapsedBridgeScreen()
+            OnBoardingIntroScreen()
+            OnBoardingBridgePhotosScreen()
+            OnBoardingMapScreen()
             OnBoardingBrowseScreen()
+            OnBoardingSortAndSearchScreen()
+            OnboardingCollapsedBridgeScreen()
             OnBoardingCloseScreen(onBoardingComplete: $done)
         }
         .background(Color.pbBgnd)

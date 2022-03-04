@@ -13,6 +13,7 @@ struct OnBoardingCloseScreen: View {
     var body: some View {
         VStack(alignment: .center) {
             Spacer()
+            Text(AppTextCopy.onboardingOpenDataSource)
             Text(AppTextCopy.onBoardingCloseScreen)
                 .font(UIDevice.current.userInterfaceIdiom == .phone ? .subheadline : .title2)
                 .padding()
@@ -25,7 +26,7 @@ struct OnBoardingCloseScreen: View {
                     .padding(10)
                     .overlay(
                         RoundedRectangle(cornerRadius: PCBButton.cornerRadius)
-                            .stroke(Color.secondary, lineWidth: 2)
+                            .stroke(Color.pbTextFnd, lineWidth: 2)
                     )
                     Spacer()
                 }

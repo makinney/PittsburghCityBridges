@@ -1,18 +1,8 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
-      "filename" : "Overbrook_Way_Pedestrian_Bridge_thumbnail-1.jpg",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
       "filename" : "Overbrook_Way_Pedestrian_Bridge_thumbnail.jpg",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "idiom" : "universal"
     }
   ],
   "info" : {
