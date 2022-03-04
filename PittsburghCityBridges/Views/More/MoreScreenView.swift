@@ -22,23 +22,23 @@ struct MoreScreenView: View {
                                     AppIconCreditsScreen()
                                 }
                                 label: {
-                                    Label("App Icon Credit", systemImage: "megaphone")
-                                }
-                                .listRowBackground(Color.pbBgnd)
-                                NavigationLink {
-                                    OnBoardingContentView()
-                                }
-                                label: {
-                                    Label("OnBoarding Screens", systemImage: "sum")
+                                    Label("App Icon", systemImage: "megaphone")
                                 }
                                 .listRowBackground(Color.pbBgnd)
                                 NavigationLink {
                                     OpenDataCreditsScreen()
                                 }
                                 label: {
-                                    Label("Open Data Credit", systemImage: "slider.vertical.3")
+                                    Label("Western Pennsylvania Regional Data Center Open Data", systemImage: "slider.vertical.3")
                                 }
                                 .listRowBackground(Color.pbBgnd)
+                                NavigationLink {
+                                    OnBoardingContentView()
+                                }
+                            label: {
+                                Label("OnBoarding Screens", systemImage: "sum")
+                            }
+                            .listRowBackground(Color.pbBgnd)
                             }
                             .foregroundColor(Color.pbTextFnd)
             
