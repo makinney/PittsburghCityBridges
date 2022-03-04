@@ -37,11 +37,15 @@ struct OnBoardingSortAndSearchScreen: View {
                 .frame(width: imageSize.width, height: imageSize.height)
             Spacer()
         }
+        .background(Color.pbBgnd)
+        .foregroundColor(.pbTextFnd)
     }
 }
 
 struct SortAndSearch_Previews: PreviewProvider {
     static var previews: some View {
         OnBoardingSortAndSearchScreen()
+        OnBoardingSortAndSearchScreen()
+            .preferredColorScheme(.dark)
     }
 }
