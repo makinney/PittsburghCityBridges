@@ -11,27 +11,29 @@ struct OnBoardingCloseScreen: View {
     @Binding var onBoardingComplete: Bool
 
     var body: some View {
-        VStack(alignment: .center) {
+        VStack(alignment: .leading) {
             Spacer()
             Text(AppTextCopy.onBoardingCloseScreen)
                 .font(UIDevice.current.userInterfaceIdiom == .phone ? .subheadline : .title2)
-                .padding()
+            .padding()
             if !onBoardingComplete {
                 HStack {
                     Spacer()
-                    Button("Close") {
+                    Button(AppTextCopy.onBoardingCloseScreenButton) {
                         onBoardingComplete  = true
                     }
-                    .padding(10)
+                    .padding(20)
                     .overlay(
                         RoundedRectangle(cornerRadius: PCBButton.cornerRadius)
-                            .stroke(Color.secondary, lineWidth: 2)
+                            .stroke(Color.pbTextFnd, lineWidth: 2)
                     )
                     Spacer()
                 }
+                .padding(.vertical, 20)
             }
             Spacer()
         }
+        .frame(maxWidth: UIDevice.current.userInterfaceIdiom == .phone ? 350 : 700)
         .font(.body)
         .multilineTextAlignment(.leading)
         .foregroundColor(.pbTextFnd)
@@ -41,5 +43,7 @@ struct OnBoardingCloseScreen: View {
 struct OnBoardingCloseScreen_Previews: PreviewProvider {
     static var previews: some View {
         OnBoardingCloseScreen(onBoardingComplete: .constant(false))
+        OnBoardingCloseScreen(onBoardingComplete: .constant(false))
+            .preferredColorScheme(.dark)
     }
 }

@@ -38,7 +38,7 @@ struct SinglePhotoView: View {
                         .cornerRadius(imageCornerRadius)
                         .overlay(
                             RoundedRectangle(cornerRadius: imageCornerRadius)
-                                .stroke(Color.secondary, lineWidth: 2)
+                                .stroke(Color.pbTextFnd, lineWidth: 2)
                         )
                     Spacer()
                     VStack {
@@ -58,12 +58,11 @@ struct SinglePhotoView: View {
         .frame(height: UIScreen.main.bounds.size.width * 0.75)  // need to fix size since do not know image size
         .background(Color.pbBgnd)
         .onAppear {
-            Task {
+            Task.detached(priority: .userInitiated) {
                 do {
-                    if imageLoaded == false {
+                    if await imageLoaded == false {
                         if let image = await bridgeImageSystem.getThumbnailImage(url:imageURL, desiredThumbnailWidth: 1000) {
-                            bridgeImage = image
-                            imageLoaded = true
+                            await set(bridgeImage: image)
                         }
                     }
                 }
@@ -73,6 +72,11 @@ struct SinglePhotoView: View {
             bridgeImage = UIImage()
             imageLoaded = false
         }
+    }
+    
+    private func set(bridgeImage: UIImage) {
+        self.bridgeImage = bridgeImage
+        imageLoaded = true
     }
 }
 

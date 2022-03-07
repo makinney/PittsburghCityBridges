@@ -17,6 +17,7 @@ struct PittsburghCityBridgesApp: App {
         #if DEBUG
       //   onBoardingComplete = false
         #endif
+        // beta test flag
     }
     var body: some Scene {
         WindowGroup {

@@ -40,8 +40,9 @@
 		245BDCC1272C917D000FE644 /* Sequence+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245BDCC0272C917D000FE644 /* Sequence+Extensions.swift */; };
 		2468A098278E379D00D724F5 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2468A097278E379D00D724F5 /* UIImage+Extensions.swift */; };
 		2468A09A278F3D4100D724F5 /* OpenDataFileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2468A099278F3D4100D724F5 /* OpenDataFileSystem.swift */; };
+		246C089727CFDC44009A9675 /* OnBoardingMapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246C089627CFDC44009A9675 /* OnBoardingMapScreen.swift */; };
 		246F309127B076CC00B75025 /* Controls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F309027B076CC00B75025 /* Controls.swift */; };
-		246F309327B1B90800B75025 /* OnBoardingDataSourceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F309227B1B90800B75025 /* OnBoardingDataSourceScreen.swift */; };
+		246F309327B1B90800B75025 /* OnBoardingIntroScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F309227B1B90800B75025 /* OnBoardingIntroScreen.swift */; };
 		246F309527B2D72800B75025 /* OnBoardingBrowseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F309427B2D72800B75025 /* OnBoardingBrowseScreen.swift */; };
 		247214FA27052454004FBACD /* TwoBridge.json in Resources */ = {isa = PBXBuildFile; fileRef = 247214F927052317004FBACD /* TwoBridge.json */; };
 		247214FC27054B7B004FBACD /* BridgesOpenData.json in Resources */ = {isa = PBXBuildFile; fileRef = 247214FB27054B5A004FBACD /* BridgesOpenData.json */; };
@@ -49,18 +50,17 @@
 		24808FDC275A6D9B00FF131C /* BridgeImageSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24808FDB275A6D9900FF131C /* BridgeImageSystem.swift */; };
 		24808FDF275AF61F00FF131C /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 24808FDE275AF61F00FF131C /* Files */; };
 		24808FE1275BDA9200FF131C /* FileManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24808FE0275BDA9100FF131C /* FileManagerExtensions.swift */; };
+		248F7B5E27D2B26A0046A510 /* OnBoardingSortAndSearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248F7B5D27D2B2690046A510 /* OnBoardingSortAndSearchScreen.swift */; };
 		248FC583270276EA00BE168F /* PittsburghCityBridgesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248FC582270276EA00BE168F /* PittsburghCityBridgesApp.swift */; };
 		248FC585270276EA00BE168F /* CloudKitContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248FC584270276EA00BE168F /* CloudKitContentView.swift */; };
 		248FC587270276EE00BE168F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 248FC586270276EE00BE168F /* Assets.xcassets */; };
 		248FC58A270276EE00BE168F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 248FC589270276EE00BE168F /* Preview Assets.xcassets */; };
 		248FC58C270276EE00BE168F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248FC58B270276EE00BE168F /* Persistence.swift */; };
 		248FC59A270278F100BE168F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 248FC599270278F100BE168F /* CloudKit.framework */; };
-		2497B22627A3592A00C60E44 /* OnBoardingPhotosVehicleBridgesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497B22527A3592A00C60E44 /* OnBoardingPhotosVehicleBridgesScreen.swift */; };
+		2497B22627A3592A00C60E44 /* OnBoardingBridgePhotosScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497B22527A3592A00C60E44 /* OnBoardingBridgePhotosScreen.swift */; };
 		249C7D5B277E52D700D72DA4 /* HeaderToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */; };
 		249C7D5D277F609600D72DA4 /* TitleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C7D5C277F609600D72DA4 /* TitleHeader.swift */; };
 		249D983B27C075B100E8F985 /* OpenDataCreditsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249D983A27C075B100E8F985 /* OpenDataCreditsScreen.swift */; };
-		249E68C127BC344400CE4FDD /* OnBoardingPhotosPedistrianBridgesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E68C027BC344400CE4FDD /* OnBoardingPhotosPedistrianBridgesScreen.swift */; };
-		249E68C327BC3E2D00CE4FDD /* OnBoardingPhotosParkBridgesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249E68C227BC3E2D00CE4FDD /* OnBoardingPhotosParkBridgesScreen.swift */; };
 		24A3386B27C3D191007502DC /* SearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A3386A27C3D191007502DC /* SearchFieldView.swift */; };
 		24A3386D27C68361007502DC /* RefreshControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A3386C27C68361007502DC /* RefreshControlView.swift */; };
 		24A9E14C27ACAB5200CCA97B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24A9E14B27ACAB5200CCA97B /* Launch Screen.storyboard */; };
@@ -104,8 +104,9 @@
 		245BDCC0272C917D000FE644 /* Sequence+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sequence+Extensions.swift"; sourceTree = "<group>"; };
 		2468A097278E379D00D724F5 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		2468A099278F3D4100D724F5 /* OpenDataFileSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenDataFileSystem.swift; sourceTree = "<group>"; };
+		246C089627CFDC44009A9675 /* OnBoardingMapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingMapScreen.swift; sourceTree = "<group>"; };
 		246F309027B076CC00B75025 /* Controls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controls.swift; sourceTree = "<group>"; };
-		246F309227B1B90800B75025 /* OnBoardingDataSourceScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingDataSourceScreen.swift; sourceTree = "<group>"; };
+		246F309227B1B90800B75025 /* OnBoardingIntroScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingIntroScreen.swift; sourceTree = "<group>"; };
 		246F309427B2D72800B75025 /* OnBoardingBrowseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingBrowseScreen.swift; sourceTree = "<group>"; };
 		247214ED27027E0E004FBACD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		247214F927052317004FBACD /* TwoBridge.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TwoBridge.json; sourceTree = "<group>"; };
@@ -113,6 +114,7 @@
 		24808FD2274D443D00FF131C /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		24808FDB275A6D9900FF131C /* BridgeImageSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeImageSystem.swift; sourceTree = "<group>"; };
 		24808FE0275BDA9100FF131C /* FileManagerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExtensions.swift; sourceTree = "<group>"; };
+		248F7B5D27D2B2690046A510 /* OnBoardingSortAndSearchScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingSortAndSearchScreen.swift; sourceTree = "<group>"; };
 		248FC57F270276EA00BE168F /* PittsburghCityBridges.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PittsburghCityBridges.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		248FC582270276EA00BE168F /* PittsburghCityBridgesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PittsburghCityBridgesApp.swift; sourceTree = "<group>"; };
 		248FC584270276EA00BE168F /* CloudKitContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitContentView.swift; sourceTree = "<group>"; };
@@ -121,12 +123,10 @@
 		248FC58B270276EE00BE168F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		248FC597270278E000BE168F /* PittsburghCityBridges.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PittsburghCityBridges.entitlements; sourceTree = "<group>"; };
 		248FC599270278F100BE168F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		2497B22527A3592A00C60E44 /* OnBoardingPhotosVehicleBridgesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPhotosVehicleBridgesScreen.swift; sourceTree = "<group>"; };
+		2497B22527A3592A00C60E44 /* OnBoardingBridgePhotosScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingBridgePhotosScreen.swift; sourceTree = "<group>"; };
 		249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderToolBar.swift; sourceTree = "<group>"; };
 		249C7D5C277F609600D72DA4 /* TitleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeader.swift; sourceTree = "<group>"; };
 		249D983A27C075B100E8F985 /* OpenDataCreditsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenDataCreditsScreen.swift; sourceTree = "<group>"; };
-		249E68C027BC344400CE4FDD /* OnBoardingPhotosPedistrianBridgesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPhotosPedistrianBridgesScreen.swift; sourceTree = "<group>"; };
-		249E68C227BC3E2D00CE4FDD /* OnBoardingPhotosParkBridgesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPhotosParkBridgesScreen.swift; sourceTree = "<group>"; };
 		24A3386A27C3D191007502DC /* SearchFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFieldView.swift; sourceTree = "<group>"; };
 		24A3386C27C68361007502DC /* RefreshControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshControlView.swift; sourceTree = "<group>"; };
 		24A9E14B27ACAB5200CCA97B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -303,14 +303,14 @@
 		2497B22127A3540900C60E44 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				246F309427B2D72800B75025 /* OnBoardingBrowseScreen.swift */,
+				2497B22527A3592A00C60E44 /* OnBoardingBridgePhotosScreen.swift */,
 				2417C3C52794C343005DF78C /* OnBoardingContentView.swift */,
 				244EA80727AF12E800E5FC81 /* OnBoardingCloseScreen.swift */,
 				244EA80927AF14CD00E5FC81 /* OnboardingCollapsedBridgeScreen.swift */,
-				246F309227B1B90800B75025 /* OnBoardingDataSourceScreen.swift */,
-				249E68C227BC3E2D00CE4FDD /* OnBoardingPhotosParkBridgesScreen.swift */,
-				249E68C027BC344400CE4FDD /* OnBoardingPhotosPedistrianBridgesScreen.swift */,
-				2497B22527A3592A00C60E44 /* OnBoardingPhotosVehicleBridgesScreen.swift */,
-				246F309427B2D72800B75025 /* OnBoardingBrowseScreen.swift */,
+				246F309227B1B90800B75025 /* OnBoardingIntroScreen.swift */,
+				246C089627CFDC44009A9675 /* OnBoardingMapScreen.swift */,
+				248F7B5D27D2B2690046A510 /* OnBoardingSortAndSearchScreen.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -446,13 +446,12 @@
 				246F309127B076CC00B75025 /* Controls.swift in Sources */,
 				2417C3CB279B456F005DF78C /* DirectionsDisclaimerAgreement.swift in Sources */,
 				240FBEE2278634CD0029DCC5 /* Favorites.swift in Sources */,
+				246C089727CFDC44009A9675 /* OnBoardingMapScreen.swift in Sources */,
 				2468A09A278F3D4100D724F5 /* OpenDataFileSystem.swift in Sources */,
 				2458020C27879A530091365B /* SinglePhotoView.swift in Sources */,
 				245802102788C2420091365B /* BridgesPhotosListView.swift in Sources */,
 				241012892713785C00FE7DEC /* BridgeMapView.swift in Sources */,
-				249E68C127BC344400CE4FDD /* OnBoardingPhotosPedistrianBridgesScreen.swift in Sources */,
 				24496FA5278DDFCE0074720C /* StorageKeys.swift in Sources */,
-				249E68C327BC3E2D00CE4FDD /* OnBoardingPhotosParkBridgesScreen.swift in Sources */,
 				24B3FE912722356A004B93A6 /* DirectionsProvider.swift in Sources */,
 				2410128D2713855400FE7DEC /* ContentView.swift in Sources */,
 				24496FA2278CDF170074720C /* DirectionsDisclaimerView.swift in Sources */,
@@ -472,8 +471,9 @@
 				246F309527B2D72800B75025 /* OnBoardingBrowseScreen.swift in Sources */,
 				244A747A2719A1A600284608 /* GEOJSONModels.swift in Sources */,
 				2419B8B9271F382600BFE3D8 /* BridgeMapUIView.swift in Sources */,
+				248F7B5E27D2B26A0046A510 /* OnBoardingSortAndSearchScreen.swift in Sources */,
 				240075CD271493CB00CB864F /* AppLogging.swift in Sources */,
-				2497B22627A3592A00C60E44 /* OnBoardingPhotosVehicleBridgesScreen.swift in Sources */,
+				2497B22627A3592A00C60E44 /* OnBoardingBridgePhotosScreen.swift in Sources */,
 				2405C99D2767E1CF00C68307 /* BridgeImageLoadingProgressView.swift in Sources */,
 				244A747427187D1200284608 /* BridgeModel.swift in Sources */,
 				248FC583270276EA00BE168F /* PittsburghCityBridgesApp.swift in Sources */,
@@ -486,7 +486,7 @@
 				249C7D5B277E52D700D72DA4 /* HeaderToolBar.swift in Sources */,
 				244EA80A27AF14CD00E5FC81 /* OnboardingCollapsedBridgeScreen.swift in Sources */,
 				2419B8C42721D64E00BFE3D8 /* LocationService.swift in Sources */,
-				246F309327B1B90800B75025 /* OnBoardingDataSourceScreen.swift in Sources */,
+				246F309327B1B90800B75025 /* OnBoardingIntroScreen.swift in Sources */,
 				24A3386D27C68361007502DC /* RefreshControlView.swift in Sources */,
 				24C654852772BF55006363B8 /* AppColors.swift in Sources */,
 				24808FDC275A6D9B00FF131C /* BridgeImageSystem.swift in Sources */,
