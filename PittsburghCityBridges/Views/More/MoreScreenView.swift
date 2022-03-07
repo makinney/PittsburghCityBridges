@@ -13,41 +13,42 @@ struct MoreScreenView: View {
     }
     var body: some View {
         ZStack {
-         //   Color.red
+            //   Color.red
             VStack {
-                    TitleHeader(title: "Pittsburgh City Bridges")
-                            NavigationView {
-                            List {
-                                NavigationLink {
-                                    AppIconCreditsScreen()
-                                }
-                                label: {
-                                    Label("App Icon", systemImage: "megaphone")
-                                }
-                                .listRowBackground(Color.pbBgnd)
-                                NavigationLink {
-                                    OpenDataCreditsScreen()
-                                }
-                                label: {
-                                    Label("Western Pennsylvania Regional Data Center Open Data", systemImage: "slider.vertical.3")
-                                }
-                                .listRowBackground(Color.pbBgnd)
-                                NavigationLink {
-                                    OnBoardingContentView()
-                                }
-                            label: {
-                                Label("OnBoarding Screens", systemImage: "sum")
-                            }
-                            .listRowBackground(Color.pbBgnd)
-                            }
-                            .foregroundColor(Color.pbTextFnd)
-            
+                TitleHeader(title: "Pittsburgh City Bridges")
+                NavigationView {
+                    List {
+                     
+                        NavigationLink {
+                            OpenDataCreditsScreen()
                         }
-                        .navigationViewStyle(StackNavigationViewStyle())
+                    label: {
+                        Label("Open Data Source - WPRDC", systemImage: "slider.vertical.3")
                     }
+                    .listRowBackground(Color.pbBgnd)
+                        NavigationLink {
+                            OnBoardingContentView()
+                        }
+                    label: {
+                        Label("App Intro Screens", systemImage: "sum")
+                    }
+                    .listRowBackground(Color.pbBgnd)
+                        NavigationLink {
+                            AppIconCreditsScreen()
+                        }
+                    label: {
+                        Label("App Icon Designer", systemImage: "megaphone")
+                    }
+                    .listRowBackground(Color.pbBgnd)
+                    }
+                    .foregroundColor(Color.pbTextFnd)
+                    
+                }
+                .navigationViewStyle(StackNavigationViewStyle())
+            }
             .background(Color.pbBgnd)
         }
-        }
+    }
 }
 
 struct MoreScreenView_Previews: PreviewProvider {

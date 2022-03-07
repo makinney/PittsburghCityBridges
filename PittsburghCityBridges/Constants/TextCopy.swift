@@ -20,9 +20,11 @@ App uses publicly available external data that may change at any time. No repres
 App maker assumes no legal liability or responsibility for any loss, damage, injury, or delay associated with the use of this product. User assumes all risk of use.
 """
     static let onBoardingIntroFirstPart = """
-This Pittsburgh City Bridges app contains information on over 130 bridges publicly available from the City of Pittsburgh Bridges OpenData database.
+This Pittsburgh City Bridges app contains information on over 140 bridges publicly available from the City of Pittsburgh Bridges OpenData database.
 
 These city bridges cross roads, ravines, and streams. They are old bridges, new bridges, small, medium and large bridges.
+
+None span the rivers save two, the Fort Duquesne Pedestrian Bridge and the Hot Metal Pedestrian Bridge. Both can be found in this app.
 
 Bridge information provided includes bridge name, neighborhood, year built, gps location, and photos.
 
@@ -30,19 +32,31 @@ Bridge information provided includes bridge name, neighborhood, year built, gps 
     
     static let onboardingOpenDataSource = """
 This Pittsburgh City Bridges App is a data viewer for bridge information contained in the City of Pittsburgh Bridges Open Data dataset. This Open Data is hosted by the Western Pennsylvania Regional Data Center WPRDC at http://www.wprdc.org.
-
-There are over 140 bridges in the City of Pittsburgh Bridges dataset. Data includes bridge name, year built, year rehabbed, neighborhood locations, gps coordinates and photos. All 140 entries have a bridge name, neighborhood, and location. However some entries are missing the year built and some do not have photos.
-
-The 140 bridges in the data are of all types. Swipe left to continue to next page.
 """
+    
+    static let onBoardingCloseScreen = """
+App Maker makes no guarantee about accuracy of data contained in the City of Pittsburgh Bridges publicly available dataset. Use at your own risk.
+
+Because for example, the Fern Hollow bridge is still shown in the dataset as intact. The Year Built and Images are missing for some bridges. And App Maker has no way to verify the GPS coordinates or even existence of all 140 bridges. Overall though there is a lot of good data.
+
+App Maker has found this to be an educational and even entertaining app. It is presented to the community free of charge.
+
+"""
+    
+    static let onBoardingCloseScreenButton = """
+Close
+"""
+    
+    static let onBoardingCollapsedBridge = """
+    This is the bridge that collapsed in Pittsburgh on January 28, 2022. It crosses the Fern Hollow creek and is commonly called the Fern Hollow Bridge. In the City of Pittsburgh database it's name is the Forbes Avenue Frick Park Bridge. The bridge was built in 1970.
+    """
+    
     static let wprdcDescription = """
     "... The Western Pennsylvania Regional Data Center supports key community initiatives by making public information easier to find and use. The Data Center provides a technological and legal infrastructure for data sharing to support a growing ecosystem of data providers and data users. The Data Center maintains Allegheny County and the City of Pittsburgh’s open data portal, and provides a number of services to data publishers and users. The Data Center also hosts datasets from these and other public sector agencies, academic institutions, and non-profit organizations. The Data Center is managed by the University of Pittsburgh’s Center for Social and Urban Research, and is a partnership of the University, Allegheny County and the City of Pittsburgh ..."
     """
     
 
-    static let onBoardingCloseScreen = """
-Welcome to Pittsburgh City Bridges.
-"""
+
 }
 
 

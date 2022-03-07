@@ -18,7 +18,7 @@ struct OnBoardingBridgePhotosScreen: View {
     var body: some View {
         VStack(alignment: .leading) {
             Spacer()
-            Text("Some examples of city bridges include vehicle bridges, pedestrian only bridges, big bridges, small bridges, and even bridges in parks.")
+            Text("Some examples of city bridges include vehicle bridges, pedestrian only bridges, even bridges in parks.")
                 .font(UIDevice.current.userInterfaceIdiom == .phone ? .subheadline : .title2)
                 .padding()
                 .foregroundColor(.pbTextFnd)

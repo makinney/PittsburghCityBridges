@@ -44,7 +44,7 @@ struct AppIconCreditsScreen: View {
                     .cornerRadius(10)
                     .padding(.vertical)
                     .padding([.leading], 20.0)
-                Text("Pittsburgh City Bridges App Icon created by Aidan K. Who is showing nice talent and new skills at 10 years old")
+                Text("Pittsburgh City Bridges App Icon by 10 yr old Aidan K.")
                     .padding(.trailing)
                     .foregroundColor(.pbTextFnd)
             }
