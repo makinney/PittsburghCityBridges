@@ -77,11 +77,6 @@ struct BridgeDetailsView: View {
                         Image(uiImage: bridgeImage)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .cornerRadius(imageCornerRadius)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: imageCornerRadius)
-                                    .stroke(Color.clear, lineWidth: 4)
-                            )
                             .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
                             .frame(maxWidth: geometry.frame(in: .global).width, maxHeight: geometry.frame(in: .global).height)
                             .scaleEffect(imageScale)
@@ -99,11 +94,6 @@ struct BridgeDetailsView: View {
                                         self.imageMagnification = 1.0
                                         self.bridgeImageOnly = false
                                     }
-                                    .padding(.trailing, 10)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: PCBButton.cornerRadius)
-                                            .stroke(Color.pbTextFnd, lineWidth: 2)
-                                    )
                                 }
                             }
                         Spacer()
@@ -134,16 +124,16 @@ struct BridgeDetailsView: View {
                                         Image(uiImage: bridgeImage)
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
-                                            .cornerRadius(imageCornerRadius)
-                                            .overlay(
-                                                RoundedRectangle(cornerRadius: imageCornerRadius)
+                                            .cornerRadius(PCBImage.cornerRadius)
+                                            .background (
+                                                RoundedRectangle(cornerRadius: PCBImage.cornerRadius)
                                                     .stroke(Color.pbTextFnd, lineWidth: 4)
                                             )
+                                            .padding(2)
                                             .frame(maxWidth: geometry.frame(in: .global).width, minHeight: 100)
                                             .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
                                             .scaleEffect(imageScale)
                                             .animation(.easeInOut, value: imageScale)
-                                            .clipped()
                                             .opacity(bridgeImageLoaded ? 1.0 : 0.0)
                                             .gesture(magGesture)
                                         BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
@@ -210,11 +200,12 @@ struct BridgeDetailsView: View {
     func makeMapView(_ bridgeModel: BridgeModel) -> some View {
         ZStack {
             BridgeMapUIView(region: MapViewModel.singleBridgeRegion, bridgeModels: [bridgeModel], showsBridgeImage: false)
-                .cornerRadius(imageCornerRadius)
-                .overlay(
-                    RoundedRectangle(cornerRadius: imageCornerRadius)
-                        .stroke(Color.pbTextFnd, lineWidth: 2)
+                .cornerRadius(PCBImage.cornerRadius)
+                .background (
+                    RoundedRectangle(cornerRadius: PCBImage.cornerRadius)
+                        .stroke(Color.pbTextFnd, lineWidth: 4)
                 )
+                .padding(.horizontal,2)
             VStack {
                 HStack {
                     if let _ = bridgeModel.locationCoordinate {
@@ -222,13 +213,16 @@ struct BridgeDetailsView: View {
                             self.showDisclaimerSheet = true
                         } label: {
                             Label("Directions", systemImage: "arrow.triangle.turn.up.right.circle.fill")
-                                .padding(4)
+                                .padding(.leading, 6)
+                                .padding(.trailing, 10)
+                                .padding(.vertical, 8)
                                 .foregroundColor(.accentColor)
                                 .background(Color.pbBgnd)
                         }
-                        .overlay(
+                        .cornerRadius(PCBButton.cornerRadius)
+                        .background (
                             RoundedRectangle(cornerRadius: PCBButton.cornerRadius)
-                                .stroke(Color.pbTextFnd, lineWidth: 2)
+                                .stroke(Color.pbTextFnd, lineWidth: 4)
                         )
                         .padding()
                         Spacer()
@@ -237,6 +231,7 @@ struct BridgeDetailsView: View {
                 Spacer()
             }
         }
+
     }
 }
 
@@ -244,7 +239,7 @@ struct BridgeDetailsView_Previews: PreviewProvider {
     @ObservedObject static var favorites = Favorites()
     static var previews: some View {
         BridgeDetailsView(bridgeModel: BridgeModel.preview, favorites: favorites)
-            .preferredColorScheme(.dark)
+            .preferredColorScheme(.light)
         //        BridgeDetailsView(bridgeModel: BridgeModel.preview)
         //            .environmentObject(FavoriteBridges())
         

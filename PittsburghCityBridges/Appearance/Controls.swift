@@ -8,5 +8,9 @@
 import SwiftUI
 
 struct PCBButton {
-    static let cornerRadius: CGFloat = 5
+    static let cornerRadius: CGFloat = 18
+}
+
+struct PCBImage {
+    static let cornerRadius: CGFloat = 4
 }

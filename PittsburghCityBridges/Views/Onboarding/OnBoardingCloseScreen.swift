@@ -22,10 +22,11 @@ struct OnBoardingCloseScreen: View {
                     Button(AppTextCopy.onBoardingCloseScreenButton) {
                         onBoardingComplete  = true
                     }
-                    .padding(20)
-                    .overlay(
+                    .padding(.vertical, 15)
+                    .padding(.horizontal, 40)
+                    .background(
                         RoundedRectangle(cornerRadius: PCBButton.cornerRadius)
-                            .stroke(Color.pbTextFnd, lineWidth: 2)
+                            .stroke(Color.accentColor, lineWidth: 2)
                     )
                     Spacer()
                 }
