@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct OnBoardingContentView: View {
-    @AppStorage(StorageKeys.onBoardingComplete) private var onBoardingComplete = false
-    @State var done = false
  
     var body: some View {
         TabView {
@@ -19,15 +17,9 @@ struct OnBoardingContentView: View {
             OnBoardingBrowseScreen()
             OnBoardingSortAndSearchScreen()
             OnboardingCollapsedBridgeScreen()
-            OnBoardingCloseScreen(onBoardingComplete: $done)
+            OnBoardingCloseScreen()
         }
         .background(Color.pbBgnd)
-        .onChange(of: done, perform: { newValue in
-            onBoardingComplete = done
-        })
-        .onAppear(perform: {
-            done = onBoardingComplete
-        })
         .tabViewStyle(.page(indexDisplayMode: .always))
     }
 }

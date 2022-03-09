@@ -8,5 +8,4 @@
 import Foundation
 
 struct StorageKeys {
-    static let onBoardingComplete = "com.mak.pcb.onboard.complete"
 }
