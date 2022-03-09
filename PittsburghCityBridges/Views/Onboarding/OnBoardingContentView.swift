@@ -12,12 +12,12 @@ struct OnBoardingContentView: View {
     var body: some View {
         TabView {
             OnBoardingIntroScreen()
-            OnBoardingBridgePhotosScreen()
-            OnBoardingMapScreen()
-            OnBoardingBrowseScreen()
-            OnBoardingSortAndSearchScreen()
-            OnboardingCollapsedBridgeScreen()
-            OnBoardingCloseScreen()
+//            OnBoardingBridgePhotosScreen()
+//            OnBoardingBrowseScreen()
+//            OnBoardingMapScreen()
+//            OnBoardingSortAndSearchScreen()
+//            OnboardingCollapsedBridgeScreen()
+//            OnBoardingCloseScreen()
         }
         .background(Color.pbBgnd)
         .tabViewStyle(.page(indexDisplayMode: .always))

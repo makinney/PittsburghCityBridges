@@ -30,11 +30,6 @@ struct OnBoardingSortAndSearchScreen: View {
                 .aspectRatio(1.0, contentMode: .fill)
                 .frame(width: imageSize.width, height: imageSize.height)
                 .padding(.bottom, 20)
-            Text("Bridge Photos Sort and Search")
-            Image("sortPhotos")
-                .resizable()
-                .aspectRatio(1.0, contentMode: .fill)
-                .frame(width: imageSize.width, height: imageSize.height)
             Spacer()
         }
         .background(Color.pbBgnd)
