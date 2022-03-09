@@ -15,9 +15,9 @@ struct AppTextCopy {
     }
     
     static let directionDisclaimerAgreement = """
-App uses publicly available external data that may change at any time. No representation is made or warranty given as to data content, route practicability, efficiency, or map accuracy.
+App maker assumes no legal liability or responsibility for any loss, damage, injury, or delay associated with the use of this product.
 
-App maker assumes no legal liability or responsibility for any loss, damage, injury, or delay associated with the use of this product. User assumes all risk of use.
+No representation is made or warranty given as to data content, route practicability, efficiency, or map accuracy.
 """
     static let onBoardingIntroFirstPart = """
 This Pittsburgh City Bridges app contains information on over 140 bridges publicly available from the City of Pittsburgh Bridges OpenData database.
@@ -35,12 +35,11 @@ This Pittsburgh City Bridges App is a data viewer for bridge information contain
 """
     
     static let onBoardingCloseScreen = """
-App Maker makes no guarantee about accuracy of data contained in the City of Pittsburgh Bridges publicly available dataset. Use at your own risk.
+App Maker makes no guarantee about accuracy of data contained in the City of Pittsburgh Bridges publicly available dataset.
 
-Because for example, the Fern Hollow bridge is still shown in the dataset as intact. The Year Built and Images are missing for some bridges. And App Maker has no way to verify the GPS coordinates or even existence of all 140 bridges. Overall though there is a lot of good data.
+App Maker cannot verify the GPS coordinates or even existence of all 140 bridges. Use at your own risk.
 
 App Maker has found this to be an educational and even entertaining app. It is presented to the community free of charge.
-
 """
     
     static let onBoardingCloseScreenButton = """
@@ -48,7 +47,7 @@ Close
 """
     
     static let onBoardingCollapsedBridge = """
-    This is the bridge that collapsed in Pittsburgh on January 28, 2022. It crosses the Fern Hollow creek and is commonly called the Fern Hollow Bridge. In the City of Pittsburgh database it's name is the Forbes Avenue Frick Park Bridge. The bridge was built in 1970.
+    This is the Pittsburgh bridge that collapsed on January 28, 2022. It crosses the Fern Hollow creek and is commonly called the Fern Hollow Bridge. To find it in this app search for Forbes Avenue Frick Park Bridge in the List or Photos views.
     """
     
     static let wprdcDescription = """

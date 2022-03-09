@@ -17,43 +17,46 @@ struct DirectionsDisclaimerView: View {
     }
     
     var body: some View {
-        VStack() {
-            Text("Pittsburgh City Bridges")
-                .font(.headline)
-                .foregroundColor(.pbTextFnd)
-            GroupBox(label:
-                        Label("Directions Disclaimer", systemImage: "building.columns")
-            ) {
-                ScrollView(.vertical, showsIndicators: true) {
-                    HStack {
-                        Text(AppTextCopy.directionDisclaimerAgreement)
-                            .font(.body)
-                    }
+        ZStack {
+            Color.pbBgnd
+            VStack {
+                VStack(alignment: .leading) {
+                    Label("Directions Disclaimer", systemImage: "building.columns")
+                        .padding(.bottom, 5)
+                    Text(AppTextCopy.directionDisclaimerAgreement)
+                        .font(.body)
                     HStack {
                         Toggle(isOn: $userAgreedDirectionsDisclaimer) {
-                            Text("I understand and agree")
+                            Text(" User assumes all risk of use.")
+                                .font(.body)
                         }
-                        .padding()
                     }
+                }
+                .padding()
+                VStack(alignment: .center) {
+                    makButtons()
+                        .opacity(userAgreedDirectionsDisclaimer ? 1.0 : 0.50)
                     Button("Cancel") {
                         presentationMode.wrappedValue.dismiss()
                         self.showDirections?(false)
                     }
-                    .frame(width: 200)
-                    .padding(.vertical, 10)
-                    .background(Color.white.cornerRadius(5))
-                    .padding(.vertical, 10)
-                    mapButtons()
-                        .opacity(userAgreedDirectionsDisclaimer ? 1.0 : 0.70)
+                    .frame(width: 150)
+                    .padding(.vertical, 15)
+                    .padding(.horizontal, 30)
+                    .cornerRadius(PCBButton.cornerRadius)
+                    .background (
+                        RoundedRectangle(cornerRadius: PCBButton.cornerRadius)
+                            .stroke(Color.pbTextFnd, lineWidth: 2)
+                    )
                 }
             }
+            .frame(width: UIDevice.current.userInterfaceIdiom == .phone ? 350 : 400)
+            .foregroundColor(.pbTextFnd)
         }
-        .frame(width: UIDevice.current.userInterfaceIdiom == .phone ? 350 : 400)
     }
     
-    private func mapButtons() -> some View {
+    private func makButtons() -> some View {
         VStack(alignment: .center) {
-            Text("Get Directions Using:")
             if DirectionsProvider.shared.supportedMappingApps.contains(DirectionsProvider.MappingApp.apple) {
                 Button("Apple Maps") {
                     if userAgreedDirectionsDisclaimer {
@@ -62,10 +65,14 @@ struct DirectionsDisclaimerView: View {
                         self.showDirections?(true)
                     }
                 }
-                .frame(width: 200)
-                .padding(.vertical, 10)
-                .background(Color.white.cornerRadius(5))
-                .padding(.vertical, 10)
+                .frame(width: 150)
+                .padding(.vertical, 15)
+                .padding(.horizontal, 30)
+                .cornerRadius(PCBButton.cornerRadius)
+                .background (
+                    RoundedRectangle(cornerRadius: PCBButton.cornerRadius)
+                        .stroke(Color.pbTextFnd, lineWidth: 2)
+                )
             }
             if DirectionsProvider.shared.supportedMappingApps.contains(DirectionsProvider.MappingApp.google) {
                 Button("Google Maps") {
@@ -75,10 +82,15 @@ struct DirectionsDisclaimerView: View {
                         self.showDirections?(true)
                     }
                 }
-                .frame(width: 200)
-                .padding(.vertical, 10)
-                .background(Color.white.cornerRadius(5))
-                .padding(.vertical,10)
+                .foregroundColor(.accentColor)
+                .frame(width: 150)
+                .padding(.vertical, 15)
+                .padding(.horizontal, 30)
+                .cornerRadius(PCBButton.cornerRadius)
+                .background (
+                    RoundedRectangle(cornerRadius: PCBButton.cornerRadius)
+                        .stroke(Color.pbTextFnd, lineWidth: 2)
+                )
             }
             if DirectionsProvider.shared.supportedMappingApps.contains(DirectionsProvider.MappingApp.waze) {
                 Button("Waze") {
@@ -88,20 +100,25 @@ struct DirectionsDisclaimerView: View {
                         self.showDirections?(true)
                     }
                 }
-                .frame(width: 200)
-                .padding(.vertical, 10)
-                .background(Color.white.cornerRadius(5))
-                .padding(.vertical, 10)
+                .frame(width: 150)
+                .padding(.vertical, 15)
+                .padding(.horizontal, 30)
+                .cornerRadius(PCBButton.cornerRadius)
+                .background (
+                    RoundedRectangle(cornerRadius: PCBButton.cornerRadius)
+                        .stroke(Color.pbTextFnd, lineWidth: 2)
+                )
             }
         }
+        .foregroundColor(.accentColor)
     }
 }
 
 struct DisclaimerView_Previews: PreviewProvider {
     static var previews: some View {
         DirectionsDisclaimerView()
+            .preferredColorScheme(.light)
+        DirectionsDisclaimerView()
             .preferredColorScheme(.dark)
-        //     DirectionsDisclaimerView()
-        //       .preferredColorScheme(.light)
     }
 }

@@ -12,7 +12,6 @@ struct SinglePhotoView: View {
     @State var imageLoaded = false
     private var bridgeModel: BridgeModel
     private var bridgeImageSystem: BridgeImageSystem
-    private let imageCornerRadius: CGFloat = 10
     private let imageURL: URL
     
     init(imageURL: URL, bridgeModel: BridgeModel) {
@@ -35,11 +34,12 @@ struct SinglePhotoView: View {
                     Image(uiImage: bridgeImage )
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .cornerRadius(imageCornerRadius)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: imageCornerRadius)
-                                .stroke(Color.pbTextFnd, lineWidth: 2)
+                        .cornerRadius(PCBImage.cornerRadius)
+                        .background (
+                            RoundedRectangle(cornerRadius: PCBImage.cornerRadius)
+                                .stroke(Color.pbTextFnd, lineWidth: 4)
                         )
+                    
                     Spacer()
                     VStack {
                         Spacer()

@@ -18,14 +18,16 @@ struct OnBoardingMapScreen: View {
         VStack(alignment: .leading) {
             Text("This app provides a map of bridge locations and supports directions using Apple Maps, Google Maps, and Waze navigation apps.")
                 .font(UIDevice.current.userInterfaceIdiom == .phone ? .subheadline : .title2)
-            .padding()
+                .padding()
             Image(imageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .clipped()
-                .cornerRadius(cornerRadius)
-                .overlay( RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(Color.pbTextFnd, lineWidth: 2))
+                .cornerRadius(PCBImage.cornerRadius)
+                .background (
+                    RoundedRectangle(cornerRadius: PCBImage.cornerRadius)
+                        .stroke(Color.pbTextFnd, lineWidth: 4)
+                )
                 .frame(width: UIScreen.main.bounds.size.width)
         }
         .padding([.bottom], 60)

@@ -22,10 +22,10 @@ struct BridgeMapDetailAccessoryView: View {
                 .resizable()
                 .frame(width: 200)
                 .aspectRatio(1.0, contentMode: .fit)
-                .cornerRadius(4)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 4)
-                        .stroke(Color.pbBgnd, lineWidth: 4)
+                .cornerRadius(PCBImage.cornerRadius)
+                .background (
+                    RoundedRectangle(cornerRadius: PCBImage.cornerRadius)
+                        .stroke(Color.pbTextFnd, lineWidth: 4)
                 )
         }
         .task {

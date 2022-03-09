@@ -14,7 +14,6 @@ struct OnBoardingBridgePhotosScreen: View {
                           "onboardingBridgeG", "onboardingBridgeH", "onboardingBridgeK",
                           "onboardingBridgeM", "onboardingBridgeN", "onboardingBridgeP"]
     var bigBridgesColumns: [GridItem] = Array(repeating: .init(.flexible()), count: UIDevice.current.userInterfaceIdiom == .phone ? 3 : 4)
-    let imageCornerRadius = 4.0
     var body: some View {
         VStack(alignment: .leading) {
             Spacer()
@@ -37,11 +36,11 @@ struct OnBoardingBridgePhotosScreen: View {
                    .resizable()
                    .aspectRatio(1.0, contentMode: .fit)
                    .clipped()
-                   .cornerRadius(imageCornerRadius)
-                   .overlay(
-                       RoundedRectangle(cornerRadius: imageCornerRadius)
-                        .stroke(Color.pbTextFnd, lineWidth: 2)
-                       )
+                   .cornerRadius(PCBImage.cornerRadius)
+                   .background (
+                       RoundedRectangle(cornerRadius: PCBImage.cornerRadius)
+                           .stroke(Color.pbTextFnd, lineWidth: 4)
+                   )
     }
 }
 
