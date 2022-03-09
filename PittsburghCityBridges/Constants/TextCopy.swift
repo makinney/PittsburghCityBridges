@@ -15,9 +15,9 @@ struct AppTextCopy {
     }
     
     static let directionDisclaimerAgreement = """
-App uses publicly available external data that may change at any time. No representation is made or warranty given as to data content, route practicability, efficiency, or map accuracy.
+App maker assumes no legal liability or responsibility for any loss, damage, injury, or delay associated with the use of this product.
 
-App maker assumes no legal liability or responsibility for any loss, damage, injury, or delay associated with the use of this product. User assumes all risk of use.
+No representation is made or warranty given as to data content, route practicability, efficiency, or map accuracy. 
 """
     static let onBoardingIntroFirstPart = """
 This Pittsburgh City Bridges app contains information on over 140 bridges publicly available from the City of Pittsburgh Bridges OpenData database.

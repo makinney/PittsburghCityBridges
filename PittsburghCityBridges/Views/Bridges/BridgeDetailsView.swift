@@ -188,6 +188,7 @@ struct BridgeDetailsView: View {
                             DirectionsProvider.shared.requestDirectionsTo(locationCoordinate)
                         }
                     }
+                    .background(Color.pbBgnd)
                 })
             }
         }
