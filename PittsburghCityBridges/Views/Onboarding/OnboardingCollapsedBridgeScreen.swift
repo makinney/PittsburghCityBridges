@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct OnboardingCollapsedBridgeScreen: View {
-    let cornerRadius = 10.0
     var body: some View {
         VStack {
             Spacer()
@@ -19,9 +18,11 @@ struct OnboardingCollapsedBridgeScreen: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .clipped()
-                .cornerRadius(cornerRadius)
-                .overlay( RoundedRectangle(cornerRadius: cornerRadius)
-                    .stroke(Color.pbTextFnd, lineWidth: 2))
+                .cornerRadius(PCBImage.cornerRadius)
+                .background (
+                    RoundedRectangle(cornerRadius: PCBImage.cornerRadius)
+                        .stroke(Color.pbTextFnd, lineWidth: 4)
+                )
             Spacer()
         }
         .frame(maxWidth: UIDevice.current.userInterfaceIdiom == .phone ? 350 : 700)
