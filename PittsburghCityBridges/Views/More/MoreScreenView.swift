@@ -18,31 +18,29 @@ struct MoreScreenView: View {
                 TitleHeader(title: "Pittsburgh City Bridges")
                 NavigationView {
                     List {
-                     
-                        NavigationLink {
-                            OpenDataCreditsScreen()
-                        }
-                    label: {
-                        Label("Open Data Source - WPRDC", systemImage: "slider.vertical.3")
-                    }
-                    .listRowBackground(Color.pbBgnd)
-                        NavigationLink {
+                    NavigationLink {
                             OnBoardingContentView()
                         }
                     label: {
-                        Label("App Intro Screens", systemImage: "sum")
+                        Label("App Overview", systemImage: "questionmark")
                     }
                     .listRowBackground(Color.pbBgnd)
-                        NavigationLink {
+                    NavigationLink {
                             AppIconCreditsScreen()
                         }
                     label: {
-                        Label("App Icon Designer", systemImage: "megaphone")
+                        Label("App Icon Designer", systemImage: "person.crop.square")
                     }
                     .listRowBackground(Color.pbBgnd)
+                        NavigationLink {
+                                OpenDataCreditsScreen()
+                            }
+                        label: {
+                            Label("Open Data Source - WPRDC", systemImage: "folder")
+                        }
+                        .listRowBackground(Color.pbBgnd)
                     }
                     .foregroundColor(Color.pbTextFnd)
-                    
                 }
                 .navigationViewStyle(StackNavigationViewStyle())
             }

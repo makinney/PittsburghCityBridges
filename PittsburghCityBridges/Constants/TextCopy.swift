@@ -20,13 +20,13 @@ App maker assumes no legal liability or responsibility for any loss, damage, inj
 No representation is made or warranty given as to data content, route practicability, efficiency, or map accuracy.
 """
     static let onBoardingIntroFirstPart = """
-This Pittsburgh City Bridges app contains information on over 140 bridges publicly available from the City of Pittsburgh Bridges OpenData database.
+This Pittsburgh City Bridges app contains information on over 140 bridges publicly available from the City of Pittsburgh Bridges Open Data database.
 
-These city bridges cross roads, ravines, and streams. They are old bridges, new bridges, small, medium and large bridges.
+This app does not have the big bridges that cross any of the three rivers because they are not in the City of Pittsburgh Bridges Open Data database.
 
-None span the rivers save two, the Fort Duquesne Pedestrian Bridge and the Hot Metal Pedestrian Bridge. Both can be found in this app.
+Instead the bridges in this app cross roads, ravines, and streams and are understood to be city maintained bridges.
 
-Bridge information provided includes bridge name, neighborhood, year built, gps location, and photos.
+Search bridges by neighborhood, name and year built.
 
 """
     

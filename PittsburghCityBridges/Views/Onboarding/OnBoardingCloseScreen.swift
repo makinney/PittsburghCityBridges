@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct OnBoardingCloseScreen: View {
-    @Binding var onBoardingComplete: Bool
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -16,22 +15,6 @@ struct OnBoardingCloseScreen: View {
             Text(AppTextCopy.onBoardingCloseScreen)
                 .font(UIDevice.current.userInterfaceIdiom == .phone ? .subheadline : .title2)
             .padding()
-            if !onBoardingComplete {
-                HStack {
-                    Spacer()
-                    Button(AppTextCopy.onBoardingCloseScreenButton) {
-                        onBoardingComplete  = true
-                    }
-                    .padding(.vertical, 15)
-                    .padding(.horizontal, 40)
-                    .background(
-                        RoundedRectangle(cornerRadius: PCBButton.cornerRadius)
-                            .stroke(Color.accentColor, lineWidth: 2)
-                    )
-                    Spacer()
-                }
-                .padding(.vertical, 20)
-            }
             Spacer()
         }
         .frame(maxWidth: UIDevice.current.userInterfaceIdiom == .phone ? 350 : 700)
@@ -43,8 +26,8 @@ struct OnBoardingCloseScreen: View {
 
 struct OnBoardingCloseScreen_Previews: PreviewProvider {
     static var previews: some View {
-        OnBoardingCloseScreen(onBoardingComplete: .constant(false))
-        OnBoardingCloseScreen(onBoardingComplete: .constant(false))
+        OnBoardingCloseScreen()
+        OnBoardingCloseScreen()
             .preferredColorScheme(.dark)
     }
 }
