@@ -25,9 +25,9 @@ class BridgeSearcher {
         case year
     }
     
-    private var nameSectionCache = [BridgeModelCategory]()
-    private var neighborhoodSectionCache = [BridgeModelCategory]()
-    private var yearSectionCache = [BridgeModelCategory]()
+    private var bridgeCategoryByNameCache = [BridgeModelCategory]()
+    private var bridgeCategoryByNeighborhoodCache = [BridgeModelCategory]()
+    private var bridgeCategoryByYearCache = [BridgeModelCategory]()
     
     init(_ bridgeStore: BridgeStore) {
         logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
@@ -35,8 +35,8 @@ class BridgeSearcher {
         clearCacheOnModelChanges()
     }
     
-    func search(searchCategory: SearchCategory, searchText: String? = nil, favorites: Favorites?) -> [BridgeModelCategory] {
-        var bridgeModelCategories = bridgeModelCategories(searchCategory: searchCategory)
+    func sortAndSearch(by searchCategory: SearchCategory, searchText: String? = nil, favorites: Favorites?) -> [BridgeModelCategory] {
+        var bridgeModelCategories = sortBridgeModels(by: searchCategory)
         if let favorites = favorites {
             bridgeModelCategories = filterFavorites(bridgeModelCategories: bridgeModelCategories, favorites: favorites)
         }
@@ -83,21 +83,21 @@ class BridgeSearcher {
         return foundSections
     }
     
-    private func bridgeModelCategories(searchCategory: SearchCategory) -> [BridgeModelCategory] {
+    private func sortBridgeModels(by searchCategory: SearchCategory) -> [BridgeModelCategory] {
         switch searchCategory {
         case .name:
-            nameSectionCache = nameSectionCache.isEmpty ? sectionByName() : nameSectionCache
-            return nameSectionCache
+            bridgeCategoryByNameCache = bridgeCategoryByNameCache.isEmpty ? sortBridgeCategoryByName() : bridgeCategoryByNameCache
+            return bridgeCategoryByNameCache
         case .neighborhood:
-            neighborhoodSectionCache = neighborhoodSectionCache.isEmpty ? sectionByNeighborhood() : neighborhoodSectionCache
-            return neighborhoodSectionCache
+            bridgeCategoryByNeighborhoodCache = bridgeCategoryByNeighborhoodCache.isEmpty ? sortBridgeCategoryByNeighborhood() : bridgeCategoryByNeighborhoodCache
+            return bridgeCategoryByNeighborhoodCache
         case .year:
-            yearSectionCache = yearSectionCache.isEmpty ? sectionByYear() : yearSectionCache
-            return yearSectionCache
+            bridgeCategoryByYearCache = bridgeCategoryByYearCache.isEmpty ? sortBridgeCategoryByYear() : bridgeCategoryByYearCache
+            return bridgeCategoryByYearCache
         }
     }
     
-    func sectionByName() -> [BridgeModelCategory] {
+    func sortBridgeCategoryByName() -> [BridgeModelCategory] {
         var bridgeModelCategories = [BridgeModelCategory]()
         var bridgeModelsSortedByName = bridgeStore.sortedByName()
         var run = true
@@ -130,7 +130,7 @@ class BridgeSearcher {
         return nil
     }
     
-    func sectionByNeighborhood() -> [BridgeModelCategory] {
+    func sortBridgeCategoryByNeighborhood() -> [BridgeModelCategory] {
         var bridgeModelCategories = [BridgeModelCategory]()
         var sortedByNeighboorhood = bridgeStore.sortedByNeighborhoodAndName()
         var run = true
@@ -152,7 +152,7 @@ class BridgeSearcher {
         return bridgeModelCategories
     }
     
-    func sectionByYear() -> [BridgeModelCategory] {
+    func sortBridgeCategoryByYear() -> [BridgeModelCategory] {
         var bridgeModelCategories = [BridgeModelCategory]()
         var sortedByYear = bridgeStore.sortedByYearAndName()
         var run = true
@@ -176,9 +176,9 @@ class BridgeSearcher {
     private func clearCacheOnModelChanges() {
         cancellable = bridgeStore.$bridgeModels
             .sink() { _ in
-                self.nameSectionCache.removeAll()
-                self.neighborhoodSectionCache.removeAll()
-                self.yearSectionCache.removeAll()
+                self.bridgeCategoryByNameCache.removeAll()
+                self.bridgeCategoryByNeighborhoodCache.removeAll()
+                self.bridgeCategoryByYearCache.removeAll()
             }
     }
 }

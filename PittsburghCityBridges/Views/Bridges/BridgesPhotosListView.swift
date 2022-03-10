@@ -30,9 +30,9 @@ struct BridgesPhotosListView: View {
                 HeaderToolBar(searchCategory: $searchCategory,
                               showFavorites: $showFavorites,
                               searchText: $searchText)
-                let bridgeModelCategories = bridgeSearcher.search(searchCategory: searchCategory,
-                                                       searchText: searchText,
-                                                       favorites: showFavorites ? favorites : nil)
+                let bridgeModelCategories = bridgeSearcher.sortAndSearch(by: searchCategory,
+                                                                         searchText: searchText,
+                                                                         favorites: showFavorites ? favorites : nil)
                 if !bridgeModelCategories.isEmpty {
                     ScrollViewReader { scrollViewReaderProxy in
                         ScrollView {

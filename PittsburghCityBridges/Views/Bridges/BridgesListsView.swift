@@ -30,7 +30,7 @@ struct BridgesListsView: View {
                 HeaderToolBar(searchCategory: $searchCategory,
                               showFavorites: $showFavorites,
                               searchText: $searchText)
-                let bridgeModelCategories = bridgeSearcher.search(searchCategory: searchCategory,
+                let bridgeModelCategories = bridgeSearcher.sortAndSearch(by: searchCategory,
                                                        searchText: searchText,
                                                        favorites: showFavorites ? favorites : nil)
                 if !bridgeModelCategories.isEmpty {
