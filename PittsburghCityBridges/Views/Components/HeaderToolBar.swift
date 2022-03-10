@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HeaderToolBar: View {
     
-    @Binding var bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping
+    @Binding var bridgeInfoGrouping: BridgeSearcher.BridgeInfoGrouping
     @Binding var showFavorites: Bool
     @Binding var searchText: String
 
@@ -55,7 +55,7 @@ struct HeaderToolBar: View {
         })
     }
     
-    private func makeCheckedSortLabel(_ name: String, selectedSection: BridgeListViewModel.BridgeInfoGrouping) -> Label<Text, Image> {
+    private func makeCheckedSortLabel(_ name: String, selectedSection: BridgeSearcher.BridgeInfoGrouping) -> Label<Text, Image> {
         if self.bridgeInfoGrouping == selectedSection {
             return Label(name, systemImage: "checkmark.square.fill")
         } else {

@@ -10,7 +10,7 @@ import Combine
 import os
 import SwiftUI
 
-class BridgeListViewModel {
+class BridgeSearcher {
     @ObservedObject private var bridgeStore: BridgeStore
     private var cancellable: AnyCancellable?
     let logger: Logger

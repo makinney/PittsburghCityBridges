@@ -11,15 +11,15 @@ import os
 struct BridgesPhotosListView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @EnvironmentObject var favorites: Favorites
-    @AppStorage("bridgesPhotoListView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
+    @AppStorage("bridgesPhotoListView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeSearcher.BridgeInfoGrouping.neighborhood
     @AppStorage("bridgesPhotoListView.showFavorites") private var showFavorites = false
     @Namespace private var topID
     @State private var searchText = ""
-    private var bridgeListViewModel: BridgeListViewModel
+    private var bridgeSearcher: BridgeSearcher
     let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgesPhotosListView")
     
-    init(_ bridgeListViewModel: BridgeListViewModel) {
-        self.bridgeListViewModel = bridgeListViewModel
+    init(_ bridgeSearcher: BridgeSearcher) {
+        self.bridgeSearcher = bridgeSearcher
     }
     
     var body: some View {
@@ -30,7 +30,7 @@ struct BridgesPhotosListView: View {
                 HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping,
                               showFavorites: $showFavorites,
                               searchText: $searchText)
-                let sections = bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping,
+                let sections = bridgeSearcher.sections(groupedBy: bridgeInfoGrouping,
                                                             favorites: showFavorites ? favorites : nil,
                                                             searchText: searchText)
                 if !sections.isEmpty {
@@ -89,7 +89,7 @@ struct BridgesPhotosListView: View {
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
-    private func pageTitleText(_ bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) -> String {
+    private func pageTitleText(_ bridgeInfoGrouping: BridgeSearcher.BridgeInfoGrouping) -> String {
         var title = "Bridge Photos by"
         switch bridgeInfoGrouping {
         case .name:
@@ -103,7 +103,7 @@ struct BridgesPhotosListView: View {
     }
     
     @ViewBuilder
-    private func sectionLabel(_ sectionName: String, _ sectionListby: BridgeListViewModel.BridgeInfoGrouping) -> some View {
+    private func sectionLabel(_ sectionName: String, _ sectionListby: BridgeSearcher.BridgeInfoGrouping) -> some View {
         switch sectionListby {
         case .neighborhood:
             Text("\(sectionName) \(AppTextCopy.SortedBySection.neighborhood) ")
@@ -120,13 +120,13 @@ struct BridgePhotosListView_Previews: PreviewProvider {
     static let favorites = Favorites()
     
     static var previews: some View {
-        BridgesPhotosListView(BridgeListViewModel(bridgeStore))
+        BridgesPhotosListView(BridgeSearcher(bridgeStore))
             .environmentObject(bridgeStore)
             .environmentObject(favorites)
             .onAppear {
                 bridgeStore.preview()
             }
-        BridgesPhotosListView(BridgeListViewModel(bridgeStore))
+        BridgesPhotosListView(BridgeSearcher(bridgeStore))
             .preferredColorScheme(.dark)
             .environmentObject(bridgeStore)
             .environmentObject(favorites)

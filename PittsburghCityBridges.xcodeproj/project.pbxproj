@@ -30,7 +30,7 @@
 		24496FA5278DDFCE0074720C /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24496FA4278DDFCE0074720C /* StorageKeys.swift */; };
 		244A747427187D1200284608 /* BridgeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244A747327187D1200284608 /* BridgeModel.swift */; };
 		244A747A2719A1A600284608 /* GEOJSONModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244A74792719A1A600284608 /* GEOJSONModels.swift */; };
-		244E9C91273ABF2A00605134 /* BridgeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244E9C90273ABF2A00605134 /* BridgeListViewModel.swift */; };
+		244E9C91273ABF2A00605134 /* BridgeSearcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244E9C90273ABF2A00605134 /* BridgeSearcher.swift */; };
 		244EA80827AF12E800E5FC81 /* OnBoardingCloseScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EA80727AF12E800E5FC81 /* OnBoardingCloseScreen.swift */; };
 		244EA80A27AF14CD00E5FC81 /* OnboardingCollapsedBridgeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EA80927AF14CD00E5FC81 /* OnboardingCollapsedBridgeScreen.swift */; };
 		2458020A278776510091365B /* FavoritesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24580209278776510091365B /* FavoritesButton.swift */; };
@@ -94,7 +94,7 @@
 		24496FA4278DDFCE0074720C /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
 		244A747327187D1200284608 /* BridgeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeModel.swift; sourceTree = "<group>"; };
 		244A74792719A1A600284608 /* GEOJSONModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GEOJSONModels.swift; sourceTree = "<group>"; };
-		244E9C90273ABF2A00605134 /* BridgeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeListViewModel.swift; sourceTree = "<group>"; };
+		244E9C90273ABF2A00605134 /* BridgeSearcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeSearcher.swift; sourceTree = "<group>"; };
 		244EA80727AF12E800E5FC81 /* OnBoardingCloseScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingCloseScreen.swift; sourceTree = "<group>"; };
 		244EA80927AF14CD00E5FC81 /* OnboardingCollapsedBridgeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollapsedBridgeScreen.swift; sourceTree = "<group>"; };
 		24580209278776510091365B /* FavoritesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesButton.swift; sourceTree = "<group>"; };
@@ -154,6 +154,7 @@
 			children = (
 				240075CC271493CB00CB864F /* AppLogging.swift */,
 				24808FDB275A6D9900FF131C /* BridgeImageSystem.swift */,
+				244E9C90273ABF2A00605134 /* BridgeSearcher.swift */,
 				24CC1B4D270A8ABE009BE390 /* BridgeStore.swift */,
 				24B3FE902722356A004B93A6 /* DirectionsProvider.swift */,
 				240FBEE1278634CD0029DCC5 /* Favorites.swift */,
@@ -204,7 +205,6 @@
 			isa = PBXGroup;
 			children = (
 				244A747327187D1200284608 /* BridgeModel.swift */,
-				244E9C90273ABF2A00605134 /* BridgeListViewModel.swift */,
 				2419B8BA271F3CD900BFE3D8 /* MapViewModel.swift */,
 				244A74792719A1A600284608 /* GEOJSONModels.swift */,
 			);
@@ -477,7 +477,7 @@
 				2405C99D2767E1CF00C68307 /* BridgeImageLoadingProgressView.swift in Sources */,
 				244A747427187D1200284608 /* BridgeModel.swift in Sources */,
 				248FC583270276EA00BE168F /* PittsburghCityBridgesApp.swift in Sources */,
-				244E9C91273ABF2A00605134 /* BridgeListViewModel.swift in Sources */,
+				244E9C91273ABF2A00605134 /* BridgeSearcher.swift in Sources */,
 				249C7D5D277F609600D72DA4 /* TitleHeader.swift in Sources */,
 				24808FD3274D443D00FF131C /* ViewExtensions.swift in Sources */,
 				244EA80827AF12E800E5FC81 /* OnBoardingCloseScreen.swift in Sources */,
