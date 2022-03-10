@@ -14,7 +14,7 @@ class BridgeSearcher {
     @ObservedObject private var bridgeStore: BridgeStore
     private var cancellable: AnyCancellable?
     let logger: Logger
-    struct Section: Identifiable {
+    struct BridgeModelCategory: Identifiable {
         var id = UUID()
         var sectionName = ""
         var bridgeModels: [BridgeModel]
@@ -25,9 +25,9 @@ class BridgeSearcher {
         case year
     }
     
-    private var nameSectionCache = [Section]()
-    private var neighborhoodSectionCache = [Section]()
-    private var yearSectionCache = [Section]()
+    private var nameSectionCache = [BridgeModelCategory]()
+    private var neighborhoodSectionCache = [BridgeModelCategory]()
+    private var yearSectionCache = [BridgeModelCategory]()
     
     init(_ bridgeStore: BridgeStore) {
         logger = Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
@@ -35,35 +35,35 @@ class BridgeSearcher {
         clearCacheOnModelChanges()
     }
     
-    func sections(searchCategory: SearchCategory, searchText: String? = nil, favorites: Favorites?) -> [Section] {
-        var sections = sections(searchCategory: searchCategory)
+    func search(searchCategory: SearchCategory, searchText: String? = nil, favorites: Favorites?) -> [BridgeModelCategory] {
+        var bridgeModelCategories = bridgeModelCategories(searchCategory: searchCategory)
         if let favorites = favorites {
-            sections = filterFavorites(sections: sections, favorites: favorites)
+            bridgeModelCategories = filterFavorites(bridgeModelCategories: bridgeModelCategories, favorites: favorites)
         }
         if let searchText = searchText, !searchText.isEmpty {
-            sections = search(sections, for: searchText, in: searchCategory)
+            bridgeModelCategories = search(bridgeModelCategories, for: searchText, in: searchCategory)
         }
-        return sections
+        return bridgeModelCategories
     }
     
-    private func filterFavorites(sections: [Section], favorites: Favorites) -> [Section] {
-        var filteredSections = [Section]()
-        sections.forEach { section in
-            let filterModels = section.bridgeModels.filter { bridgeModel in
+    private func filterFavorites(bridgeModelCategories: [BridgeModelCategory], favorites: Favorites) -> [BridgeModelCategory] {
+        var filteredSections = [BridgeModelCategory]()
+        bridgeModelCategories.forEach { bridgeModelCategory in
+            let filterModels = bridgeModelCategory.bridgeModels.filter { bridgeModel in
                 favorites.contains(element: bridgeModel.name)
             }
             if !filterModels.isEmpty {
-                let filteredSection = Section(id: section.id, sectionName: section.sectionName, bridgeModels: filterModels)
+                let filteredSection = BridgeModelCategory(id: bridgeModelCategory.id, sectionName: bridgeModelCategory.sectionName, bridgeModels: filterModels)
                 filteredSections.append(filteredSection)
             }
         }
         return filteredSections
     }
     
-    private func search(_ sections: [Section], for searchText: String, in searchCategory: SearchCategory) -> [Section] {
-        var foundSections = [Section]()
-        sections.forEach { section in
-            let foundModels = section.bridgeModels.filter { bridgeModel in
+    private func search(_ bridgeModelCategories: [BridgeModelCategory], for searchText: String, in searchCategory: SearchCategory) -> [BridgeModelCategory] {
+        var foundSections = [BridgeModelCategory]()
+        bridgeModelCategories.forEach { bridgeModelCategory in
+            let foundModels = bridgeModelCategory.bridgeModels.filter { bridgeModel in
                 var searchField = ""
                 switch searchCategory {
                 case .name:
@@ -76,14 +76,14 @@ class BridgeSearcher {
                 return  searchField.localizedCaseInsensitiveContains(searchText)
             }
             if !foundModels.isEmpty {
-                let foundSection = Section(id: section.id, sectionName: section.sectionName, bridgeModels: foundModels)
+                let foundSection = BridgeModelCategory(id: bridgeModelCategory.id, sectionName: bridgeModelCategory.sectionName, bridgeModels: foundModels)
                 foundSections.append(foundSection)
             }
         }
         return foundSections
     }
     
-    private func sections(searchCategory: SearchCategory) -> [Section] {
+    private func bridgeModelCategories(searchCategory: SearchCategory) -> [BridgeModelCategory] {
         switch searchCategory {
         case .name:
             nameSectionCache = nameSectionCache.isEmpty ? sectionByName() : nameSectionCache
@@ -97,8 +97,8 @@ class BridgeSearcher {
         }
     }
     
-    func sectionByName() -> [Section] {
-        var sections = [Section]()
+    func sectionByName() -> [BridgeModelCategory] {
+        var bridgeModelCategories = [BridgeModelCategory]()
         var bridgeModelsSortedByName = bridgeStore.sortedByName()
         var run = true
         while run {
@@ -112,7 +112,7 @@ class BridgeSearcher {
                     }
                 }
                 if !bridgeModelsSlice.isEmpty {
-                    sections.append(Section(sectionName: firstLetterInFirstModel,
+                    bridgeModelCategories.append(BridgeModelCategory(sectionName: firstLetterInFirstModel,
                                             bridgeModels: Array(bridgeModelsSlice)))
                     bridgeModelsSortedByName.removeFirst(bridgeModelsSlice.count)
                 }
@@ -120,7 +120,7 @@ class BridgeSearcher {
                 run = false
             }
         }
-        return sections
+        return bridgeModelCategories
     }
     
     private func firstLetterIn(_ name: String) -> String? {
@@ -130,8 +130,8 @@ class BridgeSearcher {
         return nil
     }
     
-    func sectionByNeighborhood() -> [Section] {
-        var sections = [Section]()
+    func sectionByNeighborhood() -> [BridgeModelCategory] {
+        var bridgeModelCategories = [BridgeModelCategory]()
         var sortedByNeighboorhood = bridgeStore.sortedByNeighborhoodAndName()
         var run = true
         while run {
@@ -141,7 +141,7 @@ class BridgeSearcher {
                     bridgeModel.startNeighborhood == neighborhood
                 }
                 if !bridgeModelSlice.isEmpty {
-                    sections.append(Section(sectionName: neighborhood,
+                    bridgeModelCategories.append(BridgeModelCategory(sectionName: neighborhood,
                                             bridgeModels: Array(bridgeModelSlice)))
                     sortedByNeighboorhood.removeFirst(bridgeModelSlice.count)
                 }
@@ -149,11 +149,11 @@ class BridgeSearcher {
                 run = false
             }
         }
-        return sections
+        return bridgeModelCategories
     }
     
-    func sectionByYear() -> [Section] {
-        var sections = [Section]()
+    func sectionByYear() -> [BridgeModelCategory] {
+        var bridgeModelCategories = [BridgeModelCategory]()
         var sortedByYear = bridgeStore.sortedByYearAndName()
         var run = true
         while run {
@@ -163,14 +163,14 @@ class BridgeSearcher {
                     bridgeModel.yearBuilt == yearBuilt
                 }
                 if !bridgeModelSlice.isEmpty {
-                    sections.append(Section(sectionName: yearBuilt, bridgeModels:Array(bridgeModelSlice)))
+                    bridgeModelCategories.append(BridgeModelCategory(sectionName: yearBuilt, bridgeModels:Array(bridgeModelSlice)))
                     sortedByYear.removeFirst(bridgeModelSlice.count)
                 }
             } else { // collection is empty
                 run = false
             }
         }
-        return sections
+        return bridgeModelCategories
     }
     
     private func clearCacheOnModelChanges() {

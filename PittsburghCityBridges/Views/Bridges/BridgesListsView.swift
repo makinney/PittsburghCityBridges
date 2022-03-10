@@ -30,17 +30,17 @@ struct BridgesListsView: View {
                 HeaderToolBar(searchCategory: $searchCategory,
                               showFavorites: $showFavorites,
                               searchText: $searchText)
-                let sections = bridgeSearcher.sections(searchCategory: searchCategory,
+                let bridgeModelCategories = bridgeSearcher.search(searchCategory: searchCategory,
                                                        searchText: searchText,
                                                        favorites: showFavorites ? favorites : nil)
-                if !sections.isEmpty {
+                if !bridgeModelCategories.isEmpty {
                     ScrollViewReader { scrollViewReaderProxy in
                         ScrollView {
                             RefreshControlView(coordinateSpace: .named("RefreshControlView")) {
                                 bridgeStore.refreshBridgeModels()
                             }
                             LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                                ForEach(sections) { bridgesSection in
+                                ForEach(bridgeModelCategories) { bridgesSection in
                                     Section {
                                         ForEach(bridgesSection.bridgeModels) { bridgeModel in
                                             NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, favorites: favorites)) {
