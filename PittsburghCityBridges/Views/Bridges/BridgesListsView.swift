@@ -31,8 +31,8 @@ struct BridgesListsView: View {
                               showFavorites: $showFavorites,
                               searchText: $searchText)
                 let sections = bridgeSearcher.sections(searchCategory: bridgeInfoGrouping,
-                                                            favorites: showFavorites ? favorites : nil,
-                                                            searchText: searchText)
+                                                       searchText: searchText,
+                                                       favorites: showFavorites ? favorites : nil)
                 if !sections.isEmpty {
                     ScrollViewReader { scrollViewReaderProxy in
                         ScrollView {
