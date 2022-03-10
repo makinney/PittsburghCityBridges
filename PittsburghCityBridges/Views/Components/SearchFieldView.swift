@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchFieldView: View {
     @Binding var searchText: String
-    var bridgeInfoGrouping: BridgeSearcher.BridgeInfoGrouping
+    var bridgeInfoGrouping: BridgeSearcher.SearchCategory
     var prompt: String = "Search"
     
     var body: some View {
@@ -41,7 +41,7 @@ struct SearchFieldView: View {
         .background(Color.pbBgnd)
     }
     
-    private func searchPrompt(_ bridgeInfoGrouping: BridgeSearcher.BridgeInfoGrouping) -> String {
+    private func searchPrompt(_ bridgeInfoGrouping: BridgeSearcher.SearchCategory) -> String {
         var prompt = "Search by"
         switch bridgeInfoGrouping {
         case .name:

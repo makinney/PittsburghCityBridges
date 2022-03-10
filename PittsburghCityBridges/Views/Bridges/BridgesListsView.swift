@@ -11,7 +11,7 @@ import os
 struct BridgesListsView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @EnvironmentObject var favorites: Favorites
-    @AppStorage("bridgesListsView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeSearcher.BridgeInfoGrouping.neighborhood
+    @AppStorage("bridgesListsView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeSearcher.SearchCategory.neighborhood
     @AppStorage("bridgesListsView.showFavorites") private var showFavorites = false
     @Namespace private var topID
     @State private var searchText = ""
@@ -30,7 +30,7 @@ struct BridgesListsView: View {
                 HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping,
                               showFavorites: $showFavorites,
                               searchText: $searchText)
-                let sections = bridgeSearcher.sections(groupedBy: bridgeInfoGrouping,
+                let sections = bridgeSearcher.sections(searchCategory: bridgeInfoGrouping,
                                                             favorites: showFavorites ? favorites : nil,
                                                             searchText: searchText)
                 if !sections.isEmpty {
@@ -88,7 +88,7 @@ struct BridgesListsView: View {
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
-    private func pageTitleText(_ bridgeInfoGrouping: BridgeSearcher.BridgeInfoGrouping) -> String {
+    private func pageTitleText(_ bridgeInfoGrouping: BridgeSearcher.SearchCategory) -> String {
         var title = "Pittsburgh City Bridges by"
         switch bridgeInfoGrouping {
         case .name:
@@ -102,7 +102,7 @@ struct BridgesListsView: View {
     }
     
     @ViewBuilder
-    private func sectionLabel(_ sectionName: String, _ sectionListby: BridgeSearcher.BridgeInfoGrouping) -> some View {
+    private func sectionLabel(_ sectionName: String, _ sectionListby: BridgeSearcher.SearchCategory) -> some View {
         switch sectionListby {
         case .neighborhood:
             Text("\(sectionName) \(AppTextCopy.SortedBySection.neighborhood)")

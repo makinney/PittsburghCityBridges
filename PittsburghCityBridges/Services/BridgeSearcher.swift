@@ -19,7 +19,7 @@ class BridgeSearcher {
         var sectionName = ""
         var bridgeModels: [BridgeModel]
     }
-    enum BridgeInfoGrouping: Int {
+    enum SearchCategory: Int {
         case name
         case neighborhood
         case year
@@ -35,13 +35,13 @@ class BridgeSearcher {
         clearCacheOnModelChanges()
     }
     
-    func sections(groupedBy: BridgeInfoGrouping, favorites: Favorites?, searchText: String? = nil) -> [Section] {
-        var sections = sections(groupedBy: groupedBy)
+    func sections(searchCategory: SearchCategory, favorites: Favorites?, searchText: String? = nil) -> [Section] {
+        var sections = sections(searchCategory: searchCategory)
         if let favorites = favorites {
             sections = filterFavorites(sections: sections, favorites: favorites)
         }
         if let searchText = searchText, !searchText.isEmpty {
-            sections = search(sections, for: searchText, in: groupedBy)
+            sections = search(sections, for: searchText, in: searchCategory)
         }
         return sections
     }
@@ -60,12 +60,12 @@ class BridgeSearcher {
         return filteredSections
     }
     
-    private func search(_ sections: [Section], for searchText: String, in groupedBy: BridgeInfoGrouping) -> [Section] {
+    private func search(_ sections: [Section], for searchText: String, in searchCategory: SearchCategory) -> [Section] {
         var foundSections = [Section]()
         sections.forEach { section in
             let foundModels = section.bridgeModels.filter { bridgeModel in
                 var searchField = ""
-                switch groupedBy {
+                switch searchCategory {
                 case .name:
                     searchField = bridgeModel.name
                 case .neighborhood:
@@ -83,8 +83,8 @@ class BridgeSearcher {
         return foundSections
     }
     
-    private func sections(groupedBy: BridgeInfoGrouping) -> [Section] {
-        switch groupedBy {
+    private func sections(searchCategory: SearchCategory) -> [Section] {
+        switch searchCategory {
         case .name:
             nameSectionCache = nameSectionCache.isEmpty ? sectionByName() : nameSectionCache
             return nameSectionCache
