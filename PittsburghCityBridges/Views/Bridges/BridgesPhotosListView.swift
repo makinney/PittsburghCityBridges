@@ -11,7 +11,7 @@ import os
 struct BridgesPhotosListView: View {
     @EnvironmentObject var bridgeStore: BridgeStore
     @EnvironmentObject var favorites: Favorites
-    @AppStorage("bridgesPhotoListView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeSearcher.SearchCategory.neighborhood
+    @AppStorage("bridgesPhotoListView.searchCategory") private var searchCategory = BridgeSearcher.SearchCategory.neighborhood
     @AppStorage("bridgesPhotoListView.showFavorites") private var showFavorites = false
     @Namespace private var topID
     @State private var searchText = ""
@@ -25,12 +25,12 @@ struct BridgesPhotosListView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                TitleHeader(title: pageTitleText(bridgeInfoGrouping))
+                TitleHeader(title: pageTitleText(searchCategory))
                     .padding(.bottom, 10)
-                HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping,
+                HeaderToolBar(searchCategory: $searchCategory,
                               showFavorites: $showFavorites,
                               searchText: $searchText)
-                let sections = bridgeSearcher.sections(searchCategory: bridgeInfoGrouping,
+                let sections = bridgeSearcher.sections(searchCategory: searchCategory,
                                                        searchText: searchText,
                                                        favorites: showFavorites ? favorites : nil)
                 if !sections.isEmpty {
@@ -54,7 +54,7 @@ struct BridgesPhotosListView: View {
                                         .id(topID)
                                     } header: {
                                         HStack {
-                                            sectionLabel(bridgesSection.sectionName, bridgeInfoGrouping)
+                                            sectionLabel(bridgesSection.sectionName, searchCategory)
                                                 .foregroundColor(Color.pbTextFnd)
                                                 .font(.body)
                                                 .padding([.leading])
@@ -89,9 +89,9 @@ struct BridgesPhotosListView: View {
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
-    private func pageTitleText(_ bridgeInfoGrouping: BridgeSearcher.SearchCategory) -> String {
+    private func pageTitleText(_ searchCategory: BridgeSearcher.SearchCategory) -> String {
         var title = "Bridge Photos by"
-        switch bridgeInfoGrouping {
+        switch searchCategory {
         case .name:
             title += " Name"
         case .neighborhood:

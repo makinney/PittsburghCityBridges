@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HeaderToolBar: View {
     
-    @Binding var bridgeInfoGrouping: BridgeSearcher.SearchCategory
+    @Binding var searchCategory: BridgeSearcher.SearchCategory
     @Binding var showFavorites: Bool
     @Binding var searchText: String
 
@@ -17,7 +17,7 @@ struct HeaderToolBar: View {
         HStack {
             sortMenu()
                 .padding([.leading])
-            SearchFieldView(searchText: $searchText, bridgeInfoGrouping: bridgeInfoGrouping)
+            SearchFieldView(searchText: $searchText, searchCategory: searchCategory)
             Text(showFavorites ? "Favorites" : "")
                 .foregroundColor(Color.pbTextFnd)
                 .padding([.trailing])
@@ -29,17 +29,17 @@ struct HeaderToolBar: View {
     private func sortMenu() -> some View {
         Menu(content: {
             Button {
-                bridgeInfoGrouping = .name
+                searchCategory = .name
             } label: {
                 makeCheckedSortLabel("Sort by Names", selectedSection: .name)
             }
             Button {
-                bridgeInfoGrouping = .neighborhood
+                searchCategory = .neighborhood
             } label: {
                 makeCheckedSortLabel("Sort by Neighborhoods", selectedSection: .neighborhood)
             }
             Button {
-                bridgeInfoGrouping = .year
+                searchCategory = .year
             } label: {
                 makeCheckedSortLabel("Sort by Year Built", selectedSection: .year)
             }
@@ -56,7 +56,7 @@ struct HeaderToolBar: View {
     }
     
     private func makeCheckedSortLabel(_ name: String, selectedSection: BridgeSearcher.SearchCategory) -> Label<Text, Image> {
-        if self.bridgeInfoGrouping == selectedSection {
+        if self.searchCategory == selectedSection {
             return Label(name, systemImage: "checkmark.square.fill")
         } else {
             return Label(name, systemImage: "square")
@@ -74,6 +74,6 @@ struct HeaderToolBar: View {
 
 struct BridgeMenuBar_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderToolBar(bridgeInfoGrouping: .constant(.neighborhood), showFavorites: .constant(false), searchText: .constant("Search Neighborhood"))
+        HeaderToolBar(searchCategory: .constant(.neighborhood), showFavorites: .constant(false), searchText: .constant("Search Neighborhood"))
     }
 }
