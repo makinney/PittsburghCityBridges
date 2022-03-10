@@ -16,7 +16,7 @@ class BridgeSearcher {
     let logger: Logger
     struct BridgeModelCategory: Identifiable {
         var id = UUID()
-        var sectionName = ""
+        var name = ""
         var bridgeModels: [BridgeModel]
     }
     enum SearchCategory: Int {
@@ -53,7 +53,7 @@ class BridgeSearcher {
                 favorites.contains(element: bridgeModel.name)
             }
             if !filterModels.isEmpty {
-                let filteredSection = BridgeModelCategory(id: bridgeModelCategory.id, sectionName: bridgeModelCategory.sectionName, bridgeModels: filterModels)
+                let filteredSection = BridgeModelCategory(id: bridgeModelCategory.id, name: bridgeModelCategory.name, bridgeModels: filterModels)
                 filteredSections.append(filteredSection)
             }
         }
@@ -76,7 +76,7 @@ class BridgeSearcher {
                 return  searchField.localizedCaseInsensitiveContains(searchText)
             }
             if !foundModels.isEmpty {
-                let foundSection = BridgeModelCategory(id: bridgeModelCategory.id, sectionName: bridgeModelCategory.sectionName, bridgeModels: foundModels)
+                let foundSection = BridgeModelCategory(id: bridgeModelCategory.id, name: bridgeModelCategory.name, bridgeModels: foundModels)
                 foundSections.append(foundSection)
             }
         }
@@ -112,7 +112,7 @@ class BridgeSearcher {
                     }
                 }
                 if !bridgeModelsSlice.isEmpty {
-                    bridgeModelCategories.append(BridgeModelCategory(sectionName: firstLetterInFirstModel,
+                    bridgeModelCategories.append(BridgeModelCategory(name: firstLetterInFirstModel,
                                             bridgeModels: Array(bridgeModelsSlice)))
                     bridgeModelsSortedByName.removeFirst(bridgeModelsSlice.count)
                 }
@@ -141,7 +141,7 @@ class BridgeSearcher {
                     bridgeModel.startNeighborhood == neighborhood
                 }
                 if !bridgeModelSlice.isEmpty {
-                    bridgeModelCategories.append(BridgeModelCategory(sectionName: neighborhood,
+                    bridgeModelCategories.append(BridgeModelCategory(name: neighborhood,
                                             bridgeModels: Array(bridgeModelSlice)))
                     sortedByNeighboorhood.removeFirst(bridgeModelSlice.count)
                 }
@@ -163,7 +163,7 @@ class BridgeSearcher {
                     bridgeModel.yearBuilt == yearBuilt
                 }
                 if !bridgeModelSlice.isEmpty {
-                    bridgeModelCategories.append(BridgeModelCategory(sectionName: yearBuilt, bridgeModels:Array(bridgeModelSlice)))
+                    bridgeModelCategories.append(BridgeModelCategory(name: yearBuilt, bridgeModels:Array(bridgeModelSlice)))
                     sortedByYear.removeFirst(bridgeModelSlice.count)
                 }
             } else { // collection is empty

@@ -40,9 +40,9 @@ struct BridgesPhotosListView: View {
                                 bridgeStore.refreshBridgeModels()
                             }
                             LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                                ForEach(bridgeModelCategories) { bridgesSection in
+                                ForEach(bridgeModelCategories) { bridgeModelCategory in
                                     Section {
-                                        ForEach(bridgesSection.bridgeModels) { bridgeModel in
+                                        ForEach(bridgeModelCategory.bridgeModels) { bridgeModel in
                                             NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, favorites: favorites)) {
                                                 if let imageURL = bridgeModel.imageURL {
                                                     SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel)
@@ -54,7 +54,7 @@ struct BridgesPhotosListView: View {
                                         .id(topID)
                                     } header: {
                                         HStack {
-                                            sectionLabel(bridgesSection.sectionName, searchCategory)
+                                            sectionLabel(bridgeModelCategory.name, searchCategory)
                                                 .foregroundColor(Color.pbTextFnd)
                                                 .font(.body)
                                                 .padding([.leading])
@@ -103,14 +103,14 @@ struct BridgesPhotosListView: View {
     }
     
     @ViewBuilder
-    private func sectionLabel(_ sectionName: String, _ sectionListby: BridgeSearcher.SearchCategory) -> some View {
-        switch sectionListby {
+    private func sectionLabel(_ sectionName: String, _ searchCategory: BridgeSearcher.SearchCategory) -> some View {
+        switch searchCategory {
         case .neighborhood:
-            Text("\(sectionName) \(AppTextCopy.SortedBySection.neighborhood) ")
+            Text("\(sectionName) \(AppTextCopy.SortedByCategory.neighborhood) ")
         case .name:
-            Text("\(sectionName) \(AppTextCopy.SortedBySection.name) ")
+            Text("\(sectionName) \(AppTextCopy.SortedByCategory.name) ")
         case .year:
-            Text("\(AppTextCopy.SortedBySection.year) \(sectionName)")
+            Text("\(AppTextCopy.SortedByCategory.year) \(sectionName)")
         }
     }
 }
