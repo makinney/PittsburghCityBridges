@@ -41,7 +41,7 @@ class BridgeSearcher {
             bridgeModelCategories = filterFavorites(bridgeModelCategories: bridgeModelCategories, favorites: favorites)
         }
         if let searchText = searchText, !searchText.isEmpty {
-            bridgeModelCategories = search(bridgeModelCategories, for: searchText, in: searchCategory)
+            bridgeModelCategories = search(bridgeModelCategories, for: searchText)
         }
         return bridgeModelCategories
     }
@@ -60,20 +60,21 @@ class BridgeSearcher {
         return filteredSections
     }
     
-    private func search(_ bridgeModelCategories: [BridgeModelCategory], for searchText: String, in searchCategory: SearchCategory) -> [BridgeModelCategory] {
+    private func search(_ bridgeModelCategories: [BridgeModelCategory], for searchText: String) -> [BridgeModelCategory] {
         var foundSections = [BridgeModelCategory]()
         bridgeModelCategories.forEach { bridgeModelCategory in
             let foundModels = bridgeModelCategory.bridgeModels.filter { bridgeModel in
-                var searchField = ""
-                switch searchCategory {
-                case .name:
-                    searchField = bridgeModel.name
-                case .neighborhood:
-                    searchField = bridgeModel.startNeighborhood
-                case .year:
-                    searchField = bridgeModel.yearBuilt
+                if bridgeModel.name.localizedCaseInsensitiveContains(searchText) {
+                    return true
                 }
-                return  searchField.localizedCaseInsensitiveContains(searchText)
+                if bridgeModel.startNeighborhood.localizedCaseInsensitiveContains(searchText) ||
+                    bridgeModel.endNeighborhood.localizedStandardContains(searchText) {
+                    return true
+                }
+                if  bridgeModel.yearBuilt.localizedCaseInsensitiveContains(searchText) {
+                    return true
+                }
+                return  false
             }
             if !foundModels.isEmpty {
                 let foundSection = BridgeModelCategory(id: bridgeModelCategory.id, name: bridgeModelCategory.name, bridgeModels: foundModels)

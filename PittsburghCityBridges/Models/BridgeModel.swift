@@ -49,10 +49,10 @@ struct BridgeModel: Identifiable {
               }
         return startNeighborhood
     }
-    var endNeighborhood: String? {
+    var endNeighborhood: String {
         guard let endNeighborhood = geoJSON.endNeighborhood,
               !endNeighborhood.isEmpty else {
-                  return nil
+                  return ""
               }
         return endNeighborhood
     }
@@ -89,7 +89,7 @@ extension BridgeModel {
     
     func neighborhoods() -> String {
         var description = "Neighborhood: \(startNeighborhood)"
-        if let endNeighborhood = endNeighborhood {
+        if !endNeighborhood.isEmpty {
             description += " and runs to \(endNeighborhood)"
         }
         return description
