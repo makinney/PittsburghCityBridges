@@ -20,7 +20,7 @@ struct SearchFieldView: View {
                         .renderingMode(.template)
                         .foregroundColor(.accentColor)
                         .padding(.leading, 5)
-                    TextField("Search", text: $searchText, prompt: Text(searchPrompt(searchCategory)))
+                    TextField("name, year, neighborhood", text: $searchText)
                         .textInputAutocapitalization(.never)
                         .disableAutocorrection(true)
                         .foregroundColor(Color.pbTextFnd)
