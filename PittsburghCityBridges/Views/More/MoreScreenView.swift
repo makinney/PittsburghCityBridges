@@ -18,27 +18,41 @@ struct MoreScreenView: View {
                 TitleHeader(title: "Pittsburgh City Bridges")
                 NavigationView {
                     List {
-                    NavigationLink {
-                            OnBoardingContentView()
+                        NavigationLink {
+                            OnBoardingIntroScreen()
                         }
                     label: {
-                        Label("App Overview", systemImage: "questionmark")
-                    }
-                    .listRowBackground(Color.pbBgnd)
-                    NavigationLink {
-                            AppIconCreditsScreen()
-                        }
-                    label: {
-                        Label("App Icon Designer", systemImage: "person.crop.square")
+                        Label("About", systemImage: "a.square")
                     }
                     .listRowBackground(Color.pbBgnd)
                         NavigationLink {
-                                OpenDataCreditsScreen()
-                            }
-                        label: {
-                            Label("Open Data Source - WPRDC", systemImage: "folder")
+                            OnBoardingDisclaimerScreen()
                         }
-                        .listRowBackground(Color.pbBgnd)
+                    label: {
+                        Label("Disclaimer", systemImage: "building.columns")
+                    }
+                    .listRowBackground(Color.pbBgnd)
+                        NavigationLink {
+                            OnboardingCollapsedBridgeScreen()
+                        }
+                    label: {
+                        Label("Fern Hollow Bridge", systemImage: "bus")
+                    }
+                    .listRowBackground(Color.pbBgnd)
+                        NavigationLink {
+                            AppIconCreditsScreen()
+                        }
+                    label: {
+                        Label("Icon Designer", systemImage: "person.crop.square")
+                    }
+                    .listRowBackground(Color.pbBgnd)
+                        NavigationLink {
+                            OpenDataCreditsScreen()
+                        }
+                    label: {
+                        Label("Open Data Source - WPRDC", systemImage: "folder")
+                    }
+                    .listRowBackground(Color.pbBgnd)
                     }
                     .foregroundColor(Color.pbTextFnd)
                 }
