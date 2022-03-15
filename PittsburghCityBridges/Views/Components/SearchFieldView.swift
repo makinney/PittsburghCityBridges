@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchFieldView: View {
     @Binding var searchText: String
-    var bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping
+    var searchCategory: BridgeSearcher.SearchCategory
     var prompt: String = "Search"
     
     var body: some View {
@@ -20,7 +20,7 @@ struct SearchFieldView: View {
                         .renderingMode(.template)
                         .foregroundColor(.accentColor)
                         .padding(.leading, 5)
-                    TextField("Search", text: $searchText, prompt: Text(searchPrompt(bridgeInfoGrouping)))
+                    TextField("name, year, neighborhood", text: $searchText)
                         .textInputAutocapitalization(.never)
                         .disableAutocorrection(true)
                         .foregroundColor(Color.pbTextFnd)
@@ -41,9 +41,9 @@ struct SearchFieldView: View {
         .background(Color.pbBgnd)
     }
     
-    private func searchPrompt(_ bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) -> String {
+    private func searchPrompt(_ searchCategory: BridgeSearcher.SearchCategory) -> String {
         var prompt = "Search by"
-        switch bridgeInfoGrouping {
+        switch searchCategory {
         case .name:
             prompt += " Name"
         case .neighborhood:
@@ -57,8 +57,8 @@ struct SearchFieldView: View {
 
 struct SearchFieldView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchFieldView(searchText: .constant("abc"), bridgeInfoGrouping: .neighborhood)
-        SearchFieldView(searchText: .constant("abc"), bridgeInfoGrouping: .neighborhood)
+        SearchFieldView(searchText: .constant("abc"), searchCategory: .neighborhood)
+        SearchFieldView(searchText: .constant("abc"), searchCategory: .neighborhood)
             .preferredColorScheme(.dark)
     }
 }

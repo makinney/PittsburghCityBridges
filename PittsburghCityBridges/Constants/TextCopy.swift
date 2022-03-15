@@ -8,7 +8,7 @@
 import Foundation
 
 struct AppTextCopy {
-    struct SortedBySection {
+    struct SortedByCategory {
         static let neighborhood = "Neighborhood"
         static let name = ""
         static let year = "Year built: "

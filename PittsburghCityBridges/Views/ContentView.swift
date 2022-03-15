@@ -28,11 +28,11 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            BridgesListsView(BridgeListViewModel(bridgeStore))
+            BridgesListsView(BridgeSearcher(bridgeStore))
                 .tabItem {
                     Label("List", systemImage: "list.dash")
                 }
-            BridgesPhotosListView(BridgeListViewModel(bridgeStore))
+            BridgesPhotosListView(BridgeSearcher(bridgeStore))
                 .tabItem {
                     Label("Photos", systemImage: "photo.on.rectangle")
                 }

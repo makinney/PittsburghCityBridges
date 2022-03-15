@@ -9,40 +9,41 @@ import SwiftUI
 import os
 
 struct BridgesPhotosListView: View {
+    @AppStorage("bridgesPhotoListView.searchCategory") private var searchCategory = BridgeSearcher.SearchCategory.neighborhood
+    @AppStorage("bridgesPhotoListView.showFavorites") private var showFavorites = false
     @EnvironmentObject var bridgeStore: BridgeStore
     @EnvironmentObject var favorites: Favorites
-    @AppStorage("bridgesPhotoListView.bridgeInfoGrouping") private var bridgeInfoGrouping = BridgeListViewModel.BridgeInfoGrouping.neighborhood
-    @AppStorage("bridgesPhotoListView.showFavorites") private var showFavorites = false
     @Namespace private var topID
     @State private var searchText = ""
-    private var bridgeListViewModel: BridgeListViewModel
+    private var bridgeNotInApp = BridgeNotInApp()
+    private var bridgeSearcher: BridgeSearcher
     let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgesPhotosListView")
     
-    init(_ bridgeListViewModel: BridgeListViewModel) {
-        self.bridgeListViewModel = bridgeListViewModel
+    init(_ bridgeSearcher: BridgeSearcher) {
+        self.bridgeSearcher = bridgeSearcher
     }
     
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                TitleHeader(title: pageTitleText(bridgeInfoGrouping))
+                TitleHeader(title: pageTitleText(searchCategory))
                     .padding(.bottom, 10)
-                HeaderToolBar(bridgeInfoGrouping: $bridgeInfoGrouping,
+                HeaderToolBar(searchCategory: $searchCategory,
                               showFavorites: $showFavorites,
                               searchText: $searchText)
-                let sections = bridgeListViewModel.sections(groupedBy: bridgeInfoGrouping,
-                                                            favorites: showFavorites ? favorites : nil,
-                                                            searchText: searchText)
-                if !sections.isEmpty {
+                let bridgeModelCategories = bridgeSearcher.sortAndSearch(by: searchCategory,
+                                                                         searchText: searchText,
+                                                                         favorites: showFavorites ? favorites : nil)
+                if !bridgeModelCategories.isEmpty {
                     ScrollViewReader { scrollViewReaderProxy in
                         ScrollView {
                             RefreshControlView(coordinateSpace: .named("RefreshControlView")) {
                                 bridgeStore.refreshBridgeModels()
                             }
                             LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                                ForEach(sections) { bridgesSection in
+                                ForEach(bridgeModelCategories) { bridgeModelCategory in
                                     Section {
-                                        ForEach(bridgesSection.bridgeModels) { bridgeModel in
+                                        ForEach(bridgeModelCategory.bridgeModels) { bridgeModel in
                                             NavigationLink(destination: BridgeDetailsView(bridgeModel: bridgeModel, favorites: favorites)) {
                                                 if let imageURL = bridgeModel.imageURL {
                                                     SinglePhotoView(imageURL: imageURL, bridgeModel: bridgeModel)
@@ -54,7 +55,7 @@ struct BridgesPhotosListView: View {
                                         .id(topID)
                                     } header: {
                                         HStack {
-                                            sectionLabel(bridgesSection.sectionName, bridgeInfoGrouping)
+                                            sectionLabel(bridgeModelCategory.name, searchCategory)
                                                 .foregroundColor(Color.pbTextFnd)
                                                 .font(.body)
                                                 .padding([.leading])
@@ -74,14 +75,22 @@ struct BridgesPhotosListView: View {
                             }
                         })
                     }
-                } else {
-                    VStack(alignment: .center) {
-                        Spacer()
-                        let msg = showFavorites ? "No Favorites Found" : ""
-                        Text(msg)
-                        Spacer()
+                } else { // no search results
+                    if !showFavorites {
+                        if bridgeNotInApp.isFernHollowBridge(searchText) {
+                            FernHollowUnsupportedView(searchText: $searchText)
+                                .padding()
+                        }
+                    } else {
+                        VStack(alignment: .center) {
+                            Spacer()
+                            let msg = "No Favorites Found"
+                            Text(msg)
+                            Spacer()
+                        }
                     }
                 }
+                Spacer()
             }
             .navigationBarHidden(true)
             .background(Color.pbBgnd)
@@ -89,9 +98,9 @@ struct BridgesPhotosListView: View {
         .navigationViewStyle(StackNavigationViewStyle())
     }
     
-    private func pageTitleText(_ bridgeInfoGrouping: BridgeListViewModel.BridgeInfoGrouping) -> String {
+    private func pageTitleText(_ searchCategory: BridgeSearcher.SearchCategory) -> String {
         var title = "Bridge Photos by"
-        switch bridgeInfoGrouping {
+        switch searchCategory {
         case .name:
             title += " Name"
         case .neighborhood:
@@ -103,14 +112,14 @@ struct BridgesPhotosListView: View {
     }
     
     @ViewBuilder
-    private func sectionLabel(_ sectionName: String, _ sectionListby: BridgeListViewModel.BridgeInfoGrouping) -> some View {
-        switch sectionListby {
+    private func sectionLabel(_ sectionName: String, _ searchCategory: BridgeSearcher.SearchCategory) -> some View {
+        switch searchCategory {
         case .neighborhood:
-            Text("\(sectionName) \(AppTextCopy.SortedBySection.neighborhood) ")
+            Text("\(sectionName) \(AppTextCopy.SortedByCategory.neighborhood) ")
         case .name:
-            Text("\(sectionName) \(AppTextCopy.SortedBySection.name) ")
+            Text("\(sectionName) \(AppTextCopy.SortedByCategory.name) ")
         case .year:
-            Text("\(AppTextCopy.SortedBySection.year) \(sectionName)")
+            Text("\(AppTextCopy.SortedByCategory.year) \(sectionName)")
         }
     }
 }
@@ -120,13 +129,13 @@ struct BridgePhotosListView_Previews: PreviewProvider {
     static let favorites = Favorites()
     
     static var previews: some View {
-        BridgesPhotosListView(BridgeListViewModel(bridgeStore))
+        BridgesPhotosListView(BridgeSearcher(bridgeStore))
             .environmentObject(bridgeStore)
             .environmentObject(favorites)
             .onAppear {
                 bridgeStore.preview()
             }
-        BridgesPhotosListView(BridgeListViewModel(bridgeStore))
+        BridgesPhotosListView(BridgeSearcher(bridgeStore))
             .preferredColorScheme(.dark)
             .environmentObject(bridgeStore)
             .environmentObject(favorites)
