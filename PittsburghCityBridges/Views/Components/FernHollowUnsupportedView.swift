@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FernHollowAlertView: View {
+struct FernHollowUnsupportedView: View {
     @Binding var searchText: String
     
     var body: some View {
@@ -45,6 +45,6 @@ struct FernHollowAlertView: View {
 
 struct FernHollowView_Previews: PreviewProvider {
     static var previews: some View {
-        FernHollowAlertView(searchText: .constant("Fern Hollow"))
+        FernHollowUnsupportedView(searchText: .constant("Fern Hollow"))
     }
 }

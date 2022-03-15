@@ -78,7 +78,7 @@ struct BridgesPhotosListView: View {
                 } else { // no search results
                     if !showFavorites {
                         if bridgeNotInApp.isFernHollowBridge(searchText) {
-                            FernHollowAlertView(searchText: $searchText)
+                            FernHollowUnsupportedView(searchText: $searchText)
                                 .padding()
                         }
                     } else {
