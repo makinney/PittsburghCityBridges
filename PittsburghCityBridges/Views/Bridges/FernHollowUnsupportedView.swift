@@ -19,6 +19,7 @@ struct FernHollowUnsupportedView: View {
                 Button("Show Bridge") {
                     searchText = "Forbes Avenue Frick Park Bridge"
                 }
+                .foregroundColor(Color.accentColor)
                 .frame(width: 150, height: 40)
                 .cornerRadius(PCBButton.cornerRadius)
                 .background (
@@ -28,6 +29,7 @@ struct FernHollowUnsupportedView: View {
                 Button("Cancel Search") {
                     searchText = ""
                 }
+                .foregroundColor(Color.accentColor)
                 .frame(width: 150, height: 40)
                 .cornerRadius(PCBButton.cornerRadius)
                 .background (

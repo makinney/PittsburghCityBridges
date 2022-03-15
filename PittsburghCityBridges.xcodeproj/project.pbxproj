@@ -26,6 +26,7 @@
 		2419B8BB271F3CD900BFE3D8 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2419B8BA271F3CD900BFE3D8 /* MapViewModel.swift */; };
 		2419B8BD2721843800BFE3D8 /* BridgeMapDetailAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2419B8BC2721843700BFE3D8 /* BridgeMapDetailAccessoryView.swift */; };
 		2419B8C42721D64E00BFE3D8 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2419B8C32721D64E00BFE3D8 /* LocationService.swift */; };
+		243A1BC627E0E2FE00B85954 /* StateBridgeUnsupportedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243A1BC527E0E2FE00B85954 /* StateBridgeUnsupportedView.swift */; };
 		24496FA2278CDF170074720C /* DirectionsDisclaimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24496FA1278CDF170074720C /* DirectionsDisclaimerView.swift */; };
 		24496FA5278DDFCE0074720C /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24496FA4278DDFCE0074720C /* StorageKeys.swift */; };
 		244A747427187D1200284608 /* BridgeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244A747327187D1200284608 /* BridgeModel.swift */; };
@@ -92,6 +93,7 @@
 		2419B8BA271F3CD900BFE3D8 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		2419B8BC2721843700BFE3D8 /* BridgeMapDetailAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeMapDetailAccessoryView.swift; sourceTree = "<group>"; };
 		2419B8C32721D64E00BFE3D8 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		243A1BC527E0E2FE00B85954 /* StateBridgeUnsupportedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateBridgeUnsupportedView.swift; sourceTree = "<group>"; };
 		24496FA1278CDF170074720C /* DirectionsDisclaimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsDisclaimerView.swift; sourceTree = "<group>"; };
 		24496FA4278DDFCE0074720C /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
 		244A747327187D1200284608 /* BridgeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeModel.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				240075CC271493CB00CB864F /* AppLogging.swift */,
+				2496BF5B27DAC13800E125B4 /* BridgeNotInApp.swift */,
 				24808FDB275A6D9900FF131C /* BridgeImageSystem.swift */,
 				244E9C90273ABF2A00605134 /* BridgeSearcher.swift */,
 				24CC1B4D270A8ABE009BE390 /* BridgeStore.swift */,
@@ -175,7 +178,6 @@
 				240075D02716607B00CB864F /* BridgeListRow.swift */,
 				2417C3CA279B456F005DF78C /* DirectionsDisclaimerAgreement.swift */,
 				24580209278776510091365B /* FavoritesButton.swift */,
-				2496BF5D27DBAF8000E125B4 /* FernHollowUnsupportedView.swift */,
 				249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */,
 				24A3386A27C3D191007502DC /* SearchFieldView.swift */,
 				2458020B27879A530091365B /* SinglePhotoView.swift */,
@@ -236,7 +238,6 @@
 				248FC584270276EA00BE168F /* CloudKitContentView.swift */,
 				2410128C2713855400FE7DEC /* ContentView.swift */,
 				24496FA1278CDF170074720C /* DirectionsDisclaimerView.swift */,
-				2496BF5B27DAC13800E125B4 /* BridgeNotInApp.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -327,6 +328,8 @@
 				240075CE27150F5800CB864F /* BridgeDetailsView.swift */,
 				2458020D27879E1D0091365B /* BridgesListsView.swift */,
 				2458020F2788C2420091365B /* BridgesPhotosListView.swift */,
+				2496BF5D27DBAF8000E125B4 /* FernHollowUnsupportedView.swift */,
+				243A1BC527E0E2FE00B85954 /* StateBridgeUnsupportedView.swift */,
 			);
 			path = Bridges;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				2496BF5E27DBAF8000E125B4 /* FernHollowUnsupportedView.swift in Sources */,
 				2417C3C62794C344005DF78C /* OnBoardingContentView.swift in Sources */,
 				249C7D5B277E52D700D72DA4 /* HeaderToolBar.swift in Sources */,
+				243A1BC627E0E2FE00B85954 /* StateBridgeUnsupportedView.swift in Sources */,
 				244EA80A27AF14CD00E5FC81 /* OnboardingCollapsedBridgeScreen.swift in Sources */,
 				2419B8C42721D64E00BFE3D8 /* LocationService.swift in Sources */,
 				246F309327B1B90800B75025 /* OnBoardingIntroScreen.swift in Sources */,
