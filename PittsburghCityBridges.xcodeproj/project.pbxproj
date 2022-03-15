@@ -57,7 +57,8 @@
 		248FC58A270276EE00BE168F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 248FC589270276EE00BE168F /* Preview Assets.xcassets */; };
 		248FC58C270276EE00BE168F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248FC58B270276EE00BE168F /* Persistence.swift */; };
 		248FC59A270278F100BE168F /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 248FC599270278F100BE168F /* CloudKit.framework */; };
-		2496BF5C27DAC13800E125B4 /* FernHollowSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2496BF5B27DAC13800E125B4 /* FernHollowSearchView.swift */; };
+		2496BF5C27DAC13800E125B4 /* BridgeNotInApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2496BF5B27DAC13800E125B4 /* BridgeNotInApp.swift */; };
+		2496BF5E27DBAF8000E125B4 /* FernHollowAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2496BF5D27DBAF8000E125B4 /* FernHollowAlertView.swift */; };
 		2497B22627A3592A00C60E44 /* OnBoardingBridgePhotosScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497B22527A3592A00C60E44 /* OnBoardingBridgePhotosScreen.swift */; };
 		249C7D5B277E52D700D72DA4 /* HeaderToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */; };
 		249C7D5D277F609600D72DA4 /* TitleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C7D5C277F609600D72DA4 /* TitleHeader.swift */; };
@@ -124,7 +125,8 @@
 		248FC58B270276EE00BE168F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		248FC597270278E000BE168F /* PittsburghCityBridges.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PittsburghCityBridges.entitlements; sourceTree = "<group>"; };
 		248FC599270278F100BE168F /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		2496BF5B27DAC13800E125B4 /* FernHollowSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FernHollowSearchView.swift; sourceTree = "<group>"; };
+		2496BF5B27DAC13800E125B4 /* BridgeNotInApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeNotInApp.swift; sourceTree = "<group>"; };
+		2496BF5D27DBAF8000E125B4 /* FernHollowAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FernHollowAlertView.swift; sourceTree = "<group>"; };
 		2497B22527A3592A00C60E44 /* OnBoardingBridgePhotosScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingBridgePhotosScreen.swift; sourceTree = "<group>"; };
 		249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderToolBar.swift; sourceTree = "<group>"; };
 		249C7D5C277F609600D72DA4 /* TitleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeader.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				240075D02716607B00CB864F /* BridgeListRow.swift */,
 				2417C3CA279B456F005DF78C /* DirectionsDisclaimerAgreement.swift */,
 				24580209278776510091365B /* FavoritesButton.swift */,
+				2496BF5D27DBAF8000E125B4 /* FernHollowAlertView.swift */,
 				249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */,
 				24A3386A27C3D191007502DC /* SearchFieldView.swift */,
 				2458020B27879A530091365B /* SinglePhotoView.swift */,
@@ -233,7 +236,7 @@
 				248FC584270276EA00BE168F /* CloudKitContentView.swift */,
 				2410128C2713855400FE7DEC /* ContentView.swift */,
 				24496FA1278CDF170074720C /* DirectionsDisclaimerView.swift */,
-				2496BF5B27DAC13800E125B4 /* FernHollowSearchView.swift */,
+				2496BF5B27DAC13800E125B4 /* BridgeNotInApp.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -457,7 +460,7 @@
 				24496FA5278DDFCE0074720C /* StorageKeys.swift in Sources */,
 				24B3FE912722356A004B93A6 /* DirectionsProvider.swift in Sources */,
 				2410128D2713855400FE7DEC /* ContentView.swift in Sources */,
-				2496BF5C27DAC13800E125B4 /* FernHollowSearchView.swift in Sources */,
+				2496BF5C27DAC13800E125B4 /* BridgeNotInApp.swift in Sources */,
 				24496FA2278CDF170074720C /* DirectionsDisclaimerView.swift in Sources */,
 				2412B89B2783A61900BD557E /* TextCopy.swift in Sources */,
 				2412B89D2783D19F00BD557E /* MoreScreenView.swift in Sources */,
@@ -486,6 +489,7 @@
 				24808FD3274D443D00FF131C /* ViewExtensions.swift in Sources */,
 				244EA80827AF12E800E5FC81 /* OnBoardingCloseScreen.swift in Sources */,
 				24A3386B27C3D191007502DC /* SearchFieldView.swift in Sources */,
+				2496BF5E27DBAF8000E125B4 /* FernHollowAlertView.swift in Sources */,
 				2417C3C62794C344005DF78C /* OnBoardingContentView.swift in Sources */,
 				249C7D5B277E52D700D72DA4 /* HeaderToolBar.swift in Sources */,
 				244EA80A27AF14CD00E5FC81 /* OnboardingCollapsedBridgeScreen.swift in Sources */,

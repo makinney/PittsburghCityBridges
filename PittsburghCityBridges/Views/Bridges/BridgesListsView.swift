@@ -9,12 +9,13 @@ import SwiftUI
 import os
 
 struct BridgesListsView: View {
-    @EnvironmentObject var bridgeStore: BridgeStore
-    @EnvironmentObject var favorites: Favorites
     @AppStorage("bridgesListsView.searchCategory") private var searchCategory = BridgeSearcher.SearchCategory.neighborhood
     @AppStorage("bridgesListsView.showFavorites") private var showFavorites = false
+    @EnvironmentObject var bridgeStore: BridgeStore
+    @EnvironmentObject var favorites: Favorites
     @Namespace private var topID
     @State private var searchText = ""
+    private var bridgeNotInApp = BridgeNotInApp()
     private var bridgeSearcher: BridgeSearcher
     let logger =  Logger(subsystem: AppLogging.subsystem, category: "BridgesListsView")
     
@@ -73,14 +74,22 @@ struct BridgesListsView: View {
                             }
                         })
                     }
-                } else {
-                    VStack(alignment: .center) {
-                        Spacer()
-                        let msg = showFavorites ? "No Favorites Found" : ""
-                        Text(msg)
-                        Spacer()
+                } else { // no search results
+                    if !showFavorites {
+                        if bridgeNotInApp.isFernHollowBridge(searchText) {
+                            FernHollowAlertView(searchText: $searchText)
+                                .padding()
+                        }
+                    } else {
+                        VStack(alignment: .center) {
+                            Spacer()
+                            let msg = "No Favorites Found"
+                            Text(msg)
+                            Spacer()
+                        }
                     }
                 }
+                Spacer()
             }
             .background(Color.pbBgnd)
             .navigationBarHidden(true)
