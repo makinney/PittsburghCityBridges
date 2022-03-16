@@ -9,7 +9,7 @@ import SwiftUI
 import os
 
 struct BridgesPhotosListView: View {
-    @AppStorage("bridgesPhotoListView.searchCategory") private var searchCategory = BridgeSearcher.SearchCategory.neighborhood
+    @AppStorage("bridgesPhotoListView.searchCategory") private var searchCategory = BridgeSearcher.SearchCategory.name
     @AppStorage("bridgesPhotoListView.showFavorites") private var showFavorites = false
     @EnvironmentObject var bridgeStore: BridgeStore
     @EnvironmentObject var favorites: Favorites
@@ -86,6 +86,7 @@ struct BridgesPhotosListView: View {
                             Spacer()
                             let msg = "No Favorites Found"
                             Text(msg)
+                                .foregroundColor(.pbTextFnd)
                             Spacer()
                         }
                     }
