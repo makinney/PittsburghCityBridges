@@ -22,7 +22,7 @@ No representation is made or warranty given as to data content, route practicabi
     static let onBoardingIntroFirstPart = """
 This Pittsburgh City Bridges app contains information on over 140 bridges publicly available from the City of Pittsburgh Bridges Open Data database.
 
-This app was created by one iOS developer as a so-called portfolio app to showcase using the latest iOS technology. The City of Pittsburgh Bridges database was selected because there "wasn't an App for that". App development work began in October 2021, never knowing the Fern Hollow Bridge would collapse some months later in January 2022.
+This app was created by one iOS developer as a so-called portfolio app to showcase using some of the latest iOS software features. The City of Pittsburgh Bridges database was selected because there "wasn't an App for that". App development work began in late 2021, never imagining the Fern Hollow Bridge would soon collapse in January 2022.
 
 The bridges in this app cross roads, ravines, and streams and are understood to be city maintained bridges.
 
@@ -36,11 +36,13 @@ This Pittsburgh City Bridges App is a data viewer for bridge information contain
 """
     
     static let onBoardingCloseScreen = """
+App maker assumes no legal liability or responsibility for any loss, damage, injury, or delay associated with the use of this product.
+
 App Maker makes no guarantee about accuracy of data contained in the City of Pittsburgh Bridges publicly available dataset.
 
 App Maker cannot verify the GPS coordinates or even existence of all 140 bridges.
 
-Use at your own risk.
+User assumes all risk of use.
 """
     
     static let onBoardingCloseScreenButton = """

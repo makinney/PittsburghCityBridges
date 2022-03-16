@@ -12,7 +12,7 @@ struct OnBoardingDisclaimerScreen: View {
     var body: some View {
         ZStack {
             Color.pbBgnd
-            VStack(alignment: .leading) {
+            VStack(alignment: .center) {
                 Text(AppTextCopy.onBoardingCloseScreen)
                     .font(UIDevice.current.userInterfaceIdiom == .phone ? .subheadline : .title2)
                 .padding()
