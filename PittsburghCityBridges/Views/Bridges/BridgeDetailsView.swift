@@ -171,14 +171,6 @@ struct BridgeDetailsView: View {
                 .background(Color.pbBgnd)
                 .onAppear {
                     UIScrollView.appearance().bounces = true
-                    Task {
-                        do {
-                            if let image = await bridgeImageSystem.getImage(url: bridgeModel.imageURL)  {
-                                bridgeImage = image
-                                bridgeImageLoaded = true
-                            }
-                        }
-                    }
                 }
                 .sheet(isPresented: $showDisclaimerSheet,
                        content: {
@@ -190,6 +182,14 @@ struct BridgeDetailsView: View {
                     }
                     .background(Color.pbBgnd)
                 })
+                .task {
+                    do {
+                        if let image = await bridgeImageSystem.getImage(url: bridgeModel.imageURL)  {
+                            bridgeImage = image
+                            bridgeImageLoaded = true
+                        }
+                    }
+                }
             }
         }
         .navigationBarTitleDisplayMode(.inline)
