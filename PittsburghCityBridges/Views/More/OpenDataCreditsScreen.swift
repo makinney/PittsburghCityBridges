@@ -13,21 +13,24 @@ struct OpenDataCreditsScreen: View {
     private let strokeWidth = 2.0
     private let strokeOpacity = 0.9
     var body: some View {
-        VStack{
-        ScrollView {
-            VStack {
+        ZStack {
+            Color.pbBgnd
+            VStack{
+            ScrollView {
                 VStack {
-                    openDataCredit()
-                        .frame(minHeight: 200)
-                    Spacer()
+                    VStack {
+                        openDataCredit()
+                            .frame(minHeight: 200)
+                        Spacer()
+                    }
+                    .padding()
                 }
-                .padding()
             }
-        }
-        .padding()
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("Open Data Source")
-        .background(Color.pbBgnd)
+            .padding()
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("Open Data Source")
+            .background(Color.pbBgnd)
+            }
         }
     }
     

@@ -13,41 +13,32 @@ struct AppIconCreditsScreen: View {
     private let strokeWidth = 2.0
     private let strokeOpacity = 0.9
     var body: some View {
-        ScrollView {
+        ZStack {
+            Color.pbBgnd
             VStack {
-
                 VStack {
                     aidensCredit()
                         .frame(minHeight: 150)
                         .padding()
                     Spacer()
                 }
-                .padding()
             }
+            .background(Color.pbBgnd)
         }
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle("App Icon")
-        .background(Color.pbBgnd)
     }
     
     private func aidensCredit() -> some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 10, style: .continuous)
-                .stroke(lineWidth: strokeWidth)
-                .fill(strokeColor)
-                .opacity(strokeOpacity)
-            HStack {
-                Image("aidensIcon")
-                    .resizable()
-                    .clipped()
-                    .frame(width: 75, height: 75)
-                    .cornerRadius(10)
-                    .padding(.vertical)
-                    .padding([.leading], 20.0)
-                Text("Pittsburgh City Bridges App Icon by 10 yr old Aidan K.")
-                    .padding(.trailing)
-                    .foregroundColor(.pbTextFnd)
-            }
+        HStack {
+            Image("aidensIcon")
+                .resizable()
+                .clipped()
+                .frame(width: 75, height: 75)
+                .cornerRadius(10)
+                .padding(.vertical)
+                .padding([.leading], 20.0)
+            Text("Pittsburgh City Bridges App Icon designed and created by 10 yr old Aidan K.")
+                .padding(.trailing)
+                .foregroundColor(.pbTextFnd)
         }
     }
 }

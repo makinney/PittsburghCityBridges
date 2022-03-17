@@ -9,7 +9,7 @@ import SwiftUI
 import os
 
 struct BridgesListsView: View {
-    @AppStorage("bridgesListsView.searchCategory") private var searchCategory = BridgeSearcher.SearchCategory.neighborhood
+    @AppStorage("bridgesListsView.searchCategory") private var searchCategory = BridgeSearcher.SearchCategory.name
     @AppStorage("bridgesListsView.showFavorites") private var showFavorites = false
     @EnvironmentObject var bridgeStore: BridgeStore
     @EnvironmentObject var favorites: Favorites
@@ -88,6 +88,7 @@ struct BridgesListsView: View {
                             Spacer()
                             let msg = "No Favorites Found"
                             Text(msg)
+                                .foregroundColor(.pbTextFnd)
                             Spacer()
                         }
                     }
@@ -101,7 +102,7 @@ struct BridgesListsView: View {
     }
     
     private func pageTitleText(_ searchCategory: BridgeSearcher.SearchCategory) -> String {
-        var title = "Pittsburgh City Bridges by"
+        var title = "City of Pittsburgh Bridges by"
         switch searchCategory {
         case .name:
             title += " Name"

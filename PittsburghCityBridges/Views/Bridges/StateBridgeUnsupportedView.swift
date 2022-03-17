@@ -13,10 +13,11 @@ struct StateBridgeUnsupportedView: View {
     var body: some View {
         VStack {
             Text("Looking for the \(bridgeName)?")
-            Text("It is not in the City of Pittsburgh Bridges database used by this app. It is most likely a State or Federal Bridge")
-                .padding()
+            Text("It is not in this app. Only bridges in the Pittsburgh City Bridges database are in this app, which are understood to be bridges whose maintenance is the responsibility of the city.")
+                .padding(.horizontal)
+                .padding(.vertical, 5)
             HStack(alignment: .bottom) {
-                Button("Close") {
+                Button("Cancel Search") {
                     searchText = ""
                 }
                 .foregroundColor(Color.accentColor)
@@ -28,15 +29,16 @@ struct StateBridgeUnsupportedView: View {
                 )
             }
             .padding(.vertical)
-            Text("State or Federal Bridges near Pittsburgh")
+            Text("Major bridges not in the city database")
             List(StateBridgesInPittsburgh.stateBridges) {
                 Text("\($0.name) Bridge")
                     .font(.body)
-                    .listRowBackground(Color.pbTextFnd)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 40, bottom: 0, trailing: 0))
+                    .listRowBackground(Color.pbBgnd)
+                    .listRowInsets(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
+                
             }
             .listStyle(PlainListStyle())
-            .foregroundColor(.pbBgnd)
+            .foregroundColor(.pbTextFnd)
         }
         .background(Color.pbBgnd)
         .foregroundColor(.pbTextFnd)
