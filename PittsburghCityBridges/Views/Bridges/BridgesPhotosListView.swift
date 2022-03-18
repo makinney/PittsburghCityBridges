@@ -9,7 +9,7 @@ import SwiftUI
 import os
 
 struct BridgesPhotosListView: View {
-    @AppStorage("bridgesPhotoListView.searchCategory") private var searchCategory = BridgeSearcher.SearchCategory.name
+    @AppStorage("bridgesPhotoListView.searchCategory") private var searchCategory = BridgeSearcher.SearchCategory.year
     @AppStorage("bridgesPhotoListView.showFavorites") private var showFavorites = false
     @EnvironmentObject var bridgeStore: BridgeStore
     @EnvironmentObject var favorites: Favorites
