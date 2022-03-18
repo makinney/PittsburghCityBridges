@@ -132,8 +132,6 @@ struct BridgeDetailsView: View {
                                             .padding(2)
                                             .frame(maxWidth: geometry.frame(in: .global).width, minHeight: 100)
                                             .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
-                                            .scaleEffect(imageScale)
-                                            .animation(.easeInOut, value: imageScale)
                                             .opacity(bridgeImageLoaded ? 1.0 : 0.0)
                                             .gesture(magGesture)
                                         BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
