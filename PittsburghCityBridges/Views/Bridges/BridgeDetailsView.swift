@@ -238,9 +238,7 @@ struct BridgeDetailsView_Previews: PreviewProvider {
     @ObservedObject static var favorites = Favorites()
     static var previews: some View {
         BridgeDetailsView(bridgeModel: BridgeModel.preview, favorites: favorites)
-            .preferredColorScheme(.light)
-        //        BridgeDetailsView(bridgeModel: BridgeModel.preview)
-        //            .environmentObject(FavoriteBridges())
-        
+        BridgeDetailsView(bridgeModel: BridgeModel.preview, favorites: favorites)
+            .preferredColorScheme(.dark)
     }
 }

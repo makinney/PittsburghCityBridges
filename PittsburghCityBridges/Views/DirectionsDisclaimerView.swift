@@ -121,7 +121,6 @@ struct DirectionsDisclaimerView: View {
 struct DisclaimerView_Previews: PreviewProvider {
     static var previews: some View {
         DirectionsDisclaimerView()
-            .preferredColorScheme(.light)
         DirectionsDisclaimerView()
             .preferredColorScheme(.dark)
     }

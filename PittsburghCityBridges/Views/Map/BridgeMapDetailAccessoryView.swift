@@ -40,7 +40,8 @@ struct BridgeMapDetailAccessoryView: View {
 
 struct DetailAccessoryView_Previews: PreviewProvider {
     static var previews: some View {
-        Text("DetailAccessoryView_Previews needs code")
-        //  BridgeMapDetailAccessoryView(bridgeModel: BridgeModel.preview)
+        BridgeMapDetailAccessoryView(bridgeModel: BridgeModel.preview)
+        BridgeMapDetailAccessoryView(bridgeModel: BridgeModel.preview)
+            .preferredColorScheme(.dark)
     }
 }

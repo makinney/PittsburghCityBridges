@@ -81,7 +81,8 @@ struct SinglePhotoView: View {
 
 struct SinglePhotoView_Previews: PreviewProvider {
     static var previews: some View {
-        Text("TODO preview Needs implemented")
-        //     SinglePhotoView()
+        SinglePhotoView(imageURL: BridgeModel.preview.imageURL! ,bridgeModel: BridgeModel.preview)
+        SinglePhotoView(imageURL: BridgeModel.preview.imageURL! ,bridgeModel: BridgeModel.preview)
+            .preferredColorScheme(.dark)
     }
 }

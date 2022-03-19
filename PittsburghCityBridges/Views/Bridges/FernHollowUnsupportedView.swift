@@ -48,5 +48,7 @@ struct FernHollowUnsupportedView: View {
 struct FernHollowView_Previews: PreviewProvider {
     static var previews: some View {
         FernHollowUnsupportedView(searchText: .constant("Fern Hollow"))
+        FernHollowUnsupportedView(searchText: .constant("Fern Hollow"))
+            .preferredColorScheme(.dark)
     }
 }

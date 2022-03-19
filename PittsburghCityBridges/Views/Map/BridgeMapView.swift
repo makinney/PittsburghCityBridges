@@ -71,11 +71,18 @@ struct BridgeMapView_Previews: PreviewProvider {
     static let favorites = Favorites()
     static var previews: some View {
         BridgeMapView()
-            .preferredColorScheme(.dark)
             .environmentObject(bridgeStore)
             .environmentObject(favorites)
             .onAppear {
                 bridgeStore.preview()
             }
+        BridgeMapView()
+            .environmentObject(bridgeStore)
+            .environmentObject(favorites)
+            .onAppear {
+                bridgeStore.preview()
+            }
+            .preferredColorScheme(.dark)
+
     }
 }

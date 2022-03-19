@@ -60,7 +60,6 @@ struct BridgeListRow_Previews: PreviewProvider {
     static var previews: some View {
         BridgeListRow(bridgeModel: BridgeModel.preview)
         BridgeListRow(bridgeModel: BridgeModel.preview)
-   //     BridgeListRow(bridgeModel: <#T##BridgeModel#>.preview)
             .preferredColorScheme(.dark)
     }
 }

@@ -39,5 +39,7 @@ struct OnBoardingMapScreen: View {
 struct OnBoardingMapScreen_Previews: PreviewProvider {
     static var previews: some View {
         OnBoardingMapScreen()
+        OnBoardingMapScreen()
+            .preferredColorScheme(.dark)
     }
 }
