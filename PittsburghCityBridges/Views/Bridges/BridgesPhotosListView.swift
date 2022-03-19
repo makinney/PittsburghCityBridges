@@ -80,6 +80,9 @@ struct BridgesPhotosListView: View {
                         if bridgeNotInApp.isFernHollowBridge(searchText) {
                             FernHollowUnsupportedView(searchText: $searchText)
                                 .padding()
+                        }  else if let bridgeName = bridgeNotInApp.stateBridgeName(searchText) {
+                            StateBridgeUnsupportedView(searchText: $searchText, bridgeName: bridgeName)
+                                .padding()
                         }
                     } else {
                         VStack(alignment: .center) {
