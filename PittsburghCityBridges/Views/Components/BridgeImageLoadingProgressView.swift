@@ -26,5 +26,7 @@ struct BridgeImageLoadingProgressView: View {
 struct BridgeImageLoadingProgressView_Previews: PreviewProvider {
     static var previews: some View {
         BridgeImageLoadingProgressView(bridgeName: "name")
+        BridgeImageLoadingProgressView(bridgeName: "name")
+            .preferredColorScheme(.dark)
     }
 }

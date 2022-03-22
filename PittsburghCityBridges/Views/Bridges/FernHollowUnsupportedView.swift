@@ -13,7 +13,7 @@ struct FernHollowUnsupportedView: View {
     var body: some View {
         VStack {
             Text("Looking for the Fern Hollow Bridge?")
-            Text("Forbes Avenue Frick Park Bridge is the bridge's name in this app.")
+            Text("In this app it is named the Forbes Avenue Frick Park Bridge.")
                 .padding()
             HStack(alignment: .bottom) {
                 Button("Show Bridge") {
@@ -48,5 +48,7 @@ struct FernHollowUnsupportedView: View {
 struct FernHollowView_Previews: PreviewProvider {
     static var previews: some View {
         FernHollowUnsupportedView(searchText: .constant("Fern Hollow"))
+        FernHollowUnsupportedView(searchText: .constant("Fern Hollow"))
+            .preferredColorScheme(.dark)
     }
 }

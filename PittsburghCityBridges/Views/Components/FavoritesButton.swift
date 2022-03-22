@@ -68,5 +68,7 @@ struct FavoritesButton_Previews: PreviewProvider {
     static let name = "ABC"
     static var previews: some View {
         FavoritesButton(Favorites(), favorite: name)
+        FavoritesButton(Favorites(), favorite: name)
+            .preferredColorScheme(.dark)
     }
 }

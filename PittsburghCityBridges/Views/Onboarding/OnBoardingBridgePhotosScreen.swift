@@ -47,5 +47,7 @@ struct OnBoardingBridgePhotosScreen: View {
 struct OBScreenB_Previews: PreviewProvider {
     static var previews: some View {
         OnBoardingBridgePhotosScreen()
+        OnBoardingBridgePhotosScreen()
+            .preferredColorScheme(.dark)
     }
 }

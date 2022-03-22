@@ -51,5 +51,7 @@ struct PullToRefreshDemo: View {
 struct Refresh_Previews: PreviewProvider {
     static var previews: some View {
         PullToRefreshDemo()
+        PullToRefreshDemo()
+            .preferredColorScheme(.dark)
     }
 }

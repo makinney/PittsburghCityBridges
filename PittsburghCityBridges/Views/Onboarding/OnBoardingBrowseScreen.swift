@@ -41,5 +41,7 @@ struct OnBoardingBrowseScreen: View {
 struct OnBoardingBrowseScreen_Previews: PreviewProvider {
     static var previews: some View {
         OnBoardingBrowseScreen()
+        OnBoardingBrowseScreen()
+            .preferredColorScheme(.dark)
     }
 }

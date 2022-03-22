@@ -26,5 +26,7 @@ struct TitleHeader: View {
 struct TitleHeaderView_Previews: PreviewProvider {
     static var previews: some View {
         TitleHeader()
+        TitleHeader()
+            .preferredColorScheme(.dark)
     }
 }

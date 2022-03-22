@@ -48,5 +48,7 @@ struct StateBridgeUnsupportedView: View {
 struct StateBridgeUnsupportedView_Previews: PreviewProvider {
     static var previews: some View {
         StateBridgeUnsupportedView(searchText: .constant(""), bridgeName: "Highland Park Bridge")
+        StateBridgeUnsupportedView(searchText: .constant(""), bridgeName: "Highland Park Bridge")
+            .preferredColorScheme(.dark)
     }
 }

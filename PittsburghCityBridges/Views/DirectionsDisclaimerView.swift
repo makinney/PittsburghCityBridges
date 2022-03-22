@@ -20,6 +20,7 @@ struct DirectionsDisclaimerView: View {
         ZStack {
             Color.pbBgnd
             VStack {
+                Spacer()
                 VStack(alignment: .leading) {
                     Label("Directions Disclaimer", systemImage: "building.columns")
                         .padding(.bottom, 5)
@@ -34,6 +35,8 @@ struct DirectionsDisclaimerView: View {
                 }
                 .padding()
                 VStack(alignment: .center) {
+                    Text("Get Directions")
+                        .padding(.bottom, 4)
                     makButtons()
                         .opacity(userAgreedDirectionsDisclaimer ? 1.0 : 0.50)
                     Button("Cancel") {
@@ -49,6 +52,7 @@ struct DirectionsDisclaimerView: View {
                             .stroke(Color.pbTextFnd, lineWidth: 2)
                     )
                 }
+                Spacer()
             }
             .frame(width: UIDevice.current.userInterfaceIdiom == .phone ? 350 : 400)
             .foregroundColor(.pbTextFnd)
@@ -117,7 +121,6 @@ struct DirectionsDisclaimerView: View {
 struct DisclaimerView_Previews: PreviewProvider {
     static var previews: some View {
         DirectionsDisclaimerView()
-            .preferredColorScheme(.light)
         DirectionsDisclaimerView()
             .preferredColorScheme(.dark)
     }

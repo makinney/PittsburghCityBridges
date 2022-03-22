@@ -57,20 +57,18 @@ struct SinglePhotoView: View {
         .frame(width: UIScreen.main.bounds.size.width)
         .frame(height: UIScreen.main.bounds.size.width * 0.75)  // need to fix size since do not know image size
         .background(Color.pbBgnd)
-        .onAppear {
-            Task.detached(priority: .userInitiated) {
-                do {
-                    if await imageLoaded == false {
-                        if let image = await bridgeImageSystem.getThumbnailImage(url:imageURL, desiredThumbnailWidth: 1000) {
-                            await set(bridgeImage: image)
-                        }
-                    }
-                }
-            }
-        }
         .onDisappear {
             bridgeImage = UIImage()
             imageLoaded = false
+        }
+        .task(priority: .userInitiated) {
+            do {
+                if imageLoaded == false {
+                    if let image = await bridgeImageSystem.getThumbnailImage(url:imageURL, desiredThumbnailWidth: 1000) {
+                        set(bridgeImage: image)
+                    }
+                }
+            }
         }
     }
     
@@ -83,7 +81,8 @@ struct SinglePhotoView: View {
 
 struct SinglePhotoView_Previews: PreviewProvider {
     static var previews: some View {
-        Text("TODO preview Needs implemented")
-        //     SinglePhotoView()
+        SinglePhotoView(imageURL: BridgeModel.preview.imageURL! ,bridgeModel: BridgeModel.preview)
+        SinglePhotoView(imageURL: BridgeModel.preview.imageURL! ,bridgeModel: BridgeModel.preview)
+            .preferredColorScheme(.dark)
     }
 }

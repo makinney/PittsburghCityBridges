@@ -132,8 +132,6 @@ struct BridgeDetailsView: View {
                                             .padding(2)
                                             .frame(maxWidth: geometry.frame(in: .global).width, minHeight: 100)
                                             .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
-                                            .scaleEffect(imageScale)
-                                            .animation(.easeInOut, value: imageScale)
                                             .opacity(bridgeImageLoaded ? 1.0 : 0.0)
                                             .gesture(magGesture)
                                         BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
@@ -171,14 +169,6 @@ struct BridgeDetailsView: View {
                 .background(Color.pbBgnd)
                 .onAppear {
                     UIScrollView.appearance().bounces = true
-                    Task {
-                        do {
-                            if let image = await bridgeImageSystem.getImage(url: bridgeModel.imageURL)  {
-                                bridgeImage = image
-                                bridgeImageLoaded = true
-                            }
-                        }
-                    }
                 }
                 .sheet(isPresented: $showDisclaimerSheet,
                        content: {
@@ -190,6 +180,14 @@ struct BridgeDetailsView: View {
                     }
                     .background(Color.pbBgnd)
                 })
+                .task {
+                    do {
+                        if let image = await bridgeImageSystem.getImage(url: bridgeModel.imageURL)  {
+                            bridgeImage = image
+                            bridgeImageLoaded = true
+                        }
+                    }
+                }
             }
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -240,9 +238,7 @@ struct BridgeDetailsView_Previews: PreviewProvider {
     @ObservedObject static var favorites = Favorites()
     static var previews: some View {
         BridgeDetailsView(bridgeModel: BridgeModel.preview, favorites: favorites)
-            .preferredColorScheme(.light)
-        //        BridgeDetailsView(bridgeModel: BridgeModel.preview)
-        //            .environmentObject(FavoriteBridges())
-        
+        BridgeDetailsView(bridgeModel: BridgeModel.preview, favorites: favorites)
+            .preferredColorScheme(.dark)
     }
 }
