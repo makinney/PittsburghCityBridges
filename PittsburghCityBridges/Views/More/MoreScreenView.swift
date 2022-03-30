@@ -40,13 +40,6 @@ struct MoreScreenView: View {
                     }
                     .listRowBackground(Color.pbBgnd)
                         NavigationLink {
-                            AppIconCreditsScreen()
-                        }
-                    label: {
-                        Label("Icon Designer", systemImage: "person.crop.square")
-                    }
-                    .listRowBackground(Color.pbBgnd)
-                        NavigationLink {
                             OpenDataCreditsScreen()
                         }
                     label: {
