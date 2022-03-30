@@ -13,7 +13,6 @@ struct MoreScreenView: View {
     }
     var body: some View {
         ZStack {
-            //   Color.red
             VStack {
                 TitleHeader(title: "Pittsburgh City Bridges")
                 NavigationView {
@@ -25,6 +24,7 @@ struct MoreScreenView: View {
                         Label("About", systemImage: "a.square")
                     }
                     .listRowBackground(Color.pbBgnd)
+                        
                         NavigationLink {
                             OnBoardingDisclaimerScreen()
                         }
@@ -32,6 +32,7 @@ struct MoreScreenView: View {
                         Label("Disclaimer", systemImage: "building.columns")
                     }
                     .listRowBackground(Color.pbBgnd)
+                        
                         NavigationLink {
                             OnboardingCollapsedBridgeScreen()
                         }
@@ -39,6 +40,7 @@ struct MoreScreenView: View {
                         Label("Fern Hollow Bridge", systemImage: "bus")
                     }
                     .listRowBackground(Color.pbBgnd)
+                        
                         NavigationLink {
                             OpenDataCreditsScreen()
                         }
@@ -46,6 +48,7 @@ struct MoreScreenView: View {
                         Label("Open Data Source - WPRDC", systemImage: "folder")
                     }
                     .listRowBackground(Color.pbBgnd)
+                        
                     }
                     .foregroundColor(Color.pbTextFnd)
                 }
