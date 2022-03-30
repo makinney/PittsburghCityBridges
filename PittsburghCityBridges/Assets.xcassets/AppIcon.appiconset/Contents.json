@@ -1,109 +1,109 @@
 {
   "images" : [
     {
-      "filename" : "pcbAppIcon40.png",
+      "filename" : "AppIcon40-1.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "pcbAppIcon60.png",
+      "filename" : "AppIcon60.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
     },
     {
-      "filename" : "pcbAppIcon58.png",
+      "filename" : "AppIcon58-1.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "pcbAppIcon87.png",
+      "filename" : "AppIcon87.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
-      "filename" : "pcbAppIcon80.png",
+      "filename" : "AppIcon80-1.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "pcbAppIcon120-1.png",
+      "filename" : "AppIcon120.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
-      "filename" : "pcbAppIcon120.png",
+      "filename" : "AppIconAppStoreGold120.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
-      "filename" : "pcbAppIcon180.png",
+      "filename" : "AppIconAppStoreGold180.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
     },
     {
-      "filename" : "pcbAppIcon20.png",
+      "filename" : "AppIcon20.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "20x20"
     },
     {
-      "filename" : "pcbAppIcon40-1.png",
+      "filename" : "AppIcon40-2.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "pcbAppIcon29.png",
+      "filename" : "AppIcon29.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "29x29"
     },
     {
-      "filename" : "pcbAppIcon58-1.png",
+      "filename" : "AppIcon58.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "pcbAppIcon40-2.png",
+      "filename" : "AppIcon40.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "40x40"
     },
     {
-      "filename" : "pcbAppIcon80-1.png",
+      "filename" : "AppIcon80.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "pcbAppIcon76.png",
+      "filename" : "AppIcon76.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "76x76"
     },
     {
-      "filename" : "pcbAppIcon152.png",
+      "filename" : "AppIcon152.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "76x76"
     },
     {
-      "filename" : "pcbAppIcon167.png",
+      "filename" : "AppIcon167.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "83.5x83.5"
     },
     {
-      "filename" : "pcbAppIcon1024.png",
+      "filename" : "AppIcon1024.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"

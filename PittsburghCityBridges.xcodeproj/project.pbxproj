@@ -18,7 +18,6 @@
 		2410128D2713855400FE7DEC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2410128C2713855400FE7DEC /* ContentView.swift */; };
 		2412B89B2783A61900BD557E /* TextCopy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2412B89A2783A61900BD557E /* TextCopy.swift */; };
 		2412B89D2783D19F00BD557E /* MoreScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2412B89C2783D19F00BD557E /* MoreScreenView.swift */; };
-		2417C3C427935A2A005DF78C /* AppIconCreditsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417C3C327935A2A005DF78C /* AppIconCreditsScreen.swift */; };
 		2417C3C82794C5E1005DF78C /* SettingsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2417C3C72794C5E1005DF78C /* SettingsScreenView.swift */; };
 		2419B8B9271F382600BFE3D8 /* BridgeMapUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2419B8B8271F382600BFE3D8 /* BridgeMapUIView.swift */; };
 		2419B8BB271F3CD900BFE3D8 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2419B8BA271F3CD900BFE3D8 /* MapViewModel.swift */; };
@@ -83,7 +82,6 @@
 		2410128C2713855400FE7DEC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2412B89A2783A61900BD557E /* TextCopy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCopy.swift; sourceTree = "<group>"; };
 		2412B89C2783D19F00BD557E /* MoreScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreScreenView.swift; sourceTree = "<group>"; };
-		2417C3C327935A2A005DF78C /* AppIconCreditsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconCreditsScreen.swift; sourceTree = "<group>"; };
 		2417C3C72794C5E1005DF78C /* SettingsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenView.swift; sourceTree = "<group>"; };
 		2419B8B8271F382600BFE3D8 /* BridgeMapUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeMapUIView.swift; sourceTree = "<group>"; };
 		2419B8BA271F3CD900BFE3D8 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
@@ -331,7 +329,6 @@
 		249D983927C0753700E8F985 /* More */ = {
 			isa = PBXGroup;
 			children = (
-				2417C3C327935A2A005DF78C /* AppIconCreditsScreen.swift */,
 				2412B89C2783D19F00BD557E /* MoreScreenView.swift */,
 				2417C3C72794C5E1005DF78C /* SettingsScreenView.swift */,
 				249D983A27C075B100E8F985 /* OpenDataCreditsScreen.swift */,
@@ -463,7 +460,6 @@
 				248FC58C270276EE00BE168F /* Persistence.swift in Sources */,
 				2419B8BB271F3CD900BFE3D8 /* MapViewModel.swift in Sources */,
 				241012662713757900FE7DEC /* PittsburghCityBridges.xcdatamodeld in Sources */,
-				2417C3C427935A2A005DF78C /* AppIconCreditsScreen.swift in Sources */,
 				249D983B27C075B100E8F985 /* OpenDataCreditsScreen.swift in Sources */,
 				2458020E27879E1D0091365B /* BridgesListsView.swift in Sources */,
 				2419B8BD2721843800BFE3D8 /* BridgeMapDetailAccessoryView.swift in Sources */,
@@ -629,7 +625,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = PittsburghCityBridges/PittsburghCityBridges.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"PittsburghCityBridges/Preview Content\"";
 				DEVELOPMENT_TEAM = 35RA2D9F5A;
 				ENABLE_PREVIEWS = YES;
@@ -647,7 +643,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.makinney.PittsburghCityBridges;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -664,7 +660,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = PittsburghCityBridges/PittsburghCityBridges.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"PittsburghCityBridges/Preview Content\"";
 				DEVELOPMENT_TEAM = 35RA2D9F5A;
 				ENABLE_PREVIEWS = YES;
@@ -682,7 +678,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.1;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.makinney.PittsburghCityBridges;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
