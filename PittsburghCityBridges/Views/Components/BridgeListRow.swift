@@ -14,8 +14,8 @@ struct BridgeListRow: View {
     private var bridgeImageSystem: BridgeImageSystem
     private let imageURL: URL?
     private let imageFrameSize: CGSize
-    private let thumbNailWidth: CGFloat
     private let imageStrokeWidth: CGFloat
+    private let thumbNailWidth: CGFloat
     
     init(bridgeModel: BridgeModel) {
         self.bridgeModel = bridgeModel

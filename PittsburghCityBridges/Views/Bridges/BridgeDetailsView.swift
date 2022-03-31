@@ -12,10 +12,10 @@ struct BridgeDetailsView: View {
     @ObservedObject var favorites: Favorites
     @State private var showBridgeZoomableView = false
     @State var bridgeImage = UIImage()
+    @State private var bridgeImageLoaded = false
     @State private var dragOffset: CGSize = .zero
     @State private var imageScale: CGFloat = 1.0
     @State private var imageMagnification: CGFloat = 1.0
-    @State private var bridgeImageLoaded = false
     @State private var initialDragOffset: CGSize = .zero
     @State private var showDisclaimerSheet = false
     @Namespace private var bridgeAnimations

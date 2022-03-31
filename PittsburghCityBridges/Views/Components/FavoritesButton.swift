@@ -9,13 +9,13 @@ import SwiftUI
 
 struct FavoritesButton: View {
     @ObservedObject var favorites: Favorites
-    enum FavoriteAction {
+    @State private var favoriteAction = FavoriteAction.undefined
+    private enum FavoriteAction {
         case added
         case removed
         case undefined
     }
     private var favorite: String
-    @State private var favoriteAction = FavoriteAction.undefined
     init(_ favorites: Favorites, favorite: String) {
         self.favorites = favorites
         self.favorite = favorite

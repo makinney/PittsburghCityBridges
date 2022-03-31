@@ -73,7 +73,7 @@ struct HeaderToolBar: View {
 }
 
 struct BridgeMenuBar_Previews: PreviewProvider {
-    static var previews: some View {
+    static var previews: some View { 
         HeaderToolBar(searchCategory: .constant(.neighborhood), showFavorites: .constant(false), searchText: .constant("Search Neighborhood"))
         HeaderToolBar(searchCategory: .constant(.neighborhood), showFavorites: .constant(false), searchText: .constant("Search Neighborhood"))
             .preferredColorScheme(.dark)

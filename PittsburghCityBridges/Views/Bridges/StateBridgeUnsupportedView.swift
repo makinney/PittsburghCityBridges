@@ -10,6 +10,7 @@ import SwiftUI
 struct StateBridgeUnsupportedView: View {
     @Binding var searchText: String
     var bridgeName: String
+    
     var body: some View {
         VStack {
             Text("Looking for the \(bridgeName)?")
