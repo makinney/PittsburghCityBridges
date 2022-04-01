@@ -83,6 +83,8 @@ struct BridgeMapUIView: UIViewRepresentable {
         }
         
         func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+            // not much use to the following without a button on the mapview
+            // but keeping this here for reference purposes
 //            let location: CLLocation? = userLocation.location
 //            let userCoordinates = location?.coordinate
 //            if !mapView.isUserLocationVisible {

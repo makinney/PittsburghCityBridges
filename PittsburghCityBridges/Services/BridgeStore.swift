@@ -20,12 +20,10 @@ final class BridgeStore: ObservableObject {
         openDataService = OpenDataService()
     }
     
-    @MainActor
     func downloadBridgeModelOpenData() async {
         await openDataService.downLoadBridgeModelOpenData()
     }
     
-    @MainActor
     func loadBridgeModels() async {
             var freshModels = [BridgeModel]()
             do {
@@ -47,7 +45,6 @@ final class BridgeStore: ObservableObject {
             }
     }
     
-    @MainActor
     func refreshBridgeModels() {
         Task {
             await downloadBridgeModelOpenData()
@@ -55,7 +52,6 @@ final class BridgeStore: ObservableObject {
         }
     }
 
-    @MainActor
     func preview() {
         Task {
             await loadBridgeModels()
