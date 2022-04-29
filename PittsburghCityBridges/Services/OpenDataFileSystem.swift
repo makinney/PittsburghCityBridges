@@ -38,14 +38,18 @@ class OpenDataFileSystem: ObservableObject {
         }
     }
     
-    func getBridgeModedData(fileName: String) async -> Data? {
-        var data: Data?
-        if let cachedData = readData(fileName: fileName) {
-            data = cachedData
-        } else {
-            data = await getBridgeModelDataFromBundle()
+    func deleteFileIfExists(named fileName: String) {
+        if let file = getFile(named: fileName) {
+            do {
+                try file.delete()
+            } catch {
+                logger.info("\(#file) \(#function) error \(error.localizedDescription)")
+            }
         }
-        return data
+    }
+    
+    func getBridgeModedDataFromFile(named fileName: String) -> Data? {
+        readData(fileName: fileName)
     }
     
     func getBridgeModelDataFromBundle() async -> Data? {
@@ -104,7 +108,7 @@ class OpenDataFileSystem: ObservableObject {
         return Bundle.main.url(forResource: "BridgesOpenData", withExtension: "json")
     }
     
-    private func getFile(named: String) -> File? {
+    func getFile(named: String) -> File? {
         var file: File?
         do {
             file = try openDataFolder?.file(named: named)
