@@ -25,8 +25,10 @@ class OpenDataService {
     }
     
     func loadBridgeModelOpenData() async -> Data? {
-        let bridgeModelData = await openDataFileSystem.getBridgeModedDataFromDisc(fileName: bridgeModelsFileName)
-        return bridgeModelData
+        if let data = openDataFileSystem.getBridgeModedDataFromFile(named: bridgeModelsFileName) {
+            return data
+        }
+        return await openDataFileSystem.getBridgeModelDataFromBundle()
     }
     
     func downLoadBridgeModelOpenData() async {

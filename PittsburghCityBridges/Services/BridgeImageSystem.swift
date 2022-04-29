@@ -53,27 +53,13 @@ class BridgeImageSystem: ObservableObject {
     }
     
     @MainActor
-//    func getThumbnailImage(url: URL?, desiredThumbnailWidth: CGFloat = 500) async -> UIImage? {
-//        // SMALL, MIDDLE, LARGE THUMBNAILS FOR ENTIRE APP AND CACHE FOR EACH
-//        if let cachedThumbnailImage = cachedThumbnailImage {
-//            return cachedThumbnailImage
-//        }
-//        if let imageData = await getImageData(for: url) {
-//            let size = CGSize(width: desiredThumbnailWidth, height: desiredThumbnailWidth)
-//            cachedThumbnailImage = await UIImage(data: imageData)?.byPreparingThumbnail(ofSize: size)
-//           return cachedThumbnailImage
-//        }
-//        return nil
-//    }
-    
     func getThumbnailImage(url: URL?, desiredThumbnailWidth: CGFloat = 500) async -> UIImage? {
-        // SMALL, MIDDLE, LARGE THUMBNAILS FOR ENTIRE APP AND CACHE FOR EACH
         if let cachedThumbnailImage = cachedThumbnailImage {
             return cachedThumbnailImage
         }
         if let imageData = await getImageData(for: url) {
             let uiImage = UIImage(data: imageData)
-            if let cgImage = uiImage?.cgImage {  // , Int(desiredThumbnailWidth) <= cgImage.width {
+            if let cgImage = uiImage?.cgImage {
                 let thumbnailWidth = min(desiredThumbnailWidth, CGFloat(cgImage.width))
                 let aspectRatio =  CGFloat(cgImage.height) / CGFloat(cgImage.width)
                 let thumbnailHeight = thumbnailWidth * aspectRatio

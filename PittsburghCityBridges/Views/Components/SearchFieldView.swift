@@ -9,8 +9,8 @@ import SwiftUI
 
 struct SearchFieldView: View {
     @Binding var searchText: String
-    var searchCategory: BridgeSearcher.SearchCategory
     var prompt: String = "Search"
+    var searchCategory: BridgeSearcher.SearchCategory
     
     var body: some View {
         HStack {

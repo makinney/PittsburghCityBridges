@@ -38,14 +38,8 @@ class OpenDataFileSystem: ObservableObject {
         }
     }
     
-    func getBridgeModedDataFromDisc(fileName: String) async -> Data? {
-        var data: Data?
-        if let cachedData = readData(fileName: fileName) {
-            data = cachedData
-        } else {
-            data = await getBridgeModelDataFromBundle()
-        }
-        return data
+    func getBridgeModedDataFromFile(named fileName: String) -> Data? {
+        readData(fileName: fileName)
     }
     
     func getBridgeModelDataFromBundle() async -> Data? {
@@ -70,18 +64,6 @@ class OpenDataFileSystem: ObservableObject {
         return data
     }
     
-    func readData(fileName: String) -> Data? {
-        var data: Data?
-        if let file = getFile(named: fileName) {
-            do {
-                data = try file.read()
-            } catch {
-                logger.info("\(#file) \(#function) error \(error.localizedDescription)")
-            }
-        }
-        return data
-    }
-    
     func saveToDisk(fileName: String, data: Data) {
         var existingFile = getFile(named: fileName)
         if existingFile == nil {
@@ -100,8 +82,20 @@ class OpenDataFileSystem: ObservableObject {
         }
     }
     
-    private func getBundledFileURL() -> URL? {
+    func getBundledFileURL() -> URL? {
         return Bundle.main.url(forResource: "BridgesOpenData", withExtension: "json")
+    }
+    
+    private func readData(fileName: String) -> Data? {
+        var data: Data?
+        if let file = getFile(named: fileName) {
+            do {
+                data = try file.read()
+            } catch {
+                logger.info("\(#file) \(#function) error \(error.localizedDescription)")
+            }
+        }
+        return data
     }
     
     private func getFile(named: String) -> File? {
@@ -112,5 +106,18 @@ class OpenDataFileSystem: ObservableObject {
             logger.info("\(#file) \(#function) error \(error.localizedDescription)")
         }
         return file
+    }
+}
+
+extension OpenDataFileSystem {
+    // Unit Test Helper
+    func deleteFileIfExists(named fileName: String) {
+        if let file = getFile(named: fileName) {
+            do {
+                try file.delete()
+            } catch {
+                logger.info("\(#file) \(#function) error \(error.localizedDescription)")
+            }
+        }
     }
 }

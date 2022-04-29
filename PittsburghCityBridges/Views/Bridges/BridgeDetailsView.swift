@@ -10,12 +10,12 @@ import os
 
 struct BridgeDetailsView: View {
     @ObservedObject var favorites: Favorites
-    @State private var bridgeImageOnly = false
+    @State private var showBridgeZoomableView = false
     @State var bridgeImage = UIImage()
+    @State private var bridgeImageLoaded = false
     @State private var dragOffset: CGSize = .zero
     @State private var imageScale: CGFloat = 1.0
     @State private var imageMagnification: CGFloat = 1.0
-    @State private var bridgeImageLoaded = false
     @State private var initialDragOffset: CGSize = .zero
     @State private var showDisclaimerSheet = false
     @Namespace private var bridgeAnimations
@@ -27,10 +27,6 @@ struct BridgeDetailsView: View {
     private let userInterfaceIdiom: UIUserInterfaceIdiom
     private let logger =  Logger(subsystem: AppLogging.subsystem, category: AppLogging.debugging)
     
-    private func totalOffset(offset: CGSize, by: CGSize) -> CGSize {
-        CGSize(width: offset.width + by.width, height: offset.height + by.height)
-    }
-    
     init(bridgeModel: BridgeModel, favorites: Favorites) {
         self.bridgeModel = bridgeModel
         bridgeImageSystem = BridgeImageSystem()
@@ -38,10 +34,10 @@ struct BridgeDetailsView: View {
         self.userInterfaceIdiom = UIDevice.current.userInterfaceIdiom
     }
     
-    var dragGesture: some Gesture {
+    private var dragGesture: some Gesture {
         DragGesture()
             .onChanged {
-                if self.bridgeImageOnly {
+                if self.showBridgeZoomableView {
                     self.dragOffset = self.totalOffset(offset: self.initialDragOffset, by: $0.translation)
                 }
             }
@@ -51,7 +47,7 @@ struct BridgeDetailsView: View {
             }
     }
     
-    var magGesture: some Gesture {
+    private var magGesture: some Gesture {
         MagnificationGesture()
             .onChanged { newValue in
                 self.imageScale = max(imageMagnification * newValue, imageSmallestMagnification)
@@ -61,7 +57,7 @@ struct BridgeDetailsView: View {
             }
     }
     
-    var dblTapToZoomInGesture: some Gesture {
+    private var dblTapToZoomInGesture: some Gesture {
         TapGesture(count: 2)
             .onEnded {
                 self.imageMagnification = imageScale
@@ -71,132 +67,140 @@ struct BridgeDetailsView: View {
     
     var body: some View {
         VStack {
-            if bridgeImageOnly {
-                GeometryReader { geometry in
-                    VStack(alignment: .center) {
-                        Image(uiImage: bridgeImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
-                            .frame(maxWidth: geometry.frame(in: .global).width, maxHeight: geometry.frame(in: .global).height)
-                            .scaleEffect(imageScale)
-                            .animation(.easeInOut, value: imageScale)
-                            .offset(dragOffset)
-                            .animation(.easeInOut, value: dragOffset)
-                            .gesture(magGesture.simultaneously(with: dragGesture))
-                            .gesture(dblTapToZoomInGesture)
-                            .toolbar {
-                                ToolbarItem(placement: .navigationBarTrailing) {
-                                    Button("Done") {
-                                        self.dragOffset = .zero
-                                        self.initialDragOffset = .zero
-                                        self.imageScale = 1.0
-                                        self.imageMagnification = 1.0
-                                        self.bridgeImageOnly = false
-                                    }
-                                }
-                            }
-                        Spacer()
-                    }
-                }
-                .background(Color.pbBgnd)
-                .onAppear {
-                    UIScrollView.appearance().bounces = false
-                }
-                .onDisappear {
-                    UIScrollView.appearance().bounces = true
-                }
+            if showBridgeZoomableView {
+                bridgeZoomableView()
             } else {
-                GeometryReader { geometry in
-                    ScrollView(showsIndicators: false) {
-                        VStack(alignment: .leading) {
-                            VStack {
-                                HStack {
-                                    Image(systemName: "plus.magnifyingglass")
-                                        .imageScale(.large)
-                                    Text("Zoom")
-                                    Spacer()
-                                }
-                                .foregroundColor(.accentColor)
-                                .padding(.top, 10)
-                                HStack {
-                                    ZStack {
-                                        Image(uiImage: bridgeImage)
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .cornerRadius(PCBImage.cornerRadius)
-                                            .background (
-                                                RoundedRectangle(cornerRadius: PCBImage.cornerRadius)
-                                                    .stroke(Color.pbTextFnd, lineWidth: 4)
-                                            )
-                                            .padding(2)
-                                            .frame(maxWidth: geometry.frame(in: .global).width, minHeight: 100)
-                                            .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
-                                            .opacity(bridgeImageLoaded ? 1.0 : 0.0)
-                                            .gesture(magGesture)
-                                        BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
-                                            .opacity(bridgeImageLoaded ? 0.0 : 1.0)
-                                    }
-                                }
-                            }
-                            .padding([.bottom], 5)
-                            .gesture(
-                                TapGesture(count: 1)
-                                    .onEnded{
-                                        self.bridgeImageOnly = true
-                                    }
-                            )
-                            Text(bridgeModel.builtHistory())
-                                .padding([.bottom], 5)
-                            Text(bridgeModel.neighborhoods())
-                            HStack {
-                                makeMapView(bridgeModel)
-                                    .frame(height: (userInterfaceIdiom == .phone) ? 200 : 250)
-                            }
-                        }
-                        .foregroundColor(Color.pbTextFnd)
-                    }
-                    .padding([.leading, .trailing])
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            FavoritesButton(favorites, favorite: bridgeModel.name)
-                                .padding(.trailing, 10)
-                        }
-                    }
-                    .background(Color.pbBgnd)
+                bridgeInfoWithMapView()
+            }
+        }
+        .sheet(isPresented: $showDisclaimerSheet,
+               content: {
+            DirectionsDisclaimerView { userAcceptedDisclaimer in
+                if userAcceptedDisclaimer,
+                   let locationCoordinate = bridgeModel.locationCoordinate {
+                    DirectionsProvider.shared.requestDirectionsTo(locationCoordinate)
                 }
-                .font(.body)
-                .background(Color.pbBgnd)
-                .onAppear {
-                    UIScrollView.appearance().bounces = true
-                }
-                .sheet(isPresented: $showDisclaimerSheet,
-                       content: {
-                    DirectionsDisclaimerView { userAcceptedDisclaimer in
-                        if userAcceptedDisclaimer,
-                           let locationCoordinate = bridgeModel.locationCoordinate {
-                            DirectionsProvider.shared.requestDirectionsTo(locationCoordinate)
-                        }
-                    }
-                    .background(Color.pbBgnd)
-                })
-                .task {
-                    do {
-                        if let image = await bridgeImageSystem.getImage(url: bridgeModel.imageURL)  {
-                            bridgeImage = image
-                            bridgeImageLoaded = true
-                        }
-                    }
+            }
+            .background(Color.pbBgnd)
+        })
+        .task {
+            do {
+                if let image = await bridgeImageSystem.getImage(url: bridgeModel.imageURL)  {
+                    bridgeImage = image
+                    bridgeImageLoaded = true
                 }
             }
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("\(bridgeModel.name)")
         .background(Color.pbBgnd)
-        .animation(.default, value: bridgeImageOnly)
+        .animation(.default, value: showBridgeZoomableView)
     }
     
-    func makeMapView(_ bridgeModel: BridgeModel) -> some View {
+    private func bridgeInfoWithMapView() -> some View {
+        return GeometryReader { geometry in
+            ScrollView(showsIndicators: false) {
+                VStack(alignment: .leading) {
+                    VStack {
+                        HStack {
+                            Image(systemName: "plus.magnifyingglass")
+                                .imageScale(.large)
+                            Text("Zoom")
+                            Spacer()
+                        }
+                        .foregroundColor(.accentColor)
+                        .padding(.top, 10)
+                        HStack {
+                            ZStack {
+                                Image(uiImage: bridgeImage)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .cornerRadius(PCBImage.cornerRadius)
+                                    .background (
+                                        RoundedRectangle(cornerRadius: PCBImage.cornerRadius)
+                                            .stroke(Color.pbTextFnd, lineWidth: 4)
+                                    )
+                                    .padding(2)
+                                    .frame(maxWidth: geometry.frame(in: .global).width, minHeight: 100)
+                                    .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
+                                    .opacity(bridgeImageLoaded ? 1.0 : 0.0)
+                                    .gesture(magGesture)
+                                BridgeImageLoadingProgressView(bridgeName: bridgeModel.name)
+                                    .opacity(bridgeImageLoaded ? 0.0 : 1.0)
+                            }
+                        }
+                    }
+                    .padding([.bottom], 5)
+                    .gesture(
+                        TapGesture(count: 1)
+                            .onEnded{
+                                self.showBridgeZoomableView = true
+                            }
+                    )
+                    Text(bridgeModel.builtHistory())
+                        .padding([.bottom], 5)
+                    Text(bridgeModel.neighborhoods())
+                    HStack {
+                        makeMapView(bridgeModel)
+                            .frame(height: (userInterfaceIdiom == .phone) ? 200 : 250)
+                    }
+                }
+                .foregroundColor(Color.pbTextFnd)
+            }
+            .padding([.leading, .trailing])
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    FavoritesButton(favorites, favorite: bridgeModel.name)
+                        .padding(.trailing, 10)
+                }
+            }
+            .background(Color.pbBgnd)
+        }
+        .font(.body)
+        .background(Color.pbBgnd)
+        .onAppear {
+            UIScrollView.appearance().bounces = true
+        }
+    }
+    
+    private func bridgeZoomableView() -> some View {
+        return GeometryReader { geometry in
+            VStack(alignment: .center) {
+                Image(uiImage: bridgeImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .matchedGeometryEffect(id: "BridgeView", in: bridgeAnimations)
+                    .frame(maxWidth: geometry.frame(in: .global).width, maxHeight: geometry.frame(in: .global).height)
+                    .scaleEffect(imageScale)
+                    .animation(.easeInOut, value: imageScale)
+                    .offset(dragOffset)
+                    .animation(.easeInOut, value: dragOffset)
+                    .gesture(magGesture.simultaneously(with: dragGesture))
+                    .gesture(dblTapToZoomInGesture)
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button("Done") {
+                                self.dragOffset = .zero
+                                self.initialDragOffset = .zero
+                                self.imageScale = 1.0
+                                self.imageMagnification = 1.0
+                                self.showBridgeZoomableView = false
+                            }
+                        }
+                    }
+                Spacer()
+            }
+        }
+        .background(Color.pbBgnd)
+        .onAppear {
+            UIScrollView.appearance().bounces = false
+        }
+        .onDisappear {
+            UIScrollView.appearance().bounces = true
+        }
+    }
+    
+    private func makeMapView(_ bridgeModel: BridgeModel) -> some View {
         ZStack {
             BridgeMapUIView(region: MapViewModel.singleBridgeRegion, bridgeModels: [bridgeModel], showsBridgeImage: false)
                 .cornerRadius(PCBImage.cornerRadius)
@@ -230,7 +234,10 @@ struct BridgeDetailsView: View {
                 Spacer()
             }
         }
-
+    }
+    
+    private func totalOffset(offset: CGSize, by: CGSize) -> CGSize {
+        CGSize(width: offset.width + by.width, height: offset.height + by.height)
     }
 }
 
