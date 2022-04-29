@@ -38,7 +38,7 @@ class OpenDataFileSystem: ObservableObject {
         }
     }
     
-    func getBridgeModedDataFromDisc(fileName: String) async -> Data? {
+    func getBridgeModedData(fileName: String) async -> Data? {
         var data: Data?
         if let cachedData = readData(fileName: fileName) {
             data = cachedData
