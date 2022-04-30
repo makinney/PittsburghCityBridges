@@ -6,30 +6,35 @@
 //
 
 import XCTest
+@testable import PittsburghCityBridges
 
 class OpenDataServiceTests: XCTestCase {
+    let openDataService = OpenDataService()
+    let openDataFileSystem = OpenDataFileSystem()
+    let testFileName = "someName"
+    private let bridgeModelsFileName = "cityBridgesOpenData"
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testLoadBridgeModelOpenDataFromFile() async {
+        openDataFileSystem.deleteFileIfExists(named: bridgeModelsFileName)
+        let expectedData = Data(capacity: 1)
+        openDataFileSystem.saveToDisk(fileName: bridgeModelsFileName, data: expectedData)
+        let savedData = await openDataService.loadBridgeModelOpenData()!
+        XCTAssertNotNil(savedData, "failed to save data")
+        XCTAssert(savedData.count == expectedData.count, "failed to retrive data from the file")
     }
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testLoadBridgeModelOpenDataFromBundle() async {
+        openDataFileSystem.deleteFileIfExists(named: bridgeModelsFileName)
+        let bundledData = await openDataService.loadBridgeModelOpenData()!
+        XCTAssertNotNil(bundledData, "failed to get bundled data")
+        let expectedBundledDataCount = 140545 
+        XCTAssert(bundledData.count == expectedBundledDataCount, "bundled data size not as expected")
     }
 
 }

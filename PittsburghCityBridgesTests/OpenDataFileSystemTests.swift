@@ -11,7 +11,7 @@ import XCTest
 
 class OpenDataFileSystemTests: XCTestCase {
     let openDataFileSystem = OpenDataFileSystem()
-    let testFileName = "testFileName"
+    let testFileName = "someName"
     
     func testCreateDataFile() async {
         let someData = Data()
