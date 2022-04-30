@@ -26,6 +26,7 @@ class OpenDataFileSystemTests: XCTestCase {
         let data = await openDataFileSystem.getDataFrom(url: fileURL)
         XCTAssertNotNil(data, "failed to get date from URL")
     }
+    
     func testGetBridgeModelDataFromBundle() async {
         let bundledData = await openDataFileSystem.getBridgeModelDataFromBundle()!
         XCTAssertNotNil(bundledData, "Failed to get bundled data")
