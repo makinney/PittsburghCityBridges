@@ -33,8 +33,15 @@ class OpenDataServiceTests: XCTestCase {
         openDataFileSystem.deleteFileIfExists(named: bridgeModelsFileName)
         let bundledData = await openDataService.loadBridgeModelOpenData()!
         XCTAssertNotNil(bundledData, "failed to get bundled data")
-        let expectedBundledDataCount = 140545 
+        let expectedBundledDataCount = 140545
         XCTAssert(bundledData.count == expectedBundledDataCount, "bundled data size not as expected")
     }
 
+    @MainActor func testCloudKitAccessAndDataDownLoad() async {
+        openDataFileSystem.deleteFileIfExists(named: bridgeModelsFileName)
+        await openDataService.downLoadBridgeModelOpenData()
+        let downLoadedData = await openDataService.loadBridgeModelOpenData()!
+        XCTAssertNotNil(downLoadedData, "failed to download any data")
+        XCTAssert(downLoadedData.count > 0, "downloaded data is empty")
+    }
 }
