@@ -58,7 +58,7 @@
 		2496BF5C27DAC13800E125B4 /* BridgeNotInApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2496BF5B27DAC13800E125B4 /* BridgeNotInApp.swift */; };
 		2496BF5E27DBAF8000E125B4 /* FernHollowUnsupportedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2496BF5D27DBAF8000E125B4 /* FernHollowUnsupportedView.swift */; };
 		2497B22627A3592A00C60E44 /* OnBoardingBridgePhotosScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2497B22527A3592A00C60E44 /* OnBoardingBridgePhotosScreen.swift */; };
-		249A056B281C2AF4007749D2 /* PittsburghCityBridgesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A056A281C2AF4007749D2 /* PittsburghCityBridgesTests.swift */; };
+		249A056B281C2AF4007749D2 /* OpenDataServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A056A281C2AF4007749D2 /* OpenDataServiceTests.swift */; };
 		249A0572281C2B2D007749D2 /* OpenDataFileSystemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A0571281C2B2D007749D2 /* OpenDataFileSystemTests.swift */; };
 		249C7D5B277E52D700D72DA4 /* HeaderToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */; };
 		249C7D5D277F609600D72DA4 /* TitleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C7D5C277F609600D72DA4 /* TitleHeader.swift */; };
@@ -137,7 +137,7 @@
 		2496BF5D27DBAF8000E125B4 /* FernHollowUnsupportedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FernHollowUnsupportedView.swift; sourceTree = "<group>"; };
 		2497B22527A3592A00C60E44 /* OnBoardingBridgePhotosScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingBridgePhotosScreen.swift; sourceTree = "<group>"; };
 		249A0568281C2AF3007749D2 /* PittsburghCityBridgesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PittsburghCityBridgesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		249A056A281C2AF4007749D2 /* PittsburghCityBridgesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PittsburghCityBridgesTests.swift; sourceTree = "<group>"; };
+		249A056A281C2AF4007749D2 /* OpenDataServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenDataServiceTests.swift; sourceTree = "<group>"; };
 		249A0571281C2B2D007749D2 /* OpenDataFileSystemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenDataFileSystemTests.swift; sourceTree = "<group>"; };
 		249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderToolBar.swift; sourceTree = "<group>"; };
 		249C7D5C277F609600D72DA4 /* TitleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeader.swift; sourceTree = "<group>"; };
@@ -353,7 +353,7 @@
 		249A0569281C2AF3007749D2 /* PittsburghCityBridgesTests */ = {
 			isa = PBXGroup;
 			children = (
-				249A056A281C2AF4007749D2 /* PittsburghCityBridgesTests.swift */,
+				249A056A281C2AF4007749D2 /* OpenDataServiceTests.swift */,
 				249A0571281C2B2D007749D2 /* OpenDataFileSystemTests.swift */,
 			);
 			path = PittsburghCityBridgesTests;
@@ -566,7 +566,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				249A0572281C2B2D007749D2 /* OpenDataFileSystemTests.swift in Sources */,
-				249A056B281C2AF4007749D2 /* PittsburghCityBridgesTests.swift in Sources */,
+				249A056B281C2AF4007749D2 /* OpenDataServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

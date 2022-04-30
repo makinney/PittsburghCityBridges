@@ -1,13 +1,13 @@
 //
-//  PittsburghCityBridgesTests.swift
-//  PittsburghCityBridgesTests
+//  OpenDataServiceTests.swift
+//  OpenDataServiceTests
 //
 //  Created by MAKinney on 4/29/22.
 //
 
 import XCTest
 
-class PittsburghCityBridgesTests: XCTestCase {
+class OpenDataServiceTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
