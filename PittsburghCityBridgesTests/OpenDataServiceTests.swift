@@ -14,12 +14,6 @@ class OpenDataServiceTests: XCTestCase {
     let testFileName = "someName"
     private let bridgeModelsFileName = "cityBridgesOpenData"
 
-    override func setUpWithError() throws {
-    }
-
-    override func tearDownWithError() throws {
-    }
-
     func testLoadBridgeModelOpenDataFromFile() async {
         openDataFileSystem.deleteFileIfExists(named: bridgeModelsFileName)
         let expectedData = Data(capacity: 1)
