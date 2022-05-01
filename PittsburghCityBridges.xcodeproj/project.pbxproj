@@ -355,11 +355,19 @@
 		249A0569281C2AF3007749D2 /* PittsburghCityBridgesTests */ = {
 			isa = PBXGroup;
 			children = (
-				249A056A281C2AF4007749D2 /* OpenDataServiceTests.swift */,
-				249A0571281C2B2D007749D2 /* OpenDataFileSystemTests.swift */,
-				249A0573281EA52B007749D2 /* BridgeNotInAppTests.swift */,
+				249A0575281EA735007749D2 /* Services */,
 			);
 			path = PittsburghCityBridgesTests;
+			sourceTree = "<group>";
+		};
+		249A0575281EA735007749D2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				249A0573281EA52B007749D2 /* BridgeNotInAppTests.swift */,
+				249A0571281C2B2D007749D2 /* OpenDataFileSystemTests.swift */,
+				249A056A281C2AF4007749D2 /* OpenDataServiceTests.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		249D983927C0753700E8F985 /* More */ = {
