@@ -61,6 +61,12 @@ final class BridgeStore: ObservableObject {
 }
 
 extension BridgeStore {
+    func clearBridgeModels() { // unit tests helper
+        bridgeModels = [BridgeModel]()
+    }
+}
+
+extension BridgeStore {
     func sortedByName() -> [BridgeModel] {
         let sortedModels = bridgeModels.sorted { model1, model2 in
             return model1.name < model2.name
