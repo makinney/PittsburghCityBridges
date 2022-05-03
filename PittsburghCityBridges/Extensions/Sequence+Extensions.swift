@@ -3,7 +3,7 @@
 //  PittsburghCityBridges
 //
 //  Created by MAKinney on 10/29/21.
-//
+//  Based on work by John Sundell
 
 import Foundation
 
