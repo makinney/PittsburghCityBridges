@@ -65,6 +65,7 @@
 		249A0579281ED963007749D2 /* FavoritesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A0578281ED963007749D2 /* FavoritesTests.swift */; };
 		249A057B281EE648007749D2 /* BridgeStoreUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A057A281EE648007749D2 /* BridgeStoreUnitTests.swift */; };
 		249A057E282156DB007749D2 /* BridgeModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A057D282156DB007749D2 /* BridgeModelTests.swift */; };
+		249A0580282187CD007749D2 /* GEOJSONModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249A057F282187CD007749D2 /* GEOJSONModelTest.swift */; };
 		249C7D5B277E52D700D72DA4 /* HeaderToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */; };
 		249C7D5D277F609600D72DA4 /* TitleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C7D5C277F609600D72DA4 /* TitleHeader.swift */; };
 		249D983B27C075B100E8F985 /* OpenDataCreditsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249D983A27C075B100E8F985 /* OpenDataCreditsScreen.swift */; };
@@ -149,6 +150,7 @@
 		249A0578281ED963007749D2 /* FavoritesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTests.swift; sourceTree = "<group>"; };
 		249A057A281EE648007749D2 /* BridgeStoreUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeStoreUnitTests.swift; sourceTree = "<group>"; };
 		249A057D282156DB007749D2 /* BridgeModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeModelTests.swift; sourceTree = "<group>"; };
+		249A057F282187CD007749D2 /* GEOJSONModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GEOJSONModelTest.swift; sourceTree = "<group>"; };
 		249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderToolBar.swift; sourceTree = "<group>"; };
 		249C7D5C277F609600D72DA4 /* TitleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeader.swift; sourceTree = "<group>"; };
 		249D983A27C075B100E8F985 /* OpenDataCreditsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenDataCreditsScreen.swift; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 			isa = PBXGroup;
 			children = (
 				249A057D282156DB007749D2 /* BridgeModelTests.swift */,
+				249A057F282187CD007749D2 /* GEOJSONModelTest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				249A057E282156DB007749D2 /* BridgeModelTests.swift in Sources */,
 				249A0574281EA52B007749D2 /* BridgeNotInAppTests.swift in Sources */,
 				249A056B281C2AF4007749D2 /* OpenDataServiceTests.swift in Sources */,
+				249A0580282187CD007749D2 /* GEOJSONModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
