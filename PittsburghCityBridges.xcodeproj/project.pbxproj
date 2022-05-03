@@ -25,7 +25,6 @@
 		2419B8C42721D64E00BFE3D8 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2419B8C32721D64E00BFE3D8 /* LocationService.swift */; };
 		243A1BC627E0E2FE00B85954 /* StateBridgeUnsupportedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243A1BC527E0E2FE00B85954 /* StateBridgeUnsupportedView.swift */; };
 		24496FA2278CDF170074720C /* DirectionsDisclaimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24496FA1278CDF170074720C /* DirectionsDisclaimerView.swift */; };
-		24496FA5278DDFCE0074720C /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24496FA4278DDFCE0074720C /* StorageKeys.swift */; };
 		244A747427187D1200284608 /* BridgeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244A747327187D1200284608 /* BridgeModel.swift */; };
 		244A747A2719A1A600284608 /* GEOJSONModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244A74792719A1A600284608 /* GEOJSONModels.swift */; };
 		244E9C91273ABF2A00605134 /* BridgeSearcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244E9C90273ABF2A00605134 /* BridgeSearcher.swift */; };
@@ -107,7 +106,6 @@
 		2419B8C32721D64E00BFE3D8 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		243A1BC527E0E2FE00B85954 /* StateBridgeUnsupportedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateBridgeUnsupportedView.swift; sourceTree = "<group>"; };
 		24496FA1278CDF170074720C /* DirectionsDisclaimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsDisclaimerView.swift; sourceTree = "<group>"; };
-		24496FA4278DDFCE0074720C /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
 		244A747327187D1200284608 /* BridgeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeModel.swift; sourceTree = "<group>"; };
 		244A74792719A1A600284608 /* GEOJSONModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GEOJSONModels.swift; sourceTree = "<group>"; };
 		244E9C90273ABF2A00605134 /* BridgeSearcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BridgeSearcher.swift; sourceTree = "<group>"; };
@@ -230,7 +228,6 @@
 			isa = PBXGroup;
 			children = (
 				2412B89A2783A61900BD557E /* TextCopy.swift */,
-				24496FA4278DDFCE0074720C /* StorageKeys.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -547,7 +544,6 @@
 				2458020C27879A530091365B /* SinglePhotoView.swift in Sources */,
 				245802102788C2420091365B /* BridgesPhotosListView.swift in Sources */,
 				241012892713785C00FE7DEC /* BridgeMapView.swift in Sources */,
-				24496FA5278DDFCE0074720C /* StorageKeys.swift in Sources */,
 				24B3FE912722356A004B93A6 /* DirectionsProvider.swift in Sources */,
 				2410128D2713855400FE7DEC /* ContentView.swift in Sources */,
 				2496BF5C27DAC13800E125B4 /* BridgeNotInApp.swift in Sources */,
