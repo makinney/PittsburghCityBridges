@@ -35,7 +35,7 @@ class BridgeSearcher {
         clearCacheOnModelChanges()
     }
     
-    func sortAndSearch(by searchCategory: SearchCategory, searchText: String? = nil, favorites: Favorites?) -> [BridgeModelCategory] {
+    func sortAndSearch(by searchCategory: SearchCategory, searchText: String? = nil, favorites: Favorites? = nil) -> [BridgeModelCategory] {
         var bridgeModelCategories = sortBridgeModels(by: searchCategory)
         if let favorites = favorites {
             bridgeModelCategories = filterFavorites(bridgeModelCategories: bridgeModelCategories, favorites: favorites)
