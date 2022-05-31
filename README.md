@@ -1,3 +1,3 @@
 # PittsburghCityBridges
 
-Under construction, like many bridges in Pittsburgh. 
+This is the source code for my Pittsburgh City Bridges App
