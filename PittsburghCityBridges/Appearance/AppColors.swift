@@ -8,15 +8,6 @@
 import SwiftUI
 import UIKit
 
-extension Color {
-    static let pbTextFnd = Color(light: Asset.bridgeBlackA, dark: Asset.bridgeYellowB)
-    static let pbBgnd =  Color(light: Asset.bridgeYellowB , dark: Asset.bridgeBlackA)
-}
-
-extension UIColor {
-    static let accentColor = UIColor(named: "AccentColor") ?? UIColor.yellow  // There is also a Color.accentColor define by SwiftUI
-}
-
 private struct Asset {
     static var bridgeBlackA = UIColor(named: "bridgeBlackA") ?? UIColor.black
     static var bridgeBlueA = UIColor(named: "bridgeBlueA") ?? UIColor.yellow
@@ -34,6 +25,14 @@ private struct Asset {
 
 }
 
+extension Color {
+    static let pbTextFnd = Color(light: Asset.bridgeBlackA, dark: Asset.bridgeYellowB)
+    static let pbBgnd =  Color(light: Asset.bridgeYellowB , dark: Asset.bridgeBlackA)
+}
+
+extension UIColor {
+    static let accentColor = UIColor(named: "AccentColor") ?? UIColor.yellow  // There is also a Color.accentColor define by SwiftUI
+}
 
 extension Color {
     // dyanmic Colors for light and dark modes
@@ -48,6 +47,7 @@ extension Color {
         self.init(UIColor(light: light, dark: dark))
     }
 }
+
 
 extension UIColor {
     // the UIKIt dynamicProvider
