@@ -68,6 +68,8 @@
 		249C7D5B277E52D700D72DA4 /* HeaderToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */; };
 		249C7D5D277F609600D72DA4 /* TitleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249C7D5C277F609600D72DA4 /* TitleHeader.swift */; };
 		249D983B27C075B100E8F985 /* OpenDataCreditsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249D983A27C075B100E8F985 /* OpenDataCreditsScreen.swift */; };
+		24A314AA283C1CAA0051063D /* OnBoardingContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A314A9283C1CAA0051063D /* OnBoardingContentView.swift */; };
+		24A314AC283C1CE70051063D /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A314AB283C1CE70051063D /* StorageKeys.swift */; };
 		24A3386B27C3D191007502DC /* SearchFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A3386A27C3D191007502DC /* SearchFieldView.swift */; };
 		24A3386D27C68361007502DC /* RefreshControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A3386C27C68361007502DC /* RefreshControlView.swift */; };
 		24A9E14C27ACAB5200CCA97B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24A9E14B27ACAB5200CCA97B /* Launch Screen.storyboard */; };
@@ -152,6 +154,8 @@
 		249C7D5A277E52D700D72DA4 /* HeaderToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderToolBar.swift; sourceTree = "<group>"; };
 		249C7D5C277F609600D72DA4 /* TitleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeader.swift; sourceTree = "<group>"; };
 		249D983A27C075B100E8F985 /* OpenDataCreditsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenDataCreditsScreen.swift; sourceTree = "<group>"; };
+		24A314A9283C1CAA0051063D /* OnBoardingContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingContentView.swift; sourceTree = "<group>"; };
+		24A314AB283C1CE70051063D /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
 		24A3386A27C3D191007502DC /* SearchFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFieldView.swift; sourceTree = "<group>"; };
 		24A3386C27C68361007502DC /* RefreshControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshControlView.swift; sourceTree = "<group>"; };
 		24A9E14B27ACAB5200CCA97B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -228,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				2412B89A2783A61900BD557E /* TextCopy.swift */,
+				24A314AB283C1CE70051063D /* StorageKeys.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -343,6 +348,7 @@
 				246F309227B1B90800B75025 /* OnBoardingIntroScreen.swift */,
 				246C089627CFDC44009A9675 /* OnBoardingMapScreen.swift */,
 				248F7B5D27D2B2690046A510 /* OnBoardingSortAndSearchScreen.swift */,
+				24A314A9283C1CAA0051063D /* OnBoardingContentView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -548,6 +554,7 @@
 				2410128D2713855400FE7DEC /* ContentView.swift in Sources */,
 				2496BF5C27DAC13800E125B4 /* BridgeNotInApp.swift in Sources */,
 				24496FA2278CDF170074720C /* DirectionsDisclaimerView.swift in Sources */,
+				24A314AA283C1CAA0051063D /* OnBoardingContentView.swift in Sources */,
 				2412B89B2783A61900BD557E /* TextCopy.swift in Sources */,
 				2412B89D2783D19F00BD557E /* MoreScreenView.swift in Sources */,
 				248FC58C270276EE00BE168F /* Persistence.swift in Sources */,
@@ -558,6 +565,7 @@
 				2419B8BD2721843800BFE3D8 /* BridgeMapDetailAccessoryView.swift in Sources */,
 				2458020A278776510091365B /* FavoritesButton.swift in Sources */,
 				24B3FE8F272225B8004B93A6 /* MapExtensions.swift in Sources */,
+				24A314AC283C1CE70051063D /* StorageKeys.swift in Sources */,
 				240075CF27150F5800CB864F /* BridgeDetailsView.swift in Sources */,
 				248FC585270276EA00BE168F /* CloudKitContentView.swift in Sources */,
 				246F309527B2D72800B75025 /* OnBoardingBrowseScreen.swift in Sources */,
